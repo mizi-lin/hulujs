@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "lerna": "^6.6.1"
+  },
+  "name": "v5",
+  "workspaces": [
+    "packages/*"
+  ]
+}

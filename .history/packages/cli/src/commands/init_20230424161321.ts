@@ -1,0 +1,18 @@
+export const command = 'repo';
+export const aliases = ['init'];
+export const describe = 'hulu init | repo';
+export const builder = (yargs: any) => {
+    return yargs
+        .usage(`hulu init | repo 启动本地开发模式`)
+        .demandCommand(0)
+        .help('h')
+        .example('hulu init | repo ', '葫芦系统初始化')
+        .showHelpOnFail(true);
+};
+
+/**
+ * 初始化葫芦系统, 创建 hulu repo
+ * hulu repo 指 hulu project 运行的环境
+ * 包括 eslint, prettier, stylelint, husky 等环境配置
+ */
+export const handler = async function (argv: Arguments<Record<string, any>>) {};

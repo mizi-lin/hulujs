@@ -1,0 +1,12 @@
+{
+    "name": "@m-hulu/core",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "description": "hulu core",
+    "scripts": {
+        "watch": "../../node_modules/.bin/tsc --watch"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

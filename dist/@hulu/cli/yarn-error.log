@@ -1,0 +1,63 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js
+
+PATH: 
+  /Users/Mizi/.bun/bin:/Users/Mizi/.yarn/bin:/Users/Mizi/.config/yarn/global/node_modules/.bin:/Users/Mizi/.deno/bin:/usr/local/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:/usr/local/bin:/usr/local/sbin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  16.15.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.npm.taobao.org/@hulu%2fcore: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:140749:22)
+      at Request.emit (node:events:527:28)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141721:10)
+      at Request.emit (node:events:527:28)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141643:12)
+      at Object.onceWrapper (node:events:641:28)
+      at IncomingMessage.emit (node:events:539:35)
+      at endReadableNT (node:internal/streams/readable:1345:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+      "name": "@hulu/cli",
+      "version": "0.0.1",
+      "private": true,
+      "license": "MIT",
+      "description": "CLI",
+      "type": "module",
+      "module": "./src/cli.js",
+      "imports": {
+          "#cli": "./src/cli.js"
+      },
+      "bin": {
+          "o": "./bin/hulu.mjs",
+          "oo": "./bin/hulu.mjs",
+          "ooo": "./bin/hulu.mjs"
+      },
+      "scripts": {
+          "watch": "tsc --watch"
+      },
+      "dependencies": {
+          "@hulu/core": "0.0.1",
+          "import-local": "^3.1.0",
+          "chalk": "5.2.0"
+      },
+      "devDependencies": {
+          "typescript": "^5.0.4"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

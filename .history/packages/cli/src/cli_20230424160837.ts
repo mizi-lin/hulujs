@@ -1,0 +1,21 @@
+import importLocal from 'import-local';
+
+console.log(import.meta.url);
+
+if (importLocal(import.meta.url)) {
+    console.log('Using local version of this package');
+} else {
+    // Code for both global and local version here…
+}
+
+export const aa = () => {
+    console.log('oooOOoo ... AAABBBCCCDDDEEEFFF', import.meta.url);
+};
+
+export const run = () => {
+    ['SIGINT', 'SIGTERM'].forEach((sig) => {
+        process.on(sig, function () {
+            process.exit(0);
+        });
+    });
+};

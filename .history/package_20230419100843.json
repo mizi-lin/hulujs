@@ -1,0 +1,12 @@
+{
+  "name": "hulu-v5",
+  "private": true,
+    "license": "MIT",
+    "description": "Hulu v5",
+  "devDependencies": {
+    "lerna": "^6.6.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

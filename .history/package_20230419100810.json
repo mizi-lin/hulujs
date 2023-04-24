@@ -1,0 +1,12 @@
+{
+  "private": true,
+    "license": "MIT",
+    "description": "一个基于业务的React工具和环境",
+  "devDependencies": {
+    "lerna": "^6.6.1"
+  },
+  "name": "hulu-v5",
+  "workspaces": [
+    "packages/*"
+  ]
+}
