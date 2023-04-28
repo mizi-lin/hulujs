@@ -20,10 +20,7 @@
         "allowJs": true,
         "noImplicitAny": false,
         "esModuleInterop": true,
-        "importHelpers": true,
-        "paths": {
-            "@hulu/core": ["./packages/core/*"]
-        }
+        "importHelpers": true
     },
     "include": ["./packages/**/*"],
     "exclude": ["./dist"]

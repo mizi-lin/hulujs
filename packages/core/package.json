@@ -12,8 +12,16 @@
         "build": "tsc"
     },
     "dependencies": {
-        "fs-extra": "^11.1.1",
+        "@clack/prompts": "^0.6.3",
+        "@hulu/mu": "0.0.1",
+        "@hulu/types": "0.0.1",
+        "chalk": "^5.2.0",
         "ejs": "^3.1.9",
+        "fs-extra": "^11.1.1",
+        "inquirer": "^9.2.0",
+        "inquirer-fuzzy-path": "^2.3.0",
+        "lodash-es": "^4.17.21",
+        "path": "^0.12.7",
         "url": "^0.11.0"
     },
     "devDependencies": {}

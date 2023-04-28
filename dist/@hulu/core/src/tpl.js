@@ -1,13 +1,20 @@
-import fse from 'fs-extra';
+import { format } from '@hulu/mu';
 import ejs from 'ejs';
+import fse from 'fs-extra';
+import { globby } from 'globby';
+import path from 'path';
+import { $log } from './log.js';
 /**
  * 文件读取内容和写入
  */
-export class Tpl {
+class Tpl {
+    static defaultOptions = {
+        cover: 'cover',
+        depth: Infinity,
+        print: false
+    };
     /**
      * 读取路径内容
-     * @param filePath
-     * @param loggerType
      */
     read(filePath) {
         try {
@@ -19,14 +26,52 @@ export class Tpl {
     }
     /**
      * 根据模板文本，渲染生成内容
-     * @param content
-     * @param params
-     * @returns
      */
-    render(content, params = {}, target) {
-        if (target) {
-        }
+    render(content, params = {}, options = {}) {
         return ejs.render(content, params, { debug: !!process.env?.EJS_DEBUG });
     }
-    out(srcPath, params = {}, targetPath) { }
+    /**
+     * 文本输出到文件
+     */
+    out(content, targetPath, params = {}, options = {}) {
+        const config = { ...Tpl.defaultOptions, ...options };
+        // @todo cover
+        const outPath = format(targetPath, params);
+        fse.outputFileSync(outPath, content);
+        config.print && $log.info(['正在写入', outPath]);
+        return outPath;
+    }
+    /**
+     * 模板文件解析到文件输出
+     */
+    fileout(filePath, targetPath, params = {}, options = {}) {
+        const config = { ...Tpl.defaultOptions, ...options };
+        // @todo cover
+        const content = this.read(filePath);
+        const content$render = this.render(content, params, config);
+        return this.out(content$render, targetPath, params, config);
+    }
+    /**
+     * 文件夹下的文件输出到文件输出
+     */
+    async dirout(dirPath, targetPath, params = {}, options = {}) {
+        const config = { ...Tpl.defaultOptions, ...options };
+        const files = await globby(dirPath, { deep: config.depth, onlyFiles: true, ignore: ['**/generator.json'] });
+        for await (const file of files) {
+            const srcPath$1 = file;
+            const reletive = path.relative(dirPath, file);
+            const targetPath$1 = format(path.join(targetPath, reletive), params);
+            // 只处理后缀名为ejs的文件，其他文件拷贝
+            if (!/\.ejs$/.test(file)) {
+                fse.copySync(srcPath$1, targetPath$1, {
+                    overwrite: config.cover === 'cover'
+                });
+                continue;
+            }
+            const targetPath$2 = targetPath$1.replace(/\.ejs$/, '');
+            this.fileout(srcPath$1, targetPath$2, params, config);
+        }
+        return format(targetPath, params);
+    }
 }
+export { Tpl };

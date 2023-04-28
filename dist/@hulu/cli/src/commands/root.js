@@ -1,4 +1,5 @@
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import fse from 'fs-extra';
 /**
@@ -42,10 +43,30 @@ export class Root {
         return fileURLToPath(import.meta.url);
     }
     /**
+     * 系统home的地址
+     */
+    home() {
+        return os.homedir();
+    }
+    /**
+     * hulu 地址
+     */
+    hulu(packageName) {
+        const dirname = this.dirname();
+        return path.join(dirname, '..', packageName ?? '');
+    }
+    /**
      * 是否为根目录
      */
     isRoot(filename = 'package.json') {
         const cwd = this.cwd(false);
         return fse.pathExistsSync(`${cwd}/${filename}`);
+    }
+    /**
+     * 模版文件所在地址
+     */
+    template(filename) {
+        const dirname = this.dirname();
+        return path.join(dirname, '../template', filename ?? '');
     }
 }

@@ -1,0 +1,24 @@
+import { Arguments } from 'yargs';
+
+/**
+ * hulu <%= kebab %>
+ */
+
+// 命令行
+export const command = '<%= kebab %>';
+
+// 命令简称
+export const aliases = [''];
+
+// 命令说明
+export const describe = '';
+
+// 命令配置
+export const builder = function (yargs: any) {
+    return yargs.usage(`hulu <%= kebab %>`).demandCommand(0).example('hulu <%= kebab %>', '').showHelpOnFail(true);
+};
+
+// 命令执行区块
+export const handler = async function (argv: Arguments<Record<string, any>>) {
+    console.log('hulu <%= kebab %>');
+};

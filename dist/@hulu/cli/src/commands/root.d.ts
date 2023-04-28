@@ -17,7 +17,19 @@ export declare class Root {
      */
     filename(): string;
     /**
+     * 系统home的地址
+     */
+    home(): string;
+    /**
+     * hulu 地址
+     */
+    hulu(packageName?: string): string;
+    /**
      * 是否为根目录
      */
     isRoot(filename?: string): any;
+    /**
+     * 模版文件所在地址
+     */
+    template(filename?: string): string;
 }

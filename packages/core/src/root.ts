@@ -1,4 +1,5 @@
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import fse from 'fs-extra';
 
@@ -46,10 +47,35 @@ export class Root {
     }
 
     /**
-     * 是否为根目录
+     * 系统home的地址
+     */
+    home() {
+        return os.homedir();
+    }
+
+    /**
+     * hulu 地址
+     */
+    hulu(packageName?: string) {
+        const dirname = this.dirname();
+        const huluRoot = this.closest(dirname, 'tsconfig-base.json') ?? this.closest(dirname, '@hulu');
+        return packageName ? path.join(huluRoot, 'packages', packageName) : huluRoot;
+    }
+
+    /**
+     * 是否为根目 录
      */
     isRoot(filename: string = 'package.json') {
         const cwd = this.cwd(false);
         return fse.pathExistsSync(`${cwd}/${filename}`);
+    }
+
+    /**
+     * 模版文件所在地址
+     */
+    template(filename?: string) {
+        const dirname = this.dirname();
+        if (filename && path.isAbsolute(filename)) return filename;
+        return path.join(dirname, '../template', filename ?? '');
     }
 }

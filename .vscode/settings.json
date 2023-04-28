@@ -1,0 +1,34 @@
+{
+    "filewatcher.commands": [
+        {
+            "match": "packages/cli/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/cli",
+            "event": "onFileChange"
+        },
+        {
+            "match": "packages/core/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/core",
+            "event": "onFileChange"
+        },
+        {
+            "match": "packages/mu/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/mu",
+            "event": "onFileChange"
+        },
+        {
+            "match": "packages/types/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/types",
+            "event": "onFileChange"
+        },
+        {
+            "match": "packages/template/.*",
+            "isAsync": true,
+            "cmd": "rm -rf ${workspaceRoot}/dist/@hulu/template && cp -r ${workspaceRoot}/packages/template ${workspaceRoot}/dist/@hulu/template",
+            "event": "onFileChange"
+        }
+    ]
+}
