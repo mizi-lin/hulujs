@@ -1,4 +1,4 @@
-import { select, text } from '@clack/prompts';
+import { select } from '@clack/prompts';
 import { Log, Root, Tpl, fuzzypath, globby, someCase } from '@hulu/core';
 import path from 'path';
 import { getGenerates } from '../handlers/generate/get-tpl-info.js';
@@ -20,6 +20,11 @@ export const handler = async function (argv) {
     const tpl = new Tpl();
     const root = new Root();
     const log = new Log();
+    const buf = Buffer.from([0x68, 0x65, 0x6c, 0x6c, 0x6f]);
+    const decoder = new TextDecoder();
+    const text = decoder.decode(buf, { stream: true });
+    console.log(text);
+    process.exit();
     log.start(['hulu generate', '代码生成', '别名: hulu g']);
     /**
      * 从 template/generator 提取信息
