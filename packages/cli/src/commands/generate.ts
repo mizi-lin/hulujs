@@ -24,12 +24,6 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     const root = new Root();
     const log = new Log();
 
-    const buf = Buffer.from([0x68, 0x65, 0x6c, 0x6c, 0x6f]);
-    const decoder = new TextDecoder();
-    const text = decoder.decode(buf, { stream: true });
-    console.log(text);
-    process.exit();
-
     log.start(['hulu generate', '代码生成', '别名: hulu g']);
 
     /**
@@ -48,6 +42,11 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         message: '选择待创建代码模板类型',
         options: getGenerates(paths)
     });
+
+    if (typeof generator === 'symbol' && generator.toString() === 'Symbol(clack:cancel)') {
+        log.end(`退出命令`);
+        process.exit(0);
+    }
 
     const { absoulte, address, type, target } = generator as unknown as Record<string, any>;
 

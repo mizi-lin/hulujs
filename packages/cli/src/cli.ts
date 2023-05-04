@@ -1,6 +1,8 @@
 import { hideBin } from 'yargs/helpers';
 import cmds from './commands/index.js';
 import yargs from 'yargs';
+import { log } from 'util';
+import { $log } from '@hulu/core';
 
 export const run = () => {
     const arg = hideBin(process.argv);
@@ -11,6 +13,7 @@ export const run = () => {
      */
     ['SIGINT', 'SIGTERM'].forEach((sig) => {
         process.on(sig, function () {
+            $log.end('程序异常，退出命令');
             process.exit(process.pid);
         });
     });
