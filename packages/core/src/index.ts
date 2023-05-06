@@ -6,3 +6,4 @@ export * from './root.js';
 export * from './tpl.js';
 export * from './msc.js';
 export * from './utils.js';
+export * from './version.js';

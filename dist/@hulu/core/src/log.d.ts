@@ -1,6 +1,6 @@
 export declare class Log {
     t(message: string | string[]): any[];
-    text(message: string | string[]): string;
+    text(message: string | string[], isStep?: boolean): string;
     start(message: string | string[]): void;
     step(message: string | string[]): void;
     end(message: string | string[]): void;

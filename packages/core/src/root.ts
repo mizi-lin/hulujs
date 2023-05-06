@@ -47,7 +47,7 @@ export class Root {
     }
 
     /**
-     * 系统home的地址
+     * 系统home(我的文档)的地址
      */
     home() {
         return os.homedir();
@@ -63,7 +63,7 @@ export class Root {
     }
 
     /**
-     * 是否为根目 录
+     * 是否为根目录
      */
     isRoot(filename: string = 'package.json') {
         const cwd = this.cwd(false);
@@ -79,3 +79,6 @@ export class Root {
         return path.join(dirname, '../template', filename ?? '');
     }
 }
+
+const $root = new Root();
+export { $root };

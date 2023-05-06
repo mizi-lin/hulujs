@@ -25,12 +25,18 @@ export const handler = async function (argv) {
      * 从 template/generator 提取信息
      */
     const tplGenerator = root.template('generator');
+    /**
+     * 获得文件夹平铺路径
+     */
     const paths = await globby(tplGenerator, {
         expandDirectories: {
             files: ['generator'],
             extensions: ['json']
         }
     });
+    /**
+     * 用户选择模板
+     */
     const generator = await select({
         message: '选择待创建代码模板类型',
         options: getGenerates(paths)
@@ -42,6 +48,9 @@ export const handler = async function (argv) {
     const { absoulte, address, type, target } = generator;
     log.emptyLine();
     const targetRoot = target === 'repo' ? root.cwd() : root.hulu();
+    /**
+     * 用户选择写入路径
+     */
     const answer = await fuzzypath({ rootPath: targetRoot, message: '选择代码文件写入位置', itemType: 'directory' });
     const targetFileName = address.replace(/\.ejs$/, '');
     const targetPath = path.join(targetRoot, answer['path'], targetFileName);
@@ -59,6 +68,9 @@ export const handler = async function (argv) {
         ...someCase(name)
     };
     let outPath = '';
+    /**
+     * 按照模板类型，写入模板代码
+     */
     if (type === 'single') {
         outPath = await tpl.fileout(absoulte, targetPath, params);
     }

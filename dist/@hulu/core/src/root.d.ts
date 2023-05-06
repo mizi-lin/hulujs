@@ -17,7 +17,7 @@ export declare class Root {
      */
     filename(): string;
     /**
-     * 系统home的地址
+     * 系统home(我的文档)的地址
      */
     home(): string;
     /**
@@ -25,7 +25,7 @@ export declare class Root {
      */
     hulu(packageName?: string): string;
     /**
-     * 是否为根目 录
+     * 是否为根目录
      */
     isRoot(filename?: string): any;
     /**
@@ -33,3 +33,5 @@ export declare class Root {
      */
     template(filename?: string): string;
 }
+declare const $root: Root;
+export { $root };

@@ -18,6 +18,7 @@
         "@hulu/core": "0.0.1",
         "@hulu/mu": "0.0.1",
         "@hulu/types": "0.0.1",
+        "omelette": "^0.4.17",
         "yargs": "^17.7.1"
     },
     "devDependencies": {

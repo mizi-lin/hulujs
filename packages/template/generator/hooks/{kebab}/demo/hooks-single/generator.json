@@ -1,9 +1,0 @@
-{
-    "name": "hooks",
-    "description": "React hooks",
-    "author": "mizi <mizi.lin@miaozhen.com>",
-    "address": "{kebab}.ts.ejs",
-    "type": "single",
-    "target": "repo",
-    "extra": {}
-}

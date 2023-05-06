@@ -54,4 +54,22 @@ export const fuzzypath = async (question = {}) => {
     return answer;
 };
 export * from 'globby';
+export { default as shell } from 'shelljs';
+export { default as chalk } from 'chalk';
+export { default as isUnicodeSupported } from 'is-unicode-supported';
+export { default as semver } from 'semver';
+export { SemVer } from 'semver';
+// import {
+//     confirm,
+//     spinner,
+//     select,
+//     multiselect,
+//     text,
+//     TextOptions,
+//     selectKey,
+//     SelectOptions,
+//     ConfirmOptions
+// } from '@clack/prompts';
+export * as prompts from '@clack/prompts';
+// export { confirm, spinner, select, multiselect, text, TextOptions, selectKey, SelectOptions, ConfirmOptions };
 export { inquirer, path };
