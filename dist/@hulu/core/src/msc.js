@@ -53,7 +53,10 @@ export const fuzzypath = async (question = {}) => {
     ]);
     return answer;
 };
-export * from 'globby';
+import * as fse from 'fs-extra';
+import fs from 'node:fs';
+export const fsa = { ...fse, ...fs };
+export { globby } from 'globby';
 export { default as shell } from 'shelljs';
 export { default as chalk } from 'chalk';
 export { default as isUnicodeSupported } from 'is-unicode-supported';
@@ -71,5 +74,7 @@ export { SemVer } from 'semver';
 //     ConfirmOptions
 // } from '@clack/prompts';
 export * as prompts from '@clack/prompts';
+export * as tsImport from 'ts-import';
+export { simpleGit, CleanOptions } from 'simple-git';
 // export { confirm, spinner, select, multiselect, text, TextOptions, selectKey, SelectOptions, ConfirmOptions };
 export { inquirer, path };

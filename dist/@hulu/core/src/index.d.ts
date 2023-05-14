@@ -7,3 +7,6 @@ export * from './tpl.js';
 export * from './msc.js';
 export * from './utils.js';
 export * from './version.js';
+export * from './prompt.js';
+export * from './git.js';
+export * from './bash.js';

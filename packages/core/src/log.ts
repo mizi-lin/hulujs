@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import { isUnicodeSupported } from './msc.js';
 
 export class Log {
+    static Sign = '   ';
     t(message: string | string[]) {
         const content = upArray(message);
         return content.map((text) => {
@@ -13,12 +14,12 @@ export class Log {
         });
     }
 
-    text(message: string | string[], isStep: boolean = true) {
+    text(message: string | string[], isStep: boolean = true, sign?: string) {
         const unicode = isUnicodeSupported();
         const s = (c: string, fallback: string) => (unicode ? c : fallback);
         const S_BAR = s('│', '|');
         const message$1 = upArray(message).map((msg, i) => (i && !/::/.test(msg) ? `grey::${msg}` : msg));
-        return this.t(message$1).join(isStep ? `\n${chalk.gray(S_BAR)}  ` : '\n   ');
+        return this.t(message$1).join(isStep ? `\n${chalk.gray(S_BAR)}  ` : `\n${sign ?? ''}`);
     }
 
     start(message: string | string[]) {
@@ -34,8 +35,9 @@ export class Log {
         return log.step(this.text(message, false));
     }
 
-    end(message: string | string[]) {
-        return outro(this.text(message, false));
+    end(message: string | string[], exit: boolean = true) {
+        outro(this.text(message, false, Log.Sign));
+        return exit && process.exit(0);
     }
 
     info(message: string | string[]) {

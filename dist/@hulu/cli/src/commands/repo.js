@@ -1,4 +1,4 @@
-import { $log, $root, $ver, semver, prompts, isCancelPrompt } from '@hulu/core';
+import { $log, $root, $ver, semver, $prompts, $tpl, path, someCase, globby } from '@hulu/core';
 /**
  * 初始化葫芦系统, 创建 hulu init
  * hulu repo 指 hulu project 运行的环境
@@ -43,41 +43,57 @@ export const handler = async function (argv) {
         $log.end(`命令结束`);
         process.exit(1);
     }
+    /**
+     * repo 项目文件夹名称
+     * project 项目名称
+     * projectAlias 项目简称
+     *
+     * 三者可以不一样
+     * 大部分情况下 repo 与 projectAlias 名称一样
+     * 极小部分的情况下 三者一样
+     */
+    $log.info([
+        'cyan::名词解释',
+        `文件夹名称(repo name): 项目所在文件夹名称`,
+        `包名称(pkg name): package.json 的name值，建议3~8个字符，只能用英文字符，用作项目开发alias`,
+        `---`,
+        `大部分情况下，文件夹名称与包名称一致`
+    ]);
     const pkg = $root.closest($root.cwd(), 'package.json');
     if (pkg) {
-        const isConfirm = await prompts.confirm({
-            message: $log.text(['? 待创建的项目，在已存在项目下, 是否确认创建', `${pkg}`])
-        });
-        isCancelPrompt(isConfirm, '请切换到合适路径');
+        await $prompts.confirm({ message: $log.text(['? 待创建的项目，在已存在的项目下, 是否确认创建', `- ${pkg}`, `- 这是一个npm项目`]) }, { message: '请切换到合适路径, 再创建项目' });
     }
-    const isCurrent = await prompts.select({
-        message: '？是否在当前目录下创建项目？',
+    const currentFiles = await globby($root.pwd(), { onlyDirectories: true, deep: 1 });
+    const isCurrent = await $prompts.select({
+        message: $log.text([
+            '? 是否在当前目录下创建项目',
+            `- 建议项目创建在空文件夹下`,
+            `- 当前目录下拥有${currentFiles?.length ?? 0}个文件夹`
+        ]),
         options: [
             { value: 'none', label: '直接创建' },
-            { value: 'create', label: '创建目录后再创建项目' }
+            { value: 'create', label: '新建目录后再创建项目' }
         ]
     });
-    isCancelPrompt(isCurrent);
-    if (isCurrent === 'create') {
-        const directory = await prompts.text({
+    const repo = isCurrent !== 'create'
+        ? '.'
+        : await $prompts.text({
             message: $log.text(['? 输入目录名']),
             placeholder: '目录名',
-            validate(value) {
-                if (!value.length)
-                    return `Value is required!`;
-            }
+            require: true
         });
-        isCancelPrompt(directory);
-    }
-    const projectName = await prompts.text({
-        message: $log.text(['? 输入项目别称', '名称尽量简短，建议3~8个字符', '可与目录名，项目名不一样']),
+    const project = await $prompts.text({
+        message: $log.text(['? 输入项目简称', '名称尽量简短，建议3~8个字符', '可与目录名，项目名不一样']),
         placeholder: '项目简称(3~8字符)',
-        validate(value) {
-            if (!value.length)
-                return `Value is required!`;
-        }
+        require: true
     });
-    isCancelPrompt(projectName);
+    const targetPath = path.join($root.pwd(), repo);
+    await $tpl.dirout($root.template('repo/base'), targetPath, {
+        repo: someCase(repo),
+        project: someCase(project)
+    });
+    $log.success(['项目创建成功', `项目地址: ${targetPath}`]);
+    // isCancelPrompt(projectName);
     // Just pass a template literal to use super easy API.
     // console.log('npm_execpath', process.env.npm_execpath);
     // console.log('npm_config_user_agent', process.env.npm_config_user_agent);

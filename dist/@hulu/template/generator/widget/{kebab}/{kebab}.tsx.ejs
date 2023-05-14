@@ -1,0 +1,17 @@
+import { FC, PropsWithChildren, CSSProperties } from 'react';
+import clx from 'classnames';
+import './<%=kebab%>.less';
+
+export interface <%=pascal%>Props extends PropsWithChildren {
+    style?: CSSProperties;
+    className?: string;
+}
+
+const <%=pascal%>: FC<<%=pascal%>Props> = (props) => {
+    const { children, style = {}, className = '' } = props;
+    return (
+        <section style={style} className={clx('<%=kebab%>', className)}>{children}</section>
+    );
+};
+
+export { <%=pascal%> };

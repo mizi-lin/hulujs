@@ -1,8 +1,8 @@
 import { hideBin } from 'yargs/helpers';
-import cmds from './commands/index.js';
 import yargs from 'yargs';
 import { log } from 'util';
-import { $log } from '@hulu/core';
+import { $log, $root } from '@hulu/core';
+import cmds from './commands/index.js';
 
 export const run = () => {
     const arg = hideBin(process.argv);
@@ -17,6 +17,8 @@ export const run = () => {
             process.exit(process.pid);
         });
     });
+
+    process.env.ProjectCWD = $root.cwd();
 
     /**
      * 在esm下，不能直接使用commandDir

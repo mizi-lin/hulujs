@@ -8,7 +8,8 @@
     "bin": {
         "o": "./bin/hulu.mjs",
         "oo": "./bin/hulu.mjs",
-        "ooo": "./bin/hulu.mjs"
+        "ooo": "./bin/hulu.mjs",
+        "Oo-": "./bin/hulu.mjs"
     },
     "scripts": {
         "watch": "tsc --watch",

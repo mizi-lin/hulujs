@@ -29,6 +29,12 @@
             "isAsync": true,
             "cmd": "rm -rf ${workspaceRoot}/dist/@hulu/template && cp -r ${workspaceRoot}/packages/template ${workspaceRoot}/dist/@hulu/template",
             "event": "onFileChange"
+        },
+        {
+            "match": "packages/template/.*",
+            "isAsync": true,
+            "cmd": "rm -rf ${workspaceRoot}/dist/@hulu/template && cp -r ${workspaceRoot}/packages/template ${workspaceRoot}/dist/@hulu/template",
+            "event": "onFolderChange"
         }
     ]
 }

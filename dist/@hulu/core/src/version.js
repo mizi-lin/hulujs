@@ -17,7 +17,7 @@ class Version {
     }
     // 获取npm包的版本
     pkg(name) {
-        const cwd = $root.cwd(false);
+        const cwd = $root.pwd();
     }
 }
 export { Version };

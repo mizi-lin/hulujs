@@ -2,7 +2,8 @@ import { log, outro } from '@clack/prompts';
 import { upArray } from '@hulu/mu';
 import chalk from 'chalk';
 import { isUnicodeSupported } from './msc.js';
-export class Log {
+class Log {
+    static Sign = '   ';
     t(message) {
         const content = upArray(message);
         return content.map((text) => {
@@ -12,12 +13,12 @@ export class Log {
             return chalk[color]?.(content) ?? content;
         });
     }
-    text(message, isStep = true) {
+    text(message, isStep = true, sign) {
         const unicode = isUnicodeSupported();
         const s = (c, fallback) => (unicode ? c : fallback);
         const S_BAR = s('│', '|');
         const message$1 = upArray(message).map((msg, i) => (i && !/::/.test(msg) ? `grey::${msg}` : msg));
-        return this.t(message$1).join(isStep ? `\n${chalk.gray(S_BAR)}  ` : '\n   ');
+        return this.t(message$1).join(isStep ? `\n${chalk.gray(S_BAR)}  ` : `\n${sign ?? ''}`);
     }
     start(message) {
         const content = this.t(message).map((txt, i) => {
@@ -29,8 +30,9 @@ export class Log {
     step(message) {
         return log.step(this.text(message, false));
     }
-    end(message) {
-        return outro(this.text(message, false));
+    end(message, exit = true) {
+        outro(this.text(message, false, Log.Sign));
+        return exit && process.exit(0);
     }
     info(message) {
         return log.info(this.text(message, false));
@@ -58,5 +60,6 @@ export class Log {
         });
     }
 }
+export { Log };
 const $log = new Log();
 export { $log };

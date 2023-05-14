@@ -1,9 +1,0 @@
-{
-    "name": "hooks page",
-    "description": "页面级的hooks",
-    "author": "mizi <mizi.lin@miaozhen.com>",
-    "address": "{kebab}",
-    "type": "dir",
-    "target": "repo",
-    "extra": {}
-}

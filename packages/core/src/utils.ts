@@ -27,10 +27,3 @@ export function someCase(name: string): SomeCase {
 
     return { camel, kebab, pascal, constant };
 }
-
-export function isCancelPrompt(prompt, message: string | string[] = '') {
-    if (prompts.isCancel(prompt)) {
-        $log.end($log.text(['cyan::命令结束', ...upArray(message)].filter(Boolean), false));
-        process.exit(1);
-    }
-}

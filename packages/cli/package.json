@@ -7,8 +7,13 @@
     "type": "module",
     "bin": {
         "o": "./bin/hulu.mjs",
+        "oa": "./bin/hulu.mjs",
+        "oc": "./bin/hulu.mjs",
         "oo": "./bin/hulu.mjs",
-        "ooo": "./bin/hulu.mjs"
+        "ooo": "./bin/hulu.mjs",
+        "oao": "./bin/hulu.mjs",
+        "Oo-": "./bin/hulu.mjs",
+        "oo-": "./bin/hulu.mjs"
     },
     "scripts": {
         "watch": "tsc --watch",

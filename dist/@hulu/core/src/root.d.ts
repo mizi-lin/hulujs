@@ -7,7 +7,11 @@ export declare class Root {
     /**
      * 命令执行所在项目根目录
      */
-    cwd(root?: boolean): string;
+    cwd(): string;
+    /**
+     * 当前命令所在的项目目录
+     */
+    pwd(): string;
     /**
      * hulu runtime root
      */
@@ -16,6 +20,10 @@ export declare class Root {
      * 执行文件
      */
     filename(): string;
+    /**
+     * 当前所在文件夹名称
+     */
+    currentDir(): string;
     /**
      * 系统home(我的文档)的地址
      */
@@ -31,7 +39,7 @@ export declare class Root {
     /**
      * 模版文件所在地址
      */
-    template(filename?: string): string;
+    template(...filename: string[]): string;
 }
 declare const $root: Root;
 export { $root };

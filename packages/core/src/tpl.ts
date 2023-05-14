@@ -1,8 +1,9 @@
+import { globby } from 'globby';
+
 import { format } from '@hulu/mu';
 import type { Params, TplOutOptions } from '@hulu/types';
 import ejs from 'ejs';
 import fse from 'fs-extra';
-import { globby } from 'globby';
 import path from 'path';
 import { $log } from './log.js';
 
@@ -53,12 +54,12 @@ export class Tpl {
     /**
      * 模板文件解析到文件输出
      */
-    fileout(filePath: string, targetPath: string, params: Record<string, any> = {}, options: TplOutOptions = {}) {
+    fileout(srcPath: string, targetPath: string, params: Record<string, any> = {}, options: TplOutOptions = {}) {
         const config = { ...Tpl.defaultOptions, ...options };
 
         // @todo cover
 
-        const content = this.read(filePath);
+        const content = this.read(srcPath);
         const content$render = this.render(content, params, config);
 
         return this.out(content$render, targetPath, params, config);
@@ -67,14 +68,19 @@ export class Tpl {
     /**
      * 文件夹下的文件输出到文件输出
      */
-    async dirout(dirPath: string, targetPath: string, params: Params = {}, options: TplOutOptions = {}) {
+    async dirout(srcPath: string, targetPath: string, params: Params = {}, options: TplOutOptions = {}) {
         const config = { ...Tpl.defaultOptions, ...options };
 
-        const files = await globby(dirPath, { deep: config.depth, onlyFiles: true, ignore: ['**/generator.json'] });
+        const files = await globby(srcPath, {
+            deep: config.depth,
+            onlyFiles: true,
+            ignore: ['**/generator.json'],
+            ...config?.globbyOptions
+        });
 
         for await (const file of files) {
             const srcPath$1 = file;
-            const reletive = path.relative(dirPath, file);
+            const reletive = path.relative(srcPath, file);
             const targetPath$1 = format(path.join(targetPath, reletive), params);
 
             // 只处理后缀名为ejs的文件，其他文件拷贝
@@ -93,3 +99,5 @@ export class Tpl {
         return format(targetPath, params);
     }
 }
+
+export const $tpl = new Tpl();

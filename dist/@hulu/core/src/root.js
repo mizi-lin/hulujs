@@ -21,11 +21,15 @@ export class Root {
     /**
      * 命令执行所在项目根目录
      */
-    cwd(root = true) {
+    cwd() {
         const cwd = process.cwd();
-        if (!root)
-            return cwd;
         return this.closest(cwd);
+    }
+    /**
+     * 当前命令所在的项目目录
+     */
+    pwd() {
+        return process.cwd();
     }
     /**
      * hulu runtime root
@@ -41,6 +45,12 @@ export class Root {
      */
     filename() {
         return fileURLToPath(import.meta.url);
+    }
+    /**
+     * 当前所在文件夹名称
+     */
+    currentDir() {
+        return path.basename(this.pwd());
     }
     /**
      * 系统home(我的文档)的地址
@@ -60,17 +70,18 @@ export class Root {
      * 是否为根目录
      */
     isRoot(filename = 'package.json') {
-        const cwd = this.cwd(false);
-        return fse.pathExistsSync(`${cwd}/${filename}`);
+        const pwd = this.pwd();
+        return fse.pathExistsSync(`${pwd}/${filename}`);
     }
     /**
      * 模版文件所在地址
      */
-    template(filename) {
+    template(...filename) {
         const dirname = this.dirname();
-        if (filename && path.isAbsolute(filename))
-            return filename;
-        return path.join(dirname, '../template', filename ?? '');
+        const execute = path.join(...filename);
+        if (filename && path.isAbsolute(execute))
+            return execute;
+        return path.join(dirname, '../template', execute ?? '');
     }
 }
 const $root = new Root();
