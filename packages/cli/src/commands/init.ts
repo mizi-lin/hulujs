@@ -65,16 +65,11 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     // await TestGit();
 
     debug('start');
-    // const a = await tsImport.load('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.ts', {
-    //     allowConfigurationWithComments: true
-    //     // mode: tsImport.LoadMode.Transpile,
-    //     // useCache: true
-    //     // transpileOptions: {
-    //     //     cache: {
-    //     //         dir: './hulu'
-    //     //     }
-    //     // }
-    // });
+    const a = await tsImport.load('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.ts', {
+        allowConfigurationWithComments: true
+    });
+
+    console.log(a);
 
     // await import('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.js');
 

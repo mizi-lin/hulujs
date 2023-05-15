@@ -1,3 +1,4 @@
+import { tsImport } from '@hulu/core';
 import createDebug from 'debug';
 const debug = createDebug('init');
 /**
@@ -51,16 +52,10 @@ export const handler = async function (argv) {
     // const stdout = $bash.exec('yarn config get npmRegistryServer', { type: 'line' });
     // await TestGit();
     debug('start');
-    // const a = await tsImport.load('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.ts', {
-    //     allowConfigurationWithComments: true
-    //     // mode: tsImport.LoadMode.Transpile,
-    //     // useCache: true
-    //     // transpileOptions: {
-    //     //     cache: {
-    //     //         dir: './hulu'
-    //     //     }
-    //     // }
-    // });
+    const a = await tsImport.load('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.ts', {
+        allowConfigurationWithComments: true
+    });
+    console.log(a);
     // await import('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.js');
     debug('end');
 };
