@@ -44,5 +44,5 @@ export const handler = async function (argv) {
     $log.start('正在初始化Git信息');
     await stepGit(projectPath);
     $log.success(`Hulu Repo 创建成功`);
-    $log.end('命令结束');
+    $log.end(['命令结束', '可以使用']);
 };

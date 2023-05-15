@@ -5,6 +5,7 @@ import stepRepo from './step-repo.js';
 import stepGit from './step-git.js';
 import stepCompiler from './step-compiler.js';
 import stepPackageInstall from './step-package-install.js';
+import { matchCompiler } from './match-compiler.js';
 
 /**
  * 初始化葫芦系统, 创建 hulu init
@@ -53,5 +54,5 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     await stepGit(projectPath);
 
     $log.success(`Hulu Repo 创建成功`);
-    $log.end('命令结束');
+    $log.end(['命令结束', '可以使用']);
 };

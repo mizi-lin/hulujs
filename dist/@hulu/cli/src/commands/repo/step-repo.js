@@ -6,7 +6,8 @@ const stepRepo = async ({ compiler = 'vite' }) => {
     $log.info([
         'cyan::名词解释',
         `文件夹名称(repo name): 项目所在文件夹名称`,
-        `包名称(pkg name): package.json 的name值，建议3~8个字符，只能用英文字符，用作项目开发alias`,
+        `包名称(pkg name): package.json 的name值，`,
+        `建议3~8个字符，只能用英文字符，用作项目开发alias`,
         `---`,
         `大部分情况下，文件夹名称与包名称一致`
     ]);
@@ -44,7 +45,16 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         require: true
     });
     const targetPath = path.join($root.pwd(), repo);
-    await $tpl.dirout($root.template('repo/base'), targetPath, { repo: someCase(repo), project: someCase(project), compiler, title }, { globbyOptions: { dot: true } });
+    const params = {
+        repo: someCase(repo),
+        project: someCase(project),
+        compiler,
+        title,
+        compilerVersion: '4.3.5'
+    };
+    const tplOptions = { globbyOptions: { dot: true } };
+    await $tpl.dirout($root.template('repo/base'), targetPath, params, tplOptions);
+    await $tpl.dirout($root.template(`repo/${compiler}`), targetPath, params, tplOptions);
     $log.success(['项目创建成功', `项目地址: ${targetPath}`]);
 };
 export default stepRepo;

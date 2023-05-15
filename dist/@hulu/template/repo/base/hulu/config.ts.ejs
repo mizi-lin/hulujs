@@ -1,6 +1,16 @@
+import * as path from 'path';
+
+import { fileURLToPath } from 'url'
+const __filenameNew = fileURLToPath(import.meta.url)
+const __dirnameNew = path.dirname(__filenameNew)
+
 const config = {
     title: '<%= title %>',
-    compiler: '<%= compiler %>'
+    compiler: '<%= compiler %>',
+    resolve: { alias: { '@': path.resolve(__dirnameNew, './src') } },
 };
 
 export default config;
+
+
+

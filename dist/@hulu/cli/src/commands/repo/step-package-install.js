@@ -3,8 +3,6 @@ import { $bash, $log, $prompts, $ver, prompts } from '@hulu/core';
  * 安装repo的包
  */
 const stepPackageInstall = async () => {
-    const yarnVersion = $ver.bin('yarnVersion');
-    $log.info([`hulu只支持Yarn`, `当前Yarn版本为: v${yarnVersion}`]);
     /**
      * 设定npm源
      */
@@ -42,8 +40,10 @@ const stepPackageInstall = async () => {
     });
     $bash.exec(`yarn config set npmRegistryServer ${registry}`);
     const spin = prompts.spinner();
-    spin.start();
+    spin.start('安装包 -> yarn install');
     $bash.exec('yarn install');
     spin.stop();
+    const yarnVersion = $ver.bin('yarnVersion');
+    $log.info([`hulu只支持Yarn`, `当前Yarn版本为: v${yarnVersion}`]);
 };
 export default stepPackageInstall;
