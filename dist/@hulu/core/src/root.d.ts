@@ -2,12 +2,12 @@
  * 获得根目录地址
  * - 根目录地址判断规则为目录下是否拥有 package.json
  */
-export declare class Root {
+export declare class Repo {
     closest(filePath: string, filename?: string): string;
     /**
      * 命令执行所在项目根目录
      */
-    cwd(): string;
+    cwd(...paths: string[]): any;
     /**
      * 当前命令所在的项目目录
      */
@@ -40,6 +40,10 @@ export declare class Root {
      * 模版文件所在地址
      */
     template(...filename: string[]): string;
+    /**
+     * repo 配置
+     */
+    config(): any;
 }
-declare const $root: Root;
-export { $root };
+declare const $repo: Repo;
+export { $repo };

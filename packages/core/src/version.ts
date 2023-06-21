@@ -1,6 +1,6 @@
 import { isNil } from '@hulu/mu';
 import { SemVer, semver, shell } from './msc.js';
-import { $root } from './root.js';
+import { $repo } from './root.js';
 
 /**
  * 关于版本的获取和操作
@@ -21,7 +21,7 @@ export class Version {
 
     // 获取npm包的版本
     pkg(name: string) {
-        const cwd = $root.pwd();
+        const cwd = $repo.pwd();
     }
 }
 

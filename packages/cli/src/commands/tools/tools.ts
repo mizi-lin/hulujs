@@ -1,4 +1,4 @@
-import { $_git, $git, $log, $prompts } from '@hulu/core';
+import { $log, $prompts } from '@hulu/core';
 import { Arguments } from 'yargs';
 import { isEmpty } from '@hulu/mu';
 import { removeCurrentAll, removeCurrentDir, removeCurrentFiles } from './rm.js';

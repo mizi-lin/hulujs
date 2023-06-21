@@ -3,5 +3,5 @@
  */
 declare const stepRepo: ({ compiler }: {
     compiler?: string | undefined;
-}) => Promise<void>;
+}) => Promise<string>;
 export default stepRepo;

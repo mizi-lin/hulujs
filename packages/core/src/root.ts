@@ -7,7 +7,7 @@ import fse from 'fs-extra';
  * 获得根目录地址
  * - 根目录地址判断规则为目录下是否拥有 package.json
  */
-export class Root {
+export class Repo {
     closest(filePath: string, filename: string = 'package.json') {
         const paths = filePath.split(path.sep);
 
@@ -24,7 +24,10 @@ export class Root {
     /**
      * 命令执行所在项目根目录
      */
-    cwd() {
+    cwd(...paths: string[]) {
+        if(paths.length) {
+            return path.join(this.cwd(), ...paths)
+        }
         const cwd = process.cwd();
         return this.closest(cwd);
     }
@@ -92,7 +95,14 @@ export class Root {
         if (filename && path.isAbsolute(execute)) return execute;
         return path.join(dirname, '../template', execute ?? '');
     }
+
+    /**
+     * repo 配置
+     */
+    config() {
+        return this.cwd('hulu', 'config.ts');
+    }
 }
 
-const $root = new Root();
-export { $root };
+const $repo = new Repo();
+export { $repo };

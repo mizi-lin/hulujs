@@ -1,4 +1,4 @@
-import { tsImport } from '@hulu/core';
+import { simpleGit } from '@hulu/core';
 import createDebug from 'debug';
 const debug = createDebug('init');
 /**
@@ -46,16 +46,19 @@ const TestGit = async () => {
 };
 export const handler = async function (argv) {
     console.log('hulu init');
+    const git = simpleGit();
+    const a = await git.init();
+    console.log(a);
     // TestRegex();
     // const yarnVersion = $ver.bin('yarn');
     // console.log('yarnVersion', yarnVersion);
     // const stdout = $bash.exec('yarn config get npmRegistryServer', { type: 'line' });
     // await TestGit();
-    debug('start');
-    const a = await tsImport.load('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.ts', {
-        allowConfigurationWithComments: true
-    });
-    console.log(a);
+    // debug('start');
+    // const a = await tsImport.load('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.ts', {
+    //     allowConfigurationWithComments: true
+    // });
+    // console.log(a);
     // await import('/Users/Mizi/minglamp/repo/fe/odemo/hulu/config.js');
-    debug('end');
+    // debug('end');
 };

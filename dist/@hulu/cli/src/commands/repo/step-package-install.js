@@ -2,11 +2,12 @@ import { $bash, $log, $prompts, $ver, prompts } from '@hulu/core';
 /**
  * 安装repo的包
  */
-const stepPackageInstall = async () => {
+const stepPackageInstall = async (projectPath) => {
     /**
      * 设定npm源
      */
-    const registry$source = $bash.exec('yarn config get npmRegistryServer', { type: 'line' });
+    $log.info([`项目地址`, projectPath]);
+    const registry$source = $bash.exec('yarn config get npmRegistryServer', { type: 'line', cwd: projectPath });
     const registry = await $prompts.select({
         message: `? 选择npm包源管理器`,
         initialValue: registry$source,
@@ -38,10 +39,10 @@ const stepPackageInstall = async () => {
             }
         ]
     });
-    $bash.exec(`yarn config set npmRegistryServer ${registry}`);
+    $bash.exec(`yarn config set npmRegistryServer ${registry}`, { cwd: projectPath });
     const spin = prompts.spinner();
     spin.start('安装包 -> yarn install');
-    $bash.exec('yarn install');
+    $bash.live('yarn install', { silent: false, cwd: projectPath });
     spin.stop();
     const yarnVersion = $ver.bin('yarnVersion');
     $log.info([`hulu只支持Yarn`, `当前Yarn版本为: v${yarnVersion}`]);

@@ -1,13 +1,13 @@
-import * as path from 'path';
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { fileURLToPath } from 'url'
-const __filenameNew = fileURLToPath(import.meta.url)
-const __dirnameNew = path.dirname(__filenameNew)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const config = {
     title: '<%= title %>',
     compiler: '<%= compiler %>',
-    resolve: { alias: { '@': path.resolve(__dirnameNew, './src') } },
+    resolve: { alias: { '@': path.resolve(__dirname, '../src') } },
 };
 
 export default config;

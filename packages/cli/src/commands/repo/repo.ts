@@ -13,7 +13,7 @@ import { matchCompiler } from './match-compiler.js';
  * 包括 eslint, prettier, stylelint, husky 等环境配置
  */
 export const command = 'repo';
-export const aliases = [];
+export const aliases = ['create'];
 export const describe = 'hulu repo 创建标准的葫芦项目';
 export const builder = (yargs: any) => {
     return yargs
@@ -48,7 +48,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     const projectPath = await stepRepo({ compiler });
 
     $log.start('正在安装包');
-    await stepPackageInstall();
+    await stepPackageInstall(projectPath);
 
     $log.start('正在初始化Git信息');
     await stepGit(projectPath);

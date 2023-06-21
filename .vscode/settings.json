@@ -1,4 +1,20 @@
 {
+    "files.exclude": {
+		"**/lerna-*": true,
+		"**/yarn-*": true,
+		"**/.stylelintcache": true,
+		"**/.eslintcache": true,
+		"**/.gitignore": true,
+		"**/.nyc_output": true,
+		"**/.vscode": true,
+		"**/dist": true,
+		"**/node_modules": true,
+		"**/yarn.lock": true,
+		"**/coverage": true,
+		"**/cache": true,
+		"**/.cache": true,
+	},
+
     "filewatcher.commands": [
         {
             "match": "packages/cli/.*\\.ts*",

@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "eamodio.gitlens",
+        "kamikillerto.vscode-colorize",
+        "usernamehw.errorlens",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "mhutchie.git-graph",
+        "wix.vscode-import-cost",
+        "oderwat.indent-rainbow",
+        "pkief.material-icon-theme",
+        "styled-components.vscode-styled-components",
+        "clinyong.vscode-css-modules",
+        "appulate.filewatcher"
+    ]
+}

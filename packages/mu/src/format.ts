@@ -1,7 +1,11 @@
 import { Params } from '@hulu/types';
-import { isNil } from 'lodash-es';
 import ifnvl from './if-nvl.js';
+import isNil from './is-nil.js';
 
+/**
+ * 字符串处理
+ * 添加前后缀和替换字符串
+ */
 function stringfix(keyStr: string, obj: Record<string, any>, source: string, nullInstead?: string) {
     if (keyStr) {
         let prefix;

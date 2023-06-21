@@ -1,5 +1,6 @@
 import { upArray } from '@hulu/mu';
 import { ExecOptions } from 'shelljs';
+import live from 'shelljs-live';
 import { shell } from './msc.js';
 
 interface BachExecOptions extends ExecOptions {
@@ -7,6 +8,10 @@ interface BachExecOptions extends ExecOptions {
 }
 
 export class Bash {
+    live(command: string | string[], config: BachExecOptions = {}) {
+        live(upArray(command).join('\n'), config);
+    }
+
     exec(commands: string | string[], config: BachExecOptions = {}) {
         const { type, ...options } = config;
         const commands$str = upArray(commands).join('\n');

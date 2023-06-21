@@ -1,5 +1,5 @@
 import { semver, shell } from './msc.js';
-import { $root } from './root.js';
+import { $repo } from './root.js';
 /**
  * 关于版本的获取和操作
  */
@@ -17,7 +17,7 @@ class Version {
     }
     // 获取npm包的版本
     pkg(name) {
-        const cwd = $root.pwd();
+        const cwd = $repo.pwd();
     }
 }
 export { Version };

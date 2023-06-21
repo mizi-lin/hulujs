@@ -1,6 +1,6 @@
 import { isNil } from '@hulu/mu';
 import { CleanOptions, simpleGit } from './msc.js';
-import { $root } from './root.js';
+import { $repo } from './root.js';
 class Git {
     git;
     $_;
@@ -8,7 +8,7 @@ class Git {
         this.init(projectCWD);
     }
     async init(projectCWD) {
-        projectCWD ??= process.env.GitCWD ?? $root.cwd();
+        projectCWD ??= process.env.GitCWD ?? $repo.cwd();
         this.git = simpleGit({
             baseDir: projectCWD,
             binary: 'git',

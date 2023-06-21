@@ -1,4 +1,4 @@
-import { $bash, $log, $prompts, $root, globby, path } from '@hulu/core';
+import { $bash, $log, $prompts, $repo, globby, path } from '@hulu/core';
 const canRemoveFiles = (pwd) => {
     if (!pwd)
         $log.error('文件目录不能为空');
@@ -9,7 +9,7 @@ const canRemoveFiles = (pwd) => {
  */
 export const removeCurrentAll = (argv) => {
     $log.warn(`为了保证安装，该命令只删除第三级目录下的文件或文件夹`);
-    const pwd = $root.pwd();
+    const pwd = $repo.pwd();
     if (!canRemoveFiles(pwd))
         return $log.error(`${pwd}文件层级过高，请手动删除`);
     $bash.exec(`rm -rf .[^.]* ./*`, { silent: false });
@@ -17,7 +17,7 @@ export const removeCurrentAll = (argv) => {
 };
 export const removeCurrentFiles = async (argv) => {
     const { depth = 1, dot } = argv;
-    const pwd = $root.pwd();
+    const pwd = $repo.pwd();
     const files = await globby(pwd, { onlyFiles: true, deep: depth, dot });
     if (!canRemoveFiles(pwd))
         return $log.error(`${pwd}文件层级过高，请手动删除`);
@@ -35,7 +35,7 @@ export const removeCurrentFiles = async (argv) => {
 };
 export const removeCurrentDir = async (argv) => {
     const { depth = 1, dot } = argv;
-    const pwd = $root.pwd();
+    const pwd = $repo.pwd();
     const directories = await globby(pwd, { onlyDirectories: true, deep: depth, dot });
     if (!canRemoveFiles(pwd))
         return $log.error(`${pwd}文件层级过高，请手动删除`);

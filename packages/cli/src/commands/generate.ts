@@ -1,5 +1,5 @@
 import { select, text } from '@clack/prompts';
-import { Log, Root, Tpl, fuzzypath, globby, someCase } from '@hulu/core';
+import { Log, Repo, Tpl, fuzzypath, globby, someCase } from '@hulu/core';
 import path from 'path';
 import { Arguments } from 'yargs';
 import { getGenerates } from '../handlers/generate/get-tpl-info.js';
@@ -21,7 +21,7 @@ export const builder = (yargs: any) => {
 
 export const handler = async function (argv: Arguments<Record<string, any>>) {
     const tpl = new Tpl();
-    const root = new Root();
+    const root = new Repo();
     const log = new Log();
 
     log.start(['hulu generate', '代码生成', '别名: hulu g']);

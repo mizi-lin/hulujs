@@ -1,6 +1,10 @@
 import { upArray } from '@hulu/mu';
+import live from 'shelljs-live';
 import { shell } from './msc.js';
 export class Bash {
+    live(command, config = {}) {
+        live(upArray(command).join('\n'), config);
+    }
     exec(commands, config = {}) {
         const { type, ...options } = config;
         const commands$str = upArray(commands).join('\n');

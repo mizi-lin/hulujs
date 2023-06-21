@@ -1,4 +1,4 @@
-import { $log, $root, $prompts, $tpl, path, someCase, globby } from '@hulu/core';
+import { $log, $repo, $prompts, $tpl, path, someCase, globby } from '@hulu/core';
 
 /**
  * 创建 hulu repo
@@ -13,7 +13,7 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         `大部分情况下，文件夹名称与包名称一致`
     ]);
 
-    const pkg = $root.closest($root.cwd(), 'package.json');
+    const pkg = $repo.closest($repo.cwd(), 'package.json');
 
     if (pkg) {
         await $prompts.confirm(
@@ -22,7 +22,7 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         );
     }
 
-    const currentFiles = await globby($root.pwd(), { onlyDirectories: true, deep: 1 });
+    const currentFiles = await globby($repo.pwd(), { onlyDirectories: true, deep: 1 });
 
     const isCurrent = await $prompts.select({
         message: $log.text([
@@ -57,7 +57,7 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         require: true
     });
 
-    const targetPath = path.join($root.pwd(), repo as string);
+    const targetPath = path.join($repo.pwd(), repo as string);
     const params = {
         repo: someCase(repo as string),
         project: someCase(project as string),
@@ -67,10 +67,12 @@ const stepRepo = async ({ compiler = 'vite' }) => {
     };
 
     const tplOptions = { globbyOptions: { dot: true } };
-    await $tpl.dirout($root.template('repo/base'), targetPath, params, tplOptions);
-    await $tpl.dirout($root.template(`repo/${compiler}`), targetPath, params, tplOptions);
+    await $tpl.dirout($repo.template('repo/base'), targetPath, params, tplOptions);
+    await $tpl.dirout($repo.template(`repo/${compiler}`), targetPath, params, tplOptions);
 
     $log.success(['项目创建成功', `项目地址: ${targetPath}`]);
+
+    return targetPath
 };
 
 export default stepRepo;

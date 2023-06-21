@@ -10,7 +10,7 @@ import stepPackageInstall from './step-package-install.js';
  * 包括 eslint, prettier, stylelint, husky 等环境配置
  */
 export const command = 'repo';
-export const aliases = [];
+export const aliases = ['create'];
 export const describe = 'hulu repo 创建标准的葫芦项目';
 export const builder = (yargs) => {
     return yargs
@@ -40,7 +40,7 @@ export const handler = async function (argv) {
     $log.start('正在创建项目');
     const projectPath = await stepRepo({ compiler });
     $log.start('正在安装包');
-    await stepPackageInstall();
+    await stepPackageInstall(projectPath);
     $log.start('正在初始化Git信息');
     await stepGit(projectPath);
     $log.success(`Hulu Repo 创建成功`);

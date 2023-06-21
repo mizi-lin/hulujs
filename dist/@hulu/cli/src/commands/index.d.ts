@@ -3,5 +3,6 @@ import * as genenate from './generate.js';
 import * as repo from './repo/repo.js';
 import * as git from './git/git.js';
 import * as tools from './tools/tools.js';
-declare const cmds: (typeof init | typeof genenate | typeof repo | typeof git | typeof tools)[];
+import * as dev from './dev/dev.js';
+declare const cmds: (typeof init | typeof genenate | typeof repo | typeof git | typeof tools | typeof dev)[];
 export default cmds;

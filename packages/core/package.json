@@ -28,6 +28,7 @@
         "simple-git": "^3.18.0",
         "semver": "^7.5.0",
         "shelljs": "0.8.5",
+        "shelljs-live": "0.0.5",
         "url": "^0.11.0"
     },
     "devDependencies": {

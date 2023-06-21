@@ -1,4 +1,4 @@
-import { $log, $root, $prompts, $tpl, path, someCase, globby } from '@hulu/core';
+import { $log, $repo, $prompts, $tpl, path, someCase, globby } from '@hulu/core';
 /**
  * 创建 hulu repo
  */
@@ -11,11 +11,11 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         `---`,
         `大部分情况下，文件夹名称与包名称一致`
     ]);
-    const pkg = $root.closest($root.cwd(), 'package.json');
+    const pkg = $repo.closest($repo.cwd(), 'package.json');
     if (pkg) {
         await $prompts.confirm({ message: $log.text(['? 待创建的项目，在已存在的项目下, 是否确认创建', `- ${pkg}`, `- 这是一个npm项目`]) }, { message: '请切换到合适路径, 再创建项目' });
     }
-    const currentFiles = await globby($root.pwd(), { onlyDirectories: true, deep: 1 });
+    const currentFiles = await globby($repo.pwd(), { onlyDirectories: true, deep: 1 });
     const isCurrent = await $prompts.select({
         message: $log.text([
             '? 是否在当前目录下创建项目',
@@ -44,7 +44,7 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         placeholder: '用作浏览器Tab名称',
         require: true
     });
-    const targetPath = path.join($root.pwd(), repo);
+    const targetPath = path.join($repo.pwd(), repo);
     const params = {
         repo: someCase(repo),
         project: someCase(project),
@@ -53,8 +53,9 @@ const stepRepo = async ({ compiler = 'vite' }) => {
         compilerVersion: '4.3.5'
     };
     const tplOptions = { globbyOptions: { dot: true } };
-    await $tpl.dirout($root.template('repo/base'), targetPath, params, tplOptions);
-    await $tpl.dirout($root.template(`repo/${compiler}`), targetPath, params, tplOptions);
+    await $tpl.dirout($repo.template('repo/base'), targetPath, params, tplOptions);
+    await $tpl.dirout($repo.template(`repo/${compiler}`), targetPath, params, tplOptions);
     $log.success(['项目创建成功', `项目地址: ${targetPath}`]);
+    return targetPath;
 };
 export default stepRepo;

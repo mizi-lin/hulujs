@@ -1,7 +1,7 @@
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
 import { log } from 'util';
-import { $log, $root } from '@hulu/core';
+import { $log, $repo } from '@hulu/core';
 import cmds from './commands/index.js';
 
 export const run = () => {
@@ -18,7 +18,7 @@ export const run = () => {
         });
     });
 
-    process.env.ProjectCWD = $root.cwd();
+    process.env.ProjectCWD = $repo.cwd();
 
     /**
      * 在esm下，不能直接使用commandDir
