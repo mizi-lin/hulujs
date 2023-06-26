@@ -12,20 +12,37 @@ export async function stepGenerateCaoKongIndex() {
      */
     const caokongPath = $repo.hulu('.caokong');
     const sourcePath = $repo.cwd('src');
-    //-> 读取 hulu/.caokong 下所有的文件
-    const ck = await globby(caokongPath, {
-        expandDirectories: {}
-    });
-    //-> 判断操控源文件是否存在;
-    const paths = ck.map((pwd) => {
+    const exist = (pwd) => {
         const relative = path.relative(caokongPath, pwd);
         const src = path.join(sourcePath, relative);
         if (fsa.existsSync(src)) {
             return src;
         }
         return pwd;
+    };
+    //-> 读取 hulu/.caokong 下所有的文件
+    const exports$1 = await globby(caokongPath, {
+        expandDirectories: {
+            extensions: ['ts', 'tsx', 'jsx', 'js']
+        }
     });
+    const exports = exports$1.map(exist).map((pwd) => {
+        // 隐藏后缀名
+        return pwd.split('.').slice(0, -1).join('.');
+    });
+    const imports$1 = await globby(caokongPath, {
+        expandDirectories: {
+            extensions: ['less', 'css']
+        }
+    });
+    const imports = imports$1.map(exist);
+    // @todo 支持图片模块
+    // const modules = await globby(caokongPath, {
+    //     expandDirectories: {
+    //         extensions: ['jpg', 'jpeg', 'png', 'svg']
+    //     }
+    // });
     const caokongTplIndex = $repo.template('caokong', 'index.ts.ejs');
     const targetPath = $repo.hulu('.caokong', 'index.ts');
-    await $tpl.dirout(caokongTplIndex, targetPath, { paths });
+    await $tpl.dirout(caokongTplIndex, targetPath, { exports, imports });
 }

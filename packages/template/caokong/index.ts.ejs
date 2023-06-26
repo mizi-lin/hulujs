@@ -1,3 +1,10 @@
-<% for ( const path of paths ) { %> 
+/* eslint-disable */
+/* prettier-ignore */
+
+<% for ( const path of exports ) { %> 
 export * from '<%= path %>';
+<% } %>
+
+<% for ( const path of imports ) { %> 
+import '<%= path %>';
 <% } %>

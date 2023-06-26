@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot } from 'recoil';
 import RecoilNexus from 'recoil-nexus';  
-import { vconsole } from '~ck'
+import { vconsole, reportWebVitals } from '~ck'
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
@@ -23,6 +23,7 @@ function render(App: ComponentType) {
 
     <% if ( isDev ) {%>
         vconsole();
+        reportWebVitals();
     <% } %>
 }
 
