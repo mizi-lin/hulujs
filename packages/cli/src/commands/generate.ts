@@ -1,5 +1,5 @@
 import { select, text } from '@clack/prompts';
-import { Log, Repo, Tpl, fuzzypath, globby, someCase } from '@hulu/core';
+import { $repo, Log, Repo, Tpl, fuzzypath, globby, someCase } from '@hulu/core';
 import path from 'path';
 import { Arguments } from 'yargs';
 import { getGenerates } from '../handlers/generate/get-tpl-info.js';
@@ -21,7 +21,6 @@ export const builder = (yargs: any) => {
 
 export const handler = async function (argv: Arguments<Record<string, any>>) {
     const tpl = new Tpl();
-    const root = new Repo();
     const log = new Log();
 
     log.start(['hulu generate', '代码生成', '别名: hulu g']);
@@ -29,7 +28,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     /**
      * 从 template/generator 提取信息
      */
-    const tplGenerator = root.template('generator');
+    const tplGenerator = $repo.template('generator');
 
     /**
      * 获得文件夹平铺路径
@@ -58,7 +57,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
 
     log.emptyLine();
 
-    const targetRoot = target === 'repo' ? root.cwd() : root.hulu();
+    const targetRoot = target === 'repo' ? $repo.cwd() : $repo.cli();
 
     /**
      * 用户选择写入路径

@@ -14,6 +14,12 @@ class Tpl {
         print: false
     };
     /**
+     * 文档写入基础参数
+     */
+    baseParams() {
+        return {};
+    }
+    /**
      * 读取路径内容
      */
     read(filePath) {

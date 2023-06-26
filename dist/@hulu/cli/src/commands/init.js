@@ -1,4 +1,4 @@
-import { simpleGit } from '@hulu/core';
+import { path } from '@hulu/core';
 import createDebug from 'debug';
 const debug = createDebug('init');
 /**
@@ -45,10 +45,12 @@ const TestGit = async () => {
     // console.log(await ggit.status());
 };
 export const handler = async function (argv) {
-    console.log('hulu init');
-    const git = simpleGit();
-    const a = await git.init();
-    console.log(a);
+    //     console.log('hulu init');
+    //     const git =  simpleGit();
+    //    const a =  await git.init();
+    //     console.log( a );
+    const relative = path.relative(process.cwd(), '/Users/Mizi');
+    console.log(relative);
     // TestRegex();
     // const yarnVersion = $ver.bin('yarn');
     // console.log('yarnVersion', yarnVersion);

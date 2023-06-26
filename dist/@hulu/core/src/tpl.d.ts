@@ -5,6 +5,10 @@ import type { Params, TplOutOptions } from '@hulu/types';
 export declare class Tpl {
     static readonly defaultOptions: TplOutOptions;
     /**
+     * 文档写入基础参数
+     */
+    baseParams(): {};
+    /**
      * 读取路径内容
      */
     read(filePath: string): any;

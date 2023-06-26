@@ -1,7 +1,9 @@
 /**
  * 创建 hulu repo
  */
-declare const stepRepo: ({ compiler }: {
-    compiler?: string | undefined;
-}) => Promise<string>;
+interface StepRepoArgs {
+    compiler: 'vite' | string;
+    dirname: string;
+}
+declare const stepRepo: ({ compiler, dirname }: StepRepoArgs) => Promise<string>;
 export default stepRepo;

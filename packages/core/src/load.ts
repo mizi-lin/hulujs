@@ -7,11 +7,11 @@ class Load {
     json(path: string) {}
 
     async ts(path: string) {
-        const rst = await tsImport.load(path)
+        const rst = await tsImport.load(path);
         return rst?.default ?? rst;
     }
 }
 
 const $load = new Load();
 
-export { $load }
+export { $load };

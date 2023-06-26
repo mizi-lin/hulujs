@@ -8,6 +8,9 @@ import fse from 'fs-extra';
  * - 根目录地址判断规则为目录下是否拥有 package.json
  */
 export class Repo {
+    /**
+     * 获得最接近文件的路径
+     */
     closest(filePath: string, filename: string = 'package.json') {
         const paths = filePath.split(path.sep);
 
@@ -25,8 +28,8 @@ export class Repo {
      * 命令执行所在项目根目录
      */
     cwd(...paths: string[]) {
-        if(paths.length) {
-            return path.join(this.cwd(), ...paths)
+        if (paths.length) {
+            return path.join(this.cwd(), ...paths);
         }
         const cwd = process.cwd();
         return this.closest(cwd);
@@ -70,9 +73,16 @@ export class Repo {
     }
 
     /**
+     * hulu文件夹
+     */
+    hulu(...paths: string[]) {
+        return this.cwd('hulu', ...paths);
+    }
+
+    /**
      * hulu 地址
      */
-    hulu(packageName?: string) {
+    cli(packageName?: string) {
         const dirname = this.dirname();
         const huluRoot = this.closest(dirname, 'tsconfig-base.json') ?? this.closest(dirname, '@hulu');
         return packageName ? path.join(huluRoot, 'packages', packageName) : huluRoot;

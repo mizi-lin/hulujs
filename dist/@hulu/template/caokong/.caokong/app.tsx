@@ -1,24 +1,22 @@
-import { Fragment } from 'react';
+import { Fragment, RouterProvider, dayjs, createBrowserRouter } from '~hulu/msc';
 
-import { RouterProvider } from 'react-router-dom';
 import { ConfigProvider, theme } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
-import dayjs from 'dayjs';
+
 import 'dayjs/locale/zh-cn';
-import router from '@/routes';
+import { routes } from '~ck';
 
 import '@/global.less';
 
 dayjs.locale('zh-cn');
 
-function App() {
+export function App() {
     return (
         <Fragment>
             <ConfigProvider locale={zhCN} theme={{ token: { colorPrimary: '#1677ff', borderRadius: 4 } }}>
-                <RouterProvider router={router} fallbackElement={<></>} />
+                <RouterProvider router={createBrowserRouter(routes)} fallbackElement={<></>} />
             </ConfigProvider>
         </Fragment>
     );
 }
 
-export default App;

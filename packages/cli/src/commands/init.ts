@@ -1,4 +1,4 @@
-import { simpleGit } from '@hulu/core';
+import { path, simpleGit } from '@hulu/core';
 import { Arguments } from 'yargs';
 import createDebug from 'debug';
 
@@ -54,13 +54,17 @@ const TestGit = async () => {
 };
 
 export const handler = async function (argv: Arguments<Record<string, any>>) {
-    console.log('hulu init');
+//     console.log('hulu init');
 
-    const git =  simpleGit();
+//     const git =  simpleGit();
 
-   const a =  await git.init();
+//    const a =  await git.init();
 
-    console.log( a );
+//     console.log( a );
+
+    const relative = path.relative(process.cwd(), '/Users/Mizi');
+
+    console.log(relative);
 
     // TestRegex();
 

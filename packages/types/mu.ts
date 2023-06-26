@@ -16,7 +16,7 @@ export type NumberAlias =
     | `${NumberMath}:`
     | `::`;
 
-export declare interface NumberFormatOptions {
+export interface NumberFormatOptions {
     // 执行规则， 默认为 million
     rule?: NumberRule;
 

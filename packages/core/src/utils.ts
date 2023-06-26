@@ -1,7 +1,4 @@
 import { camelCase, kebabCase, upperFirst, snakeCase } from 'lodash-es';
-import { prompts } from './msc.js';
-import { $log } from './log.js';
-import { upArray } from '@hulu/mu';
 
 interface SomeCase {
     camel: string;
