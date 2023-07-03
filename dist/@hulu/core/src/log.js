@@ -50,6 +50,9 @@ class Log {
         return log.warning(this.text(message, false));
     }
     error(message) {
+        if (typeof message === 'object' && !Array.isArray(message)) {
+            return log.error(message?.toString());
+        }
         return log.error(this.text(message, false));
     }
     emptyLine(lineNumber = 1) {

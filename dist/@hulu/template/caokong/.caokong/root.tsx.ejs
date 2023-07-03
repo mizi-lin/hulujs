@@ -2,10 +2,11 @@ import { ComponentType, StrictMode } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, RecoilEnv } from 'recoil';
 import RecoilNexus from 'recoil-nexus';  
 import { vconsole, reportWebVitals } from '~ck'
 
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 

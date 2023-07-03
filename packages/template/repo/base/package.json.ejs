@@ -17,9 +17,6 @@
     "recoil-nexus": "0.5.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.5", 
-    "@babel/eslint-parser": "7.22.5", 
-    "@babel/preset-react": "7.22.5", 
     "@commitlint/cli": "17.6.5",
     "@commitlint/config-conventional": "17.6.5",
     "@total-typescript/ts-reset": "0.4.2",
@@ -28,6 +25,7 @@
     "@types/react-dom": "18.2.6",
     "@typescript-eslint/parser": "5.60.0",
     "@typescript-eslint/eslint-plugin": "5.60.0",
+    "@vitejs/plugin-react-swc": "3.3.2",
     "click-to-react-component": "1.0.8",
     <% if(!!compiler) { %>
     "<%= compiler %>": "<%= compilerVersion %>",
@@ -48,6 +46,8 @@
     "stylelint-config-standard": "33.0.0",
     "unplugin-auto-import": "0.16.4",
     "vconsole": "3.15.1",
+    "vite-plugin-inspect": "0.7.31",
+    "vite-tsconfig-paths": "4.2.0",
     "web-vitals": "3.3.2"
   },
   "engines": {

@@ -33,8 +33,8 @@ export const handler = async function (argv) {
         $log.end([`命令结束`]);
     }
     catch (err) {
-        // console.error(err);
-        $log.error([`red::当前目录下没找到葫芦的配置文件`, 'hulu/config.ts']);
+        $log.error(err);
+        // $log.error([`red::当前目录下没找到葫芦的配置文件`, 'hulu/config.ts']);
         // @todo 配置服务
         $log.end([`命令结束`]);
         // const compilers = ['vite', 'umi', 'dumi'];

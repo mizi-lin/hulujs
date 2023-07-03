@@ -10,7 +10,7 @@ export declare class Log {
     success(message: string | string[]): void;
     warn(message: string | string[]): void;
     warning(message: string | string[]): void;
-    error(message: string | string[]): void;
+    error(message: Error | string | string[]): void;
     emptyLine(lineNumber?: number): void;
 }
 declare const $log: Log;

@@ -60,7 +60,10 @@ export class Log {
         return log.warning(this.text(message, false));
     }
 
-    error(message: string | string[]) {
+    error(message: Error | string | string[]) {
+        if (typeof message === 'object' && !Array.isArray(message)) {
+            return log.error(message?.toString());
+        }
         return log.error(this.text(message, false));
     }
 
