@@ -2,9 +2,16 @@
 /* prettier-ignore */
 
 <% for ( const path of exports ) { %> 
-export * from '<%= path %>';
+export * from '<%= path %>';  
 <% } %>
 
 <% for ( const path of imports ) { %> 
 import '<%= path %>';
 <% } %>
+
+/**
+ * 去除Chrome控制台的以下的警告
+ * [Violation] Added non-passive event listener to a scroll-blocking <some> event. 
+ * Consider marking event handler as 'passive' to make the page more responsive.
+ */ 
+import "default-passive-events";
