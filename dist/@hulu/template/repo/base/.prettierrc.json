@@ -1,0 +1,50 @@
+{
+    "printWidth": 100,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "rangeStart": 0,
+    "requirePragma": false,
+    "insertPragma": false,
+    "proseWrap": "preserve",
+    "htmlWhitespaceSensitivity": "strict",
+    "endOfLine": "lf",
+    "parser": "typescript",
+    "importOrder": [
+        "^(^react$|@react|react|^recoil$)",
+        "^@hulu/(.*)$",
+        "<THIRD_PARTY_MODULES>",
+        "^@/(.*)$",
+        "^[./]"
+    ],
+    "importOrderGroupNamespaceSpecifiers": true,
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "overrides": [
+        {
+            "files": ["*.json"],
+            "options": {
+                "parser": "json",
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": "*.{css,sass,scss,less}",
+            "options": {
+                "parser": "css",
+                "tabWidth": 4
+            }
+        },
+        {
+            "files": "*.{ts,tsx}",
+            "options": {
+                "parser": "typescript"
+            }
+        }
+    ]
+}

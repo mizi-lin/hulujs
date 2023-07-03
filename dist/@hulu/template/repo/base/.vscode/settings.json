@@ -1,4 +1,10 @@
 {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": false,
+    "editor.formatOnType": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+
     "search.exclude": {
         "**/lerna-*": true,
         "**/yarn-*": true,
@@ -12,6 +18,6 @@
         "**/node_modules": true,
         "**/bower_components": true,
         "**/*.code-search": true,
-        "**/yarn.lock": true,
+        "**/yarn.lock": true
     }
 }
