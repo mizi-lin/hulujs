@@ -1,6 +1,6 @@
 import { $log, $prompts } from '@hulu/core';
 import { Arguments } from 'yargs';
-import { isEmpty } from '@hulu/mu';
+import { isFalsy } from '@hulu/mu';
 import { removeCurrentAll, removeCurrentDir, removeCurrentFiles } from './rm.js';
 
 /**
@@ -25,11 +25,15 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     const [cmd, ...params] = argv._;
     let command = params.join(':');
 
-    if (isEmpty(params)) {
+    if (isFalsy(params)) {
         command = (await $prompts.select({
             message: '请选择要执行的命令',
             options: [
-                { label: 'rm: 删除当前目录下所有的文件', value: 'rm:all', hint: 'hulu tools rm all' },
+                {
+                    label: 'rm: 删除当前目录下所有的文件',
+                    value: 'rm:all',
+                    hint: 'hulu tools rm all'
+                },
                 {
                     label: 'rm: 仅删除当前目录下的文件',
                     value: 'rm:file',

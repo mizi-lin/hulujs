@@ -1,5 +1,4 @@
 import { globby } from 'globby';
-
 import { format } from '@hulu/mu';
 import type { Params, TplOutOptions } from '@hulu/types';
 import ejs from 'ejs';
@@ -31,6 +30,7 @@ export class Tpl {
         try {
             return fse.readFileSync(filePath, 'utf-8');
         } catch (e) {
+            console.error('tpl.read', e);
             return void 0;
         }
     }
@@ -39,43 +39,56 @@ export class Tpl {
      * 根据模板文本，渲染生成内容
      */
     render(content: string, params: Record<string, any> = {}, options: TplOutOptions = {}) {
-        return ejs.render(content, params, { debug: !!process.env?.EJS_DEBUG });
+        try {
+            return ejs.render(content, params, { debug: !!process.env?.EJS_DEBUG });
+        } catch (e) {
+            console.error(e);
+            throw e;
+        }
     }
 
     /**
      * 文本输出到文件
      */
-    out(content: string, targetPath: string, params: Record<string, any> = {}, options: TplOutOptions = {}) {
+    out(
+        content: string,
+        targetPath: string,
+        params: Record<string, any> = {},
+        options: TplOutOptions = {}
+    ) {
         const config = { ...Tpl.defaultOptions, ...options };
-
         // @todo cover
-
         const outPath = format(targetPath, params);
         fse.outputFileSync(outPath, content);
-
         config.print && $log.info(['正在写入', outPath]);
-
         return outPath;
     }
 
     /**
      * 模板文件解析到文件输出
      */
-    fileout(srcPath: string, targetPath: string, params: Record<string, any> = {}, options: TplOutOptions = {}) {
+    fileout(
+        srcPath: string,
+        targetPath: string,
+        params: Record<string, any> = {},
+        options: TplOutOptions = {}
+    ) {
         const config = { ...Tpl.defaultOptions, ...options };
-
         // @todo cover
-
         const content = this.read(srcPath);
         const content$render = this.render(content, params, config);
-
         return this.out(content$render, targetPath, params, config);
     }
 
     /**
      * 文件夹下的文件输出到文件输出
      */
-    async dirout(srcPath: string, targetPath: string, params: Params = {}, options: TplOutOptions = {}) {
+    async dirout(
+        srcPath: string,
+        targetPath: string,
+        params: Params = {},
+        options: TplOutOptions = {}
+    ) {
         const config = { ...Tpl.defaultOptions, ...options };
 
         const files = await globby(srcPath, {
@@ -99,7 +112,6 @@ export class Tpl {
             }
 
             const targetPath$2 = targetPath$1.replace(/\.ejs$/, '');
-
             this.fileout(srcPath$1, targetPath$2, params, config);
         }
 

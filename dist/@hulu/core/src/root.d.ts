@@ -36,6 +36,10 @@ export declare class Repo {
      */
     hulu(...paths: string[]): any;
     /**
+     * hulu文件夹
+     */
+    src(...paths: string[]): any;
+    /**
      * hulu 地址
      */
     cli(packageName?: string): string;

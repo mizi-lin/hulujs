@@ -10,7 +10,7 @@ export async function stepGenerateCaoKongIndex() {
      * - 判断操控源文件是否存在
      * - 写入最终引用文件
      */
-    const caokongPath = $repo.hulu('.caokong');
+    const caokongPath = $repo.hulu('.caokong', 'src');
     const sourcePath = $repo.cwd('src');
     const exist = (pwd) => {
         const relative = path.relative(caokongPath, pwd);
@@ -42,7 +42,7 @@ export async function stepGenerateCaoKongIndex() {
     //         extensions: ['jpg', 'jpeg', 'png', 'svg']
     //     }
     // });
-    const caokongTplIndex = $repo.template('caokong', 'index.ts.ejs');
-    const targetPath = $repo.hulu('.caokong', 'index.ts');
+    const caokongTplIndex = $repo.template('caokong', 'src/index.ts.ejs');
+    const targetPath = $repo.hulu('.caokong', 'src/index.ts');
     await $tpl.dirout(caokongTplIndex, targetPath, { exports, imports });
 }

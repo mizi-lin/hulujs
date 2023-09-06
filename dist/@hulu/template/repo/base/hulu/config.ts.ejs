@@ -820,7 +820,9 @@ const config = {
     ],
     resolve: {
         alias: {
-            "~ck": path.resolve(__dirname, '../hulu/.caokong'),
+            "~ck": path.resolve(__dirname, '../hulu/.caokong/src'),
+            "~ck/hulu": path.resolve(__dirname, '../hulu/.caokong/hulu'),
+            '~ass': path.resolve(__dirname, '../hulu/.assists'),
             "~hulu": path.resolve(__dirname, '../hulu'),
         }
     }, 

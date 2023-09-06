@@ -1,5 +1,5 @@
 {
     "files": [],
     "include": [],
-    "references": [{ "path": "./cli" }, { "path": "./tpl" }, { "path": "./core" }]
+    "references": [{ "path": "./cli" }, { "path": "./core" }]
 }

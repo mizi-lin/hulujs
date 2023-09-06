@@ -2,7 +2,8 @@ import { $bash, $load, $log, $repo } from '@hulu/core';
 import { Arguments } from 'yargs';
 import createDebug from 'debug';
 import { stepGenerateCaoKong } from './step-generate-caokong.js';
-import { stepGenerateCaoKongIndex } from './step-generate-cao-kong-index.js';
+import { stepGenerateCaoKongIndexFile } from './step-generate-caokong-index-file.js';
+import { stepAssRouter } from './step-ass-router.js';
 
 const debug = createDebug('init');
 
@@ -31,10 +32,13 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         const { compiler } = config ?? {};
 
         $log.step([`当前编译器`, compiler]);
-        $log.step(`正在生成超控体系`);
 
+        $log.step(`正在生成超控体系`);
         await stepGenerateCaoKong();
-        await stepGenerateCaoKongIndex();
+        await stepGenerateCaoKongIndexFile();
+
+        $log.step(`正在生成辅助体系`);
+        await stepAssRouter();
 
         $log.step(`正在启动服务`);
         const bin = $repo.cwd('node_modules', '.bin', compiler);

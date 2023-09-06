@@ -27,6 +27,7 @@ class Tpl {
             return fse.readFileSync(filePath, 'utf-8');
         }
         catch (e) {
+            console.error('tpl.read', e);
             return void 0;
         }
     }
@@ -34,7 +35,13 @@ class Tpl {
      * 根据模板文本，渲染生成内容
      */
     render(content, params = {}, options = {}) {
-        return ejs.render(content, params, { debug: !!process.env?.EJS_DEBUG });
+        try {
+            return ejs.render(content, params, { debug: !!process.env?.EJS_DEBUG });
+        }
+        catch (e) {
+            console.error(e);
+            throw e;
+        }
     }
     /**
      * 文本输出到文件

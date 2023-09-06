@@ -10,3 +10,5 @@ export * from './version.js';
 export * from './prompt.js';
 export * from './git.js';
 export * from './bash.js';
+export * from './ck.js';
+export * from './path-extra.js';

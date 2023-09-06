@@ -80,11 +80,19 @@ export class Repo {
     }
 
     /**
+     * hulu文件夹
+     */
+    src(...paths: string[]) {
+        return this.cwd('src', ...paths);
+    }
+
+    /**
      * hulu 地址
      */
     cli(packageName?: string) {
         const dirname = this.dirname();
-        const huluRoot = this.closest(dirname, 'tsconfig-base.json') ?? this.closest(dirname, '@hulu');
+        const huluRoot =
+            this.closest(dirname, 'tsconfig-base.json') ?? this.closest(dirname, '@hulu');
         return packageName ? path.join(huluRoot, 'packages', packageName) : huluRoot;
     }
 

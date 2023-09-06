@@ -8,7 +8,7 @@ export const stepGenerateCaoKong = async () => {
     const params = {
         isDev: process.env.NODE_ENV === NodeEnvEnum.development
     };
-    const tplOptions = { globbyOptions: { dot: true } };
+    const tplOptions = { globbyOptions: { dot: true, ignore: ['**/index.ts.ejs'] } };
     rmSync(targetPath, { recursive: true, force: true });
     await $tpl.dirout(sourcePath, targetPath, params, tplOptions);
 };

@@ -51,6 +51,12 @@
             "event": "onFileChange"
         },
         {
+            "match": "packages/met/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/met",
+            "event": "onFileChange"
+        },
+        {
             "match": "packages/types/.*\\.ts*",
             "isAsync": true,
             "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/types",

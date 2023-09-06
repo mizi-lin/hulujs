@@ -71,6 +71,12 @@ export class Repo {
         return this.cwd('hulu', ...paths);
     }
     /**
+     * hulu文件夹
+     */
+    src(...paths) {
+        return this.cwd('src', ...paths);
+    }
+    /**
      * hulu 地址
      */
     cli(packageName) {

@@ -1,5 +1,5 @@
 import { $log, $prompts } from '@hulu/core';
-import { isEmpty } from '@hulu/mu';
+import { isFalsy } from '@hulu/mu';
 import { removeCurrentAll, removeCurrentDir, removeCurrentFiles } from './rm.js';
 /**
  * Git的某些操作结合的快捷命令
@@ -20,11 +20,15 @@ export const handler = async function (argv) {
     $log.start([`hulu tools`, `一些shell小命令或扩展的工具集合`]);
     const [cmd, ...params] = argv._;
     let command = params.join(':');
-    if (isEmpty(params)) {
+    if (isFalsy(params)) {
         command = (await $prompts.select({
             message: '请选择要执行的命令',
             options: [
-                { label: 'rm: 删除当前目录下所有的文件', value: 'rm:all', hint: 'hulu tools rm all' },
+                {
+                    label: 'rm: 删除当前目录下所有的文件',
+                    value: 'rm:all',
+                    hint: 'hulu tools rm all'
+                },
                 {
                     label: 'rm: 仅删除当前目录下的文件',
                     value: 'rm:file',
