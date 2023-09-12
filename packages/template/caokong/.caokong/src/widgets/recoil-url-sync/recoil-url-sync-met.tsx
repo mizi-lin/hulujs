@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { RecoilURLSync, RecoilURLSyncOptions } from 'recoil-sync';
+import { RecoilSync, RecoilURLSync, RecoilURLSyncOptions } from 'recoil-sync';
 import { useRecoilSyncURL } from './use-recoil-sync-url';
 import { tryNumber } from '@hulu/mu';
 

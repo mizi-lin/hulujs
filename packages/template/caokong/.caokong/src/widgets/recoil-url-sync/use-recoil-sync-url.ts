@@ -5,6 +5,7 @@ import { BrowserInterface, RecoilURLSyncOptions } from 'recoil-sync';
 export function useRecoilSyncURL(): Partial<Omit<RecoilURLSyncOptions, 'children'>> {
     const navigate = useNavigate();
     const { pathname, search } = useLocation();
+    const params = useParams();
 
     const browserInterface: BrowserInterface = {
         replaceURL: useCallback(
@@ -13,7 +14,7 @@ export function useRecoilSyncURL(): Partial<Omit<RecoilURLSyncOptions, 'children
                 const { pathname, search } = uri;
                 navigate(`${pathname}${search}`, { replace: true });
             },
-            [pathname, search]
+            [pathname, params, search]
         ),
 
         pushURL: useCallback(
@@ -22,7 +23,7 @@ export function useRecoilSyncURL(): Partial<Omit<RecoilURLSyncOptions, 'children
                 const { pathname, search } = uri;
                 navigate(`${pathname}${search}`, { replace: false });
             },
-            [pathname, search]
+            [pathname, params, search]
         ),
 
         listenChangeURL: useCallback(
@@ -30,7 +31,7 @@ export function useRecoilSyncURL(): Partial<Omit<RecoilURLSyncOptions, 'children
                 handler();
                 return () => {};
             },
-            [pathname, search]
+            [pathname, params, search]
         )
     };
 
