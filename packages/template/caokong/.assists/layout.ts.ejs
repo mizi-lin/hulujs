@@ -1,1 +1,10 @@
-export { default as Component } from '<%=layoutPath%>';
+import { RecoilURLSyncMet } from '~ck';
+import Layout from '<%=layoutPath%>';
+
+const Component = () => {
+    return <RecoilURLSyncMet location={{ part: 'queryParams' }}>
+        <Layout />
+    </RecoilURLSyncMet>
+}
+
+export { Component }

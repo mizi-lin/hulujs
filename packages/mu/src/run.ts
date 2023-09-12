@@ -17,7 +17,6 @@ function run(...args: any[]) {
     }
 
     const rst = sofunc(val, ...params);
-    console.log('--->>>', rst, isNotFalsy(rst));
     return isNotFalsy(rst) ? sofunc(second, rst, ...params) : sofunc(third, ...params);
 }
 

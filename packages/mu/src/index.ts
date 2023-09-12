@@ -1,6 +1,7 @@
 /** any */
 export { default as upArray } from './up-array.js';
 export { default as format } from './format.js';
+export { default as tryNumber } from './try-number.js';
 
 /** regex */
 export * as Regex from './regex.js';
@@ -29,6 +30,7 @@ export { default as isNotEmpty } from './is-not-empty.js';
 
 /** if */
 export { default as ifnvl } from './if-nvl.js';
+export { default as iffalsy } from './if-falsy.js';
 
 /** lang */
 export { default as run } from './run.js';

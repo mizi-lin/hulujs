@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot, RecoilEnv } from 'recoil';
 import RecoilNexus from 'recoil-nexus';  
+import { syncEffect, RecoilURLSync, RecoilURLSyncJSON } from 'recoil-sync';
 
 <% if ( isDev ) {%>
     import { vconsole, reportWebVitals } from '~ck'
@@ -24,13 +25,15 @@ function render(App: ComponentType) {
     root.render(
         <StrictMode>
             <RecoilRoot>
-                <% if ( isDev ) {%>
-                    <RecoilObserver env="development" />
-                <% } %>
-                <RecoilNexus />
-                <HelmetProvider>
-                    <App />
-                </HelmetProvider>
+                <RecoilURLSyncJSON location={{ part: 'queryParams'}}>
+                    <% if ( isDev ) {%>
+                        <RecoilObserver env="development" />
+                    <% } %>
+                    <RecoilNexus />
+                    <HelmetProvider>
+                        <App />
+                    </HelmetProvider>
+                </RecoilURLSyncJSON>
             </RecoilRoot>
         </StrictMode>,
     );

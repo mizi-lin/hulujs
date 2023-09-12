@@ -6,7 +6,7 @@ const map = (
     collect: IterateeItem,
     iteratee: Iteratee,
     initialValue?: Record<string, any> | Record<string, any>[]
-) => {
+): any => {
     const resultType = types(initialValue ?? collect, 'object');
     const resultTypeInitialValue = resultType ? initialValue ?? {} : initialValue ?? [];
 

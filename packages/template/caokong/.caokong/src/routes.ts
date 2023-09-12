@@ -7,16 +7,22 @@ const routes = [
     {
         path: '/',
         view: 'home',
-        count: 1,
         meta: {
             count: 1,
             back: () => {
                 console.log('111111');
             }
-        },
-        children: [{ path: '/', view: 'demo' }]
+        }
     },
-    { path: '/demo', view: 'demo' }
+    {
+        path: '/demo',
+        view: 'demo',
+        children: [
+            { path: '/demo/eee/:id', view: 'home' },
+            { path: '/demo/ddd/:id?', view: 'home' },
+            { path: '/demo/fff/*', view: 'home' }
+        ]
+    }
 ];
 
 export default routes;

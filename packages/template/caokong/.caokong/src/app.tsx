@@ -15,7 +15,10 @@ export function App() {
                 locale={zhCN}
                 theme={{ token: { colorPrimary: '#1677ff', borderRadius: 4 } }}
             >
-                <RouterProvider router={createBrowserRouter(routes)} fallbackElement={<></>} />
+                <RouterProvider
+                    router={createBrowserRouter(routes, { basename: '/' })}
+                    fallbackElement={<></>}
+                />
             </ConfigProvider>
         </Fragment>
     );

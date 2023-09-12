@@ -10,7 +10,6 @@ function run(...args) {
         return isNotFalsy(rst) ? sofunc(second, rst, third, ...params) : void 0;
     }
     const rst = sofunc(val, ...params);
-    console.log('--->>>', rst, isNotFalsy(rst));
     return isNotFalsy(rst) ? sofunc(second, rst, ...params) : sofunc(third, ...params);
 }
 export default run;
