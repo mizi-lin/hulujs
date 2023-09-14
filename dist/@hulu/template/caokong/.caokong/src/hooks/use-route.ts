@@ -9,7 +9,6 @@ const useRoute = () => {
     const metas = matched.map(({ route }) => route.meta ?? {});
     const meta = extend({}, ...metas);
     const matched$filter = matched.filter((route) => location.pathname === route.pathnameBase);
-    console.log('matched', matched, matched$filter);
     const { route } = iffalsy(matched$filter, matched).at(-1);
     return { route, meta };
 };

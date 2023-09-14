@@ -13,7 +13,7 @@ const transformViewPath = (value) => {
 };
 const generateAssistLayout = () => {
     const assLayoutPath = $repo.hulu('.assists', 'layout.tsx');
-    const sourcePath = $repo.template('caokong/.assists', 'layout.ts.ejs');
+    const sourcePath = $repo.template('caokong/.assists', 'layout.tsx.ejs');
     const layoutPath = existByCk('./layout.tsx');
     $tpl.fileout(sourcePath, assLayoutPath, { layoutPath });
     return assLayoutPath;

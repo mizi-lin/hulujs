@@ -29,6 +29,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         $log.step([`正在读取配置文件`, configPath]);
 
         const config = await $load.ts(configPath);
+
         const { compiler } = config ?? {};
 
         $log.step([`当前编译器`, compiler]);

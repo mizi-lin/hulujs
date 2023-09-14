@@ -1,3 +1,4 @@
+// @ts-nocheck
 import routes from '~ass/routes';
 import { ConfigProvider, theme } from 'antd';
 import { RouterProvider } from 'react-router';

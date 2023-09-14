@@ -104,7 +104,6 @@ const useNavigate = (globalOptions: HuluNavigateOptions = {}) => {
     const location = useLocation();
     const srcParams = useParams();
     const { route } = useRoute();
-    console.log('route', route);
     return (to: string | number, options: HuluNavigateOptions = {}) => {
         const { lastTo, navigateOptions } = getNavigate(
             to,
