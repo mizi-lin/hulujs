@@ -3,8 +3,11 @@
     "editor.formatOnType": false,
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",
-
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.useEditorConfig": false,
+    "prettier.useTabs": false,
+    "prettier.configPath": ".prettierrc.json",
+
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

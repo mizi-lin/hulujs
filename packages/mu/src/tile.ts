@@ -2,28 +2,30 @@
  * 拍平集合体层级，呈扁平化显示
  */
 
+import { CompactDegree } from './compact.js';
 import each from './each.js';
 import isBaseType from './is-base-type.js';
 import isFalsy from './is-falsy.js';
 import map from './map.js';
 import types, { Collection } from './types.js';
+import { compactDegreeFuncMap } from './utils/compact-degree-func-map.js';
 
 function isLikeNum(value: string | number) {
     return (+value).toString() === value.toString();
 }
 
-function handleChain(obj) {
+function handleChain(obj, compact: false | CompactDegree) {
     const propPath = (key, context) => {
         /**
          * 当一个key看起来像数字
          * 且它是一个对象的key，
          */
-        if (isLikeNum(key) && types(context, 'object')) {
-            return `{{${key}}}`;
+        if (!isNaN(Number(key)) && Array.isArray(context)) {
+            return `[${key}]`;
         }
 
-        if (!isNaN(Number(key)) && types(context, 'array')) {
-            return `[${key}]`;
+        if (isLikeNum(key) && types(context, 'object')) {
+            return `{{${key}}}`;
         }
 
         return key;
@@ -33,10 +35,10 @@ function handleChain(obj) {
 
     each(obj, (item, key, context) => {
         const k = propPath(key, context);
-        if (isBaseType(item)) {
+        if (['string', 'number'].includes(typeof item)) {
             rst[k] = item;
         } else {
-            each(tile(item as Collection), (subItem, subKey, subContext) => {
+            each(handleChain(item as Collection, compact), (subItem, subKey, subContext) => {
                 const kk = propPath(subKey, subContext);
                 rst[`${k}.${kk}`] = subItem;
             });
@@ -46,7 +48,7 @@ function handleChain(obj) {
     return rst;
 }
 
-function handleSpecial(obj: object): object {
+function handleSpecial(obj: object, compact: false | CompactDegree): object {
     const _path = (key, context) => {
         // 处理子元素为对象，且对象key like number 的情况
         if (isLikeNum(key) && types(context, 'object')) {
@@ -75,10 +77,19 @@ function handleSpecial(obj: object): object {
 
     each(obj, (item, key, context) => {
         const k = _path(key, context);
+
         if (isBaseType(item) || isFalsy(item)) {
             rst[k] = item;
         } else {
-            each(handleSpecial(item as object), (subItem, subKey, subContext) => {
+            let item$ = item;
+
+            if (compact) {
+                item$ = map(item$, (item) => {
+                    return compactDegreeFuncMap[compact]?.(item) ? '::break' : item;
+                });
+            }
+
+            each(handleSpecial(item$ as object, compact), (subItem, subKey, subContext) => {
                 const kk = _path(subKey, subContext);
                 rst[`${k}::::::${kk}`] = subItem;
             });
@@ -88,12 +99,45 @@ function handleSpecial(obj: object): object {
     return rst;
 }
 
+function handleTile(
+    obj: Record<string, any>,
+    chainMode = true,
+    compact: false | CompactDegree = false
+): Record<string, any> {
+    if (typeof obj !== 'object') {
+        return obj;
+    }
+
+    // chain, 默认模式
+    if (chainMode) {
+        return handleChain(obj, compact);
+    }
+
+    // 特殊模式，支持特殊字符
+    return map(handleSpecial(obj, compact), (value, key): any => {
+        if (compact && compactDegreeFuncMap[compact]?.(value)) return '::break';
+        const keyParts = key.split('::::::').map((part) => {
+            return part
+                .replace(/_{6,}/g, '______')
+                .replace(/^_{6}(.*?)_{6}$/, '["$1"]')
+                .replace(/_{6}/, '')
+                .replace(/^<{6}(.+?)>{6}$/, '[$1]');
+        });
+
+        return {
+            '::key': keyParts.join('.'),
+            '::value': value
+        };
+    });
+}
+
 /**
  * mu.tile
  * 将一个对象平铺展开,
  * 因性能问题，不提倡在大对象中平铺处理
  * @param obj
  * @param chainMode: chain模式下，tile后不能被stack还原原来的值
+ * @compact false | CompactDegree: 若传入 compact, 执行 degree 规则
  * @default true, 先实现ChainMode模式，反人类设置，就这样吧
  *
  *
@@ -111,30 +155,18 @@ function handleSpecial(obj: object): object {
  *
  * mu.tile({ 'a.a': { b: 'c', 'e[sss]': 'e3' } }, true)
  * // => { 'a.a.b': 'c', 'e[sss]': 'e3 }
+ *
+ *  mu.tile({ a: 1, b: false, c: {}, d: [false] }, false, 'falsy')
+ * // => { a: 1 }
  */
-
-function tile(obj: Record<string, any>, chainMode = true): Record<string, any> {
-    if (typeof obj !== 'object') {
-        return obj;
-    }
-
-    // chain 模式
-    if (chainMode) {
-        return handleChain(obj);
-    }
-
-    // 普通模式，支持特殊字符
-    return map(handleSpecial(obj), (value, key): any => {
-        const keyParts = key.split('::::::').map((part) => {
-            return part
-                .replace(/_{6,}/g, '______')
-                .replace(/^_{6}(.*?)_{6}$/, '["$1"]')
-                .replace(/_{6}/, '')
-                .replace(/^<{6}(.+?)>{6}$/, '[$1]');
-        });
-
+function tile(obj: Collection, chainMode = true, compact: false | CompactDegree = false) {
+    // hack 将传入的数组转成对象进行解析
+    const prefix = '@@@@@@';
+    const collect = { [prefix]: obj };
+    const tiles = handleTile(collect, chainMode, compact);
+    return map(tiles, (value, key): any => {
         return {
-            '::key': keyParts.join('.'),
+            '::key': key.replace(new RegExp(`^${prefix}\.`), ''),
             '::value': value
         };
     });

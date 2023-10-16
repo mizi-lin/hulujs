@@ -11,6 +11,7 @@ export { default as each } from './each.js';
 export { default as map } from './map.js';
 export { default as tile } from './tile.js';
 export { default as stack } from './stack.js';
+export { default as compact } from './compact.js';
 /** rows */
 export { default as rowsToTree } from './rows-to-tree.js';
 /** function */
@@ -27,3 +28,5 @@ export { default as iffalsy } from './if-falsy.js';
 /** lang */
 export { default as run } from './run.js';
 export { default as types } from './types.js';
+/** string */
+export { default as rid } from './rid.js';

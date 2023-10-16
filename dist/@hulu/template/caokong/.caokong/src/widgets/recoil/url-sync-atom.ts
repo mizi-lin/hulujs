@@ -1,7 +1,7 @@
 import { SerializableParam, atom, selectorFamily, RecoilState, AtomOptions } from 'recoil';
 
 interface URLSyncOptions<T> extends Omit<AtomOptions<T>, 'default'> {
-    type: 'query' | 'params' | 'mix' | 'remix';
+    type?: 'query' | 'params' | 'mix' | 'remix';
 }
 
 export function urlSyncAtom<T>(options: URLSyncOptions<T>): RecoilState<T> {

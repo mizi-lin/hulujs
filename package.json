@@ -11,11 +11,13 @@
     },
     "dependencies": {
         "import-local": "^3.1.0",
-        "lodash-es": "^4.17.21"
+        "lodash-es": "4.17.21",
+        "react": "18.2.0"
     },
     "devDependencies": {
         "@nrwl/nx-cloud": "^16.0.1",
         "@sensenet/search-react": "^2.1.5",
+        "@types/lodash-es": "^4.17.9",
         "@types/node": "^18.16.0",
         "eslint": "^8.38.0",
         "globby": "^13.1.4",

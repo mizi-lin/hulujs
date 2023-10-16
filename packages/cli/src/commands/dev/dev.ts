@@ -47,6 +47,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         $bash.live(`${bin} --config ${configPath}`, { silent: false });
         $log.end([`命令结束`]);
     } catch (err) {
+        console.log(err);
         $log.error(err as Error);
         // $log.error([`red::当前目录下没找到葫芦的配置文件`, 'hulu/config.ts']);
 

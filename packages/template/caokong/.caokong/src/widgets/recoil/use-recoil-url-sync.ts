@@ -1,13 +1,18 @@
 // @ts-nocheck
 import { useEffect } from 'react';
 import { useRecoilCallback } from 'recoil';
-import { useQuery, useParams } from '~ck';
+import { useQuery, useParams, useRoute } from '~ck';
 import { isEqual } from 'lodash-es';
 
 const useURLSync = () => {
     return useRecoilCallback(
         ({ set, snapshot }) =>
-            (query: Record<string, any>, params: Record<string, any>) => {
+            (
+                query: Record<string, any>,
+                params: Record<string, any>,
+                meta: Record<string, any>,
+                state: Record<string, any>
+            ) => {
                 const atoms = snapshot.getNodes_UNSTABLE();
                 for (const atom of atoms) {
                     const key = atom.key;
@@ -32,7 +37,7 @@ const useURLSync = () => {
                                 break;
                             }
                             default: {
-                                const value = { query, params };
+                                const value = { query, params, meta, state };
                                 !isEqual(contents, value) && set(atom, value);
                             }
                         }
@@ -48,11 +53,13 @@ export const useRecoilURLSync = () => {
     const sync = useURLSync();
     const [query] = useQuery();
     const [params] = useParams();
+    const { meta } = useRoute();
+    const { state } = useLocation();
     const [done, setDone] = useState(false);
 
     useEffect(() => {
-        setDone(sync(query, params));
-    }, [query, params]);
+        setDone(sync(query, params, meta, state));
+    }, [query, params, meta, state]);
 
     return done;
 };

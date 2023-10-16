@@ -1,5 +1,4 @@
 import createDebug from 'debug';
-import { iffalsy } from '@hulu/mu';
 const debug = createDebug('init');
 /**
  * 初始化葫芦系统, 创建 hulu init
@@ -132,10 +131,41 @@ export const handler = async function (argv) {
     //         }
     //     )
     // );
-    console.log('iffalsy 0 -> 1', iffalsy(0, 1));
-    console.log('iffalsy null -> 1', iffalsy(0, 1));
-    console.log('iffalsy [] -> 1', iffalsy([], 1));
-    console.log('iffalsy [1,2,3] -> [1,2,3]', iffalsy([1, 2, 3], 1));
-    console.log('iffalsy function -> 1', iffalsy(() => 2, 1));
-    console.log('iffalsy function -> function', iffalsy({}, () => 333));
+    // console.log('iffalsy 0 -> 1', iffalsy(0, 1));
+    // console.log('iffalsy null -> 1', iffalsy(0, 1));
+    // console.log('iffalsy [] -> 1', iffalsy([], 1));
+    // console.log('iffalsy [1,2,3] -> [1,2,3]', iffalsy([1, 2, 3], 1));
+    // console.log(
+    //     'iffalsy function -> 1',
+    //     iffalsy(() => 2, 1)
+    // );
+    // console.log(
+    //     'iffalsy function -> function',
+    //     iffalsy({}, () => 333)
+    // );
+    // console.log('compact array nil', compact([0, 1, 2, null, undefined, ''], 'nil'));
+    // console.log('compact array nil a', compact({ a: [0, 1, 2, null, undefined, ''] }, 'nil'));
+    // console.log(
+    //     'compact nil',
+    //     compact(
+    //         { a: 1, b: null, c: { d: 0, e: void 0, f: { g: undefined }, h: [1, 2, undefined, 3] } },
+    //         'nil'
+    //     )
+    // );
+    // console.log(
+    //     'compact undefined',
+    //     compact({ a: 1, b: null, c: { d: 0, e: void 0, f: { g: undefined } } }, 'undefined')
+    // );
+    // console.log(
+    //     'compact falsy',
+    //     compact({ a: 1, b: null, c: { d: 0, e: void 0, f: { g: undefined } } }, 'falsy')
+    // );
+    // console.log(
+    //     'compact 0',
+    //     compact(
+    //         { a: 1, b: null, c: { d: 0, e: void 0, f: { g: undefined } } },
+    //         (value) => value === 0
+    //     )
+    // );
+    // console.log(tile({ route: [{ a: 1, b: 2 }] }));
 };

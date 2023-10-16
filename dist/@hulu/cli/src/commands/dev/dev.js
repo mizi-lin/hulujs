@@ -36,6 +36,7 @@ export const handler = async function (argv) {
         $log.end([`命令结束`]);
     }
     catch (err) {
+        console.log(err);
         $log.error(err);
         // $log.error([`red::当前目录下没找到葫芦的配置文件`, 'hulu/config.ts']);
         // @todo 配置服务

@@ -7,7 +7,7 @@ const isBaseType = (value: any): boolean => {
         'number',
         'boolean',
         'function',
-        'regex',
+        'regexp',
         'symbol',
         'null',
         'undefined'

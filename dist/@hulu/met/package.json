@@ -12,8 +12,11 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@hulu/types": "0.0.1",
-        "recoil": "^0.7.7"
+        "@hulu/types": "../types",
+        "@hulu/mu": "../mu",
+        "recoil": "0.7.7",
+        "csstype": "3.1.2",
+        "classnames": "2.3.2"
     },
     "devDependencies": {}
 }

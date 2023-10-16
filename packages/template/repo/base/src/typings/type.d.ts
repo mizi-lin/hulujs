@@ -1,10 +1,11 @@
 
 export {};
 declare global {
-    type FC<P = {}> = React.FC<P>;
+    type FC<P = {}> = import('react').FC<P>;
     type PropsWithChildren = import('react').PropsWithChildren;
     type CSSProperties = import('react').CSSProperties;
     type ReactNode = import('react').ReactNode;   
+    type ChangeEvent<T> = import('react').ChangeEvent<T>;
     type RecoilValue<T> = import('recoil').RecoilValue<T>;
     // The Recoil types for `selectorFamily` have a bug in which they do not
     // allow interfaces to be passed in as a parameter.
