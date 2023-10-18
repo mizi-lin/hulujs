@@ -1,4 +1,4 @@
-import { CSSProperties, ElementType, FC, ReactNode } from 'react';
+import { CSSProperties, ElementType, FC, ReactNode, LegacyRef, forwardRef } from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property } from 'csstype';
 import { compact } from '@hulu/mu';
@@ -75,6 +75,7 @@ export interface MetProps {
     paddingRight?: Property.PaddingRight | number;
     paddingBottom?: Property.PaddingBottom | number;
     position?: Property.Position;
+    ref?: LegacyRef;
     right?: number | string;
     // text-align
     ta?: Property.TextAlign;
@@ -89,7 +90,7 @@ export interface MetProps {
     width?: number | string;
 }
 
-const Met: FC<MetProps> = (props) => {
+const Met: FC<MetProps> = forwardRef((props, ref) => {
     const {
         w,
         h,
@@ -193,10 +194,10 @@ const Met: FC<MetProps> = (props) => {
         'nil'
     );
     return (
-        <TagName className={clx(className)} style={style$}>
+        <TagName ref={ref} className={clx(className)} style={style$}>
             {children}
         </TagName>
     );
-};
+});
 
 export default Met;

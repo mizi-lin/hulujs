@@ -1,4 +1,4 @@
-import { CSSProperties, ElementType, FC, ReactNode } from 'react';
+import { CSSProperties, ElementType, FC, ReactNode, LegacyRef } from 'react';
 import { ArgumentArray } from 'classnames';
 import { Property } from 'csstype';
 export interface MetProps {
@@ -54,6 +54,7 @@ export interface MetProps {
     paddingRight?: Property.PaddingRight | number;
     paddingBottom?: Property.PaddingBottom | number;
     position?: Property.Position;
+    ref?: LegacyRef;
     right?: number | string;
     ta?: Property.TextAlign;
     textAlign?: Property.TextAlign;
