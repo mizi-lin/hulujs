@@ -2,6 +2,7 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import clx from 'classnames';
 import Met from '../met/met.js';
 import { compact } from '@hulu/mu';
+import { MetGene } from '../index.js';
 const placementStyleMap = {
     row: {
         top: { justifyContent: 'center', alignItems: 'flex-start' },
@@ -41,13 +42,24 @@ const placementStyleMap = {
     }
 };
 const MetFlex = (props) => {
-    const { children, style = {}, className = '', placement = 'left', vertical, inline, wrap = 'nowrap', justify, align, flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', justifyContent = justify, alignItems = align, ...extra } = props;
+    const { children, style = {}, className = '', placement = 'left', vertical, inline, scroll, fill, wrap = 'nowrap', justify, align, flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', justifyContent = justify, alignItems = align, ...extra } = props;
+    const overflow = scroll
+        ? typeof scroll === 'string'
+            ? scroll === 'scroll'
+                ? { overflow: 'scroll' }
+                : { [scroll]: 'auto' }
+            : { overflow: 'auto' }
+        : { overflow: 'hidden' };
+    // @mark 需要使用权重最小的属性，若使用权重大的属性，则会覆盖小属性值
+    const size = fill ? { w: '100%', h: '100%' } : {};
     const extra$ = {
         display: inline ? 'inline-flex' : 'flex',
+        ...overflow,
+        ...size,
         ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
         ...extra
     };
-    return (_jsx(Met, { className: clx('met-flex', className), ...extra$, children: children }));
+    return (_jsx(Met, { tag: 'section', className: clx('met-flex', className), ...extra$, children: _jsx(MetGene, { dominant: scroll ? { flexShrink: 0 } : {}, children: children }) }));
 };
 export default MetFlex;

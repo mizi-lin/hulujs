@@ -5,10 +5,12 @@ export type MetPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'to
 export interface MetFlexProps extends MetProps {
     inline?: boolean;
     vertical?: boolean;
+    scroll?: boolean | 'overflowY' | 'overflowX' | 'overflow' | 'scroll';
     placement?: MetPlacement;
     wrap?: Property.FlexWrap;
     justify?: Property.JustifyContent;
     align?: Property.AlignItems;
+    fill?: boolean;
 }
 declare const MetFlex: FC<MetFlexProps>;
 export default MetFlex;

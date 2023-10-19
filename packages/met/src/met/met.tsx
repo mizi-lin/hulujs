@@ -22,6 +22,10 @@ export interface MetProps {
     flex?: Property.Flex;
     flexDirection?: Property.FlexDirection;
     flexWrap?: Property.FlexWrap;
+    flexFlow?: Property.FlexFlow;
+    flexBasis?: Property.FlexBasis;
+    flexGrow?: Property.FlexGrow;
+    flexShrink?: Property.FlexShrink;
     justifyContent?: Property.JustifyContent;
     justifyItems?: Property.JustifyItems;
     alignContent?: Property.AlignContent;
@@ -150,6 +154,10 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
         flex,
         flexDirection,
         flexWrap,
+        flexShrink,
+        flexBasis,
+        flexFlow,
+        flexGlow,
         justifyContent,
         justifyItems,
         alignContent,
@@ -205,6 +213,10 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
             flex,
             flexDirection,
             flexWrap,
+            flexShrink,
+            flexBasis,
+            flexFlow,
+            flexGlow,
             justifyContent,
             justifyItems,
             alignContent,
