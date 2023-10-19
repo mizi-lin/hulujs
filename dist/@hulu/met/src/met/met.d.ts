@@ -1,6 +1,7 @@
 import { CSSProperties, ElementType, FC, ReactNode, LegacyRef } from 'react';
 import { ArgumentArray } from 'classnames';
 import { Property } from 'csstype';
+export type MetClassName = ArgumentArray | string;
 export interface MetProps {
     tag?: ElementType;
     background?: Property.Background;
@@ -14,13 +15,19 @@ export interface MetProps {
     cursor?: Property.Cursor;
     display?: Property.Display;
     flex?: Property.Flex;
+    flexDirection?: Property.FlexDirection;
+    flexWrap?: Property.FlexWrap;
+    justifyContent?: Property.JustifyContent;
+    justifyItems?: Property.JustifyItems;
+    alignContent?: Property.AlignContent;
+    alignItems?: Property.AlignItems;
     fontSize?: Property.FontSize | number;
     fs?: Property.FontSize | number;
     ff?: Property.FontFamily;
     fontFamily?: Property.FontFamily;
     fw?: number;
     fontWeight?: Property.FontWeight;
-    gap?: Property.Gap;
+    gap?: Property.Gap | number;
     h?: number | string;
     height?: number | string;
     lh?: Property.LineHeight;

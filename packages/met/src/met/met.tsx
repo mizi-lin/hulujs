@@ -3,6 +3,7 @@ import clx, { ArgumentArray } from 'classnames';
 import { Property } from 'csstype';
 import { compact } from '@hulu/mu';
 
+export type MetClassName = ArgumentArray | string;
 export interface MetProps {
     // Tag 名称
     tag?: ElementType;
@@ -19,6 +20,12 @@ export interface MetProps {
     cursor?: Property.Cursor;
     display?: Property.Display;
     flex?: Property.Flex;
+    flexDirection?: Property.FlexDirection;
+    flexWrap?: Property.FlexWrap;
+    justifyContent?: Property.JustifyContent;
+    justifyItems?: Property.JustifyItems;
+    alignContent?: Property.AlignContent;
+    alignItems?: Property.AlignItems;
     // font
     fontSize?: Property.FontSize | number;
     // font-size
@@ -29,7 +36,7 @@ export interface MetProps {
     // font-weight
     fw?: number;
     fontWeight?: Property.FontWeight;
-    gap?: Property.Gap;
+    gap?: Property.Gap | number;
     // height
     h?: number | string;
     height?: number | string;
@@ -107,6 +114,9 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
         left,
         lh,
         lineHeight = lh,
+        border,
+        br,
+        borderRadius = br,
         bg,
         background = bg,
         overflow,
@@ -138,6 +148,12 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
         minWidth,
         display,
         flex,
+        flexDirection,
+        flexWrap,
+        justifyContent,
+        justifyItems,
+        alignContent,
+        alignItems,
         fs,
         fontSize = fs,
         ff,
@@ -155,6 +171,9 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
     const TagName = tag;
     const style$ = compact(
         {
+            border,
+            br,
+            borderRadius,
             width,
             height,
             position,
@@ -184,11 +203,18 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
             display,
             background,
             flex,
+            flexDirection,
+            flexWrap,
+            justifyContent,
+            justifyItems,
+            alignContent,
+            alignItems,
             fontSize,
             fontFamily,
             fontWeight,
             gap,
             textAlign,
+            ...extraProps,
             ...style
         },
         'nil'
