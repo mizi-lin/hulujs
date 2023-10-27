@@ -29,6 +29,8 @@ export default function isFalsy(value: any, force?: boolean) {
             return !value;
         case 'regexp':
             return false;
+        case 'function':
+            return false;
         default:
             return isEmpty(value);
     }

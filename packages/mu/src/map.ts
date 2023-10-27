@@ -1,9 +1,9 @@
 import types from './types.js';
-import each, { Iteratee, IterateeItem } from './each.js';
+import each, { Iteratee, IterateeCollection } from './each.js';
 import { has } from 'lodash-es';
 
 const map = (
-    collect: IterateeItem,
+    collect: IterateeCollection,
     iteratee: Iteratee,
     initialValue?: Record<string, any> | Record<string, any>[]
 ): any => {

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import clx from 'classnames';
 import Met, { MetProps } from '../met/met.js';
 import { Property } from 'csstype';
-import { compact } from '@hulu/mu';
+import { compact, run } from '@hulu/mu';
 import { MetGene } from '../index.js';
 
 export type MetPlacement =

@@ -7,3 +7,5 @@ export { default as MetCenter, MetCenterProps } from './met-center/index.js';
 export { default as MetBox, MetBoxProps } from './met-box/index.js';
 export { default as MetRow, MetRowProps } from './met-row/index.js';
 export { default as MetGrid, MetGridProps } from './met-grid/index.js';
+
+export * from './utils/merge-refs.js';

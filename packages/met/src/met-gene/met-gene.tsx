@@ -1,3 +1,4 @@
+import { isNotFalsy } from '@hulu/mu';
 import { FC, PropsWithChildren, CSSProperties, Children, cloneElement } from 'react';
 
 /**
@@ -48,7 +49,7 @@ const MetGene: FC<MetGeneProps> = (props) => {
             ...(propCover ? {} : geneProps),
             ...colProps,
             ...(propCover ? geneProps : {}),
-            __metGeneRecessive: recessive
+            ...(isNotFalsy(recessive) ? { __metgenerecessive: JSON.stringify(recessive) } : {})
         };
 
         return cloneElement(col, props);

@@ -1,22 +1,37 @@
-import { CSSProperties, ElementType, FC, ReactNode, LegacyRef, forwardRef } from 'react';
+import {
+    CSSProperties,
+    ElementType,
+    FC,
+    ReactNode,
+    LegacyRef,
+    forwardRef,
+    ForwardRefRenderFunction
+} from 'react';
 import clx, { ArgumentArray } from 'classnames';
-import { Property } from 'csstype';
-import { compact } from '@hulu/mu';
+import { Property, Properties } from 'csstype';
+import { groupBy } from 'lodash-es';
+import { compact, map } from '@hulu/mu';
 
 export type MetClassName = ArgumentArray | string;
-export interface MetProps {
-    // Tag 名称
+export interface MetProps extends Properties<string | number, any> {
+    /**
+     * 基本属性
+     */
     tag?: ElementType;
+    style?: CSSProperties;
+    children?: ReactNode;
+    className?: MetClassName;
+
+    /**
+     * 样式类属性
+     */
+    bg?: Property.Background;
     background?: Property.Background;
     // background
-    bg?: Property.Background;
     border?: Property.Border;
     // border-radius
     br?: Property.BorderRadius | number;
     borderRadius?: Property.BorderRadius | number;
-    bottom?: number | string;
-    children?: ReactNode;
-    className?: ArgumentArray;
     cursor?: Property.Cursor;
     display?: Property.Display;
     flex?: Property.Flex;
@@ -24,7 +39,7 @@ export interface MetProps {
     flexWrap?: Property.FlexWrap;
     flexFlow?: Property.FlexFlow;
     flexBasis?: Property.FlexBasis;
-    flexGrow?: Property.FlexGrow;
+    flexGlow?: Property.FlexGrow;
     flexShrink?: Property.FlexShrink;
     justifyContent?: Property.JustifyContent;
     justifyItems?: Property.JustifyItems;
@@ -32,6 +47,7 @@ export interface MetProps {
     alignItems?: Property.AlignItems;
     // font
     fontSize?: Property.FontSize | number;
+    color?: Property.Color;
     // font-size
     fs?: Property.FontSize | number;
     // font-family
@@ -47,28 +63,30 @@ export interface MetProps {
     // line-height
     lh?: Property.LineHeight;
     lineHeight?: Property.LineHeight;
-    left?: number | string;
     // margin
     m?: number | string;
     margin?: number | string;
     // margin-left
     ml?: Property.MarginLeft | number;
+    marginLeft?: Property.MarginLeft | number;
     // margin-top
     mt?: Property.MarginTop | number;
+    marginTop?: Property.MarginTop | number;
     // margin-right
     mr?: Property.MarginRight | number;
+    marginRight?: Property.MarginRight | number;
     // margin-bottom
     mb?: Property.MarginBottom | number;
-    marginLeft?: Property.MarginLeft | number;
-    marginTop?: Property.MarginTop | number;
-    marginRight?: Property.MarginRight | number;
     marginBottom?: Property.MarginBottom | number;
     maxHeight?: string | number;
     minHeight?: string | number;
     maxWidth?: string | number;
     minWidth?: string | number;
+    o?: Property.Overflow;
     overflow?: Property.Overflow;
+    ox?: Property.OverflowX;
     overflowX?: Property.OverflowX;
+    oy?: Property.OverflowY;
     overflowY?: Property.OverflowY;
     // padding
     p?: number | string;
@@ -85,157 +103,138 @@ export interface MetProps {
     paddingTop?: Property.PaddingTop | number;
     paddingRight?: Property.PaddingRight | number;
     paddingBottom?: Property.PaddingBottom | number;
+
+    // Viewport
     position?: Property.Position;
-    ref?: LegacyRef;
+    top?: number | string;
     right?: number | string;
+    left?: number | string;
+    bottom?: number | string;
+
     // text-align
     ta?: Property.TextAlign;
     textAlign?: Property.TextAlign;
-    top?: number | string;
-    style?: CSSProperties;
     // vertical-align
     va?: Property.VerticalAlign;
     verticalAlign?: Property.VerticalAlign;
+    visibility?: Property.Visibility;
     // width
     w?: number | string;
     width?: number | string;
 }
 
-const Met: FC<MetProps> = forwardRef((props, ref) => {
-    const {
-        w,
-        h,
-        width = w,
-        height = h,
-        className,
-        cursor,
-        style = {},
-        tag = 'div',
-        position,
-        top,
-        right,
-        bottom,
-        left,
-        lh,
-        lineHeight = lh,
-        border,
-        br,
-        borderRadius = br,
-        bg,
-        background = bg,
-        overflow,
-        overflowX,
-        overflowY,
-        p,
-        padding = p,
-        pl,
-        pt,
-        pr,
-        pb,
-        paddingLeft = pl,
-        paddingTop = pt,
-        paddingRight = pr,
-        paddingBottom = pb,
-        m,
-        margin = m,
-        ml,
-        mt,
-        mr,
-        mb,
-        marginLeft = ml,
-        marginTop = mt,
-        marginRight = mr,
-        marginBottom = mb,
-        maxHeight,
-        minHeight,
-        maxWidth,
-        minWidth,
-        display,
-        flex,
-        flexDirection,
-        flexWrap,
-        flexShrink,
-        flexBasis,
-        flexFlow,
-        flexGlow,
-        justifyContent,
-        justifyItems,
-        alignContent,
-        alignItems,
-        fs,
-        fontSize = fs,
-        ff,
-        fontFamily = ff,
-        fw,
-        fontWeight = fw,
-        gap,
-        children,
-        ta,
-        textAlign = ta,
-        va,
-        verticalAlign = va,
-        ...extraProps
-    } = props;
-    const TagName = tag;
-    const style$ = compact(
-        {
-            border,
+const Met: ForwardRefRenderFunction<LegacyRef<any>, MetProps> = forwardRef(
+    (props: MetProps, ref) => {
+        const { tag = 'div', children, style = {}, className = '', ...extra } = props;
+        const TagName = tag;
+        const {
+            w,
+            width = w,
+            h,
+            height = h,
+            lh,
+            lineHeight = lh,
             br,
-            borderRadius,
-            width,
-            height,
-            position,
-            top,
-            right,
-            bottom,
-            cursor,
-            left,
-            lineHeight,
-            margin,
-            marginLeft,
-            marginTop,
-            marginRight,
-            marginBottom,
-            maxHeight,
-            minHeight,
-            maxWidth,
-            minWidth,
+            borderRadius = br,
+            bg,
+            background = bg,
+            o,
             overflow,
+            ox,
             overflowX,
+            oy,
             overflowY,
-            padding,
-            paddingLeft,
-            paddingTop,
-            paddingRight,
-            paddingBottom,
-            display,
-            background,
-            flex,
-            flexDirection,
-            flexWrap,
-            flexShrink,
-            flexBasis,
-            flexFlow,
-            flexGlow,
-            justifyContent,
-            justifyItems,
-            alignContent,
-            alignItems,
-            fontSize,
-            fontFamily,
-            fontWeight,
-            gap,
-            textAlign,
-            ...extraProps,
-            ...style
-        },
-        'nil'
-    );
-    return (
-        <TagName ref={ref} className={clx(className)} style={style$}>
-            {children}
-        </TagName>
-    );
-});
+            p,
+            padding = p,
+            pl,
+            paddingLeft = pl,
+            pt,
+            paddingTop = pt,
+            pr,
+            paddingRight = pr,
+            pb,
+            paddingBottom = pb,
+            m,
+            margin = m,
+            ml,
+            marginLeft = ml,
+            mt,
+            marginTop = mt,
+            mr,
+            marginRight = mr,
+            mb,
+            marginBottom = mb,
+            fs,
+            fontSize = fs,
+            ff,
+            fontFamily = ff,
+            color,
+            fw,
+            fontWeight = fw,
+            ta,
+            textAlign = ta,
+            va,
+            verticalAlign = va,
+            ...more
+        } = extra;
+
+        // 获取  dataset 属性值
+        const { properties = [], dataset = [] } = groupBy(Object.entries(more), ([key]) => {
+            return /^data-/gi.test(key) ? 'dataset' : 'properties';
+        });
+
+        const properties$ = map(
+            properties,
+            ([key, value]) => {
+                return { '::key': key, '::value': value };
+            },
+            {}
+        );
+
+        const dataset$ = map(
+            dataset,
+            ([key, value]) => {
+                return { '::key': key, '::value': value };
+            },
+            {}
+        );
+
+        const style$ = compact(
+            {
+                borderRadius,
+                width,
+                height,
+                lineHeight,
+                margin,
+                marginLeft,
+                marginTop,
+                marginRight,
+                marginBottom,
+                overflow,
+                overflowX,
+                overflowY,
+                padding,
+                paddingLeft,
+                paddingTop,
+                paddingRight,
+                paddingBottom,
+                background,
+                fontSize,
+                fontFamily,
+                fontWeight,
+                color,
+                textAlign,
+                ...properties$,
+                ...style
+            },
+            'nil'
+        );
+        return (
+            <TagName ref={ref} className={clx(className)} style={style$} {...dataset$}>
+                {children}
+            </TagName>
+        );
+    }
+);
 
 export default Met;

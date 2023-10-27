@@ -25,6 +25,7 @@ export { default as isNotEmpty } from './is-not-empty.js';
 /** if */
 export { default as ifnvl } from './if-nvl.js';
 export { default as iffalsy } from './if-falsy.js';
+export { default as ifrun } from './if-run.js';
 /** lang */
 export { default as run } from './run.js';
 export { default as types } from './types.js';

@@ -1,17 +1,23 @@
-import { CSSProperties, ElementType, FC, ReactNode, LegacyRef } from 'react';
+import { CSSProperties, ElementType, ReactNode, LegacyRef, ForwardRefRenderFunction } from 'react';
 import { ArgumentArray } from 'classnames';
-import { Property } from 'csstype';
+import { Property, Properties } from 'csstype';
 export type MetClassName = ArgumentArray | string;
-export interface MetProps {
+export interface MetProps extends Properties<string | number, any> {
+    /**
+     * 基本属性
+     */
     tag?: ElementType;
-    background?: Property.Background;
+    style?: CSSProperties;
+    children?: ReactNode;
+    className?: MetClassName;
+    /**
+     * 样式类属性
+     */
     bg?: Property.Background;
+    background?: Property.Background;
     border?: Property.Border;
     br?: Property.BorderRadius | number;
     borderRadius?: Property.BorderRadius | number;
-    bottom?: number | string;
-    children?: ReactNode;
-    className?: ArgumentArray;
     cursor?: Property.Cursor;
     display?: Property.Display;
     flex?: Property.Flex;
@@ -19,13 +25,14 @@ export interface MetProps {
     flexWrap?: Property.FlexWrap;
     flexFlow?: Property.FlexFlow;
     flexBasis?: Property.FlexBasis;
-    flexGrow?: Property.FlexGrow;
+    flexGlow?: Property.FlexGrow;
     flexShrink?: Property.FlexShrink;
     justifyContent?: Property.JustifyContent;
     justifyItems?: Property.JustifyItems;
     alignContent?: Property.AlignContent;
     alignItems?: Property.AlignItems;
     fontSize?: Property.FontSize | number;
+    color?: Property.Color;
     fs?: Property.FontSize | number;
     ff?: Property.FontFamily;
     fontFamily?: Property.FontFamily;
@@ -36,23 +43,25 @@ export interface MetProps {
     height?: number | string;
     lh?: Property.LineHeight;
     lineHeight?: Property.LineHeight;
-    left?: number | string;
     m?: number | string;
     margin?: number | string;
     ml?: Property.MarginLeft | number;
-    mt?: Property.MarginTop | number;
-    mr?: Property.MarginRight | number;
-    mb?: Property.MarginBottom | number;
     marginLeft?: Property.MarginLeft | number;
+    mt?: Property.MarginTop | number;
     marginTop?: Property.MarginTop | number;
+    mr?: Property.MarginRight | number;
     marginRight?: Property.MarginRight | number;
+    mb?: Property.MarginBottom | number;
     marginBottom?: Property.MarginBottom | number;
     maxHeight?: string | number;
     minHeight?: string | number;
     maxWidth?: string | number;
     minWidth?: string | number;
+    o?: Property.Overflow;
     overflow?: Property.Overflow;
+    ox?: Property.OverflowX;
     overflowX?: Property.OverflowX;
+    oy?: Property.OverflowY;
     overflowY?: Property.OverflowY;
     p?: number | string;
     padding?: number | string;
@@ -65,16 +74,17 @@ export interface MetProps {
     paddingRight?: Property.PaddingRight | number;
     paddingBottom?: Property.PaddingBottom | number;
     position?: Property.Position;
-    ref?: LegacyRef;
+    top?: number | string;
     right?: number | string;
+    left?: number | string;
+    bottom?: number | string;
     ta?: Property.TextAlign;
     textAlign?: Property.TextAlign;
-    top?: number | string;
-    style?: CSSProperties;
     va?: Property.VerticalAlign;
     verticalAlign?: Property.VerticalAlign;
+    visibility?: Property.Visibility;
     w?: number | string;
     width?: number | string;
 }
-declare const Met: FC<MetProps>;
+declare const Met: ForwardRefRenderFunction<LegacyRef<any>, MetProps>;
 export default Met;

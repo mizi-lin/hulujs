@@ -14,7 +14,7 @@ const MetRow: FC<MetRowProps> = (props) => {
             placement={'left'}
             vertical={false}
             className={[className, 'met-row']}
-            {...props}
+            {...extra}
         />
     );
 };

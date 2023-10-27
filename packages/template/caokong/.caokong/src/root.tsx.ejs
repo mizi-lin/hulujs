@@ -1,8 +1,8 @@
 import { ComponentType, StrictMode } from 'react';
-
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot, RecoilEnv } from 'recoil';
+import { ClickToComponent } from 'click-to-react-component';
 import RecoilNexus from 'recoil-nexus';  
 
 <% if ( isDev ) {%>
@@ -26,6 +26,7 @@ function render(App: ComponentType) {
             <RecoilRoot>
                 <% if ( isDev ) {%>
                     <RecoilObserver env="development" />
+                    <ClickToComponent editor="vscode" />
                 <% } %>
                 <RecoilNexus />
                 <HelmetProvider>

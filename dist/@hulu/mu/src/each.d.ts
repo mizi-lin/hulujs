@@ -1,5 +1,9 @@
-export type IterateeResult = void | false;
-export type Iteratee = ((value: any, key: number, src: Record<string | symbol, any>[]) => IterateeResult) | ((value: any, key: string, src: Record<string | symbol, any>[]) => IterateeResult);
-export type IterateeItem = number | string | Record<string | symbol, any> | Record<string | symbol, any>[] | Set<any> | Map<any, any>;
-declare function each(items: IterateeItem, iteratee: Iteratee): void;
+export interface ToMapResult {
+    '::key': any;
+    '::value': any;
+}
+export type IterateeResult = void | false | ToMapResult;
+export type Iteratee = (value: any, key: number | string, src: Record<string | symbol, any>[]) => IterateeResult;
+export type IterateeCollection = number | string | Record<string | symbol, any> | Record<string | symbol, any>[] | Set<any> | Map<any, any>;
+declare function each(items: IterateeCollection, iteratee: Iteratee): void;
 export default each;

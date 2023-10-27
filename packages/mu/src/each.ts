@@ -4,13 +4,19 @@
 import { forOwn, isMap, isSet } from 'lodash-es';
 import types from './types.js';
 
-export type IterateeResult = void | false;
+export interface ToMapResult {
+    '::key': any;
+    '::value': any;
+}
+export type IterateeResult = void | false | ToMapResult;
 // export type Iteratee = (value: unknown, key: unknown, src: unknown) => IterateeResult;
-export type Iteratee =
-    | ((value: any, key: number, src: Record<string | symbol, any>[]) => IterateeResult)
-    | ((value: any, key: string, src: Record<string | symbol, any>[]) => IterateeResult);
+export type Iteratee = (
+    value: any,
+    key: number | string,
+    src: Record<string | symbol, any>[]
+) => IterateeResult;
 
-export type IterateeItem =
+export type IterateeCollection =
     | number
     | string
     | Record<string | symbol, any>
@@ -57,7 +63,7 @@ function forOwner(items, iteratee: Iteratee) {
     }
 }
 
-function each(items: IterateeItem, iteratee: Iteratee) {
+function each(items: IterateeCollection, iteratee: Iteratee) {
     if (Array.isArray(items)) return items.forEach(iteratee);
     if (types(items, 'object')) return forOwner(items, iteratee);
     if (isMap(items)) return (items as Map<any, any>).forEach(iteratee);

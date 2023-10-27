@@ -1,32 +1,32 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from 'react';
 import clx from 'classnames';
-import { compact } from '@hulu/mu';
+import { groupBy } from 'lodash-es';
+import { compact, map } from '@hulu/mu';
 const Met = forwardRef((props, ref) => {
-    const { w, h, width = w, height = h, className, cursor, style = {}, tag = 'div', position, top, right, bottom, left, lh, lineHeight = lh, border, br, borderRadius = br, bg, background = bg, overflow, overflowX, overflowY, p, padding = p, pl, pt, pr, pb, paddingLeft = pl, paddingTop = pt, paddingRight = pr, paddingBottom = pb, m, margin = m, ml, mt, mr, mb, marginLeft = ml, marginTop = mt, marginRight = mr, marginBottom = mb, maxHeight, minHeight, maxWidth, minWidth, display, flex, flexDirection, flexWrap, flexShrink, flexBasis, flexFlow, flexGlow, justifyContent, justifyItems, alignContent, alignItems, fs, fontSize = fs, ff, fontFamily = ff, fw, fontWeight = fw, gap, children, ta, textAlign = ta, va, verticalAlign = va, ...extraProps } = props;
+    const { tag = 'div', children, style = {}, className = '', ...extra } = props;
     const TagName = tag;
+    const { w, width = w, h, height = h, lh, lineHeight = lh, br, borderRadius = br, bg, background = bg, o, overflow, ox, overflowX, oy, overflowY, p, padding = p, pl, paddingLeft = pl, pt, paddingTop = pt, pr, paddingRight = pr, pb, paddingBottom = pb, m, margin = m, ml, marginLeft = ml, mt, marginTop = mt, mr, marginRight = mr, mb, marginBottom = mb, fs, fontSize = fs, ff, fontFamily = ff, color, fw, fontWeight = fw, ta, textAlign = ta, va, verticalAlign = va, ...more } = extra;
+    // 获取  dataset 属性值
+    const { properties = [], dataset = [] } = groupBy(Object.entries(more), ([key]) => {
+        return /^data-/gi.test(key) ? 'dataset' : 'properties';
+    });
+    const properties$ = map(properties, ([key, value]) => {
+        return { '::key': key, '::value': value };
+    }, {});
+    const dataset$ = map(dataset, ([key, value]) => {
+        return { '::key': key, '::value': value };
+    }, {});
     const style$ = compact({
-        border,
-        br,
         borderRadius,
         width,
         height,
-        position,
-        top,
-        right,
-        bottom,
-        cursor,
-        left,
         lineHeight,
         margin,
         marginLeft,
         marginTop,
         marginRight,
         marginBottom,
-        maxHeight,
-        minHeight,
-        maxWidth,
-        minWidth,
         overflow,
         overflowX,
         overflowY,
@@ -35,27 +35,15 @@ const Met = forwardRef((props, ref) => {
         paddingTop,
         paddingRight,
         paddingBottom,
-        display,
         background,
-        flex,
-        flexDirection,
-        flexWrap,
-        flexShrink,
-        flexBasis,
-        flexFlow,
-        flexGlow,
-        justifyContent,
-        justifyItems,
-        alignContent,
-        alignItems,
         fontSize,
         fontFamily,
         fontWeight,
-        gap,
+        color,
         textAlign,
-        ...extraProps,
+        ...properties$,
         ...style
     }, 'nil');
-    return (_jsx(TagName, { ref: ref, className: clx(className), style: style$, children: children }));
+    return (_jsx(TagName, { ref: ref, className: clx(className), style: style$, ...dataset$, children: children }));
 });
 export default Met;

@@ -1,4 +1,5 @@
 import { Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
+import { isNotFalsy } from '@hulu/mu';
 import { Children, cloneElement } from 'react';
 const MetGene = (props) => {
     const { children, dominant = {}, recessive = {}, propCover = false, ...extra } = props;
@@ -24,7 +25,7 @@ const MetGene = (props) => {
             ...(propCover ? {} : geneProps),
             ...colProps,
             ...(propCover ? geneProps : {}),
-            __metGeneRecessive: recessive
+            ...(isNotFalsy(recessive) ? { __metgenerecessive: JSON.stringify(recessive) } : {})
         };
         return cloneElement(col, props);
     });
