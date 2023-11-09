@@ -3,7 +3,7 @@ import { $repo } from './root.js';
 /**
  * 关于版本的获取和操作
  */
-class Version {
+export class Version {
     static defaultValue = '0.0.0';
     // 获得命令的版本
     bin(cmd) {
@@ -20,6 +20,5 @@ class Version {
         const cwd = $repo.pwd();
     }
 }
-export { Version };
 const $ver = new Version();
 export { $ver };

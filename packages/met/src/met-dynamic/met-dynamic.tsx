@@ -1,13 +1,14 @@
-import { ReactNode, FC, createElement } from 'react';
+import { ReactNode, FC, createElement, ReactElement } from 'react';
 import MetGene from '../met-gene/met-gene.js';
-import { MetProps } from 'src/met/met.js';
+import * as ReactIs from 'react-is';
+import { isReactElement, type MetProps } from '../index.js';
 
 export type RenderFunction = (...args: any) => ReactNode;
 export type MetComponent = FC | ReactNode | RenderFunction;
 
 export interface MetDynamicProps extends MetProps {
     // 需要自动
-    component: ReactNode | RenderFunction;
+    component: ReactNode | ReactElement | RenderFunction;
     // 属性覆盖
     propCover?: boolean;
     // 支持任意attr props
@@ -15,26 +16,26 @@ export interface MetDynamicProps extends MetProps {
 }
 
 const MetDynamic: FC<MetDynamicProps> = (props) => {
-    const { component, children, style = {}, className = '', propCover, ...extra } = props;
+    const { component, children, propCover, ...extra } = props;
 
-    const children$ = typeof children === 'function' ? children(props, children) : children;
+    const children$ =
+        typeof children === 'function' ? (children as RenderFunction)(props, children) : children;
 
     let component$;
 
-    if (typeof component === 'object' && !component?.type) {
-        // 自定义组件
-        props.children = children$;
-        component$ = component?.render(props);
-    } else if (typeof component === 'object') {
-        // 通过基因组件透传props
-        component$ = (
-            <MetGene dominant={{ ...props, children: children$ }} propCover={propCover}>
-                {component}
-            </MetGene>
-        );
+    if (isReactElement(component)) {
+        if ((component as ReactElement)?.type) {
+            component$ = (
+                <MetGene dominant={{ ...extra, children: children$ }} propCover={propCover}>
+                    {component}
+                </MetGene>
+            );
+        } else {
+            component$ = (component as any)?.render({ ...props, children: children$ });
+        }
     } else {
         // 创建组件
-        component$ = createElement(component as any, { ...props }, children$);
+        component$ = createElement(component as string, { ...props }, children$);
     }
 
     return <>{component$}</>;

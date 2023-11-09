@@ -1,12 +1,12 @@
 import { isNotFalsy } from '@hulu/mu';
-import { FC, PropsWithChildren, CSSProperties, Children, cloneElement } from 'react';
+import { FC, PropsWithChildren, CSSProperties, Children, cloneElement, ReactNode } from 'react';
 
 /**
  * 基因透传组件
  * - 组件的属性像基因片段一样可以遗传给子元素
  * - 通常用于组件开发
  */
-export interface MetGeneProps extends PropsWithChildren {
+export interface MetGeneProps {
     // 需要向下透传的显性基因片段
     dominant?: Record<string, any>;
     // 需要向下透传的隐性基因片段
@@ -20,12 +20,20 @@ export interface MetGeneProps extends PropsWithChildren {
      * @default false
      */
     propCover?: boolean;
+    children?:
+        | ReactNode
+        | ((
+              dominant?: Record<string, any>,
+              recessive?: Record<string, any>,
+              extra?: Record<string, any>
+          ) => ReactNode);
 }
 
 const MetGene: FC<MetGeneProps> = (props) => {
     const { children, dominant = {}, recessive = {}, propCover = false, ...extra } = props;
 
     if (typeof children === 'function') {
+        // @ts-ignore
         return children(dominant, recessive, extra) ?? <></>;
     }
 
@@ -37,8 +45,10 @@ const MetGene: FC<MetGeneProps> = (props) => {
         // 空节点
         if (!col) return null;
         // 文本或空行等
+        // @ts-ignore
         if (!['function', 'object'].includes(typeof col.type)) return col;
 
+        // @ts-ignore
         const colProps = col?.props ?? {};
         const geneProps = dominant ?? extra ?? {};
 
@@ -52,6 +62,7 @@ const MetGene: FC<MetGeneProps> = (props) => {
             ...(isNotFalsy(recessive) ? { __metgenerecessive: JSON.stringify(recessive) } : {})
         };
 
+        // @ts-ignore
         return cloneElement(col, props);
     });
 };

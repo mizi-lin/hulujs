@@ -48,7 +48,7 @@ export interface MetFlexProps extends MetProps {
     // 交叉轴位置
     align?: Property.AlignItems;
     // 宽高默认100%
-    fill?: boolean;
+    full?: boolean;
 }
 
 const placementStyleMap = {
@@ -100,7 +100,7 @@ const MetFlex: FC<MetFlexProps> = (props) => {
         vertical,
         inline,
         scroll,
-        fill,
+        full,
         wrap = 'nowrap',
         justify,
         align,
@@ -120,7 +120,7 @@ const MetFlex: FC<MetFlexProps> = (props) => {
         : { overflow: 'hidden' };
 
     // @mark 需要使用权重最小的属性，若使用权重大的属性，则会覆盖小属性值
-    const size = fill ? { w: '100%', h: '100%' } : {};
+    const size = full ? { w: '100%', h: '100%' } : {};
 
     const extra$: MetProps = {
         display: inline ? 'inline-flex' : 'flex',

@@ -14,6 +14,7 @@ export { default as stack } from './stack.js';
 export { default as compact } from './compact.js';
 /** rows */
 export { default as rowsToTree } from './rows-to-tree.js';
+export { default as mapping } from './mapping.js';
 /** function */
 export { default as sofunc } from './sofunc.js';
 /** is */
@@ -31,3 +32,6 @@ export { default as run } from './run.js';
 export { default as types } from './types.js';
 /** string */
 export { default as rid } from './rid.js';
+/** utils */
+export { storage, sessionStorage } from './storage.js';
+export { sleep } from './sleep.js';

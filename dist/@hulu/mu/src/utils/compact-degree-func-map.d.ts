@@ -4,7 +4,7 @@ export declare const compactDegreeFuncMap: {
     undefined: (value: any) => boolean;
     null: (value: any) => boolean;
     nil: typeof isNil;
-    withoutZero: (value: any) => any;
+    withoutZero: (value: any) => boolean;
     not: (value: any) => boolean;
     falsy: typeof isFalsy;
 };

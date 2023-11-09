@@ -1,8 +1,8 @@
-import { CSSProperties, ElementType, ReactNode, LegacyRef, ForwardRefRenderFunction } from 'react';
+import { CSSProperties, ElementType, ReactNode, LegacyRef, DOMAttributes } from 'react';
 import { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
 export type MetClassName = ArgumentArray | string;
-export interface MetProps extends Properties<string | number, any> {
+export interface MetProps extends Properties<string | number, any>, DOMAttributes<any> {
     /**
      * 基本属性
      */
@@ -10,6 +10,9 @@ export interface MetProps extends Properties<string | number, any> {
     style?: CSSProperties;
     children?: ReactNode;
     className?: MetClassName;
+    src?: string;
+    alt?: string;
+    href?: string;
     /**
      * 样式类属性
      */
@@ -18,19 +21,6 @@ export interface MetProps extends Properties<string | number, any> {
     border?: Property.Border;
     br?: Property.BorderRadius | number;
     borderRadius?: Property.BorderRadius | number;
-    cursor?: Property.Cursor;
-    display?: Property.Display;
-    flex?: Property.Flex;
-    flexDirection?: Property.FlexDirection;
-    flexWrap?: Property.FlexWrap;
-    flexFlow?: Property.FlexFlow;
-    flexBasis?: Property.FlexBasis;
-    flexGlow?: Property.FlexGrow;
-    flexShrink?: Property.FlexShrink;
-    justifyContent?: Property.JustifyContent;
-    justifyItems?: Property.JustifyItems;
-    alignContent?: Property.AlignContent;
-    alignItems?: Property.AlignItems;
     fontSize?: Property.FontSize | number;
     color?: Property.Color;
     fs?: Property.FontSize | number;
@@ -86,5 +76,5 @@ export interface MetProps extends Properties<string | number, any> {
     w?: number | string;
     width?: number | string;
 }
-declare const Met: ForwardRefRenderFunction<LegacyRef<any>, MetProps>;
+declare const Met: import("react").ForwardRefExoticComponent<MetProps & import("react").RefAttributes<LegacyRef<any>>>;
 export default Met;

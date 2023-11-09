@@ -15,7 +15,8 @@
     },
     "dependencies": {
         "import-local": "^3.1.0",
-        "yargs": "^17.7.1"
+        "yargs": "^17.7.1",
+        "express": "4.18.2"
     },
     "devDependencies": {
         "@types/yargs": "^17.0.24",

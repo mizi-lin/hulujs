@@ -3,15 +3,15 @@
     "private": true,
     "license": "MIT",
     "description": "Hulu v5",
+    "type": "module",
     "scripts": {
-        "aaa": "echo 'aaa'",
         "prewatch": "lerna run build",
         "watch1": "lerna watch -- lerna run build --since",
         "watch": "lerna watch -- lerna run build --scope=$LERNA_PACKAGE_NAME"
     },
     "dependencies": {
         "import-local": "^3.1.0",
-        "lodash-es": "4.17.21",
+        "lodash-es": "^4.17.21",
         "react": "18.2.0"
     },
     "devDependencies": {
@@ -19,6 +19,9 @@
         "@sensenet/search-react": "^2.1.5",
         "@types/lodash-es": "^4.17.9",
         "@types/node": "^18.16.0",
+        "@types/react": "^18.2.13",
+        "@types/react-dom": "^18.2.6",
+        "@types/yargs": "^17.0.29",
         "eslint": "^8.38.0",
         "globby": "^13.1.4",
         "husky": "^8.0.3",
@@ -27,6 +30,10 @@
         "recoil": "^0.7.7",
         "prettier": "^2.8.7",
         "typescript": "^5.0.4"
+    },
+    "peerDependencies": {
+        "react": ">=17.0.0",
+        "react-dom": ">=17.0.0"
     },
     "resolutions": {
         "typescript": "^5"

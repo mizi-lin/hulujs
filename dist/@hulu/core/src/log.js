@@ -2,7 +2,7 @@ import { log, outro } from '@clack/prompts';
 import { upArray } from '@hulu/mu';
 import chalk from 'chalk';
 import { isUnicodeSupported } from './msc.js';
-class Log {
+export class Log {
     static Sign = '   ';
     t(message) {
         const content = upArray(message);
@@ -63,6 +63,5 @@ class Log {
         });
     }
 }
-export { Log };
 const $log = new Log();
 export { $log };

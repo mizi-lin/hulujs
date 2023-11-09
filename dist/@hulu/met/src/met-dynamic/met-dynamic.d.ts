@@ -1,9 +1,9 @@
-import { ReactNode, FC } from 'react';
-import { MetProps } from 'src/met/met.js';
+import { ReactNode, FC, ReactElement } from 'react';
+import { type MetProps } from '../index.js';
 export type RenderFunction = (...args: any) => ReactNode;
 export type MetComponent = FC | ReactNode | RenderFunction;
 export interface MetDynamicProps extends MetProps {
-    component: ReactNode | RenderFunction;
+    component: ReactNode | ReactElement | RenderFunction;
     propCover?: boolean;
     [attr: string]: any;
 }

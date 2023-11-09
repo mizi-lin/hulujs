@@ -1,10 +1,10 @@
-import { FC, PropsWithChildren, CSSProperties } from 'react';
+import { FC, CSSProperties, ReactNode } from 'react';
 /**
  * 基因透传组件
  * - 组件的属性像基因片段一样可以遗传给子元素
  * - 通常用于组件开发
  */
-export interface MetGeneProps extends PropsWithChildren {
+export interface MetGeneProps {
     dominant?: Record<string, any>;
     recessive?: Record<string, any>;
     style?: CSSProperties;
@@ -16,6 +16,7 @@ export interface MetGeneProps extends PropsWithChildren {
      * @default false
      */
     propCover?: boolean;
+    children?: ReactNode | ((dominant?: Record<string, any>, recessive?: Record<string, any>, extra?: Record<string, any>) => ReactNode);
 }
 declare const MetGene: FC<MetGeneProps>;
 export default MetGene;

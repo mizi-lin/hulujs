@@ -7,7 +7,7 @@ import { $log } from './log.js';
 /**
  * 文件读取内容和写入
  */
-class Tpl {
+export class Tpl {
     static defaultOptions = {
         cover: 'cover',
         depth: Infinity,
@@ -92,5 +92,4 @@ class Tpl {
         return format(targetPath, params);
     }
 }
-export { Tpl };
 export const $tpl = new Tpl();

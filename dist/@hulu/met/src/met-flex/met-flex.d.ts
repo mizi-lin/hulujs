@@ -10,7 +10,7 @@ export interface MetFlexProps extends MetProps {
     wrap?: Property.FlexWrap;
     justify?: Property.JustifyContent;
     align?: Property.AlignItems;
-    fill?: boolean;
+    full?: boolean;
 }
 declare const MetFlex: FC<MetFlexProps>;
 export default MetFlex;

@@ -14,5 +14,5 @@ export interface RowsToTreeOption {
  * @param rows
  * @param options
  */
-declare const rowsToTree: (rows: Rows, options?: RowsToTreeOption) => any;
+declare const rowsToTree: (rows: Rows, options?: RowsToTreeOption) => Record<string, any>[];
 export default rowsToTree;

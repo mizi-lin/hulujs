@@ -1,2 +1,2 @@
-declare const isNotEmpty: (value: string) => any;
+declare const isNotEmpty: (value: string) => boolean;
 export default isNotEmpty;

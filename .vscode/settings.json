@@ -60,6 +60,18 @@
             "event": "onFileChange"
         },
         {
+            "match": "packages/met/.*\\.less*",
+            "isAsync": true,
+            "cmd": "echo ${workspaceRelativeDir} | sed 's/packages/@hulu/' | xargs -I{} cp ${file} ${workspaceRoot}/dist/{}",
+            "event": "onFileChange"
+        },
+        {
+            "match": "packages/msc/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/msc",
+            "event": "onFileChange"
+        },
+        {
             "match": "packages/types/.*\\.ts*",
             "isAsync": true,
             "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/types",

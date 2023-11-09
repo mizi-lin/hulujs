@@ -2,8 +2,8 @@
     "compilerOptions": {
         "jsx": "react-jsx",
         "target": "ESNext",
-        "module": "ESNext",
-        "lib": ["ESNext"],
+        "module": "NodeNext",
+        "lib": ["ESNext", "DOM", "WebWorker"],
         "composite": true,
         "baseUrl": ".",
         "outDir": "./dist",

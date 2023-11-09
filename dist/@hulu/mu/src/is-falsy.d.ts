@@ -5,4 +5,4 @@
  * @mark 为了区别isEmpty, 所以在mu上的isEmpty改名为isFalsy
  * @returns
  */
-export default function isFalsy(value: any, force?: boolean): any;
+export default function isFalsy(value: any, force?: boolean): boolean;

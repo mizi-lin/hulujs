@@ -1,0 +1,20 @@
+{
+    "name": "@hulu/msc",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "description": "service center",
+    "main": "./src/index.js",
+    "module": "./src/index.js",
+    "type": "module",
+    "scripts": {
+        "watch": "tsc --watch",
+        "build": "tsc"
+    },
+    "dependencies": {
+        "@hulu/types": "../types",
+        "@hulu/mu": "../mu",
+        "axios": "^1.6.0"
+    },
+    "devDependencies": {}
+}
