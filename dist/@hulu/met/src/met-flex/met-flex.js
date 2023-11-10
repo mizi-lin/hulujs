@@ -42,7 +42,7 @@ const placementStyleMap = {
     }
 };
 const MetFlex = (props) => {
-    const { children, style = {}, className = '', placement = 'left', vertical, inline, scroll, full, wrap = 'nowrap', justify, align, flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', justifyContent = justify, alignItems = align, ...extra } = props;
+    const { children, style = {}, className = '', placement = 'left', vertical, inline, scroll, full, wrap = 'nowrap', justify, align = placement ? 'stretch' : 'normal', flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', justifyContent = justify, alignItems = align, ...extra } = props;
     const overflow = scroll
         ? typeof scroll === 'string'
             ? scroll === 'scroll'

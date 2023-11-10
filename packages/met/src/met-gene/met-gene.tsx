@@ -1,5 +1,5 @@
 import { isNotFalsy } from '@hulu/mu';
-import { FC, PropsWithChildren, CSSProperties, Children, cloneElement, ReactNode } from 'react';
+import { FC, CSSProperties, Children, cloneElement, ReactNode } from 'react';
 
 /**
  * 基因透传组件

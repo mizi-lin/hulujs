@@ -13,6 +13,8 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     src?: string;
     alt?: string;
     href?: string;
+    inline?: boolean;
+    none?: boolean;
     /**
      * 样式类属性
      */

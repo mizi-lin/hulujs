@@ -1,10 +1,13 @@
-import { jsx as _jsx, Fragment as _Fragment } from "react/jsx-runtime";
+import { Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
 import { createElement } from 'react';
 import MetGene from '../met-gene/met-gene.js';
 import { isReactElement } from '../index.js';
 const MetDynamic = (props) => {
-    const { component, children, propCover, ...extra } = props;
+    const { component, children, propCover, inactvie, ...extra } = props;
     const children$ = typeof children === 'function' ? children(props, children) : children;
+    if (inactvie) {
+        return _jsx(_Fragment, { children: children$ });
+    }
     let component$;
     if (isReactElement(component)) {
         if (component?.type) {

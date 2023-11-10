@@ -2,7 +2,7 @@ import { FC } from 'react';
 import clx from 'classnames';
 import Met, { MetProps } from '../met/met.js';
 import { Property } from 'csstype';
-import { compact, run } from '@hulu/mu';
+import { compact, isFalsy, run } from '@hulu/mu';
 import { MetGene } from '../index.js';
 
 export type MetPlacement =
@@ -103,7 +103,7 @@ const MetFlex: FC<MetFlexProps> = (props) => {
         full,
         wrap = 'nowrap',
         justify,
-        align,
+        align = placement ? 'stretch' : 'normal',
         flexWrap = wrap,
         flexDirection = vertical ? 'column' : 'row',
         justifyContent = justify,

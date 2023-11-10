@@ -166,7 +166,7 @@ function tile(obj: Collection, chainMode = true, compact: false | CompactDegree 
     const tiles = handleTile(collect, chainMode, compact);
     return map(tiles, (value, key): any => {
         return {
-            '::key': key.replace(new RegExp(`^${prefix}\.`), ''),
+            '::key': (key as string).replace(new RegExp(`^${prefix}\.`), ''),
             '::value': value
         };
     });

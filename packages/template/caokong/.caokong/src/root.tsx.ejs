@@ -24,7 +24,9 @@ function render(App: ComponentType) {
         <StrictMode>
             <RecoilRoot>
                 <% if ( isDev ) {%>
-                    <RecoilObserver env="development" />
+                    {/* 安装Redux DevTool调试Recoil */}
+                    {/* bug: 会预执行recoil state */}
+                    {/*  <RecoilObserver env="development" /> */}
                 <% } %>
                 <RecoilNexus />
                 <HelmetProvider>

@@ -1,3 +1,4 @@
+import { ElementType, ReactNode } from 'react';
 import {
     isAsyncMode,
     isContextConsumer,
@@ -10,7 +11,9 @@ import {
     isPortal,
     isProfiler,
     isStrictMode,
-    isSuspense
+    isSuspense,
+    isValidElementType,
+    Fragment
 } from 'react-is';
 
 export const isReactElement = (componet: any) => {
@@ -37,3 +40,10 @@ export const isReactElement = (componet: any) => {
 
     return false;
 };
+
+const isFragment$ = (tag: ReactNode | ElementType) => {
+    if (isValidElementType(tag)) return tag === Fragment;
+    return isFragment(tag);
+};
+
+export { isFragment$ as isFragment, isElement, isForwardRef };

@@ -1,6 +1,5 @@
 import { ReactNode, FC, createElement, ReactElement } from 'react';
 import MetGene from '../met-gene/met-gene.js';
-import * as ReactIs from 'react-is';
 import { isReactElement, type MetProps } from '../index.js';
 
 export type RenderFunction = (...args: any) => ReactNode;
@@ -11,15 +10,22 @@ export interface MetDynamicProps extends MetProps {
     component: ReactNode | ReactElement | RenderFunction;
     // 属性覆盖
     propCover?: boolean;
+    // 该组件是否工作
+    inactvie?: boolean;
+
     // 支持任意attr props
     [attr: string]: any;
 }
 
 const MetDynamic: FC<MetDynamicProps> = (props) => {
-    const { component, children, propCover, ...extra } = props;
+    const { component, children, propCover, inactvie, ...extra } = props;
 
     const children$ =
         typeof children === 'function' ? (children as RenderFunction)(props, children) : children;
+
+    if (inactvie) {
+        return <>{children$}</>;
+    }
 
     let component$;
 

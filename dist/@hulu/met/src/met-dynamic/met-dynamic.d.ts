@@ -5,6 +5,7 @@ export type MetComponent = FC | ReactNode | RenderFunction;
 export interface MetDynamicProps extends MetProps {
     component: ReactNode | ReactElement | RenderFunction;
     propCover?: boolean;
+    inactvie?: boolean;
     [attr: string]: any;
 }
 declare const MetDynamic: FC<MetDynamicProps>;

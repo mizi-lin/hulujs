@@ -1,16 +1,10 @@
-import {
-    CSSProperties,
-    ElementType,
-    ReactNode,
-    LegacyRef,
-    forwardRef,
-    ForwardRefRenderFunction,
-    DOMAttributes
-} from 'react';
+import { CSSProperties, ElementType, ReactNode, LegacyRef, forwardRef, DOMAttributes } from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
 import { groupBy } from 'lodash-es';
-import { compact, map } from '@hulu/mu';
+import { compact, isFalsy, map } from '@hulu/mu';
+import { MetDynamic, MetGene, isFragment } from '../index.js';
+import * as ReactIs from 'react-is';
 
 export type MetClassName = ArgumentArray | string;
 export interface MetProps extends Properties<string | number, any>, DOMAttributes<any> {
@@ -24,6 +18,10 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     src?: string;
     alt?: string;
     href?: string;
+    // 将display转成inline模式
+    inline?: boolean;
+    // 将display转出none模式
+    none?: boolean;
 
     /**
      * 样式类属性
@@ -127,8 +125,36 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     width?: number | string;
 }
 
+/**
+ * 将样式inline化
+ */
+const inlineDisplay = (inline, display?: Property.Display): Record<string, any> => {
+    if (!inline) return {};
+    if (isFalsy(display)) return { display: 'inline' };
+    if (['flex', 'grid', 'table', 'table'].includes(display!)) {
+        return { display: `inline-${display}` };
+    }
+    return {};
+};
+
+const noneDisplay = (none) => {
+    if (!none) return {};
+    return { display: 'none' };
+};
+
 const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
-    const { tag = 'div', children, style = {}, className = '', src, href, alt, ...extra } = props;
+    const {
+        tag = 'div',
+        children,
+        style = {},
+        className = '',
+        src,
+        href,
+        alt,
+        inline,
+        none,
+        ...extra
+    } = props;
     const TagName = tag;
     const {
         w,
@@ -207,12 +233,7 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
     const properties$ = toMap(properties);
     const dataset$ = toMap(dataset);
     const events$ = toMap(events);
-
-    const attr$ = compact({
-        src,
-        href,
-        alt
-    });
+    const attr$ = compact({ src, href, alt });
 
     const style$ = compact(
         {
@@ -239,21 +260,28 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
             fontWeight,
             color,
             textAlign,
+            ...inlineDisplay(inline, extra.display),
+            ...noneDisplay(none),
             ...properties$,
             ...style
         },
         'nil'
     );
+
+    const props$ = {
+        ref,
+        className: clx(className),
+        style: style$,
+        ...attr$,
+        ...dataset$,
+        ...events$
+    };
+
     return (
-        <TagName
-            ref={ref}
-            className={clx(className)}
-            style={style$}
-            {...attr$}
-            {...dataset$}
-            {...events$}
-        >
-            {children}
+        <TagName className={clx(className)} {...props$}>
+            <MetDynamic component={MetGene} dominant={props$} inactvie={!isFragment(tag)}>
+                {children}
+            </MetDynamic>
         </TagName>
     );
 });

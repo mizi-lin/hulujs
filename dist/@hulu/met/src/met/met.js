@@ -2,9 +2,28 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from 'react';
 import clx from 'classnames';
 import { groupBy } from 'lodash-es';
-import { compact, map } from '@hulu/mu';
+import { compact, isFalsy, map } from '@hulu/mu';
+import { MetDynamic, MetGene, isFragment } from '../index.js';
+/**
+ * 将样式inline化
+ */
+const inlineDisplay = (inline, display) => {
+    if (!inline)
+        return {};
+    if (isFalsy(display))
+        return { display: 'inline' };
+    if (['flex', 'grid', 'table', 'table'].includes(display)) {
+        return { display: `inline-${display}` };
+    }
+    return {};
+};
+const noneDisplay = (none) => {
+    if (!none)
+        return {};
+    return { display: 'none' };
+};
 const Met = forwardRef((props, ref) => {
-    const { tag = 'div', children, style = {}, className = '', src, href, alt, ...extra } = props;
+    const { tag = 'div', children, style = {}, className = '', src, href, alt, inline, none, ...extra } = props;
     const TagName = tag;
     const { w, width = w, h, height = h, lh, lineHeight = lh, br, borderRadius = br, bg, background = bg, o, overflow, ox, overflowX, oy, overflowY, p, padding = p, pl, paddingLeft = pl, pt, paddingTop = pt, pr, paddingRight = pr, pb, paddingBottom = pb, m, margin = m, ml, marginLeft = ml, mt, marginTop = mt, mr, marginRight = mr, mb, marginBottom = mb, fs, fontSize = fs, ff, fontFamily = ff, color, fw, fontWeight = fw, ta, textAlign = ta, va, verticalAlign = va, ...more } = extra;
     const toMap = (value) => {
@@ -23,11 +42,7 @@ const Met = forwardRef((props, ref) => {
     const properties$ = toMap(properties);
     const dataset$ = toMap(dataset);
     const events$ = toMap(events);
-    const attr$ = compact({
-        src,
-        href,
-        alt
-    });
+    const attr$ = compact({ src, href, alt });
     const style$ = compact({
         borderRadius,
         width,
@@ -52,9 +67,19 @@ const Met = forwardRef((props, ref) => {
         fontWeight,
         color,
         textAlign,
+        ...inlineDisplay(inline, extra.display),
+        ...noneDisplay(none),
         ...properties$,
         ...style
     }, 'nil');
-    return (_jsx(TagName, { ref: ref, className: clx(className), style: style$, ...attr$, ...dataset$, ...events$, children: children }));
+    const props$ = {
+        ref,
+        className: clx(className),
+        style: style$,
+        ...attr$,
+        ...dataset$,
+        ...events$
+    };
+    return (_jsx(TagName, { className: clx(className), ...props$, children: _jsx(MetDynamic, { component: MetGene, dominant: props$, inactvie: !isFragment(tag), children: children }) }));
 });
 export default Met;

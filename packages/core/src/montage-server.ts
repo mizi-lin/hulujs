@@ -2,6 +2,7 @@ import express from 'express';
 import os from 'os';
 import { Arguments } from 'yargs';
 import { editorApi } from './montage/editor-api.js';
+import { materialsApi } from './montage/materials-api.js';
 
 /**
  * 启动 Montage 服务
@@ -18,6 +19,7 @@ export const startMontageServer = (argv?: Arguments<Record<string, any>>) => {
     });
 
     editorApi(app);
+    materialsApi(app);
 
     app.get('/', (req, res) => {
         res.send('Hello World ooOoo');
