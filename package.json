@@ -36,6 +36,11 @@
         "react-dom": ">=17.0.0"
     },
     "resolutions": {
+        "@babel/core": "^7.23.3",
+        "@babel/parser": "^7.23.3",
+        "@babel/helper-plugin-utils": "^7.22.5",
+        "@babel/plugin-transform-runtime": "^7.23.3",
+        "@babel/helper-module-transforms": "^7.23.3",
         "typescript": "^5"
     },
     "workspaces": ["packages/*"]

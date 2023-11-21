@@ -1,10 +1,10 @@
 import types from './types.js';
-import each, { Iteratee, IterateeCollection } from './each.js';
+import each, { IterateeCollection, MapIteratee } from './each.js';
 import { has } from 'lodash-es';
 
 const map = (
     collect: IterateeCollection,
-    iteratee: Iteratee,
+    iteratee: MapIteratee,
     initialValue?: Record<string, any> | Record<string, any>[]
 ): any => {
     const resultType = types(initialValue ?? collect, 'object');

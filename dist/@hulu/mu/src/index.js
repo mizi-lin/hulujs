@@ -6,6 +6,7 @@ export { default as tryNumber } from './try-number.js';
 export * as Regex from './regex.js';
 /** array */
 export { default as includes } from './includes.js';
+export { contains } from './includes.js';
 /** collection 集合(数组 + 对象) */
 export { default as each } from './each.js';
 export { default as map } from './map.js';

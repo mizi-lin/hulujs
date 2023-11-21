@@ -16,6 +16,12 @@ export type Iteratee = (
     src: Record<string | symbol, any>[]
 ) => IterateeResult;
 
+export type MapIteratee = (
+    value: any,
+    key: number | string,
+    src: Record<string | symbol, any>[]
+) => IterateeResult | any;
+
 export type IterateeCollection =
     | number
     | string
@@ -66,6 +72,7 @@ function forOwner(items, iteratee: Iteratee) {
 function each(items: IterateeCollection, iteratee: Iteratee) {
     if (Array.isArray(items)) return items.forEach(iteratee);
     if (types(items, 'object')) return forOwner(items, iteratee);
+    // @ts-ignore
     if (isMap(items)) return (items as Map<any, any>).forEach(iteratee);
 
     let arr!: any[];

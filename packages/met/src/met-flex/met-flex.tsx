@@ -12,18 +12,23 @@ export type MetPlacement =
     | 'bottom'
     | 'topLeft'
     | 'topRight'
+    | 'topCenter'
     | 'bottomLeft'
     | 'bottomRight'
+    | 'bottomCenter'
     | 'leftTop'
     | 'leftBottom'
+    | 'leftMiddle'
     | 'rightTop'
     | 'rightBottom'
+    | 'rightMiddle'
     | 'center'
+    | 'between'
     | 'betweenTop'
     | 'betweenMiddle'
     | 'betweenBottom';
 
-export interface MetFlexProps extends MetProps {
+export interface MetFlexProps extends Omit<MetProps, 'scroll'> {
     // 在绝大部分情况下flex布局应用与固定尺寸
     // 但也在部分模式下，需要跟随父元素的尺寸变化而变化
     inline?: boolean;
@@ -54,38 +59,48 @@ export interface MetFlexProps extends MetProps {
 const placementStyleMap = {
     row: {
         top: { justifyContent: 'center', alignItems: 'flex-start' },
+        topCenter: { justifyContent: 'center', alignItems: 'flex-start' },
         topLeft: { justifyContent: 'flex-start', alignItems: 'flex-start' },
         topRight: { justifyContent: 'flex-end', alignItems: 'flex-start' },
         left: { justifyContent: 'flex-start', alignItems: 'center' },
+        leftMiddle: { justifyContent: 'flex-start', alignItems: 'center' },
         leftTop: { justifyContent: 'flex-start', alignItems: 'flex-start' },
         leftBottom: { justifyContent: 'flex-start', alignItems: 'flex-end' },
         right: { justifyContent: 'flex-end', alignItems: 'center' },
+        rightMiddle: { justifyContent: 'flex-end', alignItems: 'center' },
         rightTop: { justifyContent: 'flex-end', alignItems: 'flex-start' },
         rightBottom: { justifyContent: 'flex-end', alignItems: 'flex-end' },
         bottom: { justifyContent: 'center', alignItems: 'flex-end' },
+        bottomCenter: { justifyContent: 'center', alignItems: 'flex-end' },
         bottomLeft: { justifyContent: 'flex-start', alignItems: 'flex-end' },
         bottomRight: { justifyContent: 'flex-end', alignItems: 'flex-end' },
         center: { justifyContent: 'center', alignItems: 'center' },
         betweenTop: { justifyContent: 'space-between', alignItems: 'flex-start' },
+        between: { justifyContent: 'space-between', alignItems: 'center' },
         betweenMiddle: { justifyContent: 'space-between', alignItems: 'center' },
         betweenBottom: { justifyContent: 'space-between', alignItems: 'flex-end' }
     },
 
     column: {
         top: { alignItems: 'center', justifyContent: 'flex-start' },
+        topCenter: { alignItems: 'center', justifyContent: 'flex-start' },
         topLeft: { alignItems: 'flex-start', justifyContent: 'flex-start' },
         topRight: { alignItems: 'flex-end', justifyContent: 'flex-start' },
         left: { alignItems: 'flex-start', justifyContent: 'center' },
+        leftMiddle: { alignItems: 'flex-start', justifyContent: 'center' },
         leftTop: { alignItems: 'flex-start', justifyContent: 'flex-start' },
         leftBottom: { alignItems: 'flex-start', justifyContent: 'flex-end' },
         right: { alignItems: 'flex-end', justifyContent: 'center' },
+        rightMiddle: { alignItems: 'flex-end', justifyContent: 'center' },
         rightTop: { alignItems: 'flex-end', justifyContent: 'flex-start' },
         rightBottom: { alignItems: 'flex-end', justifyContent: 'flex-end' },
         bottom: { alignItems: 'center', justifyContent: 'flex-end' },
+        bottomCenter: { alignItems: 'center', justifyContent: 'flex-end' },
         bottomLeft: { alignItems: 'flex-start', justifyContent: 'flex-end' },
         bottomRight: { alignItems: 'flex-end', justifyContent: 'flex-end' },
         center: { alignItems: 'center', justifyContent: 'center' },
         betweenTop: { alignItems: 'flex-start', justifyContent: 'space-between' },
+        between: { alignItems: 'center', justifyContent: 'space-between' },
         betweenMiddle: { alignItems: 'center', justifyContent: 'space-between' },
         betweenBottom: { alignItems: 'flex-end', justifyContent: 'space-between' }
     }
@@ -126,8 +141,8 @@ const MetFlex: FC<MetFlexProps> = (props) => {
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
         ...size,
-        ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
+        ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...extra
     };
 

@@ -1,17 +1,22 @@
-import { run } from '@hulu/mu';
 import { $tpl } from '../../tpl.js';
+import { getImports } from './utils.js';
 
 export const getContentByFile = function (req, res) {
-    const { filePath, line, col } = req.query;
-    const path = decodeURIComponent(filePath);
-    const content = $tpl.read(path) ?? '';
+    const { filePath } = req.query;
+    const filepath = decodeURIComponent(filePath);
+    const content = $tpl.read(filepath) ?? '';
     res.send({
-        data: {
-            line: run(line, (line) => +line),
-            col: run(col, (col) => +col),
-            path,
-            content
-        }
+        data: { path: filepath, content }
+    });
+};
+
+export const getImportsByFile = function (req, res) {
+    const { filePath } = req.query;
+    const filepath = decodeURIComponent(filePath);
+    const content = $tpl.read(filepath) ?? '';
+    const imports = getImports(content, filepath);
+    res.send({
+        data: { path: filepath, content, imports }
     });
 };
 
@@ -21,8 +26,6 @@ export const saveContentByFile = async function (req, res) {
     const { content } = req.body;
     await $tpl.out(content, path);
     res.send({
-        data: {
-            path
-        }
+        data: { path }
     });
 };

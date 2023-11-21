@@ -57,4 +57,5 @@ export declare class Repo {
     config(): any;
 }
 declare const $repo: Repo;
-export { $repo };
+declare const $root: Repo;
+export { $repo, $root };

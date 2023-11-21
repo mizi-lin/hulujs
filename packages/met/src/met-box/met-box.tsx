@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import MetFlex, { MetFlexProps } from '../met-flex/index.js';
 
-export type MetBoxPlacement = 'top' | 'right' | 'bottom' | 'right';
+export type MetBoxPlacement = 'top' | 'right' | 'bottom' | 'left';
 export interface MetBoxProps extends Omit<MetFlexProps, 'placement'> {
     placement?: MetBoxPlacement;
 }

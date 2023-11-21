@@ -20,7 +20,16 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
      */
     bg?: Property.Background;
     background?: Property.Background;
-    border?: Property.Border;
+    bd?: Property.Color | Property.Border;
+    border?: Property.Color | Property.Border;
+    bdt?: Property.Color | Property.BorderTop;
+    borderTop?: Property.Color | Property.BorderTop;
+    bdr?: Property.Color | Property.BorderRight;
+    borderRight?: Property.Color | Property.BorderRight;
+    bdb?: Property.Color | Property.BorderBottom;
+    borderBottom?: Property.Color | Property.BorderBottom;
+    bdl?: Property.Color | Property.BorderLeft;
+    borderLeft?: Property.Color | Property.BorderLeft;
     br?: Property.BorderRadius | number;
     borderRadius?: Property.BorderRadius | number;
     fontSize?: Property.FontSize | number;
@@ -55,6 +64,7 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     overflowX?: Property.OverflowX;
     oy?: Property.OverflowY;
     overflowY?: Property.OverflowY;
+    scroll?: boolean;
     p?: number | string;
     padding?: number | string;
     pl?: Property.PaddingLeft | number;
@@ -78,5 +88,8 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     w?: number | string;
     width?: number | string;
 }
+/**
+ * border 系样式处理
+ */
 declare const Met: import("react").ForwardRefExoticComponent<MetProps & import("react").RefAttributes<LegacyRef<any>>>;
 export default Met;

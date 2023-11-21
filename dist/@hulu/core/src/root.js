@@ -109,4 +109,5 @@ export class Repo {
     }
 }
 const $repo = new Repo();
-export { $repo };
+const $root = $repo;
+export { $repo, $root };

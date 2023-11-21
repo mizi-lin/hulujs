@@ -40,6 +40,7 @@ function each(items, iteratee) {
         return items.forEach(iteratee);
     if (types(items, 'object'))
         return forOwner(items, iteratee);
+    // @ts-ignore
     if (isMap(items))
         return items.forEach(iteratee);
     let arr;

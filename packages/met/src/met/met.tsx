@@ -26,10 +26,20 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     /**
      * 样式类属性
      */
+    // background
     bg?: Property.Background;
     background?: Property.Background;
-    // background
-    border?: Property.Border;
+    // boderder
+    bd?: Property.Color | Property.Border;
+    border?: Property.Color | Property.Border;
+    bdt?: Property.Color | Property.BorderTop;
+    borderTop?: Property.Color | Property.BorderTop;
+    bdr?: Property.Color | Property.BorderRight;
+    borderRight?: Property.Color | Property.BorderRight;
+    bdb?: Property.Color | Property.BorderBottom;
+    borderBottom?: Property.Color | Property.BorderBottom;
+    bdl?: Property.Color | Property.BorderLeft;
+    borderLeft?: Property.Color | Property.BorderLeft;
     // border-radius
     br?: Property.BorderRadius | number;
     borderRadius?: Property.BorderRadius | number;
@@ -90,6 +100,7 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     overflowX?: Property.OverflowX;
     oy?: Property.OverflowY;
     overflowY?: Property.OverflowY;
+    scroll?: boolean;
     // padding
     p?: number | string;
     padding?: number | string;
@@ -142,6 +153,39 @@ const noneDisplay = (none) => {
     return { display: 'none' };
 };
 
+/**
+ * 边框默认情况下使用 `1px solid ${color}`,
+ * border 的默认值接受单一的颜色值
+ * 即 当 border 的配置值不完整的时候，默认补全样式为当前颜色
+ */
+const adjustBorder = (borderProps: Record<string, any>) => {
+    return compact(
+        map(borderProps, (value) => {
+            if (isFalsy(value)) return void 0;
+            const value$ = value.trim();
+            return value$.replace(/\([^)]*?\)/g, '').split(' ').length > 1
+                ? value$
+                : `1px solid ${value$}`;
+        })
+    );
+};
+
+/**
+ * 当scroll = true 的时候
+ * 它只作用于 overflow 与 overflowY
+ * overflowX 需用户手动配置
+ * 一般情况下，滚动条设定我们只关注纵向滚动条
+ * scroll < OverflowY < Overflow < style
+ */
+const adjustOverflowScroll = (scroll: boolean, overflowProps?: Record<string, any>) => {
+    if (!scroll) return {};
+    return isFalsy(overflowProps) ? overflowProps : { OverflowY: 'auto' };
+};
+
+/**
+ * border 系样式处理
+ */
+
 const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
     const {
         tag = 'div',
@@ -153,6 +197,7 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
         alt,
         inline,
         none,
+        scroll = false,
         ...extra
     } = props;
     const TagName = tag;
@@ -163,6 +208,16 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
         height = h,
         lh,
         lineHeight = lh,
+        bd,
+        border = bd,
+        bdt,
+        borderTop = bdt,
+        bdr,
+        borderRight = bdr,
+        bdb,
+        borderBottom = bdb,
+        bdl,
+        borderLeft = bdl,
         br,
         borderRadius = br,
         bg,
@@ -246,7 +301,7 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
             marginTop,
             marginRight,
             marginBottom,
-            overflow,
+
             overflowX,
             overflowY,
             padding,
@@ -260,6 +315,8 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
             fontWeight,
             color,
             textAlign,
+            ...adjustOverflowScroll(scroll, { overflow, overflowY }),
+            ...adjustBorder({ border, borderTop, borderRight, borderBottom, borderLeft }),
             ...inlineDisplay(inline, extra.display),
             ...noneDisplay(none),
             ...properties$,
@@ -277,8 +334,38 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
         ...events$
     };
 
+    /**
+     * fixed bug: img is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`
+     * 自封闭标签，没有children, 所以不能使用 dangerouslySetInnerHTML 从而报错
+     * 自闭合标签如果写为<img></img>（有时候vsCode会格式化成这样）导致内存溢出
+     * @see https://deepscan.io/docs/rules/react-void-element-with-children
+     * @see https://www.jianshu.com/p/a7465ee59c6b
+     */
+    const selfColsingTags = [
+        'hr',
+        'img',
+        'br',
+        'input',
+        'select',
+        'textarea',
+        'meta',
+        'base',
+        'col',
+        'area',
+        'param',
+        'object',
+        'applet',
+        'embed',
+        'keygen',
+        'source'
+    ];
+
+    if (typeof tag === 'string' && selfColsingTags.includes(tag)) {
+        return <TagName className={clx(className)} {...props$} />;
+    }
+
     return (
-        <TagName className={clx(className)} {...props$}>
+        <TagName {...(isFragment(tag) ? {} : props$)}>
             <MetDynamic component={MetGene} dominant={props$} inactvie={!isFragment(tag)}>
                 {children}
             </MetDynamic>
