@@ -16,10 +16,11 @@ import RecoilNexus from 'recoil-nexus';
 <% } %>
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
-const container = document.getElementById('root') as HTMLElement;
-const root = createRoot(container);
+
 
 function render(App: ComponentType) {
+    const container = document.getElementById('root') as HTMLElement;
+    const root = createRoot(container);
     root.render(
         <StrictMode>
             <RecoilRoot>

@@ -12,6 +12,7 @@ export { default as MetLoading, MetLoadingProps } from './met-loading/index.js';
 export { default as MetNodata, MetNodataProps } from './met-nodata/index.js';
 export { default as MetError, MetErrorProps } from './met-error/index.js';
 
+export * from './met/elements.js';
 export * from './utils/merge-refs.js';
 export * from './utils/is-react-element.js';
 export * from './utils/open.js';

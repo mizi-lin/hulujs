@@ -3,7 +3,8 @@ import createDebug from 'debug';
 import { stepGenerateCaoKong } from './step-generate-caokong.js';
 import { stepGenerateCaoKongIndexFile } from './step-generate-caokong-index-file.js';
 import { stepAssRouter } from './step-ass-router.js';
-const debug = createDebug('init');
+import { getCommandParamsString } from '../../utils.js';
+const debug = createDebug('dev');
 export const command = 'dev';
 export const aliases = ['start'];
 export const describe = 'hulu dev 启动本地开发服务';
@@ -29,10 +30,11 @@ export const handler = async function (argv) {
         await stepGenerateCaoKongIndexFile();
         $log.step(`正在生成辅助体系`);
         await stepAssRouter();
-        $log.step(`正在启动服务`);
+        const paramString = getCommandParamsString(argv);
         const bin = $repo.cwd('node_modules', '.bin', compiler);
-        // 使用bin启动开发服务
-        $bash.live(`${bin} --config ${configPath}`, { silent: false });
+        const command = `${bin} --config ${configPath} ${paramString}`;
+        $log.step([`正在启动服务`, command.replace(bin, compiler)]);
+        $bash.live(command, { silent: false });
         $log.end([`命令结束`]);
     }
     catch (err) {

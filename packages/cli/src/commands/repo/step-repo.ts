@@ -82,7 +82,7 @@ const stepRepo = async ({ compiler = 'vite', dirname }: StepRepoArgs) => {
         project: someCase(project as string),
         compiler,
         title,
-        compilerVersion: '4.4.9'
+        compilerVersion: '5.0.2'
     };
 
     const tplOptions = { globbyOptions: { dot: true } };

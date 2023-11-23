@@ -61,7 +61,7 @@ const stepRepo = async ({ compiler = 'vite', dirname }) => {
         project: someCase(project),
         compiler,
         title,
-        compilerVersion: '4.4.9'
+        compilerVersion: '5.0.2'
     };
     const tplOptions = { globbyOptions: { dot: true } };
     await $tpl.dirout($repo.template('repo/base'), targetPath, params, tplOptions);

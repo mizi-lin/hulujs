@@ -1,10 +1,20 @@
-import { CSSProperties, ElementType, ReactNode, LegacyRef, forwardRef, DOMAttributes } from 'react';
+import {
+    CSSProperties,
+    ElementType,
+    ReactNode,
+    forwardRef,
+    DOMAttributes,
+    useEffect,
+    ForwardedRef,
+    useRef
+} from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
 import { groupBy } from 'lodash-es';
 import { compact, isFalsy, map } from '@hulu/mu';
 import { MetDynamic, MetGene, isFragment } from '../index.js';
-import * as ReactIs from 'react-is';
+import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
+import { isDev } from '../env.js';
 
 export type MetClassName = ArgumentArray | string;
 export interface MetProps extends Properties<string | number, any>, DOMAttributes<any> {
@@ -22,6 +32,10 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     inline?: boolean;
     // 将display转出none模式
     none?: boolean;
+    // debug 测试
+    debug?: (props) => void;
+    // comment 注释信息
+    comment?: string;
 
     /**
      * 样式类属性
@@ -186,7 +200,10 @@ const adjustOverflowScroll = (scroll: boolean, overflowProps?: Record<string, an
  * border 系样式处理
  */
 
-const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
+const Met = forwardRef((props: MetProps, ref: ForwardedRef<any>) => {
+    const innerRef = useRef();
+    const ref$ = useCombinedRefs(ref, innerRef);
+
     const {
         tag = 'div',
         children,
@@ -198,6 +215,8 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
         inline,
         none,
         scroll = false,
+        debug,
+        comment,
         ...extra
     } = props;
     const TagName = tag;
@@ -326,7 +345,6 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
     );
 
     const props$ = {
-        ref,
         className: clx(className),
         style: style$,
         ...attr$,
@@ -360,12 +378,26 @@ const Met = forwardRef<LegacyRef<any>, MetProps>((props: MetProps, ref) => {
         'source'
     ];
 
+    useEffect(() => {
+        debug?.(props$);
+    }, [debug]);
+
+    useEffect(() => {
+        if (isDev && ref$?.current && comment) {
+            const element: HTMLElement = ref$.current;
+            removeTwiceComment(element);
+            insertComment(element, comment);
+        }
+    }, [comment, ref$?.current]);
+
+    // 自闭合标签处理
     if (typeof tag === 'string' && selfColsingTags.includes(tag)) {
-        return <TagName className={clx(className)} {...props$} />;
+        return <TagName ref={ref$} className={clx(className)} {...props$} />;
     }
 
     return (
-        <TagName {...(isFragment(tag) ? {} : props$)}>
+        // 当 tag = Fragment 时，为透传标签
+        <TagName ref={ref$} {...(isFragment(tag) ? {} : props$)}>
             <MetDynamic component={MetGene} dominant={props$} inactvie={!isFragment(tag)}>
                 {children}
             </MetDynamic>

@@ -52,7 +52,7 @@ const placementStyleMap = {
     }
 };
 const MetFlex = (props) => {
-    const { children, style = {}, className = '', placement = 'left', vertical, inline, scroll, full, wrap = 'nowrap', justify, align = placement ? 'stretch' : 'normal', flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', justifyContent = justify, alignItems = align, ...extra } = props;
+    const { children, style = {}, className = '', placement = 'left', vertical, inline, scroll, full, wrap = 'nowrap', justify, justifyContent = justify, align = placement ? 'stretch' : 'normal', alignItems = align, flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', ...extra } = props;
     const overflow = scroll
         ? typeof scroll === 'string'
             ? scroll === 'scroll'
@@ -66,10 +66,11 @@ const MetFlex = (props) => {
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
         ...size,
-        ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
         ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
+        ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
         ...extra
     };
+    // console.log('::::--><>', extra$);
     return (_jsx(Met, { tag: 'section', className: clx('met-flex', className), ...extra$, children: _jsx(MetGene, { dominant: scroll ? { flexShrink: 0 } : {}, children: children }) }));
 };
 export default MetFlex;

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import * as QueryString from 'querystring';
 import { RegKey, Regc } from '../index.js';
 import { compact, each, format, ifrun, map, run, storage, tile, upArray } from '@hulu/mu';
 import { toFormatMarker } from './uri.js';
 import { cloneDeep } from 'lodash-es';
+import { stringify } from './utils.js';
 export var RuyiMethod;
 (function (RuyiMethod) {
     RuyiMethod["GET"] = "get";
@@ -130,7 +130,7 @@ export const Request = function (ruyiMethod, ruyiUrl, search = {}, payload = {},
         // 处理表单提交数据转换
         if (contentType.indexOf('application/x-www-form-urlencoded') > -1) {
             if (!(payload instanceof FormData)) {
-                config.data = QueryString.stringify(payload);
+                config.data = stringify(payload);
             }
         }
         config.headers[contentTypeKey] = contentType;

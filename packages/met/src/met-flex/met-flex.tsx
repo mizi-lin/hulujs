@@ -118,11 +118,11 @@ const MetFlex: FC<MetFlexProps> = (props) => {
         full,
         wrap = 'nowrap',
         justify,
+        justifyContent = justify,
         align = placement ? 'stretch' : 'normal',
+        alignItems = align,
         flexWrap = wrap,
         flexDirection = vertical ? 'column' : 'row',
-        justifyContent = justify,
-        alignItems = align,
         ...extra
     } = props;
 
@@ -141,10 +141,12 @@ const MetFlex: FC<MetFlexProps> = (props) => {
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
         ...size,
-        ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
         ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
+        ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
         ...extra
     };
+
+    // console.log('::::--><>', extra$);
 
     return (
         <Met tag={'section'} className={clx('met-flex', className)} {...extra$}>

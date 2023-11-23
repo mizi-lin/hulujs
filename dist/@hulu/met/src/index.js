@@ -11,6 +11,7 @@ export { default as MetRuyi } from './met-ruyi/index.js';
 export { default as MetLoading } from './met-loading/index.js';
 export { default as MetNodata } from './met-nodata/index.js';
 export { default as MetError } from './met-error/index.js';
+export * from './met/elements.js';
 export * from './utils/merge-refs.js';
 export * from './utils/is-react-element.js';
 export * from './utils/open.js';

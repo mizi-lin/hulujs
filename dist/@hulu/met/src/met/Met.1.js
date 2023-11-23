@@ -2,59 +2,14 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, useEffect, useRef } from 'react';
 import clx from 'classnames';
 import { groupBy } from 'lodash-es';
-import { compact, isFalsy, map } from '@hulu/mu';
+import { compact, map } from '@hulu/mu';
 import { MetDynamic, MetGene, isFragment } from '../index.js';
-import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
-import { isDev } from '../env.js';
-/**
- * 将样式inline化
- */
-const inlineDisplay = (inline, display) => {
-    if (!inline)
-        return {};
-    if (isFalsy(display))
-        return { display: 'inline' };
-    if (['flex', 'grid', 'table', 'table'].includes(display)) {
-        return { display: `inline-${display}` };
-    }
-    return {};
-};
-const noneDisplay = (none) => {
-    if (!none)
-        return {};
-    return { display: 'none' };
-};
-/**
- * 边框默认情况下使用 `1px solid ${color}`,
- * border 的默认值接受单一的颜色值
- * 即 当 border 的配置值不完整的时候，默认补全样式为当前颜色
- */
-const adjustBorder = (borderProps) => {
-    return compact(map(borderProps, (value) => {
-        if (isFalsy(value))
-            return void 0;
-        const value$ = value.trim();
-        return value$.replace(/\([^)]*?\)/g, '').split(' ').length > 1
-            ? value$
-            : `1px solid ${value$}`;
-    }));
-};
-/**
- * 当scroll = true 的时候
- * 它只作用于 overflow 与 overflowY
- * overflowX 需用户手动配置
- * 一般情况下，滚动条设定我们只关注纵向滚动条
- * scroll < OverflowY < Overflow < style
- */
-const adjustOverflowScroll = (scroll, overflowProps) => {
-    if (!scroll)
-        return {};
-    return isFalsy(overflowProps) ? overflowProps : { OverflowY: 'auto' };
-};
+import { useCombinedRefs } from './utils.js';
+import { adjustOverflowScroll, adjustBorder, inlineDisplay, noneDisplay } from './met.js';
 /**
  * border 系样式处理
  */
-const Met = forwardRef((props, ref) => {
+export const Met = forwardRef((props, ref) => {
     const innerRef = useRef();
     const ref$ = useCombinedRefs(ref, innerRef);
     const { tag = 'div', children, style = {}, className = '', src, href, alt, inline, none, scroll = false, debug, comment, ...extra } = props;
@@ -142,13 +97,31 @@ const Met = forwardRef((props, ref) => {
     useEffect(() => {
         debug?.(props$);
     }, [debug]);
+    const commentor = comment ? document.createComment(comment) : undefined;
     useEffect(() => {
-        if (isDev && ref$?.current && comment) {
+        // const ref$ = innerRef as MutableRefObject<any>;
+        if (ref$?.current && commentor) {
             const element = ref$.current;
-            removeTwiceComment(element);
-            insertComment(element, comment);
+            try {
+                // 删除历史
+                const parent = element.parentElement;
+                const nodes = Array.from(parent.childNodes);
+                console.log('...', nodes);
+                // 获取 parent childnodes 里的 comment
+                for (const node of nodes) {
+                    // 只删除连续的 comment node
+                    // comment.nodeType === 8
+                    const isTwice = node.nodeType === 8 &&
+                        node.nextElementSibling?.nodeType === 8;
+                    isTwice ? node.parentElement?.removeChild(node) : ;
+                    break;
+                }
+                // element.parentElement?.removeChild?.(commentor);
+            }
+            catch (e) { }
+            element.before(commentor);
         }
-    }, [comment, ref$?.current]);
+    }, [commentor]);
     // 自闭合标签处理
     if (typeof tag === 'string' && selfColsingTags.includes(tag)) {
         return _jsx(TagName, { ref: ref$, className: clx(className), ...props$ });
@@ -157,4 +130,3 @@ const Met = forwardRef((props, ref) => {
     // 当 tag = Fragment 时，为透传标签
     _jsx(TagName, { ref: ref$, ...(isFragment(tag) ? {} : props$), children: _jsx(MetDynamic, { component: MetGene, dominant: props$, inactvie: !isFragment(tag), children: children }) }));
 });
-export default Met;

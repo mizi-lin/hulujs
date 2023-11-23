@@ -1,4 +1,4 @@
-import { CSSProperties, ElementType, ReactNode, LegacyRef, DOMAttributes } from 'react';
+import { CSSProperties, ElementType, ReactNode, DOMAttributes } from 'react';
 import { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
 export type MetClassName = ArgumentArray | string;
@@ -15,6 +15,8 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     href?: string;
     inline?: boolean;
     none?: boolean;
+    debug?: (props: any) => void;
+    comment?: string;
     /**
      * 样式类属性
      */
@@ -91,5 +93,5 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
 /**
  * border 系样式处理
  */
-declare const Met: import("react").ForwardRefExoticComponent<MetProps & import("react").RefAttributes<LegacyRef<any>>>;
+declare const Met: import("react").ForwardRefExoticComponent<MetProps & import("react").RefAttributes<any>>;
 export default Met;
