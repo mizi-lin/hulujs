@@ -53,15 +53,11 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         console.log(err);
         $log.error(err as Error);
         // $log.error([`red::当前目录下没找到葫芦的配置文件`, 'hulu/config.ts']);
-
         // @todo 配置服务
-
         $log.end([`命令结束`]);
 
         // const compilers = ['vite', 'umi', 'dumi'];
-
         // $log.start([`正嗅探到其它的编译器`, compilers.join(',')]);
-
         // const bin = compilers
         //     .map((compiler) => {
         //         return $repo.cwd('node_modules', '.bin', compiler);
@@ -69,16 +65,13 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         //     .find((path) => {
         //         return existsSync(path);
         //     });
-
         // if (!bin) {
         //     $log.error([`未嗅探到编译器`, compilers.join(',')]);
         //     return void 0;
         // }
-
         // // 使用bin启动开发服务
         // $log.step([`嗅探到编译服务`, bin]);
         // $log.step(`正在启动编译服务`);
-
         // $bash.live(`${bin} dev`, { silent: false });
     }
 };

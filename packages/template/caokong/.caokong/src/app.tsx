@@ -17,7 +17,7 @@ export function App() {
                 theme={{ token: { colorPrimary: '#1677ff', borderRadius: 4 } }}
             >
                 <RouterProvider
-                    router={createBrowserRouter(routes, { basename: '/' })}
+                    router={createBrowserRouter(routes, { basename: import.meta.env.BASE_URL })}
                     fallbackElement={<></>}
                 />
             </ConfigProvider>

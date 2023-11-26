@@ -1,5 +1,6 @@
-import { $repo, $tpl, fsa, globby, path } from '@hulu/core';
-import { existByCk } from './utils.js';
+import { $repo, $tpl, globby } from '@hulu/core';
+import { getPathExistByCaoKong } from './utils.js';
+import { add } from 'lodash-es';
 
 /**
  * 生成caokong体系的index文件
@@ -21,10 +22,20 @@ export async function stepGenerateCaoKongIndexFile() {
         }
     });
 
-    const exports = exports$1.map(existByCk).map((address) => {
-        // 隐藏后缀名
-        return address.split('.').slice(0, -1).join('.');
-    });
+    const exports = exports$1
+        .map(getPathExistByCaoKong)
+        .map((address) => {
+            // 隐藏后缀名
+            return address
+                .split('.')
+                .slice(0, -1)
+                .join('.')
+                .replace(/\/index$/, '');
+        })
+        .filter((address) => {
+            // views 的组件不参与超控体系
+            return !(/\/views\//.test(address) || /app$/.test(address) || /root$/.test(address));
+        });
 
     const imports$1 = await globby(caokongPath, {
         expandDirectories: {
@@ -32,7 +43,7 @@ export async function stepGenerateCaoKongIndexFile() {
         }
     });
 
-    const imports = imports$1.map(existByCk);
+    const imports = imports$1.map(getPathExistByCaoKong);
 
     // @todo 支持图片模块
     // const modules = await globby(caokongPath, {

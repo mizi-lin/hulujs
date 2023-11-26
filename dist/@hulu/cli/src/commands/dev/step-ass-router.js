@@ -2,19 +2,20 @@
  * 根据routes，生成 router
  */
 import { $load, $repo, $tpl } from '@hulu/core';
-import { existByCk } from './utils.js';
+import { getPathExistByCaoKong, importAlias } from './utils.js';
 import { each, rowsToTree, stack, tile } from '@hulu/mu';
 import path from 'path';
 const transformViewPath = (value) => {
     const prefix = '@/views';
     const isAbsoulte = path.isAbsolute(value);
     const isAlias = /^[@~]/.test(value);
-    return isAbsoulte ? value : isAlias ? value : path.join(prefix, value);
+    const addr = isAbsoulte ? value : isAlias ? value : path.join(prefix, value);
+    return getPathExistByCaoKong(addr);
 };
 const generateAssistLayout = () => {
     const assLayoutPath = $repo.hulu('.assists', 'layout.tsx');
     const sourcePath = $repo.template('caokong/.assists', 'layout.tsx.ejs');
-    const layoutPath = existByCk('./layout.tsx');
+    const layoutPath = getPathExistByCaoKong('./layout.tsx');
     $tpl.fileout(sourcePath, assLayoutPath, { layoutPath });
     return assLayoutPath;
 };
@@ -30,7 +31,7 @@ export const stepAssRouter = async () => {
      * - src/routes.ts
      * - .caokong/routes.ts
      */
-    const routesPath = existByCk('./routes.ts');
+    const routesPath = getPathExistByCaoKong('./routes.ts');
     const srcRoutes = await $load.ts(routesPath);
     const srcRoutes$tree = rowsToTree([...srcRoutes]);
     /**
@@ -44,15 +45,21 @@ export const stepAssRouter = async () => {
     const hasNoPermission = !!srcRoutes$tree.find(({ path }) => path === 'no-permission');
     const hasNoMatch = !!srcRoutes$tree.find(({ path }) => path === 'no-match');
     const presetRoutes = [
-        !hasStart && { path: '*', view: existByCk('./views/no-match/index.ts') },
+        !hasStart && {
+            path: '*',
+            view: importAlias(getPathExistByCaoKong('./views/no-match/index.ts'))
+        },
         !hasNoPermission && {
             path: 'no-permission',
-            view: existByCk('./views/no-permission/index.ts')
+            view: importAlias(getPathExistByCaoKong('./views/no-permission/index.ts'))
         },
-        !hasNoMatch && { path: 'no-match', view: existByCk('./views/no-match/index.ts') }
+        !hasNoMatch && {
+            path: 'no-match',
+            view: importAlias(getPathExistByCaoKong('./views/no-match/index.ts'))
+        }
     ].filter(Boolean);
     const wrapperRoutes = [
-        { path: '/', view: layoutPath, children: [...presetRoutes, ...srcRoutes$tree] }
+        { path: '/', view: importAlias(layoutPath), children: [...presetRoutes, ...srcRoutes$tree] }
     ];
     // 解析
     const routes$tile = tile({ routes: wrapperRoutes });
@@ -60,10 +67,11 @@ export const stepAssRouter = async () => {
     // 默认route组件均为异步加载
     each(routes$tile, (value, keyPath) => {
         const regex = /\.view$/;
+        keyPath = keyPath;
         const isView = regex.test(keyPath);
         if (isView) {
             const lazyPath = keyPath.replace(regex, '.lazy');
-            const importPath = transformViewPath(value);
+            const importPath = importAlias(transformViewPath(value));
             lazys[lazyPath] = `__FUNC_PLACEHOLDER_START__() => import('${importPath}')__FUNC_PLACEHOLDER_END__`;
         }
     });

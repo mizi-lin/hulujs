@@ -17,7 +17,7 @@
         "@babel/helper-plugin-utils": "^7.22.5",
         "@babel/plugin-transform-runtime": "^7.23.3",
         "@babel/helper-module-transforms": "^7.23.3",
-        "@clack/prompts": "^0.6.3",
+        "@clack/prompts": "^0.7.0",
         "@hulu/mu": "0.0.1",
         "@hulu/types": "0.0.1",
         "chalk": "^5.2.0",

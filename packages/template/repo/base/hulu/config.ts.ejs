@@ -912,6 +912,20 @@ const config = {
             }]
         }),
     ],
+    build: {
+        target: 'esnext',
+        rollupOptions: {
+            logLevel: 'silent',
+            output: {
+                manualChunks: {
+                    react: ['react'],
+                    'react-dom': ['react-dom'],
+                    'react-router-dom': ['react-router-dom'],
+                    recoil: ['recoil']
+                }
+            }
+        }
+    },
     resolve: {
         alias: {
             "~ck": path.resolve(__dirname, '../hulu/.caokong/src'),
@@ -920,6 +934,20 @@ const config = {
             "~hulu": path.resolve(__dirname, '../hulu'),
         }
     }, 
+    server: {
+        proxy: {
+            '/montage': {
+                /**
+                 * @mark 若使用 localhost, 直接 node server 会报如下错误
+                 * Error: connect ECONNREFUSED ::1:4555
+                 * https://stackoverflow.com/questions/73843720/connect-econnrefused-127017
+                 * // target: 'http://localhost:4555/api',
+                 */
+                target: 'http://127.0.0.1:4555',
+                changeOrigin: true
+            }
+        }
+    }
 };
 
 export default config;

@@ -1,5 +1,5 @@
 import { $repo, $tpl, globby } from '@hulu/core';
-import { existByCk } from './utils.js';
+import { getPathExistByCaoKong } from './utils.js';
 /**
  * 生成caokong体系的index文件
  * - index 操控文件的内核所在
@@ -18,16 +18,26 @@ export async function stepGenerateCaoKongIndexFile() {
             extensions: ['ts', 'tsx', 'jsx', 'js', 'json']
         }
     });
-    const exports = exports$1.map(existByCk).map((address) => {
+    const exports = exports$1
+        .map(getPathExistByCaoKong)
+        .map((address) => {
         // 隐藏后缀名
-        return address.split('.').slice(0, -1).join('.');
+        return address
+            .split('.')
+            .slice(0, -1)
+            .join('.')
+            .replace(/\/index$/, '');
+    })
+        .filter((address) => {
+        // views 的组件不参与超控体系
+        return !(/\/views\//.test(address) || /app$/.test(address) || /root$/.test(address));
     });
     const imports$1 = await globby(caokongPath, {
         expandDirectories: {
             extensions: ['less', 'css']
         }
     });
-    const imports = imports$1.map(existByCk);
+    const imports = imports$1.map(getPathExistByCaoKong);
     // @todo 支持图片模块
     // const modules = await globby(caokongPath, {
     //     expandDirectories: {

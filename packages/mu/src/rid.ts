@@ -2,7 +2,7 @@
  * 获取随机id
  * -> 并不保证在极短时间内生成大量的ID，不会出现重复现象
  * -> 长度越长重复的几率越小
- * @param length 
+ * @param length
  * @param twostage 是否支持两段式 `{string}-{string}`
  */
 const rn = function (max) {
@@ -16,7 +16,7 @@ export function rid(len = 8, twostage = false) {
     for (let i = 0; i < len; i++) {
         key += chars[rn(charsLen)];
     }
-    return twostage ? `${Date.now().toString(36)}-${key}` : key;
+    return twostage ? `${window.Date.now().toString(36)}-${key}` : key;
 }
 
 export default rid;

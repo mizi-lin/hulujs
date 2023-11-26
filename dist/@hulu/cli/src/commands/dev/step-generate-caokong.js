@@ -7,7 +7,11 @@ export const stepGenerateCaoKong = async () => {
     const params = {
         isDev: process.env.NODE_ENV === NodeEnvEnum.development
     };
-    const tplOptions = { globbyOptions: { dot: true, ignore: ['**/index.ts.ejs'] } };
+    const tplOptions = {
+        globbyOptions: { dot: true, ignore: ['**/index.ts.ejs'] }
+    };
+    // 删除旧文件
     rmSync(targetPath, { recursive: true, force: true });
+    // 文件对文件
     await $tpl.dirout(sourcePath, targetPath, params, tplOptions);
 };
