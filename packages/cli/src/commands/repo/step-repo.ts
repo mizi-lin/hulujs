@@ -1,4 +1,5 @@
-import { $log, $repo, $prompts, $tpl, path, someCase, globby } from '@hulu/core';
+import { $log, $repo, $prompts, $tpl, path, someCase, globby } from '@hulujs/core';
+import { getCompiler } from './utils.js';
 
 /**
  * 创建 hulu repo
@@ -82,7 +83,7 @@ const stepRepo = async ({ compiler = 'vite', dirname }: StepRepoArgs) => {
         project: someCase(project as string),
         compiler,
         title,
-        compilerVersion: '5.0.2'
+        compilerVersion: getCompiler(compiler)?.version
     };
 
     const tplOptions = { globbyOptions: { dot: true } };

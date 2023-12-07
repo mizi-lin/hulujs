@@ -1,5 +1,5 @@
 import { select, text } from '@clack/prompts';
-import { $repo, Log, Repo, Tpl, fuzzypath, globby, someCase } from '@hulu/core';
+import { $repo, Log, Repo, Tpl, fuzzypath, globby, someCase } from '@hulujs/core';
 import path from 'path';
 import { Arguments } from 'yargs';
 import { getGenerates } from '../handlers/generate/get-tpl-info.js';
@@ -62,7 +62,11 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     /**
      * 用户选择写入路径
      */
-    const answer = await fuzzypath({ rootPath: targetRoot, message: '选择代码文件写入位置', itemType: 'directory' });
+    const answer = await fuzzypath({
+        rootPath: targetRoot,
+        message: '选择代码文件写入位置',
+        itemType: 'directory'
+    });
     const targetFileName = address.replace(/\.ejs$/, '');
     const targetPath = path.join(targetRoot, answer['path'], targetFileName);
 

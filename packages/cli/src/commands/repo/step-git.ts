@@ -2,8 +2,8 @@
  * 配置Git信息
  */
 
-import { $log, $prompts, Git, chalk, fsa, path, simpleGit } from '@hulu/core';
-import { Regex, isNil } from '@hulu/mu';
+import { $log, $prompts, Git, chalk, fsa, path, simpleGit } from '@hulujs/core';
+import { Regex, isNil } from '@hulujs/mu';
 
 const setGit = async (projectPWD) => {
     $log.info([

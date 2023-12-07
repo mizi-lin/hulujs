@@ -1,4 +1,4 @@
-import { $_git, $git, $log, $prompts } from '@hulu/core';
+import { $_git, $git, $log, $prompts } from '@hulujs/core';
 import { Arguments } from 'yargs';
 import { commitMsg } from './commit-msg.js';
 import { selectNotAddedFiles } from './add-files.js';
@@ -24,7 +24,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     const [cmd, ...params] = argv._;
     let command = params.join(':');
 
-    if (!cmd) {
+    if (!command) {
         command = (await $prompts.select({
             message: '请选择要执行的命令',
             options: [
@@ -32,7 +32,11 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
                 { label: '添加commit message', value: 'commit', hint: 'hulu git commit' },
                 { label: '添加commit message, 并推送远程', value: 'cp', hint: 'hulu git cp' },
                 { label: '选择文件提交暂存区', value: 'add:select', hint: 'hulu git add --select' },
-                { label: '选择文件提交, 并推送', value: 'acp:select', hint: 'hulu git acp --select' }
+                {
+                    label: '选择文件提交, 并推送',
+                    value: 'acp:select',
+                    hint: 'hulu git acp --select'
+                }
             ]
         })) as string;
     }

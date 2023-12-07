@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react';
-import { MetCenter, MetDynamic, MetFlexProps } from '../index.js';
+import { MetCenter, MetCenterProps, MetDynamic } from '../index.js';
 import { Spin } from 'antd';
 
-export interface MetLoadingProps extends MetFlexProps {
+export interface MetLoadingProps extends MetCenterProps {
     component?: ReactNode;
 }
 

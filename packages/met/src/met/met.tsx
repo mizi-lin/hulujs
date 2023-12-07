@@ -6,24 +6,30 @@ import {
     DOMAttributes,
     useEffect,
     ForwardedRef,
-    useRef
+    useRef,
+    PropsWithChildren,
+    FC
 } from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
-import { groupBy } from 'lodash-es';
-import { compact, isFalsy, map } from '@hulu/mu';
-import { MetDynamic, MetGene, isFragment } from '../index.js';
+import { groupBy, isNil } from 'lodash-es';
+import { compact, isFalsy, map } from '@hulujs/mu';
 import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
 import { isDev } from '../env.js';
+import MetDynamic from '../met-dynamic/index.js';
+import MetGene from '../met-gene/index.js';
+import { isFragment, isReactElement } from '../utils/is-react-element.js';
 
 export type MetClassName = ArgumentArray | string;
-export interface MetProps extends Properties<string | number, any>, DOMAttributes<any> {
+export interface MetProps
+    extends PropsWithChildren<any>,
+        Properties<string | number, any>,
+        Omit<DOMAttributes<any>, 'children'> {
     /**
      * 基本属性
      */
     tag?: ElementType;
     style?: CSSProperties;
-    children?: ReactNode;
     className?: MetClassName;
     src?: string;
     alt?: string;
@@ -32,6 +38,10 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
     inline?: boolean;
     // 将display转出none模式
     none?: boolean;
+    // 宽高100%
+    full?: boolean;
+    // 不接受遗传基因属性
+    nogene?: boolean;
     // debug 测试
     debug?: (props) => void;
     // comment 注释信息
@@ -156,7 +166,7 @@ export interface MetProps extends Properties<string | number, any>, DOMAttribute
 const inlineDisplay = (inline, display?: Property.Display): Record<string, any> => {
     if (!inline) return {};
     if (isFalsy(display)) return { display: 'inline' };
-    if (['flex', 'grid', 'table', 'table'].includes(display!)) {
+    if (inline && ['flex', 'grid', 'table', 'table'].includes(display!)) {
         return { display: `inline-${display}` };
     }
     return {};
@@ -193,14 +203,13 @@ const adjustBorder = (borderProps: Record<string, any>) => {
  */
 const adjustOverflowScroll = (scroll: boolean, overflowProps?: Record<string, any>) => {
     if (!scroll) return {};
-    return isFalsy(overflowProps) ? overflowProps : { OverflowY: 'auto' };
+    return isFalsy(overflowProps) ? overflowProps : { overflow: 'auto' };
 };
 
 /**
  * border 系样式处理
  */
-
-const Met = forwardRef((props: MetProps, ref: ForwardedRef<any>) => {
+const Met: FC<MetProps> = forwardRef((props, ref) => {
     const innerRef = useRef();
     const ref$ = useCombinedRefs(ref, innerRef);
 
@@ -215,8 +224,10 @@ const Met = forwardRef((props: MetProps, ref: ForwardedRef<any>) => {
         inline,
         none,
         scroll = false,
+        nogene = false,
         debug,
         comment,
+        full,
         ...extra
     } = props;
     const TagName = tag;
@@ -334,11 +345,12 @@ const Met = forwardRef((props: MetProps, ref: ForwardedRef<any>) => {
             fontWeight,
             color,
             textAlign,
+            ...properties$,
+            ...(full ? { width: '100%', height: '100%' } : {}),
             ...adjustOverflowScroll(scroll, { overflow, overflowY }),
             ...adjustBorder({ border, borderTop, borderRight, borderBottom, borderLeft }),
             ...inlineDisplay(inline, extra.display),
             ...noneDisplay(none),
-            ...properties$,
             ...style
         },
         'nil'
@@ -395,13 +407,31 @@ const Met = forwardRef((props: MetProps, ref: ForwardedRef<any>) => {
         return <TagName ref={ref$} className={clx(className)} {...props$} />;
     }
 
+    // fragment 将属性透传
+    if (isFragment(tag)) {
+        return (
+            <TagName>
+                <MetDynamic component={MetGene} dominant={props$}>
+                    {children}
+                </MetDynamic>
+            </TagName>
+        );
+    }
+
+    // html 标签 / 自定义标签
+    if (typeof tag === 'string' || !isReactElement(tag)) {
+        return (
+            <TagName ref={ref$} {...props$}>
+                {children}
+            </TagName>
+        );
+    }
+
     return (
         // 当 tag = Fragment 时，为透传标签
-        <TagName ref={ref$} {...(isFragment(tag) ? {} : props$)}>
-            <MetDynamic component={MetGene} dominant={props$} inactvie={!isFragment(tag)}>
-                {children}
-            </MetDynamic>
-        </TagName>
+        <MetDynamic component={tag} {...props$}>
+            {children}
+        </MetDynamic>
     );
 });
 

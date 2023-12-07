@@ -4,6 +4,7 @@ import { Empty } from 'antd';
 
 export interface MetNodataProps extends MetFlexProps {
     component?: ReactNode;
+    image?: string;
     description?: ReactNode;
 }
 
@@ -15,7 +16,8 @@ export interface MetNodataProps extends MetFlexProps {
 const MetNodata: FC<MetNodataProps> = (props) => {
     const {
         description = <></>,
-        component = <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={description} />,
+        image = Empty.PRESENTED_IMAGE_SIMPLE,
+        component = <Empty image={image} description={description} />,
         ...extra
     } = props;
     return (

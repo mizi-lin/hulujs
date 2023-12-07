@@ -1,4 +1,4 @@
-import { $tpl } from '@hulu/core';
+import { $tpl } from '@hulujs/core';
 import { sortBy } from 'lodash-es';
 import path from 'path';
 

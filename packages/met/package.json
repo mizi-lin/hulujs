@@ -1,5 +1,5 @@
 {
-    "name": "@hulu/met",
+    "name": "@hulujs/met",
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
@@ -13,8 +13,8 @@
     },
     "dependencies": {
         "@ant-design/icons": "^5.2.6",
-        "@hulu/types": "0.0.1",
-        "@hulu/mu": "0.0.1",
+        "@hulujs/types": "0.0.1",
+        "@hulujs/mu": "0.0.1",
         "antd": "^5.11.0",
         "csstype": "3.1.2",
         "classnames": "2.3.2",

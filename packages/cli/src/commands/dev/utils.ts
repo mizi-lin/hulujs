@@ -1,4 +1,4 @@
-import { $repo, fsa, path } from '@hulu/core';
+import { $repo, fsa, path } from '@hulujs/core';
 
 const TsPath = {
     '@/*': ['src/*'],

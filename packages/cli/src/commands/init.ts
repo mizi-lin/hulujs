@@ -1,7 +1,7 @@
-import { path, simpleGit } from '@hulu/core';
+import { path, simpleGit } from '@hulujs/core';
 import { Arguments } from 'yargs';
 import createDebug from 'debug';
-import { isFalsy, run, iffalsy, compact, isNil, tile, stack } from '@hulu/mu';
+import { isFalsy, run, iffalsy, compact, isNil, tile, stack } from '@hulujs/mu';
 import { isEmpty } from 'lodash-es';
 
 const debug = createDebug('init');

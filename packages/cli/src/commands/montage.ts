@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { $log, startMontageServer } from '@hulu/core';
+import { $log, startMontageServer } from '@hulujs/core';
 import { Arguments } from 'yargs';
 
 /**

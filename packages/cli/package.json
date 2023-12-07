@@ -1,5 +1,5 @@
 {
-    "name": "@hulu/cli",
+    "name": "@hulujs/cli",
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
@@ -20,9 +20,9 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@hulu/core": "0.0.1",
-        "@hulu/mu": "0.0.1",
-        "@hulu/types": "0.0.1",
+        "@hulujs/core": "0.0.1",
+        "@hulujs/mu": "0.0.1",
+        "@hulujs/types": "0.0.1",
         "omelette": "^0.4.17",
         "yargs": "^17.7.1"
     },

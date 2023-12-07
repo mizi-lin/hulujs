@@ -1,4 +1,4 @@
-import { $bash, $log, $prompts, $ver, prompts } from '@hulu/core';
+import { $bash, $log, $prompts, $ver, prompts } from '@hulujs/core';
 
 /**
  * 安装repo的包

@@ -1,4 +1,4 @@
-import { isFalsy, mapping } from '@hulu/mu';
+import { isFalsy, mapping } from '@hulujs/mu';
 import { FC, ReactNode, Suspense } from 'react';
 import { RecoilValue, useRecoilValueLoadable } from 'recoil';
 import { MetError, MetDynamic, MetGene, MetGeneProps, MetLoading, MetNodata } from '../index.js';

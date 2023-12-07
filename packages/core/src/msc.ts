@@ -1,4 +1,4 @@
-import { includes } from '@hulu/mu';
+import { includes } from '@hulujs/mu';
 import inquirer from 'inquirer';
 import path from 'path';
 import inquirerFuzzyPath from './extra/inquirer-fuzzy-path.js';

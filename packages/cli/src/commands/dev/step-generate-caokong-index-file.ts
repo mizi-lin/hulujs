@@ -1,4 +1,4 @@
-import { $repo, $tpl, globby } from '@hulu/core';
+import { $repo, $tpl, globby } from '@hulujs/core';
 import { getPathExistByCaoKong } from './utils.js';
 import { add } from 'lodash-es';
 

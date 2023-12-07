@@ -18,6 +18,7 @@ export { default as stack } from './stack.js';
 export { default as compact } from './compact.js';
 
 /** rows */
+export { default as mget } from './mget.js';
 export { default as rowsToTree } from './rows-to-tree.js';
 export { default as mapping } from './mapping.js';
 

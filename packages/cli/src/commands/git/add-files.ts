@@ -1,4 +1,4 @@
-import { $git, $prompts } from '@hulu/core';
+import { $git, $prompts } from '@hulujs/core';
 
 /**
  * 选择文件提交的暂存区

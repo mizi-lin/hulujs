@@ -22,9 +22,9 @@
         "esModuleInterop": true,
         "importHelpers": true,
         "paths": {
-            "@hulu/core": ["../core/*"],
-            "@hulu/mu": ["../mu/*"],
-            "@hulu/types": ["../types/*"]
+            "@hulujs/core": ["../core/*"],
+            "@hulujs/mu": ["../mu/*"],
+            "@hulujs/types": ["../types/*"]
         }
     },
     "include": ["./packages/**/*"],

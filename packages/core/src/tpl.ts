@@ -1,6 +1,6 @@
 import { globby } from 'globby';
-import { format } from '@hulu/mu';
-import type { Params, TplOutOptions } from '@hulu/types';
+import { format } from '@hulujs/mu';
+import type { Params, TplOutOptions } from '@hulujs/types';
 import ejs from 'ejs';
 import fse from 'fs-extra';
 import path from 'path';
@@ -76,12 +76,12 @@ export class Tpl {
         const config = { ...Tpl.defaultOptions, ...options };
         // @todo cover
         const content = this.read(srcPath);
-        const content$render = this.render(content, params, config);
+        const content$render = this.render(content!, params, config);
         return this.out(content$render, targetPath, params, config);
     }
 
     /**
-     * 文件夹下的文件输出到文件输出
+     * 文件夹下的文件夹输出到文件夹输出
      */
     async dirout(
         srcPath: string,

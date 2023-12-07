@@ -1,5 +1,5 @@
 {
-    "name": "@hulu/core",
+    "name": "@hulujs/core",
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
@@ -18,8 +18,8 @@
         "@babel/plugin-transform-runtime": "^7.23.3",
         "@babel/helper-module-transforms": "^7.23.3",
         "@clack/prompts": "^0.7.0",
-        "@hulu/mu": "0.0.1",
-        "@hulu/types": "0.0.1",
+        "@hulujs/mu": "0.0.1",
+        "@hulujs/types": "0.0.1",
         "chalk": "^5.2.0",
         "ejs": "^3.1.9",
         "express": "^4.18.2",

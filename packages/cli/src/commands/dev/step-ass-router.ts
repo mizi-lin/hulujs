@@ -1,9 +1,9 @@
 /**
  * 根据routes，生成 router
  */
-import { $load, $repo, $tpl } from '@hulu/core';
+import { $load, $repo, $tpl } from '@hulujs/core';
 import { getPathExistByCaoKong, importAlias } from './utils.js';
-import { each, rowsToTree, stack, tile } from '@hulu/mu';
+import { each, rowsToTree, stack, tile } from '@hulujs/mu';
 import path from 'path';
 
 const transformViewPath = (value) => {

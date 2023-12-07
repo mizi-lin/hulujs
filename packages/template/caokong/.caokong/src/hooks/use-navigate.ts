@@ -6,7 +6,7 @@ import {
     useParams
 } from 'react-router-dom';
 import type { Location } from 'history';
-import { each, format, isNil, map, run } from '@hulu/mu';
+import { each, format, isNil, map, run } from '@hulujs/mu';
 import { useRoute } from '~ck';
 
 type HuluNavigateOptions = NavigateOptions & {

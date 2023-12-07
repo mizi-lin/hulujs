@@ -1,6 +1,6 @@
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
-import { $log, $repo } from '@hulu/core';
+import { $log, $repo } from '@hulujs/core';
 import cmds from './commands/index.js';
 
 export const run = () => {

@@ -1,4 +1,4 @@
-import { isNotFalsy } from '@hulu/mu';
+import { isNotFalsy } from '@hulujs/mu';
 import { FC, CSSProperties, Children, cloneElement, ReactNode } from 'react';
 
 /**
@@ -51,6 +51,8 @@ const MetGene: FC<MetGeneProps> = (props) => {
         // @ts-ignore
         const colProps = col?.props ?? {};
         const geneProps = dominant ?? extra ?? {};
+
+        if (colProps.nogene) return col;
 
         // 当不声明显示基因的时候，其它属性就当做显示基因向下透传
         // 透传原则, 离目标越近，权限越大

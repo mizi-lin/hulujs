@@ -1,10 +1,11 @@
-import { $bash, $load, $log, $repo } from '@hulu/core';
+import { $bash, $load, $log, $repo } from '@hulujs/core';
 import { Arguments } from 'yargs';
 import createDebug from 'debug';
 import { stepGenerateCaoKong } from './step-generate-caokong.js';
 import { stepGenerateCaoKongIndexFile } from './step-generate-caokong-index-file.js';
 import { stepAssRouter } from './step-ass-router.js';
 import { getCommandParamsString } from '../../utils.js';
+import { getCompiler } from '../repo/utils.js';
 
 const debug = createDebug('prod');
 
@@ -15,6 +16,9 @@ export const builder = (yargs: any) => {
     return yargs
         .usage(describe)
         .demandCommand(0)
+        .option('outDir', {
+            type: 'string'
+        })
         .example('hulu prod', '构建生产版本')
         .example('hulu build', '构建生产版本')
         .showHelpOnFail(true);
@@ -32,8 +36,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         const config = await $load.ts(configPath);
 
         const { compiler } = config ?? {};
-
-        const buildMap = { vite: 'vite build' };
+        const compilerOption = getCompiler(compiler);
 
         $log.step([`当前编译器`, compiler]);
 
@@ -44,10 +47,10 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         $log.step(`正在生成辅助体系`);
         await stepAssRouter();
 
-        const bin = $repo.cwd('node_modules', '.bin', buildMap[compiler]);
-        const paramString = getCommandParamsString(argv, { logLevel: 'info' });
+        const bin = $repo.cwd('node_modules', '.bin', compilerOption.build);
+        const paramString = getCommandParamsString();
         const command = `${bin} --config ${configPath} ${paramString}`;
-        $log.step([`正在启动服务`, command.replace(bin, buildMap[compiler])]);
+        $log.step([`正在启动服务`, command.replace(bin, compilerOption.build)]);
         // 使用bin启动开发服务
         $bash.live(command, { silent: false });
         $log.end([`命令结束`]);

@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { upArray } from '@hulu/mu';
-import { Params } from '@hulu/types';
+import { upArray } from '@hulujs/mu';
+import { Params } from '@hulujs/types';
 import { MetProps } from '../met/met.js';
 import MetDynamic, { MetComponent } from '../met-dynamic/index.js';
 import MetGene from '../met-gene/met-gene.js';
@@ -24,19 +24,12 @@ export interface MetNestProps extends MetProps {
 const MetNest: FC<MetNestProps> = (props) => {
     const { children, style = {}, className = '', components: comp, propCover, ...extra } = props;
 
-    const components = upArray(comp);
+    const components = upArray(comp).filter(Boolean);
 
     const nest = (components) => {
-        if (!components?.length)
-            return (
-                <MetGene dominant={extra} propCover={propCover}>
-                    {children}
-                </MetGene>
-            );
-
+        if (!components?.length) return <>{children}</>;
         const [first, ...others] = components;
         const [component, props] = upArray(first);
-
         return (
             <MetGene dominant={extra} propCover={propCover}>
                 <MetDynamic component={component} {...props} propCover={propCover}>

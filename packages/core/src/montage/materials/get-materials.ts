@@ -22,7 +22,7 @@ export const getMaterials = function (req, res) {
                     repository: '',
                     license: 'MIT',
                     dependencies: {
-                        '@hulu/trend': '^1.0.0'
+                        '@hulujs/trend': '^1.0.0'
                     },
                     main: 'index.js',
                     files: ['index.js'],

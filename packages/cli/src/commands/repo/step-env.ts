@@ -1,7 +1,7 @@
 /**
  * 环境检测
  */
-import { $log, $ver, semver } from '@hulu/core';
+import { $log, $ver, semver } from '@hulujs/core';
 
 const stepEnv = () => {
     const nodeVersion = $ver.bin('node');

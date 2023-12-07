@@ -1,4 +1,4 @@
-import { $bash, $log, $prompts, $repo, globby, path } from '@hulu/core';
+import { $bash, $log, $prompts, $repo, globby, path } from '@hulujs/core';
 import yargs from 'yargs';
 
 const canRemoveFiles = (pwd: string) => {

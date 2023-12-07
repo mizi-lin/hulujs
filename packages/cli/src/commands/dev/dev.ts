@@ -1,10 +1,14 @@
-import { $bash, $load, $log, $repo } from '@hulu/core';
-import { Arguments } from 'yargs';
+import { $bash, $load, $log, $repo } from '@hulujs/core';
+import yargs, { Arguments } from 'yargs';
 import createDebug from 'debug';
 import { stepGenerateCaoKong } from './step-generate-caokong.js';
 import { stepGenerateCaoKongIndexFile } from './step-generate-caokong-index-file.js';
 import { stepAssRouter } from './step-ass-router.js';
 import { getCommandParamsString } from '../../utils.js';
+import { getCompiler } from '../repo/utils.js';
+import { stepGenerateCompilerConfig } from './step-generate-compiler-config.js';
+import { hideBin } from 'yargs/helpers';
+import { aliasToSrcWithCaoKong } from './utils.js';
 
 const debug = createDebug('dev');
 
@@ -15,6 +19,22 @@ export const builder = (yargs: any) => {
     return yargs
         .usage(describe)
         .demandCommand(0)
+        .option('offMontage', {
+            describe: 'montage服务',
+            type: 'boolean',
+            default: false
+        })
+        .option('offGit', {
+            describe: 'Git代理',
+            type: 'boolean',
+            default: false
+        })
+        .option('offAbcd', {
+            aliases: ['a'],
+            describe: 'Git代理',
+            type: 'boolean',
+            default: false
+        })
         .example('hulu dev', '启动本地开发服务')
         .example('hulu start', '启动本地开发服务')
         .showHelpOnFail(true);
@@ -32,6 +52,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         const config = await $load.ts(configPath);
 
         const { compiler } = config ?? {};
+        const compilerOption = getCompiler(compiler);
 
         $log.step([`当前编译器`, compiler]);
 
@@ -41,13 +62,20 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
 
         $log.step(`正在生成辅助体系`);
         await stepAssRouter();
+        await stepGenerateCompilerConfig(compiler, compilerOption);
 
-        const paramString = getCommandParamsString(argv);
+        const paramString = getCommandParamsString(['offMontage', 'offGit']);
 
-        const bin = $repo.cwd('node_modules', '.bin', compiler);
-        const command = `${bin} --config ${configPath} ${paramString}`;
-        $log.step([`正在启动服务`, command.replace(bin, compiler)]);
+        const bin = $repo.cwd('node_modules', '.bin', compilerOption.dev);
+        const config$ = aliasToSrcWithCaoKong(
+            compilerOption.config.target ?? compilerOption.config.path
+        );
+        const command = `${bin} --config ${config$} ${paramString}`;
+
+        $log.step([`正在启动服务`, command.replace(bin, compilerOption.dev)]);
+
         $bash.live(command, { silent: false });
+
         $log.end([`命令结束`]);
     } catch (err) {
         console.log(err);

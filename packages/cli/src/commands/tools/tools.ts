@@ -1,6 +1,6 @@
-import { $log, $prompts } from '@hulu/core';
+import { $log, $prompts } from '@hulujs/core';
 import { Arguments } from 'yargs';
-import { isFalsy } from '@hulu/mu';
+import { isFalsy } from '@hulujs/mu';
 import { removeCurrentAll, removeCurrentDir, removeCurrentFiles } from './rm.js';
 
 /**

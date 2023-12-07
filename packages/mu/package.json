@@ -1,5 +1,5 @@
 {
-    "name": "@hulu/mu",
+    "name": "@hulujs/mu",
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
@@ -12,7 +12,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@hulu/types": "0.0.1"
+        "@hulujs/types": "0.0.1"
     },
     "devDependencies": {}
 }

@@ -1,5 +1,5 @@
-import { $repo, $tpl } from '@hulu/core';
-import { NodeEnvEnum } from '@hulu/types';
+import { $repo, $tpl } from '@hulujs/core';
+import { NodeEnvEnum } from '@hulujs/types';
 import { rmSync } from 'fs';
 
 export const stepGenerateCaoKong = async () => {

@@ -1,11 +1,12 @@
-import { FC } from 'react';
+import { FC, ForwardedRef, forwardRef, useRef } from 'react';
 import clx from 'classnames';
-import Met, { MetProps } from '../met/met.js';
 import { Property } from 'csstype';
-import { compact, isFalsy, run } from '@hulu/mu';
-import { MetGene } from '../index.js';
+import { compact } from '@hulujs/mu';
+import { Met, MetGene, MetProps } from '@hulujs/met';
+import { useCombinedRefs } from '../met/utils.js';
 
 export type MetPlacement =
+    | 'normal'
     | 'top'
     | 'left'
     | 'right'
@@ -41,9 +42,9 @@ export interface MetFlexProps extends Omit<MetProps, 'scroll'> {
     // if scroll === true & inline then -> 'overflowX: auto'
     // if scroll === true & !inline then -> 'overflowY: auto'
     // if scroll === false then -> 'overflow: hidden'
-    // if scroll === 'scroll' then -> 'overflow: scroll'
+    // if scroll === 'auto' then -> 'overflow: auto'
     // @mark scroll 下，flex 配置失效
-    scroll?: boolean | 'overflowY' | 'overflowX' | 'overflow' | 'scroll';
+    scroll?: boolean | 'overflowY' | 'overflowX' | 'overflow' | 'auto';
     // 位置的快捷配置
     placement?: MetPlacement;
     // 是否换行
@@ -52,8 +53,6 @@ export interface MetFlexProps extends Omit<MetProps, 'scroll'> {
     justify?: Property.JustifyContent;
     // 交叉轴位置
     align?: Property.AlignItems;
-    // 宽高默认100%
-    full?: boolean;
 }
 
 const placementStyleMap = {
@@ -106,53 +105,51 @@ const placementStyleMap = {
     }
 };
 
-const MetFlex: FC<MetFlexProps> = (props) => {
+const MetFlex: FC<MetFlexProps> = forwardRef((props: MetFlexProps, ref: ForwardedRef<any>) => {
     const {
         children,
         style = {},
         className = '',
-        placement = 'left',
+        placement = 'normal',
         vertical,
         inline,
         scroll,
-        full,
         wrap = 'nowrap',
         justify,
         justifyContent = justify,
-        align = placement ? 'stretch' : 'normal',
+        align = 'stretch',
         alignItems = align,
         flexWrap = wrap,
         flexDirection = vertical ? 'column' : 'row',
         ...extra
     } = props;
 
+    const innerRef = useRef(null);
+    const ref$ = useCombinedRefs(ref, innerRef);
+
     const overflow = scroll
         ? typeof scroll === 'string'
-            ? scroll === 'scroll'
-                ? { overflow: 'scroll' }
+            ? scroll === 'auto'
+                ? { overflow: 'auto' }
                 : { [scroll]: 'auto' }
             : { overflow: 'auto' }
         : { overflow: 'hidden' };
 
     // @mark 需要使用权重最小的属性，若使用权重大的属性，则会覆盖小属性值
-    const size = full ? { w: '100%', h: '100%' } : {};
 
     const extra$: MetProps = {
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
-        ...size,
-        ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
+        ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...extra
     };
 
-    // console.log('::::--><>', extra$);
-
     return (
-        <Met tag={'section'} className={clx('met-flex', className)} {...extra$}>
+        <Met ref={ref$} tag={'section'} className={clx('met-flex', className)} {...extra$}>
             <MetGene dominant={scroll ? { flexShrink: 0 } : {}}>{children}</MetGene>
         </Met>
     );
-};
+});
 
 export default MetFlex;

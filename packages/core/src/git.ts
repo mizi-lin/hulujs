@@ -1,4 +1,4 @@
-import { isNil } from '@hulu/mu';
+import { isNil } from '@hulujs/mu';
 import { CleanOptions, simpleGit } from './msc.js';
 import { $repo } from './root.js';
 

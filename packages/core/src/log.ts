@@ -1,5 +1,5 @@
 import { LogMessageOptions, log, outro } from '@clack/prompts';
-import { upArray } from '@hulu/mu';
+import { upArray } from '@hulujs/mu';
 import chalk from 'chalk';
 import { isUnicodeSupported } from './msc.js';
 
@@ -18,7 +18,9 @@ export class Log {
         const unicode = isUnicodeSupported();
         const s = (c: string, fallback: string) => (unicode ? c : fallback);
         const S_BAR = s('│', '|');
-        const message$1 = upArray(message).map((msg, i) => (i && !/::/.test(msg) ? `grey::${msg}` : msg));
+        const message$1 = upArray(message).map((msg, i) =>
+            i && !/::/.test(msg) ? `grey::${msg}` : msg
+        );
         return this.t(message$1).join(isStep ? `\n${chalk.gray(S_BAR)}  ` : `\n${sign ?? ''}`);
     }
 

@@ -1,5 +1,5 @@
 import { Arguments } from 'yargs';
-import { $log } from '@hulu/core';
+import { $log } from '@hulujs/core';
 import stepEnv from './step-env.js';
 import stepRepo from './step-repo.js';
 import stepGit from './step-git.js';

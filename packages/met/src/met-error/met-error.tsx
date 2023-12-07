@@ -1,6 +1,5 @@
 import { MetCenter, MetFlexProps, MetNodata } from '../index.js';
 import { FrownOutlined } from '@ant-design/icons';
-import './met-error.less';
 import { isDev } from '../env.js';
 
 export interface MetErrorProps extends MetFlexProps {

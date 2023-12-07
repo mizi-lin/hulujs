@@ -11,7 +11,7 @@ const MetBox: FC<MetBoxProps> = (props) => {
     return (
         <MetFlex
             alignItems={'stretch'}
-            placement={'top'}
+            placement={'normal'}
             overflowY={'auto'}
             className={['met-box', className]}
             vertical

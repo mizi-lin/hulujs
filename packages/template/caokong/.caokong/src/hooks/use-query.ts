@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { tryNumber } from '@hulu/mu';
+import { tryNumber } from '@hulujs/mu';
 import { omit } from 'lodash-es';
 
 type SetQuery = (query: Record<string, any>, extend?: boolean | string[]) => void;

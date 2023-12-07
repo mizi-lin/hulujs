@@ -62,7 +62,7 @@
         {
             "match": "packages/met/.*\\.less*",
             "isAsync": true,
-            "cmd": "echo ${workspaceRelativeDir} | sed 's/packages/@hulu/' | xargs -I{} cp ${file} ${workspaceRoot}/dist/{}",
+            "cmd": "echo ${workspaceRelativeDir} | sed 's/packages/@hulujs/' | xargs -I{} cp ${file} ${workspaceRoot}/dist/{}",
             "event": "onFileChange"
         },
         {
@@ -80,7 +80,7 @@
         {
             "match": "packages/template/.*",
             "isAsync": true,
-            "cmd": "rm -rf ${workspaceRoot}/dist/@hulu/template && cp -r ${workspaceRoot}/packages/template ${workspaceRoot}/dist/@hulu/template",
+            "cmd": "rm -rf ${workspaceRoot}/dist/@hulujs/template && cp -r ${workspaceRoot}/packages/template ${workspaceRoot}/dist/@hulujs/template",
             "event": "onFileChange"
         }
     ]

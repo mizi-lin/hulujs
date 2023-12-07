@@ -1,6 +1,6 @@
 import { Arguments } from 'yargs';
 import createDebug from 'debug';
-import { $log, $repo, fsa, globby } from '@hulu/core';
+import { $log, $repo, fsa, globby } from '@hulujs/core';
 import { getOvrdSrcPath, isInstallCaoKong, srcToAliasWithCaoKong } from '../dev/utils.js';
 import { select, confirm } from '@clack/prompts';
 import fse from 'fs-extra';
@@ -23,58 +23,62 @@ export const builder = (yargs: any) => {
 };
 
 export const handler = async function (argv: Arguments<Record<string, any>>) {
-    $log.start(['hulu caokong', '安装超控文件', '别名: hulu ck']);
+    try {
+        $log.start(['hulu caokong', '安装超控文件', '别名: hulu ck']);
 
-    /**
-     * 从 template/generator 提取信息
-     */
-    const caokongPath = $repo.hulu('.caokong/src');
+        /**
+         * 从 template/generator 提取信息
+         */
+        const caokongPath = $repo.hulu('.caokong/src');
 
-    /**
-     * 获得文件夹平铺路径
-     */
-    const files = await globby(caokongPath, {
-        onlyFiles: true,
-        ignore: ['**/views/**', '**/index.ts']
-    });
-
-    const views = await globby(`${caokongPath}/views`, {
-        onlyDirectories: true,
-        markDirectories: false
-    });
-
-    const paths = [...files, ...views].map((value) => {
-        const install = isInstallCaoKong(value);
-        const label = srcToAliasWithCaoKong(value);
-        return {
-            value,
-            label: `${label} ${install ? '(已安装)' : ''}`,
-            hint: install ? '覆盖原文件' : ''
-        };
-    });
-
-    const caokongPath$ = (await select({
-        message: '选择待创建代码模板类型',
-        options: paths
-    })) as string;
-
-    const ovrdPath = getOvrdSrcPath(caokongPath$);
-    const alias = srcToAliasWithCaoKong(ovrdPath);
-
-    if (isInstallCaoKong(ovrdPath)) {
-        const can = await confirm({
-            message: `${alias}已存在，是否覆盖安装`
+        /**
+         * 获得文件夹平铺路径
+         */
+        const files = await globby(caokongPath, {
+            onlyFiles: true,
+            ignore: ['**/views/**', '**/index.ts']
         });
 
-        if (!can) {
-            $log.end([`退出安装超控文件`]);
-            return void 0;
+        const views = await globby(`${caokongPath}/views`, {
+            onlyDirectories: true,
+            markDirectories: false
+        });
+
+        const paths = [...files, ...views].map((value) => {
+            const install = isInstallCaoKong(value);
+            const label = srcToAliasWithCaoKong(value);
+            return {
+                value,
+                label: `${label} ${install ? '(已安装)' : ''}`,
+                hint: install ? '覆盖原文件' : ''
+            };
+        });
+
+        const caokongPath$ = (await select({
+            message: '选择需安装到前台的超控文件',
+            options: paths
+        })) as string;
+
+        const ovrdPath = getOvrdSrcPath(caokongPath$);
+        const alias = srcToAliasWithCaoKong(ovrdPath);
+
+        if (isInstallCaoKong(ovrdPath)) {
+            const can = await confirm({
+                message: `${alias}已存在，是否覆盖安装`
+            });
+
+            if (!can) {
+                $log.end([`退出安装超控文件`]);
+                return void 0;
+            }
         }
+
+        fse.copySync(caokongPath$, ovrdPath, {
+            overwrite: true
+        });
+
+        $log.end([`文件已安装`, alias]);
+    } catch (e) {
+        $log.end([`命令中断`]);
     }
-
-    fse.copySync(caokongPath$, ovrdPath, {
-        overwrite: true
-    });
-
-    $log.end([`文件已安装`, alias]);
 };

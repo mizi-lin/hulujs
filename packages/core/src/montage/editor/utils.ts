@@ -1,8 +1,8 @@
-import { map } from '@hulu/mu';
+import { map } from '@hulujs/mu';
 import parser from '@babel/parser';
 import { traverse } from '@babel/core';
 import path from 'path';
-import { $root, fsa } from '@hulu/core';
+import { $root, fsa } from '@hulujs/core';
 
 export const getImports = (content: string, currentPath: string) => {
     const ast = parser.parse(content, {

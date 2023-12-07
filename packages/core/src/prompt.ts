@@ -1,4 +1,4 @@
-import { upArray } from '@hulu/mu';
+import { upArray } from '@hulujs/mu';
 import {
     PromptsCancel,
     PromptsCancelOptions,
@@ -7,7 +7,7 @@ import {
     PromptsSelectOption,
     PromptsSelectOptions,
     PromptsTextOptions
-} from '@hulu/types';
+} from '@hulujs/types';
 import { $log, Log } from './log.js';
 import { prompts } from './msc.js';
 
@@ -15,12 +15,21 @@ export class Prompts {
     isCancelPrompt(prompt, options: PromptsCancelOptions) {
         const { message = [], exit = true } = options ?? {};
         if (prompts.isCancel(prompt)) {
-            $log.end($log.text([exit && 'cyan::命令结束', ...upArray(message)].filter(Boolean), false, Log.Sign));
+            $log.end(
+                $log.text(
+                    [exit && 'cyan::命令结束', ...upArray(message)].filter(Boolean),
+                    false,
+                    Log.Sign
+                )
+            );
             exit && process.exit(1);
         }
     }
 
-    async confirm(options: PromptsConfirmOptions, cancel: PromptsCancel = true): Promise<boolean | symbol> {
+    async confirm(
+        options: PromptsConfirmOptions,
+        cancel: PromptsCancel = true
+    ): Promise<boolean | symbol> {
         const confirm = await prompts.confirm(options);
         cancel && this.isCancelPrompt(confirm, cancel as PromptsCancelOptions);
         return confirm;

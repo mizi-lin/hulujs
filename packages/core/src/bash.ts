@@ -1,4 +1,4 @@
-import { upArray } from '@hulu/mu';
+import { upArray } from '@hulujs/mu';
 import { ExecOptions } from 'shelljs';
 import live from 'shelljs-live';
 import { shell } from './msc.js';

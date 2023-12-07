@@ -1,4 +1,4 @@
-import { Params } from '@hulu/types';
+import { Params } from '@hulujs/types';
 import ifnvl from './if-nvl.js';
 import isNil from './is-nil.js';
 
