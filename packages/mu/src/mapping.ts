@@ -1,11 +1,7 @@
 import { get } from 'lodash-es';
 import isFalsy from './is-falsy.js';
 import map from './map.js';
-
-export type MappingType = 'mapping' | 'replace' | 'increment';
-export type MapperValue = string | ((source: any) => any);
-export type Mapper = Record<string, MapperValue>;
-export type DataRow = Record<string, any>;
+import { DataRow, Mapper, MapperValue, MappingType } from '@hulujs/types';
 
 /**
  * mapping

@@ -1,7 +1,6 @@
 {
     "name": "@hulujs/types",
     "version": "0.0.1",
-    "private": true,
     "license": "MIT",
     "description": "ts types",
     "main": "./index.js",

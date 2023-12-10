@@ -1,3 +1,15 @@
+export type DataRow = Record<string, any>;
+
+/**
+ * mu.mapping
+ */
+export type MappingType = 'mapping' | 'replace' | 'increment';
+export type MapperValue = string | ((source: any) => any);
+export type Mapper = Record<string, MapperValue>;
+
+/**
+ * mu.format
+ */
 export type NumberCount = number;
 export type NumberUnit = '%' | '‰' | 'k' | 'm' | 'b' | 'permile' | 'percent' | 'none' | string;
 export type NumberRule = 'billion' | 'million' | 'thousand' | 'none';

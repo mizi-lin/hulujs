@@ -46,6 +46,8 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
     process.env.NODE_ENV ??= 'development';
 
     try {
+        $bash.live(`yarn install`, { silent: false });
+
         const configPath = $repo.config();
         $log.step([`正在读取配置文件`, configPath]);
 

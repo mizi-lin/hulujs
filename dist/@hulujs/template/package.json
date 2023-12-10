@@ -1,7 +1,7 @@
 {
     "name": "@hulujs/template",
     "version": "0.0.1",
-    "private": true,
+    "private": false,
     "license": "MIT",
     "description": "hulu template",
     "main": "./src/index.ts",

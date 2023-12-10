@@ -1,7 +1,4 @@
-export type MappingType = 'mapping' | 'replace' | 'increment';
-export type MapperValue = string | ((source: any) => any);
-export type Mapper = Record<string, MapperValue>;
-export type DataRow = Record<string, any>;
+import { DataRow, Mapper, MappingType } from '@hulujs/types';
 /**
  * mapping
  * 数据映射

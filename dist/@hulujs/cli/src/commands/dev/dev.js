@@ -39,6 +39,7 @@ export const handler = async function (argv) {
     $log.start(['hulu dev', '启动本地开发服务']);
     process.env.NODE_ENV ??= 'development';
     try {
+        $bash.live(`yarn install`, { silent: false });
         const configPath = $repo.config();
         $log.step([`正在读取配置文件`, configPath]);
         const config = await $load.ts(configPath);

@@ -1,7 +1,6 @@
 {
     "name": "@hulujs/mu",
     "version": "0.0.1",
-    "private": true,
     "license": "MIT",
     "description": "javascript tools",
     "main": "./src/index.js",
