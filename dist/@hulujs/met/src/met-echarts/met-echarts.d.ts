@@ -1,14 +1,13 @@
 import { MetProps } from '@hulujs/met';
-import { DataRow, Mapper, MapperValue } from '@hulujs/types';
+import { DataRow, EchartType, Mapper, MapperValue, SubTypes } from '@hulujs/types';
 import { EChartsOption } from 'echarts';
 import { FC } from 'react';
-interface MetEchartsDataRow extends DataRow {
+export interface MetEchartsDataRow extends DataRow {
     x?: string | number;
     y?: string | number;
     z?: string | number;
-    name?: string;
 }
-interface MetEchartsProps extends MetProps {
+export interface MetEchartsProps extends MetProps {
     /**
      * DataRow 的数据格式
      * 将data转成echarts的需要格式
@@ -27,22 +26,19 @@ interface MetEchartsProps extends MetProps {
      */
     options?: EChartsOption;
     /**
-     * chartTypes
-     * 图表类型
-     * - 若是string, 多个图表以'::'进行分割,
-     * - 若是数组, 数组单项可以为字符转(图表名称),
-     * -- 或是类似插件的元组格式 [chartname, options],
-     * example:
-     * - bar::2y
-     * - ['bar', '2y']
-     * - ['bar', ['2y', {}]]
+     * echarts 图表类型
      */
-    chartTypes?: string | [string, Record<string, any>][];
+    type: EchartType;
+    /**
+     * 预制的setting集合
+     * 快速配置图表
+     */
+    subtyps?: SubTypes;
     /**
      * mapper
      * mapping 方法需要的参数
      */
-    mapper?: Mapper | [Mapper, MapperValue];
+    mappers?: Mapper | [Mapper, MapperValue];
     /**
      * 配置信息
      * - 该配置信息通过mset对options进行设置

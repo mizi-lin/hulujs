@@ -12,6 +12,8 @@ export { default as MetRuyi, MetRuyiProps } from './met-ruyi/index.js';
 export { default as MetLoading, MetLoadingProps } from './met-loading/index.js';
 export { default as MetNodata, MetNodataProps } from './met-nodata/index.js';
 export { default as MetError, MetErrorProps } from './met-error/index.js';
+export { default as MetEcharts } from './met-echarts/index.js';
+export * from './met-echarts/index.js';
 
 export * from './demo/index.js';
 

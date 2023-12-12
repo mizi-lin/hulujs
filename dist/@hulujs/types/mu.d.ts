@@ -6,6 +6,25 @@ export type MappingType = 'mapping' | 'replace' | 'increment';
 export type MapperValue = string | ((source: any) => any);
 export type Mapper = Record<string, MapperValue>;
 /**
+ * mu.mget
+ */
+export type PropPaths = string | number | (string | number)[];
+export type MgetType = 'detail' | 'normal';
+export type BaseGetResult = {
+    value: any;
+    cash: string[];
+};
+/**
+ * mu.mset
+ */
+export type SetValue = ((current: any, obj: object) => any) | string | number | boolean | null | undefined | object;
+export type SetValueMode = 'normal' | 'nest';
+/**
+ * mu.msetx
+ */
+export type KvEntries = [string, SetValue][];
+export type KvParis = Record<string, SetValue> | Record<string, SetValue>[] | [string, SetValue] | [string, SetValue][];
+/**
  * mu.format
  */
 export type NumberCount = number;

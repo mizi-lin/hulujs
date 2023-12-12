@@ -19,8 +19,10 @@ export { default as compact } from './compact.js';
 
 export { default as mget } from './mget.js';
 export { default as mset } from './mset.js';
+export { default as msetx } from './msetx.js';
 export { default as rowsToTree } from './rows-to-tree.js';
 export { default as mapping } from './mapping.js';
+export { default as parisToEntries } from './paris-to-entries.js';
 
 /** function */
 export { default as sofunc } from './sofunc.js';

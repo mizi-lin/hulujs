@@ -1,10 +1,7 @@
 import { each, isNil, isObject, join, uniqBy } from 'lodash-es';
 import tile, { PROPPATH_SIGN } from './tile.js';
 import map from './map.js';
-
-export type PropPaths = string | number | (string | number)[];
-export type MgetType = 'detail' | 'normal';
-export type BaseGetResult = { value: any; cash: string[] };
+import { PropPaths, BaseGetResult, MgetType } from '@hulujs/types';
 
 /**
  * 梳理过程中
@@ -86,11 +83,7 @@ const dichotomy = (arr: any[], item: any, of: 'indexOf' | 'lastIndexOf' = 'index
     return [arr.slice(0, index), arr.slice(index + 1)];
 };
 
-const baseGet = (
-    obj: Record<string, any>,
-    path: PropPaths,
-    prevCash: string[] = []
-): BaseGetResult | BaseGetResult[] => {
+const baseGet = (obj: Record<string, any>, path: PropPaths, prevCash: string[] = []): BaseGetResult | BaseGetResult[] => {
     const cash = propPathToCash(path);
 
     // 占位通配符 '*'

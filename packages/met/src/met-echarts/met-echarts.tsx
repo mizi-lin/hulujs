@@ -1,21 +1,21 @@
 import { Met, MetProps } from '@hulujs/met';
-import { DataRow, Mapper, MapperValue } from '@hulujs/types';
+import { DataRow, EchartType, Mapper, MapperValue, SubTypes } from '@hulujs/types';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
-import { FC, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import clx from 'classnames';
+import { getOptions } from './options.js';
 
-interface MetEchartsDataRow extends DataRow {
+export interface MetEchartsDataRow extends DataRow {
     // 对应x轴上的值
     x?: string | number;
     // 对应y轴上的值
     y?: string | number;
-    // 对应z轴上的值
+    // 对应dimension上的值
     z?: string | number;
-    // 对应 series name
-    name?: string;
 }
 
-interface MetEchartsProps extends MetProps {
+export interface MetEchartsProps extends MetProps {
     /**
      * DataRow 的数据格式
      * 将data转成echarts的需要格式
@@ -24,6 +24,7 @@ interface MetEchartsProps extends MetProps {
      * - setting 的权重大于 data 的权重
      */
     data?: MetEchartsDataRow[];
+
     /**
      * DataModel 的数据格式
      * 数据会根据不同的数据格式转换成不同的OptionByData
@@ -33,23 +34,23 @@ interface MetEchartsProps extends MetProps {
      * echarts options
      */
     options?: EChartsOption;
+
     /**
-     * chartTypes
-     * 图表类型
-     * - 若是string, 多个图表以'::'进行分割,
-     * - 若是数组, 数组单项可以为字符转(图表名称),
-     * -- 或是类似插件的元组格式 [chartname, options],
-     * example:
-     * - bar::2y
-     * - ['bar', '2y']
-     * - ['bar', ['2y', {}]]
+     * echarts 图表类型
      */
-    chartTypes?: string | [string, Record<string, any>][];
+    type: EchartType;
+
+    /**
+     * 预制的setting集合
+     * 快速配置图表
+     */
+    subtyps?: SubTypes;
+
     /**
      * mapper
      * mapping 方法需要的参数
      */
-    mapper?: Mapper | [Mapper, MapperValue];
+    mappers?: Mapper | [Mapper, MapperValue];
     /**
      * 配置信息
      * - 该配置信息通过mset对options进行设置
@@ -59,11 +60,40 @@ interface MetEchartsProps extends MetProps {
 }
 
 const MetEcharts: FC<MetEchartsProps> = (props) => {
-    const { data, dataModel, options, chartTypes, mapper, setting, className, ...metProps } = props;
+    const { data, dataModel, options, type, subtypes, mappers, setting, className, ...extra } = props;
     const echartRef = useRef<HTMLDivElement>(null);
-    return (
-        <Met tag={'div'} ref={echartRef} className={clx('met-echarts', className)} {...metProps} />
-    );
+    const [myChart, setMyChart] = useState<echarts.ECharts>();
+    const [opts, setOpts] = useState<EChartsOption>();
+
+    // 初始化 echarts
+    useEffect(() => {
+        if (!myChart && echartRef?.current) {
+            const myChart = echarts.init(echartRef.current);
+            opts && myChart.setOption(opts);
+            setMyChart(myChart);
+        }
+
+        return () => {
+            myChart && myChart.dispose();
+        };
+    }, [echartRef?.current]);
+
+    // 设置options
+    useEffect(() => {
+        if (myChart && opts) {
+            // @todos 计算两次options的区别，动态添加
+            myChart.setOption(opts);
+        }
+    }, [opts]);
+
+    // 计算最终options
+    useEffect(() => {
+        const opts = getOptions({ data, dataModel, type, subtypes, mappers, setting, options });
+        console.log('oOoo-> ', opts);
+        setOpts(opts);
+    }, [data, dataModel, type, subtypes, mappers, setting, options]);
+
+    return <Met tag={'div'} ref={echartRef} className={clx('met-echarts', className)} full {...extra} />;
 };
 
 export default MetEcharts;

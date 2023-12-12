@@ -1,8 +1,9 @@
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep, curry } from 'lodash-es';
 import each from './each.js';
 import includes from './includes.js';
-import mget, { PropPaths, propPathToCash } from './mget.js';
+import mget, { propPathToCash } from './mget.js';
 import upArray from './up-array.js';
+import { SetValue, PropPaths, SetValueMode } from '@hulujs/types';
 
 /**
  * baseValue
@@ -11,17 +12,23 @@ import upArray from './up-array.js';
  * 如果是函数，则返回函数执行后的结果
  * 即若实际需求是写入函数，则需要以嵌套函数的形式传入
  * value值是函数，自带两个参数
- * - current 当前path指向的值
- * - obj: 当前原值freeze，避免开发者误修改
+ * - options 原值
+ * - prev: 最后一层的值
+ * - value: 当前的值
+ * - cash: 当前的属性链信息
+ * - get: get(path), 基于options的get方法
  * @param obj
  * @param path
  * @param value
+ * @param valueMode 嵌套函数模式
  * @returns
  */
-const baseValue = (obj: Record<string, any>, path: PropPaths, value: any) => {
-    if (typeof value === 'function') {
-        const current = mget(obj, path, 'detail');
-        return value(current as any, Object.freeze(cloneDeep(obj)) as any);
+const baseValue = (obj: Record<string, any>, path: PropPaths, value: any, valueMode: SetValueMode, source: Record<string, any>) => {
+    if (typeof value === 'function' && valueMode === 'nest') {
+        const current = mget(obj, path);
+        const { options, path: path$, cash } = source;
+        const get = curry(mget)(options ?? {});
+        return value({ prev: Object.freeze(cloneDeep(obj)), value: current, path: path$, cash, options, get });
     }
     return value;
 };
@@ -34,15 +41,18 @@ const baseValue = (obj: Record<string, any>, path: PropPaths, value: any) => {
  * @param value
  * @returns
  */
-const baseSet = (obj: Record<string, any>, path: PropPaths, value: any) => {
+const baseSet = (obj: Record<string, any>, path: PropPaths, value: any, valueMode: SetValueMode, source: Record<string, any>) => {
     const cash = propPathToCash(path);
     if (cash.length === 1) {
         // 直到写入值的时候才 baseValue 进行转换
-        obj[cash[0]] = baseValue(obj, path, value);
+        const value$ = baseValue(obj, path, value, valueMode, source);
+        if (value$ !== '::skip') {
+            obj[cash[0]] = value$;
+        }
     } else {
         const [head, ...tail] = cash;
         obj[head] ??= {};
-        baseSet(obj[head], tail, value);
+        baseSet(obj[head], tail, value, valueMode, source);
     }
 };
 
@@ -54,21 +64,20 @@ const baseSet = (obj: Record<string, any>, path: PropPaths, value: any) => {
  * @param value
  * @returns
  */
-const mset = (
-    obj: Record<string, any>,
-    path: PropPaths,
-    value: ((current: any, obj: object) => any) | any
-) => {
+const mset = (obj: Record<string, any>, path: PropPaths, value: SetValue, valueMode: SetValueMode = 'normal') => {
     const cash = propPathToCash(path);
+    const options = Object.freeze(cloneDeep(obj));
+    const source = { options, path, cash };
     if (includes(cash, ['*', '**'])) {
         const data = mget(obj, cash, 'detail');
         return each(upArray(data), (item) => {
             const { cash } = item;
-            baseSet(obj, cash, value);
+            source.cash = cash;
+            baseSet(obj, cash, value, valueMode, source);
         });
     }
 
-    return baseSet(obj, cash, value);
+    return baseSet(obj, cash, value, valueMode, source);
 };
 
 export default mset;

@@ -33,12 +33,7 @@ const responseHandler = function (response: AxiosResponse, options: RuyiOptions)
     /**
      * 返回值支持精简模式
      */
-    const res =
-        responseDataType === 'normal'
-            ? response?.data
-            : responseDataType === 'simple'
-            ? response?.data?.data
-            : response;
+    const res = responseDataType === 'normal' ? response?.data : responseDataType === 'simple' ? response?.data?.data : response;
 
     return Promise.resolve(res);
 };
@@ -77,7 +72,7 @@ const cancelRequestSignal = function (
     search: Record<string, any> = {},
     payload: Record<string, any> = {}
 ) {
-    if (!Regc.get(RegKey.RUYI_CANCEL)) {
+    if (!Regc.get({ key: RegKey.RUYI_CANCEL })) {
         return void 0;
     }
 
@@ -105,18 +100,15 @@ export const Request = function (
     payload: Record<string, any> = {},
     options: RuyiOptions = {}
 ) {
-    const customRuyiOptions: Record<string, any> = Regc.get(RegKey.RUYI_OPTIONS) ?? {};
+    const customRuyiOptions: Record<string, any> = Regc.get({ key: RegKey.RUYI_OPTIONS }) ?? {};
     // 权重高低原则分配
     const method =
-        options.method ??
-        options?.methodCompatible?.[ruyiMethod] ??
-        customRuyiOptions?.methodCompatible?.[ruyiMethod] ??
-        ruyiMethod;
+        options.method ?? options?.methodCompatible?.[ruyiMethod] ?? customRuyiOptions?.methodCompatible?.[ruyiMethod] ?? ruyiMethod;
     const { url, params } = transformUrlSearchParams(ruyiUrl, search);
     // console.log('url/params', url, params);
     const config: AxiosRequestConfig = {
         signal: cancelRequestSignal(ruyiMethod, ruyiUrl, search, payload),
-        ...(Regc.get(RegKey.RUYI_OPTIONS) ?? {}),
+        ...(Regc.get({ key: RegKey.RUYI_OPTIONS }) ?? {}),
         ...options,
         url,
         method,
@@ -145,9 +137,7 @@ export const Request = function (
         // 处理自定义headers的配置
         config.headers = map(config.headers, (item, key) => {
             const val$ = typeof item === 'function' ? item(cloneDeep(config)) : item;
-            const key$ = new RegExp(contentTypeKey, 'i').test(key.toString())
-                ? contentTypeKey
-                : key;
+            const key$ = new RegExp(contentTypeKey, 'i').test(key.toString()) ? contentTypeKey : key;
             return { '::key': key$, '::value': val$ };
         }) as Record<string, any>;
 
@@ -156,9 +146,7 @@ export const Request = function (
 
         // 处理contentType
         let contentType = (config.headers[contentTypeKey] as string) ?? 'application/json';
-        contentType = new RegExp(charset, 'i').test(charset)
-            ? contentType
-            : `${contentType}; ${charset};`;
+        contentType = new RegExp(charset, 'i').test(charset) ? contentType : `${contentType}; ${charset};`;
         contentType = contentType.replace(/;+/gi, ';');
 
         // 处理表单提交数据转换
@@ -174,7 +162,7 @@ export const Request = function (
      * 配置请求拦截器
      */
     !isRequestInterceptor &&
-        ifrun(Regc.get(RegKey.RUYI_REQUEST_INTERCEPTORS), (interceptors) => {
+        ifrun(Regc.get({ key: RegKey.RUYI_REQUEST_INTERCEPTORS }), (interceptors) => {
             interceptors = upArray(interceptors);
             axios.interceptors.request.use(...interceptors);
             isRequestInterceptor = true;
@@ -185,11 +173,11 @@ export const Request = function (
      */
     !isResponseInterceptor &&
         ifrun(
-            Regc.get(RegKey.RUYI_RESPONSE_INTERCEPTORS),
+            Regc.get({ key: RegKey.RUYI_RESPONSE_INTERCEPTORS }),
             (interceptors) => {
                 interceptors = upArray(interceptors);
                 // 如果配置了ERROR_CATCH, 则权重比较大
-                ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
+                ifrun(Regc.get({ key: RegKey.RUYI_ERROR_CATCH }), (errorCatch) => {
                     interceptors[1] = errorCatch;
                 });
                 axios.interceptors.response.use(...interceptors);
@@ -197,7 +185,7 @@ export const Request = function (
             },
             () => {
                 const interceptors = [(res) => res];
-                ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
+                ifrun(Regc.get({ key: RegKey.RUYI_ERROR_CATCH }), (errorCatch) => {
                     interceptors[1] = errorCatch;
                 });
                 axios.interceptors.response.use(...interceptors);
@@ -251,22 +239,14 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
          * 全量更新资源
          * 向服务器发送资源，并指定资源的存放位置
          */
-        put: (
-            payload: Record<string, any>,
-            search: Record<string, any>,
-            options: RuyiOptions = {}
-        ) => {
+        put: (payload: Record<string, any>, search: Record<string, any>, options: RuyiOptions = {}) => {
             return Request(RuyiMethod.PUT, url, search, payload, { ...ruyiOptions, ...options });
         },
 
         /**
          * 对已知资源的局部更新
          */
-        patch: (
-            payload: Record<string, any>,
-            search: Record<string, any>,
-            options: RuyiOptions = {}
-        ) => {
+        patch: (payload: Record<string, any>, search: Record<string, any>, options: RuyiOptions = {}) => {
             return Request(RuyiMethod.PATCH, url, search, payload, { ...ruyiOptions, ...options });
         },
 
@@ -300,11 +280,7 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
         /**
          * 传统 form 表单添加
          */
-        form: (
-            payload: Record<string, any>,
-            search?: Record<string, any>,
-            options: RuyiOptions = {}
-        ) => {
+        form: (payload: Record<string, any>, search?: Record<string, any>, options: RuyiOptions = {}) => {
             options.headers ??= {};
             options.headers['content-type'] = 'application/x-www-form-urlencoded';
             return Request(RuyiMethod.POST, url, search, payload, {
@@ -331,12 +307,10 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
                 throw new Error(`没有指定downloadName的下载类型`);
             }
             options.responseType = directDownload ? 'blob' : 'json';
-            return Request(RuyiMethod.GET, url, search, {}, { ...ruyiOptions, ...options }).then(
-                (res) => {
-                    // @todo use xiaz
-                    // download(res, search.downloadName);
-                }
-            );
+            return Request(RuyiMethod.GET, url, search, {}, { ...ruyiOptions, ...options }).then((res) => {
+                // @todo use xiaz
+                // download(res, search.downloadName);
+            });
         },
 
         /**
@@ -348,11 +322,7 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
          * 当 directDownload 为 true 时，返回二进制流
          * 当 directDownload 为 false 时，返回下载链接
          */
-        postdown: (
-            payload: Record<string, any>,
-            search: Record<string, any>,
-            options: RuyiOptions = {}
-        ) => {
+        postdown: (payload: Record<string, any>, search: Record<string, any>, options: RuyiOptions = {}) => {
             const { downloadName, directDownload = true } = search;
             if (!downloadName) {
                 throw new Error(`下载接口必须提供downloadName`);
@@ -361,11 +331,9 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
                 throw new Error(`没有指定downloadName的下载类型`);
             }
             options.responseType = directDownload ? 'blob' : 'json';
-            return Request(RuyiMethod.POST, url, {}, payload, { ...ruyiOptions, ...options }).then(
-                (res) => {
-                    // download(res, search.downloadName);
-                }
-            );
+            return Request(RuyiMethod.POST, url, {}, payload, { ...ruyiOptions, ...options }).then((res) => {
+                // download(res, search.downloadName);
+            });
         },
 
         /**
@@ -377,11 +345,7 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
          * 当 directDownload 为 true 时，返回二进制流
          * 当 directDownload 为 false 时，返回下载链接
          */
-        patchdown: (
-            payload: Record<string, any>,
-            search: Record<string, any>,
-            options: RuyiOptions = {}
-        ) => {
+        patchdown: (payload: Record<string, any>, search: Record<string, any>, options: RuyiOptions = {}) => {
             const { downloadName, directDownload = true, ...search$1 } = search;
             if (!downloadName) {
                 throw new Error(`下载接口必须提供downloadName`);

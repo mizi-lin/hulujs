@@ -1,4 +1,4 @@
-import { PropPaths } from './mget.js';
+import { SetValue, PropPaths, SetValueMode } from '@hulujs/types';
 /**
  * mset
  * 将 value 按属性链写入 obj
@@ -7,5 +7,5 @@ import { PropPaths } from './mget.js';
  * @param value
  * @returns
  */
-declare const mset: (obj: Record<string, any>, path: PropPaths, value: any) => void;
+declare const mset: (obj: Record<string, any>, path: PropPaths, value: SetValue, valueMode?: SetValueMode) => void;
 export default mset;

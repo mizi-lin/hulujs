@@ -1,9 +1,11 @@
+import { RegKey } from './reg-key.js';
+
 class RegisterCenter {
     private store: Map<string, any> = new Map<string, any>();
     private only = new Set();
     constructor() {}
 
-    register<T>(key: string, func: ((val: T) => T) | any, type: 'public' | 'readonly' = 'public') {
+    register<T>(key: RegKey | string, func: ((val: T) => T) | any, type: 'public' | 'readonly' = 'public') {
         if (this.only.has(key)) {
             console.warn(`${key}为只读, 不能设置值`);
             return void 0;
@@ -18,7 +20,7 @@ class RegisterCenter {
         }
     }
 
-    get<T>(key: string): T {
+    get<T>(key: RegKey | string): T {
         return this.store.get(key);
     }
 }

@@ -1,3 +1,4 @@
-export const RegKey: Record<string, string> = {
-    RUYI_OPTIONS: 'hulu/ruyi-options'
-};
+export enum RegKey {
+    RUYI_OPTIONS = 'hulu/ruyi-options',
+    MET_ECHARTS_SUBTYPES = 'hulu/met-echarts-subtypes'
+}
