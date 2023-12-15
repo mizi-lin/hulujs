@@ -1,9 +1,11 @@
-import { cloneDeep, curry } from 'lodash-es';
+import { cloneDeep, curry, isNil, isObject } from 'lodash-es';
 import each from './each.js';
 import includes from './includes.js';
 import mget, { propPathToCash } from './mget.js';
 import upArray from './up-array.js';
 import { SetValue, PropPaths, SetValueMode } from '@hulujs/types';
+import tryNumber from './try-number.js';
+import map from './map.js';
 
 /**
  * baseValue
@@ -24,11 +26,27 @@ import { SetValue, PropPaths, SetValueMode } from '@hulujs/types';
  * @returns
  */
 const baseValue = (obj: Record<string, any>, path: PropPaths, value: any, valueMode: SetValueMode, source: Record<string, any>) => {
+    // console.log('baseValue', obj, path, value, valueMode, source);
     if (typeof value === 'function' && valueMode === 'nest') {
         const current = mget(obj, path);
-        const { options, path: path$, cash } = source;
+        const { options, currentCash, ...extra } = source;
+
         const get = curry(mget)(options ?? {});
-        return value({ prev: Object.freeze(cloneDeep(obj)), value: current, path: path$, cash, options, get });
+        const wildcard$1 = map(source.cash, (value, inx) => {
+            if (value === '*' || value === '**') {
+                const wildcardCash = (currentCash as string[]).slice(0, +inx + 1);
+                return get(wildcardCash);
+            }
+            return '::break';
+        });
+        const wildcard$2 = map(wildcard$1, (value, inx) => ({ '::key': `$${inx}`, '::value': value }), {});
+        return value({
+            value: current,
+            current: { options: current, inx: path[0], parent: Object.freeze(cloneDeep(obj)), cash: currentCash },
+            source: { options, ...extra },
+            get,
+            ...wildcard$2
+        });
     }
     return value;
 };
@@ -43,6 +61,11 @@ const baseValue = (obj: Record<string, any>, path: PropPaths, value: any, valueM
  */
 const baseSet = (obj: Record<string, any>, path: PropPaths, value: any, valueMode: SetValueMode, source: Record<string, any>) => {
     const cash = propPathToCash(path);
+
+    // if (cash.at(-1) === 'barWidth') {
+    //     console.log('barWidth', { path, value, valueMode, source });
+    // }
+
     if (cash.length === 1) {
         // 直到写入值的时候才 baseValue 进行转换
         const value$ = baseValue(obj, path, value, valueMode, source);
@@ -51,7 +74,15 @@ const baseSet = (obj: Record<string, any>, path: PropPaths, value: any, valueMod
         }
     } else {
         const [head, ...tail] = cash;
-        obj[head] ??= {};
+        const currentValue = obj[head];
+
+        // 当属性链有下级信息，本级的值非对象时，根据下级罅隙覆盖当前值
+        if (!isObject(currentValue)) {
+            // 下级属性值类型，新建关联对象
+            const childValue = typeof tryNumber(tail[0]) === 'number' ? [] : {};
+            obj[head] = childValue;
+        }
+
         baseSet(obj[head], tail, value, valueMode, source);
     }
 };
@@ -67,13 +98,16 @@ const baseSet = (obj: Record<string, any>, path: PropPaths, value: any, valueMod
 const mset = (obj: Record<string, any>, path: PropPaths, value: SetValue, valueMode: SetValueMode = 'normal') => {
     const cash = propPathToCash(path);
     const options = Object.freeze(cloneDeep(obj));
-    const source = { options, path, cash };
+    const source = { options, path, cash, currentCash: [] };
     if (includes(cash, ['*', '**'])) {
         const data = mget(obj, cash, 'detail');
-        return each(upArray(data), (item) => {
-            const { cash } = item;
+        return each(upArray(data), (item, inx) => {
+            const { cash: currentCash } = item;
+            // 模糊匹配只修改匹配到的值
+            if (isNil(value) && includes(currentCash, ['**'])) return void 0;
             source.cash = cash;
-            baseSet(obj, cash, value, valueMode, source);
+            source.currentCash = currentCash;
+            baseSet(obj, currentCash, value, valueMode, source);
         });
     }
 

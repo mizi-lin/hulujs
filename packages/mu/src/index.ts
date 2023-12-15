@@ -9,6 +9,7 @@ export * as Regex from './regex.js';
 /** array */
 export { default as includes } from './includes.js';
 export { contains } from './includes.js';
+export { default as dichotomy } from './dichotomy.js';
 
 /** collection 集合(row 数组 + 对象) */
 export { default as each } from './each.js';
@@ -18,6 +19,7 @@ export { default as stack } from './stack.js';
 export { default as compact } from './compact.js';
 
 export { default as mget } from './mget.js';
+export { default as mgetx } from './mgetx.js';
 export { default as mset } from './mset.js';
 export { default as msetx } from './msetx.js';
 export { default as rowsToTree } from './rows-to-tree.js';

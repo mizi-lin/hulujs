@@ -21,16 +21,14 @@ import MetGene from '../met-gene/index.js';
 import { isFragment, isReactElement } from '../utils/is-react-element.js';
 
 export type MetClassName = ArgumentArray | string;
-export interface MetProps
-    extends PropsWithChildren<any>,
-        Properties<string | number, any>,
-        Omit<DOMAttributes<any>, 'children'> {
+export interface MetProps extends PropsWithChildren<any>, Properties<string | number, any>, Omit<DOMAttributes<any>, 'children'> {
     /**
      * 基本属性
      */
     tag?: ElementType;
     style?: CSSProperties;
     className?: MetClassName;
+    componentClassName?: MetClassName;
     src?: string;
     alt?: string;
     href?: string;
@@ -187,9 +185,7 @@ const adjustBorder = (borderProps: Record<string, any>) => {
         map(borderProps, (value) => {
             if (isFalsy(value)) return void 0;
             const value$ = value.trim();
-            return value$.replace(/\([^)]*?\)/g, '').split(' ').length > 1
-                ? value$
-                : `1px solid ${value$}`;
+            return value$.replace(/\([^)]*?\)/g, '').split(' ').length > 1 ? value$ : `1px solid ${value$}`;
         })
     );
 };
@@ -218,6 +214,7 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
         children,
         style = {},
         className = '',
+        componentClassName,
         src,
         href,
         alt,
@@ -308,11 +305,7 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
         dataset = [],
         events = []
     } = groupBy(Object.entries(more), ([key]) => {
-        return /^(data|aria)-/gi.test(key)
-            ? 'dataset'
-            : /^on[A-Z]/gi.test(key)
-            ? 'events'
-            : 'properties';
+        return /^(data|aria)-/gi.test(key) ? 'dataset' : /^on[A-Z]/gi.test(key) ? 'events' : 'properties';
     });
 
     const properties$ = toMap(properties);
@@ -357,7 +350,7 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
     );
 
     const props$ = {
-        className: clx(className),
+        className: clx(componentClassName, className),
         style: style$,
         ...attr$,
         ...dataset$,

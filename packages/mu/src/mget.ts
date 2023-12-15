@@ -2,6 +2,8 @@ import { each, isNil, isObject, join, uniqBy } from 'lodash-es';
 import tile, { PROPPATH_SIGN } from './tile.js';
 import map from './map.js';
 import { PropPaths, BaseGetResult, MgetType } from '@hulujs/types';
+import dichotomy from './dichotomy.js';
+import isFalsy from './is-falsy.js';
 
 /**
  * 梳理过程中
@@ -38,7 +40,7 @@ const instead = (matcher: string, p1: string) => {
 // 将 ac."[b.['c'].d]".ee[f] 转成 ['ac'].['b.["c"].d'].['ee'].['f']
 // 将 [123][456].dd.ff.gg.[hh] 转成 ['123'].['456'].['dd'].['ff'].['gg'].['hh']
 // 将 a.b.c.d.e.f.g.h.i.j.k 转成 ['a'].['b'].['c'].['d'].['e'].['f'].['g'].['h'].['i'].['j'].['k']
-export const propPathToCash = (path: PropPaths) => {
+export const propPathToCash = (path: PropPaths, type: 'bracket' | 'all' = 'all') => {
     /**
      * 将下列的几种情况转为
      * - a."b.c.d".[dd]c
@@ -62,25 +64,21 @@ export const propPathToCash = (path: PropPaths) => {
         .replace(/^\'(.*?)\'\./g, instead)
         .replace(/\.\'(.*?)\'\./g, instead)
         .replace(/\.\'(.*?)\'$/g, instead)
-        .replace(/\'(.*?)\'/g, instead);
+        .replace(/\'(.*?)\'/g, instead)
+        // 提取[]内的信息
+        .replace(/\[([^\]]*)\]/g, instead);
 
     // 按`.[]`三个字符分割处理后的字符串
     const cashs = path$.split(/[.[\]]/g).filter(Boolean);
 
-    // 鸭子转换数字
-    const cashs$ = cashs.map((cash) => {
-        return /^\d+$/.test(cash) ? Number(cash) : cash;
+    const cashs$ = cashs.map((item) => {
+        // 鸭子转换数字
+        const key = /^\d+$/.test(item) ? Number(item) : item;
+        // 字符还原
+        return replaceSign(key, true);
     });
 
     return cashs$;
-};
-
-/**
- * 按某项，对数组一分为二
- */
-const dichotomy = (arr: any[], item: any, of: 'indexOf' | 'lastIndexOf' = 'indexOf') => {
-    const index = arr[of]?.(item);
-    return [arr.slice(0, index), arr.slice(index + 1)];
 };
 
 const baseGet = (obj: Record<string, any>, path: PropPaths, prevCash: string[] = []): BaseGetResult | BaseGetResult[] => {
@@ -116,7 +114,16 @@ const baseGet = (obj: Record<string, any>, path: PropPaths, prevCash: string[] =
         if (!isObject(aData?.value)) return { value: void 0, cash: a };
         // 模糊通配符下进行模糊匹配
         const tileData = tile(aData?.value, 'bracket');
-        const regx = new RegExp(b.map((item) => `\\[${item}\\]`).join('(.*)'));
+
+        // if (isFalsy(b)) return [];
+        const items = b.map((item) => {
+            const str = item
+                .split('')
+                .map((char) => (char === '*' ? '' : char))
+                .join('');
+            return `(${str})`;
+        });
+        const regx = new RegExp(items.join('(.*)'));
 
         // 匹配 tile 的路径是完整的路径
         // 而查询的节点需要截断处理
@@ -124,7 +131,7 @@ const baseGet = (obj: Record<string, any>, path: PropPaths, prevCash: string[] =
             .filter((key) => regx.test(key))
             .map((key) => {
                 const cash = [...prevCash, ...a, ...propPathToCash(key)];
-                return cash.slice(0, cash.lastIndexOf(b.at(-1)) + 1);
+                return isFalsy(b) ? cash : cash.slice(0, cash.lastIndexOf(b.at(-1)) + 1);
             });
 
         // 去重

@@ -36,9 +36,7 @@ const adjustBorder = (borderProps) => {
         if (isFalsy(value))
             return void 0;
         const value$ = value.trim();
-        return value$.replace(/\([^)]*?\)/g, '').split(' ').length > 1
-            ? value$
-            : `1px solid ${value$}`;
+        return value$.replace(/\([^)]*?\)/g, '').split(' ').length > 1 ? value$ : `1px solid ${value$}`;
     }));
 };
 /**
@@ -59,7 +57,7 @@ const adjustOverflowScroll = (scroll, overflowProps) => {
 const Met = forwardRef((props, ref) => {
     const innerRef = useRef();
     const ref$ = useCombinedRefs(ref, innerRef);
-    const { tag = 'div', children, style = {}, className = '', src, href, alt, inline, none, scroll = false, nogene = false, debug, comment, full, ...extra } = props;
+    const { tag = 'div', children, style = {}, className = '', componentClassName, src, href, alt, inline, none, scroll = false, nogene = false, debug, comment, full, ...extra } = props;
     const TagName = tag;
     const { w, width = w, h, height = h, lh, lineHeight = lh, bd, border = bd, bdt, borderTop = bdt, bdr, borderRight = bdr, bdb, borderBottom = bdb, bdl, borderLeft = bdl, br, borderRadius = br, bg, background = bg, o, overflow, ox, overflowX, oy, overflowY, p, padding = p, pl, paddingLeft = pl, pt, paddingTop = pt, pr, paddingRight = pr, pb, paddingBottom = pb, m, margin = m, ml, marginLeft = ml, mt, marginTop = mt, mr, marginRight = mr, mb, marginBottom = mb, fs, fontSize = fs, ff, fontFamily = ff, color, fw, fontWeight = fw, ta, textAlign = ta, va, verticalAlign = va, ...more } = extra;
     const toMap = (value) => {
@@ -69,11 +67,7 @@ const Met = forwardRef((props, ref) => {
     };
     // 获取  dataset 属性值
     const { properties = [], dataset = [], events = [] } = groupBy(Object.entries(more), ([key]) => {
-        return /^(data|aria)-/gi.test(key)
-            ? 'dataset'
-            : /^on[A-Z]/gi.test(key)
-                ? 'events'
-                : 'properties';
+        return /^(data|aria)-/gi.test(key) ? 'dataset' : /^on[A-Z]/gi.test(key) ? 'events' : 'properties';
     });
     const properties$ = toMap(properties);
     const dataset$ = toMap(dataset);
@@ -111,7 +105,7 @@ const Met = forwardRef((props, ref) => {
         ...style
     }, 'nil');
     const props$ = {
-        className: clx(className),
+        className: clx(componentClassName, className),
         style: style$,
         ...attr$,
         ...dataset$,

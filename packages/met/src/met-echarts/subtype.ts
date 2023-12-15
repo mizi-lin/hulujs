@@ -74,5 +74,12 @@ export const getSubtype = (scope: SubTypeScope, key: string, params: Record<stri
  */
 export const transformSubtype = (type: EchartType, subtypes: SubTypes, options: Record<string, any>) => {
     if (isFalsy(subtypes)) return [];
-    return transformSetting(type, upArray(subtypes), options);
+    const subtypes$ = upArray(subtypes);
+    // 让非标准的subtypes转为标准的subtypes
+    const subtypes$standard = subtypes$.map((subtype) => {
+        if (typeof subtype === 'string') return [subtype, {}];
+        if (Array.isArray(subtype) && subtype.length === 2) return subtype;
+        return [subtype[0], {}];
+    });
+    return transformSetting(type, subtypes$standard, options);
 };

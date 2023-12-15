@@ -12,12 +12,12 @@ export declare const PROPPATH_SIGN: {
     DOT: string[];
     STRIKE: string[];
 };
+export declare const canBracketRegex: () => RegExp;
+export declare const bracketKey: (key: string | number) => string | number;
 /**
  * cash to PropPath
  */
 export declare const cashToPropPath: (cash: (string | number)[], type?: PropPathType) => string;
-/**
- * 属性链扁平化对象
- */
-declare const tile: (obj: Record<string, any>, type?: PropPathType) => Record<string, any>;
+export declare function objFlat(data: any): {};
+export declare const tile: (obj: Record<string, any>, chainType?: PropPathType) => Record<string, any>;
 export default tile;

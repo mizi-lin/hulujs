@@ -46,7 +46,7 @@ export const transformData = ({ data: dataSource, type, mappers, dataModel }) =>
 
     return {
         'legend.data': legendData,
-        'xAxis.data': xAxisData,
+        'xAxis.0.data': xAxisData,
         series: series
     };
 };

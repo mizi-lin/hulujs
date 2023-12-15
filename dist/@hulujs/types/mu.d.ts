@@ -19,11 +19,20 @@ export type BaseGetResult = {
  */
 export type SetValue = ((current: any, obj: object) => any) | string | number | boolean | null | undefined | object;
 export type SetValueMode = 'normal' | 'nest';
+export interface SetNestValueParams {
+    value: any;
+    inx: string | number;
+    prev: any;
+    path: string;
+    cash: string | string[];
+    source: Record<string, any> | Record<string, any>[];
+    get: (path: PropPaths) => any;
+}
 /**
  * mu.msetx
  */
 export type KvEntries = [string, SetValue][];
-export type KvParis = Record<string, SetValue> | Record<string, SetValue>[] | [string, SetValue] | [string, SetValue][];
+export type KvParis = Record<string, SetValue> | [string, SetValue];
 /**
  * mu.format
  */

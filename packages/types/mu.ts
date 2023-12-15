@@ -19,6 +19,22 @@ export type BaseGetResult = { value: any; cash: string[] };
  */
 export type SetValue = ((current: any, obj: object) => any) | string | number | boolean | null | undefined | object;
 export type SetValueMode = 'normal' | 'nest';
+export interface SetNestValueParams {
+    // 属性链匹配值，若无匹配值，则为 undefined
+    value: any;
+    // 当前索引值
+    inx: string | number;
+    // prev 上一级属性值（不可更改)
+    prev: any;
+    // 属性链路径
+    path: string;
+    // 属性链Cash
+    cash: string | string[];
+    // 对象源 (不可更改)
+    source: Record<string, any> | Record<string, any>[];
+    // 取值函数, 基于对象源
+    get: (path: PropPaths) => any;
+}
 
 /**
  * mu.msetx
@@ -27,7 +43,7 @@ export type SetValueMode = 'normal' | 'nest';
 // 键值对的最终形式，用于mset的值设计
 export type KvEntries = [string, SetValue][];
 // 键值对的可能存在的形式，需转换为kvEntries进行计算
-export type KvParis = Record<string, SetValue> | Record<string, SetValue>[] | [string, SetValue] | [string, SetValue][];
+export type KvParis = Record<string, SetValue> | [string, SetValue];
 
 /**
  * mu.format

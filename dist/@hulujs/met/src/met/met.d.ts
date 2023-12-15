@@ -9,6 +9,7 @@ export interface MetProps extends PropsWithChildren<any>, Properties<string | nu
     tag?: ElementType;
     style?: CSSProperties;
     className?: MetClassName;
+    componentClassName?: MetClassName;
     src?: string;
     alt?: string;
     href?: string;

@@ -3,8 +3,9 @@ import { DataRow, EchartType, Mapper, MapperValue, SubTypes } from '@hulujs/type
 import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 import { FC, useEffect, useRef, useState } from 'react';
-import clx from 'classnames';
+import { bind } from 'size-sensor';
 import { getOptions } from './options.js';
+import { cloneDeep } from 'lodash-es';
 
 export interface MetEchartsDataRow extends DataRow {
     // 对应x轴上的值
@@ -60,21 +61,33 @@ export interface MetEchartsProps extends MetProps {
 }
 
 const MetEcharts: FC<MetEchartsProps> = (props) => {
-    const { data, dataModel, options, type, subtypes, mappers, setting, className, ...extra } = props;
+    const { data, dataModel, options, type, subtypes, mappers, setting, ...extra } = props;
     const echartRef = useRef<HTMLDivElement>(null);
     const [myChart, setMyChart] = useState<echarts.ECharts>();
     const [opts, setOpts] = useState<EChartsOption>();
+    const [size, setSize] = useState<string>();
 
     // 初始化 echarts
     useEffect(() => {
-        if (!myChart && echartRef?.current) {
-            const myChart = echarts.init(echartRef.current);
+        const target = echartRef?.current;
+        let unbind;
+        if (!myChart && target) {
+            const myChart = echarts.init(target);
             opts && myChart.setOption(opts);
+            unbind = bind(target, (element) => {
+                const width = element!.clientWidth;
+                const height = element!.clientHeight;
+                setSize(`${width}-${height}`);
+            });
+
             setMyChart(myChart);
         }
 
         return () => {
-            myChart && myChart.dispose();
+            if (myChart) {
+                myChart.dispose();
+                unbind?.();
+            }
         };
     }, [echartRef?.current]);
 
@@ -89,11 +102,16 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
     // 计算最终options
     useEffect(() => {
         const opts = getOptions({ data, dataModel, type, subtypes, mappers, setting, options });
-        console.log('oOoo-> ', opts);
         setOpts(opts);
+        console.log('oOoo-> ', cloneDeep(opts));
     }, [data, dataModel, type, subtypes, mappers, setting, options]);
 
-    return <Met tag={'div'} ref={echartRef} className={clx('met-echarts', className)} full {...extra} />;
+    // resize
+    useEffect(() => {
+        myChart && size && myChart.resize();
+    }, [size]);
+
+    return <Met tag={'div'} ref={echartRef} componentClassName={'met-echarts'} full {...extra} />;
 };
 
 export default MetEcharts;

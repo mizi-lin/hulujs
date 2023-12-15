@@ -10,7 +10,7 @@ export declare const transformData: ({ data: dataSource, type, mappers, dataMode
     'legend.data': {
         name: string;
     }[];
-    'xAxis.data': {
+    'xAxis.0.data': {
         value: string;
     }[];
     series: {

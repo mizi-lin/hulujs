@@ -1,9 +1,7 @@
-import { KvParis, KvEntries } from '@hulujs/types';
 /**
- * parisToEntries
- * 将 KvParis 的数据类型 转为 KvEntries 的数据类型
- * - 应用场景
- * -- 插件体系
+ * 将Paris键值对的数据转成Entires二元组数组格式
+ * @param paris
+ * @returns
  */
-declare const parisToEntries: (paris?: KvParis) => KvEntries;
+declare const parisToEntries: (paris?: any, value?: any) => any;
 export default parisToEntries;
