@@ -2,6 +2,7 @@ import isFalsy from './is-falsy.js';
 import map from './map.js';
 import { DataRow, Mapper, MapperValue, MappingType } from '@hulujs/types';
 import mget from './mget.js';
+import { cloneDeep } from 'lodash-es';
 
 /**
  * mapping
@@ -27,6 +28,7 @@ const mapping = (data: DataRow | DataRow[], mapper: Mapper, type: MappingType = 
     });
 
     if (type === 'mapping') return mappers;
+    if (type === 'source') return { ...mappers, $source: cloneDeep(data), $mapper: mapper };
     if (type === 'replace') return { ...data, ...mappers };
 
     // return restate(data, (draft, { get }) => {

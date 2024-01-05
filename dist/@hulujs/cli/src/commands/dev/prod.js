@@ -35,9 +35,11 @@ export const handler = async function (argv) {
         await stepGenerateCaoKongIndexFile();
         $log.step(`正在生成辅助体系`);
         await stepAssRouter();
+        // await stepGenerateCompilerConfig(compiler, compilerOption);
         const bin = $repo.cwd('node_modules', '.bin', compilerOption.build);
         const paramString = getCommandParamsString();
-        const command = `${bin} --config ${configPath} ${paramString}`;
+        // const command = `${bin} --config ${configPath} ${paramString}`;
+        const command = `${bin}`;
         $log.step([`正在启动服务`, command.replace(bin, compilerOption.build)]);
         // 使用bin启动开发服务
         $bash.live(command, { silent: false });

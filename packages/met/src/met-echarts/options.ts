@@ -1,4 +1,4 @@
-import { isFalsy, msetx, upArray } from '@hulujs/mu';
+import { compact, isFalsy, msetx, upArray } from '@hulujs/mu';
 import { transformData } from './data-transform.js';
 import { transformSetting } from './setting.js';
 import { transformSubtype } from './subtype.js';
@@ -30,14 +30,14 @@ const standardizeOptions = (options: EChartsOption) => {
  * - 权重 setting > data > options
  * - options 默认从 chartTypes 中读取
  */
-export const getOptions = ({ data, type, subtypes, mappers, dataModel, setting, options }) => {
+export const getOptions = ({ data, type, subtypes, mappers, dimension, setting, options }) => {
     // standardize(options)
     const typeOptions = defaultOptions[type] ?? {};
-    const options$ = standardizeOptions(options ?? {});
-    const baseOptions = { ...typeOptions, ...options$ };
+    const options$ = standardizeOptions(cloneDeep(options) ?? {});
+    const baseOptions = cloneDeep({ ...typeOptions, ...options$ });
 
     // 处理data数据
-    const dataKvParis = transformData({ data, type, mappers, dataModel });
+    const dataKvParis = transformData({ data, type, mappers, dimension });
     msetx(baseOptions, dataKvParis);
 
     // 处理chartTypes配置
@@ -48,5 +48,7 @@ export const getOptions = ({ data, type, subtypes, mappers, dataModel, setting, 
     const settingKvParis = transformSetting(type, setting, baseOptions);
     msetx(baseOptions, settingKvParis);
 
-    return baseOptions;
+    // 清理undefined/null属性值
+    // 支持写入undefined/null的属性，表示清理已配置的值，恢复默认值
+    return compact(baseOptions, 'nil');
 };

@@ -5,7 +5,7 @@ import { FC } from 'react';
 export interface MetEchartsDataRow extends DataRow {
     x?: string | number;
     y?: string | number;
-    z?: string | number;
+    d?: string | number;
 }
 export interface MetEchartsProps extends MetProps {
     /**
@@ -17,10 +17,10 @@ export interface MetEchartsProps extends MetProps {
      */
     data?: MetEchartsDataRow[];
     /**
-     * DataModel 的数据格式
-     * 数据会根据不同的数据格式转换成不同的OptionByData
+     * 图表维度
+     * 数据会根据不同的维度转换成不同的 optionByDimension
      */
-    dataModel?: 'single' | 'multiple';
+    dimension?: 'one' | 'two' | 'three';
     /**
      * echarts options
      */
@@ -45,6 +45,14 @@ export interface MetEchartsProps extends MetProps {
      * - 若有需求非常强烈的顺序要求, 使用数组格式
      */
     setting?: Record<string, any> | Record<string, any>[];
+    /**
+     * notMerge
+     * - 不建议使用
+     * options 的某一层级的值设置为 undefined 返回默认值，
+     * 但 echert v5.4.3 依然不能判断识别其本质是删除组件，而notMerge不能正常工作，
+     * 而 replaceMerge 需要自动计算
+     */
+    notMerge?: boolean;
 }
 declare const MetEcharts: FC<MetEchartsProps>;
 export default MetEcharts;

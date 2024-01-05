@@ -79,7 +79,7 @@ export const defaultOptions = {
     /**
      * 仪表盘
      */
-    gauge: { legend: {}, series: [], tooltip: { formatter: '{a} <br/>{b} = {c}%' } },
+    gauge: { legend: { show: false }, series: [], tooltip: { formatter: '{a} <br/>{b} = {c}%' } },
 
     /**
      * 地图
@@ -110,14 +110,16 @@ export const defaultOptions = {
 
 /**
  * 默认的数据类型
- * 默认数据类型是 multiple
+ * 默认数据类型是 two
  */
-const defaultDataModel = {
-    pie: 'single',
-    wordCloud: 'single',
-    map: 'single',
-    graph: 'single',
-    scatter: 'single'
+export const typeDemensionMap = {
+    pie: 'one',
+    wordCloud: 'one',
+    map: 'one',
+    graph: 'one',
+    scatter: 'one',
+    gauge: 'one',
+    funnel: 'one'
 };
 
 /**

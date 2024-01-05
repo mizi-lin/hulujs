@@ -1,21 +1,9 @@
 /**
  * 数据处理
  */
-export declare const transformData: ({ data: dataSource, type, mappers, dataModel }: {
+export declare const transformData: ({ data: dataSource, type, mappers, dimension }: {
     data: any;
     type: any;
     mappers: any;
-    dataModel: any;
-}) => {
-    'legend.data': {
-        name: string;
-    }[];
-    'xAxis.0.data': {
-        value: string;
-    }[];
-    series: {
-        name: string;
-        type: any;
-        data: any;
-    }[];
-};
+    dimension: any;
+}) => any;

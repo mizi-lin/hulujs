@@ -6,6 +6,7 @@ import { stepGenerateCaoKongIndexFile } from './step-generate-caokong-index-file
 import { stepAssRouter } from './step-ass-router.js';
 import { getCommandParamsString } from '../../utils.js';
 import { getCompiler } from '../repo/utils.js';
+import { stepGenerateCompilerConfig } from './step-generate-compiler-config.js';
 
 const debug = createDebug('prod');
 
@@ -46,10 +47,12 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
 
         $log.step(`正在生成辅助体系`);
         await stepAssRouter();
+        // await stepGenerateCompilerConfig(compiler, compilerOption);
 
         const bin = $repo.cwd('node_modules', '.bin', compilerOption.build);
         const paramString = getCommandParamsString();
-        const command = `${bin} --config ${configPath} ${paramString}`;
+        // const command = `${bin} --config ${configPath} ${paramString}`;
+        const command = `${bin}`;
         $log.step([`正在启动服务`, command.replace(bin, compilerOption.build)]);
         // 使用bin启动开发服务
         $bash.live(command, { silent: false });

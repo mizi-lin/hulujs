@@ -1,6 +1,7 @@
 import isFalsy from './is-falsy.js';
 import map from './map.js';
 import mget from './mget.js';
+import { cloneDeep } from 'lodash-es';
 /**
  * mapping
  * 数据映射
@@ -26,6 +27,8 @@ const mapping = (data, mapper, type = 'replace') => {
     });
     if (type === 'mapping')
         return mappers;
+    if (type === 'source')
+        return { ...mappers, $source: cloneDeep(data), $mapper: mapper };
     if (type === 'replace')
         return { ...data, ...mappers };
     // return restate(data, (draft, { get }) => {

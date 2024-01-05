@@ -1,8 +1,19 @@
+/**
+ * mu.types
+ */
+export type LangType = 'array' | 'bigint' | 'boolean' | 'date' | 'function' | 'number' | 'null' | 'object' | 'regexp' | 'string' | 'symbol' | 'undefined';
+export type Row = Record<string, any>;
+export type Rows = Row[];
 export type DataRow = Record<string, any>;
+export type Collection = Row | Row[];
+/**
+ * mu.compact
+ */
+export type CompactType = 'none' | 'undefined' | 'null' | 'nil' | 'withoutZero' | 'not' | 'falsy';
 /**
  * mu.mapping
  */
-export type MappingType = 'mapping' | 'replace' | 'increment';
+export type MappingType = 'mapping' | 'replace' | 'increment' | 'source';
 export type MapperValue = string | ((source: any) => any);
 export type Mapper = Record<string, MapperValue>;
 /**

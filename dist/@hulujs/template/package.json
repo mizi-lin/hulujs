@@ -1,15 +1,15 @@
 {
     "name": "@hulujs/template",
     "version": "0.0.1",
-    "private": false,
+    "private": true,
     "license": "MIT",
     "description": "hulu template",
     "main": "./src/index.ts",
     "module": "./src/index.ts",
     "type": "module",
     "scripts": {
-        "rm": "rm -rf ../../dist/@hulu/template",
-        "watch": "cp -r ../template ../../dist/@hulu/template",
-        "build": "yarn rm && cp -r ../template ../../dist/@hulu/template"
+        "rm": "rm -rf ../../dist/@hulujs/template",
+        "watch": "cp -r ../template ../../dist/@hulujs/template",
+        "build": "yarn rm && cp -r ../template ../../dist/@hulujs/template"
     }
 }

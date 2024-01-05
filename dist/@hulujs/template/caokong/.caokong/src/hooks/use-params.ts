@@ -1,4 +1,4 @@
-import { map, tryNumber } from '@hulu/mu';
+import { map, tryNumber } from '@hulujs/mu';
 import { useParams as _useParams, useLocation, useNavigate, generatePath } from 'react-router-dom';
 import { useRoute } from '~ck';
 

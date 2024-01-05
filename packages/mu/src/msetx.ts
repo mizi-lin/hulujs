@@ -1,4 +1,4 @@
-import { SetValue, PropPaths } from '@hulujs/types';
+import { SetValue, PropPaths, CompactType } from '@hulujs/types';
 import each from './each.js';
 import mset from './mset.js';
 import { isPlainObject } from 'lodash-es';
@@ -56,7 +56,9 @@ function msetx(obj: Record<string, any>, path: PropPaths, value: SetValue);
 function msetx(...args) {
     const [obj, ...extra] = args;
     const pv = parisToEntries(...extra);
-    each(pv, (item: [string, SetValue]) => mset(obj, ...item, 'nest'));
+    each(pv, (item: [string, SetValue]) => {
+        mset(obj, ...item, 'nest');
+    });
 }
 
 export default msetx;

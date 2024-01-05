@@ -38,6 +38,8 @@ function withArgs(args) {
 function msetx(...args) {
     const [obj, ...extra] = args;
     const pv = parisToEntries(...extra);
-    each(pv, (item) => mset(obj, ...item, 'nest'));
+    each(pv, (item) => {
+        mset(obj, ...item, 'nest');
+    });
 }
 export default msetx;

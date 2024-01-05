@@ -97,11 +97,11 @@ const Met = forwardRef((props, ref) => {
         color,
         textAlign,
         ...properties$,
-        ...(full ? { width: '100%', height: '100%' } : {}),
         ...adjustOverflowScroll(scroll, { overflow, overflowY }),
         ...adjustBorder({ border, borderTop, borderRight, borderBottom, borderLeft }),
         ...inlineDisplay(inline, extra.display),
         ...noneDisplay(none),
+        ...(full ? { width: width ?? '100%', height: height ?? '100%' } : {}),
         ...style
     }, 'nil');
     const props$ = {

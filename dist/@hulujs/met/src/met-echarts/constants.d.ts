@@ -142,7 +142,9 @@ export declare const defaultOptions: {
      * 仪表盘
      */
     gauge: {
-        legend: {};
+        legend: {
+            show: boolean;
+        };
         series: never[];
         tooltip: {
             formatter: string;
@@ -194,6 +196,19 @@ export declare const defaultOptions: {
         tooltip: {};
         series: {}[];
     };
+};
+/**
+ * 默认的数据类型
+ * 默认数据类型是 two
+ */
+export declare const typeDemensionMap: {
+    pie: string;
+    wordCloud: string;
+    map: string;
+    graph: string;
+    scatter: string;
+    gauge: string;
+    funnel: string;
 };
 /**
  * 默认各类型的chart

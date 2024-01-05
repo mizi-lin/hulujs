@@ -1,7 +1,7 @@
 import { useLocation, matchRoutes, useMatch } from 'react-router-dom';
 import routes from '~ass/routes';
 import { extend } from 'lodash-es';
-import { iffalsy } from '@hulu/mu';
+import { iffalsy } from '@hulujs/mu';
 
 const useRoute = () => {
     const location = useLocation();
