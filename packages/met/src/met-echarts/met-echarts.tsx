@@ -97,7 +97,6 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
                 const myChart = echarts.init(target, {});
                 setMyChart(myChart);
                 run(opts, (options) => {
-                    console.log('init', options);
                     myChart.setOption(options, false);
                 });
             }

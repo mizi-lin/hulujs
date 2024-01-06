@@ -146,9 +146,7 @@ export declare const defaultOptions: {
             show: boolean;
         };
         series: never[];
-        tooltip: {
-            formatter: string;
-        };
+        tooltip: {};
     };
     /**
      * 地图

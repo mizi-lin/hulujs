@@ -1,4 +1,4 @@
-import { mapping, mget, mgetx, upArray } from '@hulujs/mu';
+import { format, iffalsy, isFalsy, mapping, mget, mgetx, upArray } from '@hulujs/mu';
 import { MetEchartsDataRow } from './met-echarts.js';
 import { groupBy, isNil, uniq } from 'lodash-es';
 import { typeDemensionMap } from './constants.js';
@@ -6,11 +6,9 @@ import { typeDemensionMap } from './constants.js';
 // 将 string[] 数据转为 { value: string }[]}, 让之后的数据更方便处理
 // OptionDataItemObject
 const normalizeOptionDataItemObject = (value: string) => ({ value });
-
+const ignoreKey = 'undefined';
 const transformDemension = {
     one: ({ data, type }) => {
-        const ignoreKey = 'undefined';
-
         // 数据分组
         // 支持多重一维图表
         // 若只是一重一维图表，其返回值是 { 'undefined': [...] }
@@ -18,11 +16,15 @@ const transformDemension = {
         const dataGroup = groupBy(data, 'd');
 
         // 计算 series
-        const series = Object.keys(dataGroup).map((serieName) => {
+        const seriesLength = Object.keys(dataGroup).length;
+        const series = Object.keys(dataGroup).map((serieName, inx) => {
             const seriesData = dataGroup[serieName];
             const data = mapping(seriesData, { value: 'y', name: 'x' });
-            const name = serieName === ignoreKey ? 'series_0' : serieName;
-            return { name, type, data };
+            const name = serieName === ignoreKey ? void 0 : serieName;
+            // 多重一维图圆心位置计算
+            const centerX = (100 * (inx * 2 + 1)) / (seriesLength * 2);
+            const center = [format(centerX, 'toPercent'), '50%'];
+            return { name, type, data, center };
         });
 
         // 一维图的legend指向的是 series.**.data.name
@@ -33,14 +35,14 @@ const transformDemension = {
 
         // 获取 多重一维图表的 legend
         // 若 series 只有一重的时候, 不需要计算series.name for legend
-        const legendOfSeries =
-            series.length < 2
-                ? []
-                : Object.keys(dataGroup)
-                      .filter((item) => item !== ignoreKey)
-                      .map((name: string) => {
-                          return { name };
-                      });
+
+        const legendOfSeries = seriesLength
+            ? []
+            : Object.keys(dataGroup)
+                  .filter((item) => item !== ignoreKey)
+                  .map((name: string, inx: number) => {
+                      return { name };
+                  });
 
         return {
             'legend.data': [...legendByDataOfSeries, ...legendOfSeries],
@@ -62,25 +64,37 @@ const transformDemension = {
         // 数据分组
         const dataGroup = groupBy(data, 'd');
 
-        // 获取 legend
-        const legendData = Object.keys(dataGroup).map((name: string) => ({ name }));
-
         // 获取 x 轴
         const xAxisData = Object.keys(groupBy(data, 'x')).map(normalizeOptionDataItemObject);
 
         // 计算 series
-        const series = legendData.map(({ name }) => {
-            const seriesData = dataGroup[name];
-            return {
-                name,
-                type,
-                data: mapping(seriesData, { value: 'y' })
-            };
-        });
+        const series = Object.keys(dataGroup)
+            .map((name: string) => ({ name }))
+            .map(({ name }) => {
+                const seriesData = dataGroup[name];
+                return {
+                    type,
+                    name: name === ignoreKey ? void 0 : name,
+                    data: mapping(seriesData, { value: 'y' })
+                };
+            });
+
+        // 计算 legend.data
+        // echarts 会自动计算 legend, 但赋值legend.data方便配置和修改
+        const legendData = uniq(mget(series, '*.name'))
+            .map((name) => {
+                return { name };
+            })
+            .filter(({ name }) => name !== ignoreKey);
+
+        // 计算 tooltip.trigger
+        // 根据 legend.data 存在与否，计算tooltip.formatter的内容
+        const tooltipFormatter = isFalsy(legendData) ? `item` : void 0;
 
         return {
             'legend.data': legendData,
             'xAxis.0.data': xAxisData,
+            'tooltip.trigger': tooltipFormatter,
             series: series
         };
     }

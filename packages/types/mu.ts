@@ -72,54 +72,42 @@ export type KvParis = Record<string, SetValue> | [string, SetValue];
 /**
  * mu.format
  */
-export type NumberCount = number;
-export type NumberUnit = '%' | '‰' | 'k' | 'm' | 'b' | 'permile' | 'percent' | 'none' | string;
-export type NumberRule = 'billion' | 'million' | 'thousand' | 'none';
-export type NumberMath = 'round' | 'floor' | 'ceil';
-
-export type NumberAlias =
-    | `${NumberMath}`
-    | `${NumberMath}:${NumberCount}`
-    | `${NumberMath}:${NumberUnit}:${NumberCount}`
-    | `:${NumberCount}`
-    | `:${NumberUnit}:${NumberCount}`
-    | `::${NumberCount}`
-    | `:${NumberCount}:`
-    | `${NumberMath}::${NumberCount}`
-    | `${NumberMath}::`
-    | `${NumberMath}:`
-    | `::`;
-
+export type NumberFormatType = 'normal' | 'decimal' | 'percent' | 'currency';
+export type NumberFormatUnit = '%' | '‰' | 'k' | 'm' | 'b' | 'permile' | 'percent' | 'toPercent' | 'none' | `${string}`;
+export type NumberFormatMath = 'round' | 'floor' | 'ceil';
+export type NumberFormatRule = 'default' | 'thousand' | 'billion' | 'million';
 export interface NumberFormatOptions {
     // 执行规则， 默认为 million
-    rule?: NumberRule;
+    rule: NumberFormatRule;
 
     // 千分位，默认值为 => 3
     // 根据千分位规则, 可配置分割位数，匹配 delimiter 显示
-    thousands?: number;
+    thousands: number;
 
     // 千分位分隔符，默认为 => ','
-    delimiter?: string;
+    delimiter: string;
 
     // 单位
-    unit?: NumberUnit;
+    unit: NumberFormatUnit;
 
     // locale 国际化配置
-    locale: Record<NumberUnit, string>;
+    locale: Record<NumberFormatUnit, string>;
 
     // 每个数学单位匹配的换算值
-    scaler?: number;
+    scaler: number;
 
     // 数学方法, 默认 => 'round' 四舍五入
-    math?: 'round' | 'floor' | 'ceil';
+    math: 'round' | 'floor' | 'ceil';
 
     // 保留小数位数, 如果为负数，为强制保留小数位数(即保留末尾的0)
-    count?: number;
+    precision: number;
 
-    // 保留整数位数，不足前置补0，小数舍去
-    // leng 不与其他通存
-    len?: number;
+    // 低于某个值，统一显示某个值
+    min: number;
 
-    // 百分比最小值配置，用于配置极小值的配置
-    minPercentValue?: number;
+    // 低于某个值，显示的文本
+    ltMinText: string;
+
+    // 当数值为0的时候，是否显示单位，默认不显示
+    showZeroUnit: boolean;
 }

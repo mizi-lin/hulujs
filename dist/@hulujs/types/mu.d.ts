@@ -47,20 +47,20 @@ export type KvParis = Record<string, SetValue> | [string, SetValue];
 /**
  * mu.format
  */
-export type NumberCount = number;
-export type NumberUnit = '%' | '‰' | 'k' | 'm' | 'b' | 'permile' | 'percent' | 'none' | string;
-export type NumberRule = 'billion' | 'million' | 'thousand' | 'none';
-export type NumberMath = 'round' | 'floor' | 'ceil';
-export type NumberAlias = `${NumberMath}` | `${NumberMath}:${NumberCount}` | `${NumberMath}:${NumberUnit}:${NumberCount}` | `:${NumberCount}` | `:${NumberUnit}:${NumberCount}` | `::${NumberCount}` | `:${NumberCount}:` | `${NumberMath}::${NumberCount}` | `${NumberMath}::` | `${NumberMath}:` | `::`;
+export type NumberFormatType = 'normal' | 'decimal' | 'percent' | 'currency';
+export type NumberFormatUnit = '%' | '‰' | 'k' | 'm' | 'b' | 'permile' | 'percent' | 'toPercent' | 'none' | `${string}`;
+export type NumberFormatMath = 'round' | 'floor' | 'ceil';
+export type NumberFormatRule = 'default' | 'thousand' | 'billion' | 'million';
 export interface NumberFormatOptions {
-    rule?: NumberRule;
-    thousands?: number;
-    delimiter?: string;
-    unit?: NumberUnit;
-    locale: Record<NumberUnit, string>;
-    scaler?: number;
-    math?: 'round' | 'floor' | 'ceil';
-    count?: number;
-    len?: number;
-    minPercentValue?: number;
+    rule: NumberFormatRule;
+    thousands: number;
+    delimiter: string;
+    unit: NumberFormatUnit;
+    locale: Record<NumberFormatUnit, string>;
+    scaler: number;
+    math: 'round' | 'floor' | 'ceil';
+    precision: number;
+    min: number;
+    ltMinText: string;
+    showZeroUnit: boolean;
 }

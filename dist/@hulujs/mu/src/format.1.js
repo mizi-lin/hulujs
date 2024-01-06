@@ -1,17 +1,15 @@
 import isNil from './is-nil.js';
 import { stringFormat } from './utils/string-format.js';
 import { numberFormat } from './utils/number-format.js';
-function format(...args) {
-    const [value, ...extra] = args;
+export function format(...args) {
+    const [value] = args;
     if (isNil(value))
         return value;
     if (typeof value === 'string') {
-        // @ts-ignore
-        return stringFormat(value, ...extra);
+        return stringFormat(value, ...args);
     }
     if (typeof value === 'number') {
-        return numberFormat(value, ...extra);
+        return numberFormat(value, ...args);
     }
     return '';
 }
-export default format;

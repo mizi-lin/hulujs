@@ -69,7 +69,7 @@ export const defaultOptions = {
     /**
      * 仪表盘
      */
-    gauge: { legend: { show: false }, series: [], tooltip: { formatter: '{a} <br/>{b} = {c}%' } },
+    gauge: { legend: { show: false }, series: [], tooltip: {} },
     /**
      * 地图
      */
