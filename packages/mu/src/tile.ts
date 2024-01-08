@@ -2,9 +2,6 @@
 //  * 拍平集合体层级，呈扁平化显示
 //  */
 
-import { isObject } from 'lodash-es';
-import isFalsy from './is-falsy.js';
-
 /**
  * PropPathType
  * bracket: 中挂号链式
@@ -58,40 +55,9 @@ export const cashToPropPath = (cash: (string | number)[], type: PropPathType = '
         .join('.');
 };
 
-export function objFlat(data) {
-    let result = {};
-    //recurse函数的两个参数分别为当前元素cur，和属性prop（用来判断对象是否有下一级）
-    function recurse(cur, prop) {
-        // if (isFalsy(cur)) {
-        //     result[prop] = cur;
-        // } else {
-        if (Object(cur) !== cur) {
-            //如果cur不是对象，那这就是最后一层，直接返回
-            result[prop] = cur;
-        } else if (Array.isArray(cur)) {
-            //如果它是数组，并且不为空，那就遍历数组，对数组的每一项进行判断，数组元素是否符合我们的递归条件；如果数组为空，扁平化的对象元素的值就是空数组[]
-            for (let i = 0; i < cur.length; i++) {
-                recurse(cur[i], prop + '[' + i + ']');
-            }
-            if (cur.length === 0) result[prop] = [];
-        } else {
-            //否则这个元素是对象，那就遍历对象，并判断对象的每一个元素是否符合递归标准，如果符合再次进入recurse函数
-            let isEmpty = true;
-            for (let p in cur) {
-                isEmpty = false;
-                const key$ = /[.\[\]'"-]/.test(p) ? `[${p}]` : p;
-                recurse(cur[p], prop ? prop + '.' + key$ : key$);
-            }
-            //这个元素的值是一个空对象{}
-            if (isEmpty && prop) result[prop] = {};
-        }
-        // }
-    }
-    //第一次调用传入整个数据结构，第二个参数为空
-    recurse(data, '');
-    return result;
-}
-
+/**
+ * 平铺对象
+ */
 export const tile = (obj: Record<string, any>, chainType: PropPathType = 'dot') => {
     // 点式调用优先
     const isDot = chainType === 'dot';
@@ -107,6 +73,8 @@ export const tile = (obj: Record<string, any>, chainType: PropPathType = 'dot') 
                 recurse(current[i], `${props}[${i}]`);
             }
             if (!current.length) return (result[props] = []);
+        } else if (typeof current === 'function') {
+            result[props] = current;
         } else {
             // 如果是对象，遍历对象
             let isEmpty = true;

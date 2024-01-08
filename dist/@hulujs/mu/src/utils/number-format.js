@@ -25,7 +25,7 @@ const unitMap = {
 };
 const precisionMap = { ceil, floor, round };
 // 重载函数参数计算
-function reargs(args) {
+function withArgs(args) {
     const [value, ...extra] = args;
     const options = isPlainObject(extra[0]) ? extra[0] : isPlainObject(extra[1]) ? extra[1] : {};
     const rule = typeof extra[0] === 'string' && ['default', 'thousand', 'billion', 'million'].includes(extra[0]) ? extra[0] : 'default';
@@ -40,7 +40,7 @@ function thousands(num, count = 3, delimiter = ',') {
     return num.replace(reg, `$1${delimiter}`);
 }
 function numberFormat(...args) {
-    const { value, type, rule, options: customOptions } = reargs(args);
+    const { value, type, rule, options: customOptions } = withArgs(args);
     const defaultOptions = {
         math: 'round',
         rule: 'million',
@@ -88,6 +88,9 @@ function numberFormat(...args) {
     return `${value$result}${unit$}`;
 }
 export { numberFormat };
+// const num = 2388233.3673979;
+// const minV = Number.MIN_VALUE;
+// const maxV = Number.MAX_VALUE;
 // console.log('->', num, '::', '2,388,233.4', '=', format(num));
 // console.log('->', num, '::', '238,823,336.7%', '=', format(num, 'percent'));
 // console.log('->', num, '::', '238,823,336.74%', '=', format(num, 'percent', { precision: 3 }));

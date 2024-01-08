@@ -18,6 +18,8 @@ export declare const bracketKey: (key: string | number) => string | number;
  * cash to PropPath
  */
 export declare const cashToPropPath: (cash: (string | number)[], type?: PropPathType) => string;
-export declare function objFlat(data: any): {};
+/**
+ * 平铺对象
+ */
 export declare const tile: (obj: Record<string, any>, chainType?: PropPathType) => Record<string, any>;
 export default tile;

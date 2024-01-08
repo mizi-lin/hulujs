@@ -11,4 +11,4 @@ export declare const getOptions: ({ data, type, subtypes, mappers, dimension, se
     dimension: any;
     setting: any;
     options: any;
-}) => any;
+}) => {};

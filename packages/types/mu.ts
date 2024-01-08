@@ -34,15 +34,38 @@ export type Mapper = Record<string, MapperValue>;
 /**
  * mu.mget
  */
-export type PropPaths = string | number | (string | number)[];
+export type PropCash = (string | number)[];
+export type PropPaths = string | number | PropCash;
 export type MgetType = 'detail' | 'normal';
 export type BaseGetResult = { value: any; cash: string[] };
 
 /**
  * mu.mset
  */
+export interface MSetOptionItem {
+    obj: Record<string, any>;
+    path: string;
+    cash: PropCash;
+    value: any;
+    oldValue: any;
+}
+
+export type MSetOptionGetParags = {
+    source: Partial<MSetOptionItem>;
+    current: Partial<MSetOptionItem>;
+};
+
+export interface MSetOptions {
+    // 是否执行自执行函数
+    // @default true
+    runIffe?: boolean;
+    // 源对象
+    source?: Partial<MSetOptionItem>;
+    current?: Partial<MSetOptionItem>;
+    get?: (params: MSetOptionGetParags) => any;
+}
+
 export type SetValue = ((current: any, obj: object) => any) | string | number | boolean | null | undefined | object;
-export type SetValueMode = 'normal' | 'nest';
 export interface SetNestValueParams {
     // 属性链匹配值，若无匹配值，则为 undefined
     value: any;

@@ -19,7 +19,8 @@ export type Mapper = Record<string, MapperValue>;
 /**
  * mu.mget
  */
-export type PropPaths = string | number | (string | number)[];
+export type PropCash = (string | number)[];
+export type PropPaths = string | number | PropCash;
 export type MgetType = 'detail' | 'normal';
 export type BaseGetResult = {
     value: any;
@@ -28,8 +29,24 @@ export type BaseGetResult = {
 /**
  * mu.mset
  */
+export interface MSetOptionItem {
+    obj: Record<string, any>;
+    path: string;
+    cash: PropCash;
+    value: any;
+    oldValue: any;
+}
+export type MSetOptionGetParags = {
+    source: Partial<MSetOptionItem>;
+    current: Partial<MSetOptionItem>;
+};
+export interface MSetOptions {
+    runIffe?: boolean;
+    source?: Partial<MSetOptionItem>;
+    current?: Partial<MSetOptionItem>;
+    get?: (params: MSetOptionGetParags) => any;
+}
 export type SetValue = ((current: any, obj: object) => any) | string | number | boolean | null | undefined | object;
-export type SetValueMode = 'normal' | 'nest';
 export interface SetNestValueParams {
     value: any;
     inx: string | number;

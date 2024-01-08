@@ -1,9 +1,10 @@
-import { compact, isFalsy, msetx, upArray } from '@hulujs/mu';
+import { baseCompact, isFalsy, msetx, tile, upArray } from '@hulujs/mu';
 import { transformData } from './data-transform.js';
 import { transformSetting } from './setting.js';
 import { transformSubtype } from './subtype.js';
 import { defaultOptions } from './constants.js';
 import { cloneDeep } from 'lodash-es';
+import { baseStack } from '@hulujs/mu';
 /**
  * 将开发者传入的options转换成MetEcharts标准的options格式
  * @param options
@@ -35,14 +36,18 @@ export const getOptions = ({ data, type, subtypes, mappers, dimension, setting, 
     const baseOptions = cloneDeep({ ...typeOptions, ...options$ });
     // 处理data数据
     const dataKvParis = transformData({ data, type, mappers, dimension });
-    msetx(baseOptions, dataKvParis);
+    msetx(baseOptions, dataKvParis, { runIffe: false });
     // 处理chartTypes配置
     const subtypeKvParis = transformSubtype(type, subtypes, baseOptions);
-    msetx(baseOptions, subtypeKvParis);
+    msetx(baseOptions, subtypeKvParis, { runIffe: false });
     // 处理setting配置
     const settingKvParis = transformSetting(type, setting, baseOptions);
-    msetx(baseOptions, settingKvParis);
+    msetx(baseOptions, settingKvParis, { runIffe: false });
+    const obj = Object.freeze(baseOptions);
+    const tileObj = tile(baseOptions);
     // 清理undefined/null属性值
     // 支持写入undefined/null的属性，表示清理已配置的值，恢复默认值
-    return compact(baseOptions, 'nil');
+    // return compact(tileObj, 'nil');
+    const tileObj$ = baseCompact(tileObj, { runIffe: false });
+    return baseStack(tileObj$, { runIffe: true, source: { obj } });
 };

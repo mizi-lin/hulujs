@@ -104,7 +104,6 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
 
         return () => {
             if (myChart) {
-                console.log('echarts dispose');
                 myChart.dispose();
                 unbind?.();
             }

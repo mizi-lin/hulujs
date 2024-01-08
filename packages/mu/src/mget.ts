@@ -1,9 +1,10 @@
 import { each, isNil, isObject, join, uniqBy } from 'lodash-es';
 import tile, { PROPPATH_SIGN } from './tile.js';
 import map from './map.js';
-import { PropPaths, BaseGetResult, MgetType } from '@hulujs/types';
+import { PropPaths, BaseGetResult, MgetType, PropCash } from '@hulujs/types';
 import dichotomy from './dichotomy.js';
 import isFalsy from './is-falsy.js';
+import includes from './includes.js';
 
 /**
  * 梳理过程中
@@ -56,6 +57,7 @@ export const propPathToCash = (path: PropPaths, type: 'bracket' | 'all' = 'all')
     // 处理特殊字符创
     const path$ = path
         // 提取顶层双引号信息
+        .replace(/^\[(.*)\]$/, instead)
         .replace(/^\"(.*?)\"\./g, instead)
         .replace(/\.\"(.*?)\"\./g, instead)
         .replace(/\.\"(.*?)\"$/g, instead)
@@ -79,6 +81,18 @@ export const propPathToCash = (path: PropPaths, type: 'bracket' | 'all' = 'all')
     });
 
     return cashs$;
+};
+
+export const propCashToPath = (cash: PropCash) => {
+    if (!Array.isArray(cash)) return cash;
+    const signs = Object.values(PROPPATH_SIGN).map(([sign]) => sign);
+    return cash
+        .reduce((str, current) => {
+            str += includes(current.toString().split(''), signs) ? `[${current}]` : `.${current}`;
+            return str;
+        }, '')
+        .toString()
+        .replace(/^\./, '');
 };
 
 const baseGet = (obj: Record<string, any>, path: PropPaths, prevCash: string[] = []): BaseGetResult | BaseGetResult[] => {

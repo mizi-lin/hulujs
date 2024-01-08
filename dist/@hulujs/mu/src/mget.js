@@ -3,6 +3,7 @@ import tile, { PROPPATH_SIGN } from './tile.js';
 import map from './map.js';
 import dichotomy from './dichotomy.js';
 import isFalsy from './is-falsy.js';
+import includes from './includes.js';
 /**
  * 梳理过程中
  * 字符串与图标互换，防止配置过程中污染
@@ -52,6 +53,7 @@ export const propPathToCash = (path, type = 'all') => {
     // 处理特殊字符创
     const path$ = path
         // 提取顶层双引号信息
+        .replace(/^\[(.*)\]$/, instead)
         .replace(/^\"(.*?)\"\./g, instead)
         .replace(/\.\"(.*?)\"\./g, instead)
         .replace(/\.\"(.*?)\"$/g, instead)
@@ -72,6 +74,18 @@ export const propPathToCash = (path, type = 'all') => {
         return replaceSign(key, true);
     });
     return cashs$;
+};
+export const propCashToPath = (cash) => {
+    if (!Array.isArray(cash))
+        return cash;
+    const signs = Object.values(PROPPATH_SIGN).map(([sign]) => sign);
+    return cash
+        .reduce((str, current) => {
+        str += includes(current.toString().split(''), signs) ? `[${current}]` : `.${current}`;
+        return str;
+    }, '')
+        .toString()
+        .replace(/^\./, '');
 };
 const baseGet = (obj, path, prevCash = []) => {
     const cash = propPathToCash(path);

@@ -13,7 +13,9 @@ export { default as each } from './each.js';
 export { default as map } from './map.js';
 export { default as tile } from './tile.js';
 export { default as stack } from './stack.js';
+export { baseStack } from './stack.js';
 export { default as compact } from './compact.js';
+export { baseCompact } from './compact.js';
 export { default as mget } from './mget.js';
 export { default as mgetx } from './mgetx.js';
 export { default as mset } from './mset.js';
@@ -23,6 +25,7 @@ export { default as mapping } from './mapping.js';
 export { default as parisToEntries } from './paris-to-entries.js';
 /** function */
 export { default as sofunc } from './sofunc.js';
+export { default as withIIFE } from './with-iife.js';
 /** is */
 export { default as isNil } from './is-nil.js';
 export { default as isBaseType } from './is-base-type.js';

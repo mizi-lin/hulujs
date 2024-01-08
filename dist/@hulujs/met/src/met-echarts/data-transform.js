@@ -1,6 +1,7 @@
 import { format, isFalsy, mapping, mget, upArray } from '@hulujs/mu';
-import { groupBy, isNil, uniq } from 'lodash-es';
+import { groupBy, isNil, sum, uniq } from 'lodash-es';
 import { typeDemensionMap } from './constants.js';
+import { transformType } from './type-transform.js';
 // 将 string[] 数据转为 { value: string }[]}, 让之后的数据更方便处理
 // OptionDataItemObject
 const normalizeOptionDataItemObject = (value) => ({ value });
@@ -21,7 +22,13 @@ const transformDemension = {
             // 多重一维图圆心位置计算
             const centerX = (100 * (inx * 2 + 1)) / (seriesLength * 2);
             const center = [format(centerX, 'toPercent'), '50%'];
-            return { name, type, data, center };
+            // 计算 max 与 min 的值
+            const values = seriesData.map(({ value }) => value);
+            const maxValue = Math.max(...values);
+            const minValue = Math.min(...values);
+            const sumValue = sum(values);
+            const options$type = transformType(type)?.({ data, maxValue, minValue, sumValue });
+            return { name, type, data, center, ...options$type };
         });
         // 一维图的legend指向的是 series.**.data.name
         // '*.data.*.name' 比 '**.data.name' 更准确
