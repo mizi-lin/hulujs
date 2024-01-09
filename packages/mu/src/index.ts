@@ -38,6 +38,8 @@ export { default as isBaseType } from './is-base-type.js';
 export { default as isFalsy } from './is-falsy.js';
 export { default as isNotFalsy } from './is-not-falsy.js';
 export { default as isNotEmpty } from './is-not-empty.js';
+export { default as isLikeNum } from './is-like-num.js';
+export { default as isLikePovitiveInt } from './is-like-positive-int.js';
 
 /** if */
 export { default as ifnvl } from './if-nvl.js';

@@ -35,6 +35,11 @@ export declare const defaultOptions: {
      * 极坐标图
      */
     polar: {
+        angleAxis: {
+            type: string;
+            startAngle: number;
+        };
+        legend: {};
         grid: {
             left: string;
             right: number;
@@ -42,15 +47,17 @@ export declare const defaultOptions: {
             width: string;
             containLabel: boolean;
         };
-        legend: {};
+        radiusAxis: {};
+        series: never[];
         tooltip: {
             trigger: string;
+            axisPointer: {
+                type: string;
+            };
         };
-        yAxis: {}[];
-        dataset: {};
-        xAxis: {
-            type: string;
-        }[];
+        polar: {
+            center: string[];
+        };
     };
     /**
      * 线形图
@@ -204,7 +211,6 @@ export declare const typeDemensionMap: {
     wordCloud: string;
     map: string;
     graph: string;
-    scatter: string;
     gauge: string;
     funnel: string;
 };

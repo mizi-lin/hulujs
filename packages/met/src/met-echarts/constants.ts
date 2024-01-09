@@ -20,12 +20,13 @@ export const defaultOptions = {
      * 极坐标图
      */
     polar: {
-        grid: { left: 'left', right: 20, bottom: 20, width: '98%', containLabel: true },
+        angleAxis: { type: 'value', startAngle: 0 },
         legend: {},
-        tooltip: { trigger: 'axis' },
-        yAxis: [{}],
-        dataset: {},
-        xAxis: [{ type: 'category' }]
+        grid: { left: 'left', right: 20, bottom: 20, width: '98%', containLabel: true },
+        radiusAxis: {},
+        series: [],
+        tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
+        polar: { center: ['50%', '54%'] }
     },
 
     /**
@@ -117,7 +118,6 @@ export const typeDemensionMap = {
     wordCloud: 'one',
     map: 'one',
     graph: 'one',
-    scatter: 'one',
     gauge: 'one',
     funnel: 'one'
 };

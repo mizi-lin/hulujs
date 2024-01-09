@@ -2,7 +2,7 @@ import { format, iffalsy, isFalsy, mapping, mget, mgetx, upArray } from '@hulujs
 import { MetEchartsDataRow } from './met-echarts.js';
 import { groupBy, isNil, sum, uniq } from 'lodash-es';
 import { typeDemensionMap } from './constants.js';
-import { transformType } from './type-transform.js';
+import { transformType, transformTypeBySeries } from './type-transform.js';
 
 // 将 string[] 数据转为 { value: string }[]}, 让之后的数据更方便处理
 // OptionDataItemObject
@@ -31,7 +31,7 @@ const transformDemension = {
             const minValue = Math.min(...values);
             const sumValue = sum(values);
 
-            const options$type = transformType(type)?.({ data, maxValue, minValue, sumValue });
+            const options$type = transformTypeBySeries(type)?.({ data, maxValue, minValue, sumValue });
 
             return { name, type, data, center, ...options$type };
         });
@@ -72,9 +72,10 @@ const transformDemension = {
 
         // 数据分组
         const dataGroup = groupBy(data, 'd');
+        const xAxisGroup = groupBy(data, 'x');
 
         // 获取 x 轴
-        const xAxisData = Object.keys(groupBy(data, 'x')).map(normalizeOptionDataItemObject);
+        const xAxisData = Object.keys(xAxisGroup).map(normalizeOptionDataItemObject);
 
         // 计算 series
         const series = Object.keys(dataGroup)
@@ -96,15 +97,17 @@ const transformDemension = {
             })
             .filter(({ name }) => name !== ignoreKey);
 
-        // 计算 tooltip.trigger
-        // 根据 legend.data 存在与否，计算tooltip.formatter的内容
-        const tooltipFormatter = isFalsy(legendData) ? `item` : void 0;
+        const optionsByType = transformType(type)?.({ data, type, xAxisData, xAxisGroup, dataGroup, series, legendData });
 
+        // 计算 tooltip.trigger
+        // 根据 legend.data 存在与否，计算tooltip.trigger的内容
+        const tooltipTrigger = isFalsy(legendData) ? `item` : void 0;
         return {
             'legend.data': legendData,
             'xAxis.0.data': xAxisData,
-            'tooltip.trigger': tooltipFormatter,
-            series: series
+            tooltip: { trigger: tooltipTrigger, a: 1 },
+            series: series,
+            ...optionsByType
         };
     }
 };

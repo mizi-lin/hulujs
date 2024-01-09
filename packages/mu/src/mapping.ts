@@ -3,6 +3,8 @@ import map from './map.js';
 import { DataRow, Mapper, MapperValue, MappingType } from '@hulujs/types';
 import mget from './mget.js';
 import { cloneDeep } from 'lodash-es';
+import tile from './tile.js';
+import stack from './stack.js';
 
 /**
  * mapping
@@ -23,9 +25,14 @@ const mapping = (data: DataRow | DataRow[], mapper: Mapper, type: MappingType = 
         });
     }
 
-    const mappers = map(mapper, (mapperValue: MapperValue) => {
-        return typeof mapperValue === 'string' ? mget(data, mapperValue) : mapperValue(data);
+    const tileMapper = tile(mapper);
+
+    const tileMapping = map(tileMapper, (value) => {
+        const type = typeof value;
+        return ['string', 'number'].includes(type) ? mget(data, value) : type === 'function' ? value(data) : value;
     });
+
+    const mappers = stack(tileMapping);
 
     if (type === 'mapping') return mappers;
     if (type === 'source') return { ...mappers, $source: cloneDeep(data), $mapper: mapper };

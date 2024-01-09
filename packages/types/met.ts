@@ -12,6 +12,7 @@ export type SubTypeScopes = SubTypeScope[];
 // Echarts 支持的图表类型
 export type EchartType =
     | 'line'
+    | 'polar' // mocktype
     | 'bar'
     | 'pie'
     | 'scatter'

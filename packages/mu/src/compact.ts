@@ -3,13 +3,15 @@
  * 移除数据中包含的假值
  */
 
-import { Collection, CompactType, MSetOptions } from '@hulujs/types';
+import { Collection, CompactType } from '@hulujs/types';
 import map from './map.js';
 import run from './run.js';
-import stack, { baseStack } from './stack.js';
+import { baseStack } from './stack.js';
 import tile from './tile.js';
 import { compactDegreeFuncMap } from './utils/compact-degree-func-map.js';
-import { cloneDeep, isPlainObject } from 'lodash-es';
+import { isPlainObject } from 'lodash-es';
+import { propCashToPath, propPathToCash } from './mget.js';
+import isLikePovitiveInt from './is-like-positive-int.js';
 
 const notInType = () => {
     console.warn(`compactType 不存在于 'undefined' | 'null' | 'nil' | 'withoutZero' | 'not' | 'falsy' `);
@@ -39,11 +41,27 @@ export function baseCompact(...args) {
     );
 
     const propPaths = tile(collection);
-    const propPaths$1 = map(propPaths, (value) => {
-        return func?.(value, collection) ? '::break' : value;
+    // 补充字段
+    // 如 a.b.c = undefined 过滤掉
+    // 若 a.b.x 没有其他项，则 a.b 也将被过滤掉，这不合理，需要将 a.b 的值还原
+    // a.b 的值根据 c 的值类型还原成 {} | [];
+    const markup = {};
+    const propPaths$clean = map(propPaths, (value, key) => {
+        const isBreak = func?.(value, collection);
+        if (isBreak) {
+            if (compactType !== 'fasly') {
+                const cash = propPathToCash(key);
+                const [tail, ...prev] = cash.toReversed();
+                if (prev.length) {
+                    markup[propCashToPath(prev.toReversed())] = isLikePovitiveInt(tail) ? [] : {};
+                }
+            }
+            return '::break';
+        }
+        return value;
     });
 
-    return baseStack(propPaths$1, config);
+    return baseStack({ ...markup, ...propPaths$clean }, config);
 }
 
 function compact(collection: Collection, compactType?: CompactType);

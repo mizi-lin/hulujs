@@ -51,6 +51,7 @@ export const getOptions = ({ data, type, subtypes, mappers, dimension, setting, 
     msetx(baseOptions, settingKvParis, { runIffe: false });
 
     const obj = Object.freeze(baseOptions);
+
     const tileObj = tile(baseOptions);
     // 清理undefined/null属性值
     // 支持写入undefined/null的属性，表示清理已配置的值，恢复默认值

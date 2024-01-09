@@ -1,4 +1,4 @@
-export declare const transformType: (type: string) => (({ data, minValue, maxValue, sumValue }: {
+export declare const transformTypeBySeries: (type: string) => (({ data, minValue, maxValue, sumValue }: {
     data: any;
     minValue: any;
     maxValue: any;
@@ -22,3 +22,4 @@ export declare const transformType: (type: string) => (({ data, minValue, maxVal
         show: boolean;
     };
 }) | undefined;
+export declare const transformType: (type: string) => any;

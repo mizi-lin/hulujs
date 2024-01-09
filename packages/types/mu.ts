@@ -28,7 +28,7 @@ export type CompactType = 'none' | 'undefined' | 'null' | 'nil' | 'withoutZero' 
  * mu.mapping
  */
 export type MappingType = 'mapping' | 'replace' | 'increment' | 'source';
-export type MapperValue = string | ((source: any) => any);
+export type MapperValue = string | string[] | ((source: any) => any);
 export type Mapper = Record<string, MapperValue>;
 
 /**

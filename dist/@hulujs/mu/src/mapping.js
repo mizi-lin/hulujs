@@ -2,6 +2,8 @@ import isFalsy from './is-falsy.js';
 import map from './map.js';
 import mget from './mget.js';
 import { cloneDeep } from 'lodash-es';
+import tile from './tile.js';
+import stack from './stack.js';
 /**
  * mapping
  * 数据映射
@@ -22,9 +24,12 @@ const mapping = (data, mapper, type = 'replace') => {
             return mapping(item, mapper, type);
         });
     }
-    const mappers = map(mapper, (mapperValue) => {
-        return typeof mapperValue === 'string' ? mget(data, mapperValue) : mapperValue(data);
+    const tileMapper = tile(mapper);
+    const tileMapping = map(tileMapper, (value) => {
+        const type = typeof value;
+        return ['string', 'number'].includes(type) ? mget(data, value) : type === 'function' ? value(data) : value;
     });
+    const mappers = stack(tileMapping);
     if (type === 'mapping')
         return mappers;
     if (type === 'source')

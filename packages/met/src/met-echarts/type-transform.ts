@@ -1,6 +1,6 @@
-import { compact, format, withIIFE } from '@hulujs/mu';
+import { format, map, withIIFE } from '@hulujs/mu';
 
-export const transformType = (type: string) => {
+export const transformTypeBySeries = (type: string) => {
     return {
         gauge: ({ data, minValue, maxValue, sumValue }) => {
             const showTitleOptions = { title: { show: false }, detail: { show: false } };
@@ -21,10 +21,48 @@ export const transformType = (type: string) => {
                 tooltip: {
                     formatter: withIIFE((...args1) => (component) => {
                         const { marker, seriesName, data, name } = component;
-                        return `${seriesName}<br />${marker} ${name}: ${format(+data.displayValue)} (${format(+data.value, 'toPercent')})`;
+                        const name$ = seriesName.startsWith('series') ? '' : `${seriesName} <br />`;
+                        return `${name$}${marker} ${name}: ${format(+data.displayValue)} (${format(+data.value, 'toPercent')})`;
                     })
                 }
             };
         }
     }[type];
+};
+
+export const transformType = (type: string) => {
+    const typeMap = {
+        polar: (params) => {
+            const { xAxisData } = params;
+            return {
+                xAxis: void 0,
+                yAxis: void 0,
+                angleAxis: { type: 'category', data: xAxisData },
+                'series.*.coordinateSystem': 'polar',
+                'series.*.type': 'line',
+                'series.*.smooth': true
+            };
+        },
+        radar: ({ xAxisGroup, series }) => {
+            const indicator = map(
+                xAxisGroup,
+                (items, name) => {
+                    const max = Math.max(...items.map(({ value }) => value));
+                    return { name };
+                },
+                []
+            );
+            const series$ = [
+                {
+                    type: 'radar',
+                    data: series.map((item) => {
+                        item.value = item.data.map(({ value }) => value);
+                        return item;
+                    })
+                }
+            ];
+            return { 'radar.indicator': indicator, xAxis: void 0, series: series$ };
+        }
+    };
+    return typeMap[type];
 };
