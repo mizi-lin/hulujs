@@ -2,7 +2,7 @@ export const defaultOptions = {
     /**
      * 饼图
      */
-    pie: { legend: {}, tooltip: { trigger: 'item' }, series: [] },
+    pie: { legend: {}, tooltip: { trigger: 'item' } },
     /**
      * 柱形图
      */
@@ -66,7 +66,7 @@ export const defaultOptions = {
     /**
      * 水滴图
      */
-    liquidFill: { legend: {}, tooltip: {}, series: [] },
+    liquidFill: { tooltip: {}, series: [] },
     /**
      * 仪表盘
      */
@@ -77,8 +77,20 @@ export const defaultOptions = {
     map: {
         tooltip: {},
         visualMap: { min: 0, max: 200, left: 'left', top: 'bottom', text: ['高', '低'], calculable: false },
-        geo: { zoom: 1.2, roam: false, itemStyle: { areaColor: '#fbfbfb', borderColor: '#b9b4b7' } },
+        geo: { zoom: 1, roam: false, itemStyle: { areaColor: '#fbfbfb', borderColor: '#b9b4b7' } },
         series: []
+    },
+    chinaVerticalMap: {
+        extends: 'map',
+        'series.*.type': 'map',
+        'series.*.map': 'chinaVertical',
+        'geo.map': 'chinaVertical'
+    },
+    chinaMap: {
+        extends: 'map',
+        'series.*.type': 'map',
+        'series.*.map': 'china',
+        'geo.map': 'china'
     },
     /**
      * 关系图
@@ -102,9 +114,12 @@ export const typeDemensionMap = {
     pie: 'one',
     wordCloud: 'one',
     map: 'one',
+    chinaVerticalMap: 'one',
+    chinaMap: 'one',
     graph: 'one',
     gauge: 'one',
-    funnel: 'one'
+    funnel: 'one',
+    liquidFill: 'one'
 };
 /**
  * 默认各类型的chart

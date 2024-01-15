@@ -7,7 +7,6 @@ export declare const defaultOptions: {
         tooltip: {
             trigger: string;
         };
-        series: never[];
     };
     /**
      * 柱形图
@@ -141,7 +140,6 @@ export declare const defaultOptions: {
      * 水滴图
      */
     liquidFill: {
-        legend: {};
         tooltip: {};
         series: never[];
     };
@@ -178,6 +176,18 @@ export declare const defaultOptions: {
         };
         series: never[];
     };
+    chinaVerticalMap: {
+        extends: string;
+        'series.*.type': string;
+        'series.*.map': string;
+        'geo.map': string;
+    };
+    chinaMap: {
+        extends: string;
+        'series.*.type': string;
+        'series.*.map': string;
+        'geo.map': string;
+    };
     /**
      * 关系图
      */
@@ -210,9 +220,12 @@ export declare const typeDemensionMap: {
     pie: string;
     wordCloud: string;
     map: string;
+    chinaVerticalMap: string;
+    chinaMap: string;
     graph: string;
     gauge: string;
     funnel: string;
+    liquidFill: string;
 };
 /**
  * 默认各类型的chart

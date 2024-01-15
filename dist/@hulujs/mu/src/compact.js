@@ -39,12 +39,10 @@ export function baseCompact(...args) {
     const propPaths$clean = map(propPaths, (value, key) => {
         const isBreak = func?.(value, collection);
         if (isBreak) {
-            if (compactType !== 'fasly') {
-                const cash = propPathToCash(key);
+            const cash = propPathToCash(key, 'unwrapper');
+            if (compactType !== 'fasly' && cash.length > 1) {
                 const [tail, ...prev] = cash.toReversed();
-                if (prev.length) {
-                    markup[propCashToPath(prev.toReversed())] = isLikePovitiveInt(tail) ? [] : {};
-                }
+                markup[propCashToPath(prev.toReversed())] = isLikePovitiveInt(tail) ? [] : {};
             }
             return '::break';
         }

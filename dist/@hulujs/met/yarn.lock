@@ -71,18 +71,6 @@
   resolved "https://registry.npmmirror.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
-"@hulujs/mu@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.npmmirror.com/@hulujs/mu/-/mu-0.0.1.tgz#db7e7d16d38964c76536766a1c346e157cfa5a63"
-  integrity sha512-CKfHeuZ4BnE3sW2r90UBjyCGyi7f7IOAYpUY7LR+9o9clzcFtNXtNB33Ju7d1+DONZVQLAetrAXTl8MNQpajJQ==
-  dependencies:
-    lodash-es "^4.17.21"
-
-"@hulujs/types@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.npmmirror.com/@hulujs/types/-/types-0.0.1.tgz#8cc29b5fdddfdd80a00dd275cd83d8c9947e68ee"
-  integrity sha512-MAdNy4AVd9snuUseQRpZX2Q3EBRTEdfhQi/RswHYf6QYua0Yjf7wMCsLMoy9sHWMTK6KHUstVzzekJPpFsVguA==
-
 "@rc-component/color-picker@~1.4.1":
   version "1.4.1"
   resolved "https://registry.npmmirror.com/@rc-component/color-picker/-/color-picker-1.4.1.tgz#dcab0b660e9c4ed63a7582db68ed4a77c862cb93"
@@ -274,11 +262,6 @@ json2mq@^0.2.0:
   integrity sha512-SzoRg7ux5DWTII9J2qkrZrqV1gt+rTaoufMxEzXbS26Uid0NwaJd123HcoB80TgubEppxxIGdNxCx50fEoEWQA==
   dependencies:
     string-convert "^0.2.0"
-
-lodash-es@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 qrcode.react@^3.1.0:
   version "3.1.0"

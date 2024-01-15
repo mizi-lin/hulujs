@@ -5,19 +5,35 @@ import { EChartsOption } from 'echarts';
 import { FC, useEffect, useRef, useState } from 'react';
 import { bind } from 'size-sensor';
 import { getOptions } from './options.js';
-import { cloneDeep } from 'lodash-es';
+import { camelCase, cloneDeep } from 'lodash-es';
 import { run } from '@hulujs/mu';
+import 'echarts-liquidfill';
+import 'echarts-wordcloud';
+import { chinaGeoJSON } from './assets/china-map.js';
+// @ts-ignore
+echarts.registerMap('chinaVertical', chinaGeoJSON('vertical'));
+// @ts-ignore
+echarts.registerMap('china', chinaGeoJSON('horizontal'));
 
 export interface MetEchartsDataRow extends DataRow {
     // 对应x轴上的值
-    x?: string | number;
+    x?: string | number | number[];
     // 对应y轴上的值
-    y?: string | number;
+    y?: string | number | number[];
     // 对应dimension上的值
-    d?: string | number;
+    d?: string | number | number[];
+    name?: string;
+    // 对应x轴上的显示的值
+    x$?: string | number | number[];
+    // 对应y轴上的显示的值
+    y$?: string | number | number[];
+    // 对应dimension上的显示的值
+    d$?: string | number | number[];
 }
 
-export interface MetEchartsProps extends MetProps {
+export type MetEchartsEventFunction = (event: any, props: Partial<MetEchartsProps>, options?: EChartsOption) => void;
+
+export interface MetEchartsProps extends Omit<MetProps, 'onClick'> {
     /**
      * DataRow 的数据格式
      * 将data转成echarts的需要格式
@@ -69,10 +85,42 @@ export interface MetEchartsProps extends MetProps {
      * 而 replaceMerge 需要自动计算
      */
     notMerge?: boolean;
+
+    /**
+     * 数据补0
+     */
+    fill?: any;
+
+    onClick?: MetEchartsEventFunction;
+    onDblClick?: MetEchartsEventFunction;
+    onMouseDown?: MetEchartsEventFunction;
+    onMouseUp?: MetEchartsEventFunction;
+    onMouseOver?: MetEchartsEventFunction;
+    onMouseOut?: MetEchartsEventFunction;
+    onGlobalOut?: MetEchartsEventFunction;
 }
 
 const MetEcharts: FC<MetEchartsProps> = (props) => {
-    const { data, dimension, options, type, subtypes, mappers, setting, notMerge, ...extra } = props;
+    const {
+        data,
+        dimension,
+        options,
+        type,
+        subtypes,
+        mappers,
+        setting,
+        notMerge,
+        fill = 0,
+        onClick,
+        onDblClick,
+        onMouseDown,
+        onMouseUp,
+        onMouseOver,
+        onMouseOut,
+        onGlobalOut,
+        ...extra
+    } = props;
+    const funcMap = { onClick, onDblClick, onMouseDown, onMouseUp, onMouseOver, onMouseOut, onGlobalOut };
     const echartRef = useRef<HTMLDivElement>(null);
     const [myChart, setMyChart] = useState<echarts.ECharts>();
     const [opts, setOpts] = useState<EChartsOption>();
@@ -123,7 +171,7 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
 
     // 计算最终options
     useEffect(() => {
-        const opts = getOptions({ data, dimension, type, subtypes, mappers, setting, options });
+        const opts = getOptions({ data, dimension, type, subtypes, mappers, setting, options, fill });
         setOpts(opts);
     }, [data, dimension, type, subtypes, mappers, setting, options]);
 
@@ -131,6 +179,19 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
     useEffect(() => {
         myChart && size && myChart.resize();
     }, [size]);
+
+    // bind event
+    useEffect(() => {
+        if (myChart) {
+            Object.entries(funcMap).forEach(([key, func]) => {
+                const name = camelCase(key.replace(/^on/, ''));
+                myChart.off(name);
+                myChart.on(name, (e: any) => {
+                    func?.(e, props, options);
+                });
+            });
+        }
+    }, [myChart, ...Object.values(funcMap)]);
 
     return <Met tag={'div'} ref={echartRef} componentClassName={'met-echarts'} full {...extra} />;
 };

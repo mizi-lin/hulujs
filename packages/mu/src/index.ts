@@ -56,3 +56,6 @@ export { default as rid } from './rid.js';
 /** utils */
 export { storage, sessionStorage } from './storage.js';
 export { sleep } from './sleep.js';
+
+/** math */
+export { default as median } from './median.js';

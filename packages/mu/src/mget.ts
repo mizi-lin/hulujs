@@ -41,7 +41,7 @@ const instead = (matcher: string, p1: string) => {
 // 将 ac."[b.['c'].d]".ee[f] 转成 ['ac'].['b.["c"].d'].['ee'].['f']
 // 将 [123][456].dd.ff.gg.[hh] 转成 ['123'].['456'].['dd'].['ff'].['gg'].['hh']
 // 将 a.b.c.d.e.f.g.h.i.j.k 转成 ['a'].['b'].['c'].['d'].['e'].['f'].['g'].['h'].['i'].['j'].['k']
-export const propPathToCash = (path: PropPaths, type: 'bracket' | 'all' = 'all') => {
+export const propPathToCash = (path: PropPaths, type?: 'unwrapper' | 'normal') => {
     /**
      * 将下列的几种情况转为
      * - a."b.c.d".[dd]c
@@ -53,6 +53,10 @@ export const propPathToCash = (path: PropPaths, type: 'bracket' | 'all' = 'all')
 
     if (Array.isArray(path)) return path;
     if (typeof path !== 'string') return [path];
+
+    if (type === 'unwrapper') {
+        path = path.replace(/^\[([^\]]*)\]$/g, '$1');
+    }
 
     // 处理特殊字符创
     const path$ = path

@@ -4,10 +4,18 @@ import * as echarts from 'echarts';
 import { useEffect, useRef, useState } from 'react';
 import { bind } from 'size-sensor';
 import { getOptions } from './options.js';
-import { cloneDeep } from 'lodash-es';
+import { camelCase, cloneDeep } from 'lodash-es';
 import { run } from '@hulujs/mu';
+import 'echarts-liquidfill';
+import 'echarts-wordcloud';
+import { chinaGeoJSON } from './assets/china-map.js';
+// @ts-ignore
+echarts.registerMap('chinaVertical', chinaGeoJSON('vertical'));
+// @ts-ignore
+echarts.registerMap('china', chinaGeoJSON('horizontal'));
 const MetEcharts = (props) => {
-    const { data, dimension, options, type, subtypes, mappers, setting, notMerge, ...extra } = props;
+    const { data, dimension, options, type, subtypes, mappers, setting, notMerge, fill = 0, onClick, onDblClick, onMouseDown, onMouseUp, onMouseOver, onMouseOut, onGlobalOut, ...extra } = props;
+    const funcMap = { onClick, onDblClick, onMouseDown, onMouseUp, onMouseOver, onMouseOut, onGlobalOut };
     const echartRef = useRef(null);
     const [myChart, setMyChart] = useState();
     const [opts, setOpts] = useState();
@@ -52,13 +60,25 @@ const MetEcharts = (props) => {
     }, [opts]);
     // 计算最终options
     useEffect(() => {
-        const opts = getOptions({ data, dimension, type, subtypes, mappers, setting, options });
+        const opts = getOptions({ data, dimension, type, subtypes, mappers, setting, options, fill });
         setOpts(opts);
     }, [data, dimension, type, subtypes, mappers, setting, options]);
     // resize
     useEffect(() => {
         myChart && size && myChart.resize();
     }, [size]);
+    // bind event
+    useEffect(() => {
+        if (myChart) {
+            Object.entries(funcMap).forEach(([key, func]) => {
+                const name = camelCase(key.replace(/^on/, ''));
+                myChart.off(name);
+                myChart.on(name, (e) => {
+                    func?.(e, props, options);
+                });
+            });
+        }
+    }, [myChart, ...Object.values(funcMap)]);
     return _jsx(Met, { tag: 'div', ref: echartRef, componentClassName: 'met-echarts', full: true, ...extra });
 };
 export default MetEcharts;

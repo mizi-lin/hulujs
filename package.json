@@ -15,7 +15,7 @@
         "antd": "5.11.5",
         "dayjs": "1.11.8",
         "default-passive-events": "2.0.0",
-        "echarts": "5.4.2",
+        "echarts": "5.4.3",
         "fs-extra": "11.1.1",
         "lodash-es": "4.17.21",
         "react": "18.2.0",
@@ -56,7 +56,8 @@
         "@babel/helper-plugin-utils": "^7.22.5",
         "@babel/plugin-transform-runtime": "^7.23.3",
         "@babel/helper-module-transforms": "^7.23.3",
-        "typescript": "^5"
+        "typescript": "^5",
+        "echarts": "5.4.3"
     },
     "workspaces": ["packages/*"]
 }

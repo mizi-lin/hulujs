@@ -2,12 +2,19 @@ import { MetProps } from '@hulujs/met';
 import { DataRow, EchartType, Mapper, MapperValue, SubTypes } from '@hulujs/types';
 import { EChartsOption } from 'echarts';
 import { FC } from 'react';
+import 'echarts-liquidfill';
+import 'echarts-wordcloud';
 export interface MetEchartsDataRow extends DataRow {
-    x?: string | number;
-    y?: string | number;
-    d?: string | number;
+    x?: string | number | number[];
+    y?: string | number | number[];
+    d?: string | number | number[];
+    name?: string;
+    x$?: string | number | number[];
+    y$?: string | number | number[];
+    d$?: string | number | number[];
 }
-export interface MetEchartsProps extends MetProps {
+export type MetEchartsEventFunction = (event: any, props: Partial<MetEchartsProps>, options?: EChartsOption) => void;
+export interface MetEchartsProps extends Omit<MetProps, 'onClick'> {
     /**
      * DataRow 的数据格式
      * 将data转成echarts的需要格式
@@ -53,6 +60,17 @@ export interface MetEchartsProps extends MetProps {
      * 而 replaceMerge 需要自动计算
      */
     notMerge?: boolean;
+    /**
+     * 数据补0
+     */
+    fill?: any;
+    onClick?: MetEchartsEventFunction;
+    onDblClick?: MetEchartsEventFunction;
+    onMouseDown?: MetEchartsEventFunction;
+    onMouseUp?: MetEchartsEventFunction;
+    onMouseOver?: MetEchartsEventFunction;
+    onMouseOut?: MetEchartsEventFunction;
+    onGlobalOut?: MetEchartsEventFunction;
 }
 declare const MetEcharts: FC<MetEchartsProps>;
 export default MetEcharts;

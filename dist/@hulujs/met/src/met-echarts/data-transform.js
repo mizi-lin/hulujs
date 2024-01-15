@@ -1,33 +1,43 @@
-import { format, isFalsy, mapping, mget, upArray } from '@hulujs/mu';
-import { groupBy, isNil, sum, uniq } from 'lodash-es';
+import { format, isFalsy, map, mapping, median, mget, run, upArray } from '@hulujs/mu';
+import { groupBy, isNil, sortBy, sum, uniq } from 'lodash-es';
 import { typeDemensionMap } from './constants.js';
 import { transformType, transformTypeBySeries } from './type-transform.js';
 // 将 string[] 数据转为 { value: string }[]}, 让之后的数据更方便处理
 // OptionDataItemObject
 const normalizeOptionDataItemObject = (value) => ({ value });
 const ignoreKey = 'undefined';
-const transformDemension = {
+// 计算各个维度的统计值
+const calc = (data) => {
+    const values = data.map(({ value }) => value);
+    const maxValue = Math.max(...values);
+    const minValue = Math.min(...values);
+    const sumValue = sum(values);
+    const medianValue = median(values);
+    const controlValue = maxValue + minValue + medianValue;
+    return { maxValue, minValue, sumValue, medianValue, controlValue };
+};
+// 按维度计算
+const transformDimension = {
     one: ({ data, type }) => {
         // 数据分组
         // 支持多重一维图表
         // 若只是一重一维图表，其返回值是 { 'undefined': [...] }
         // 在数据处理时，需要特别处理
-        const dataGroup = groupBy(data, 'd');
-        // 计算 series
+        const dataGroup = groupBy(data, 'serie');
+        // 系列数
         const seriesLength = Object.keys(dataGroup).length;
+        // 计算 series
         const series = Object.keys(dataGroup).map((serieName, inx) => {
-            const seriesData = dataGroup[serieName];
-            const data = mapping(seriesData, { value: 'y', name: 'x' });
+            // 系列数据
+            const data = dataGroup[serieName];
+            // 系列名称处理
             const name = serieName === ignoreKey ? void 0 : serieName;
             // 多重一维图圆心位置计算
             const centerX = (100 * (inx * 2 + 1)) / (seriesLength * 2);
             const center = [format(centerX, 'toPercent'), '50%'];
-            // 计算 max 与 min 的值
-            const values = seriesData.map(({ value }) => value);
-            const maxValue = Math.max(...values);
-            const minValue = Math.min(...values);
-            const sumValue = sum(values);
-            const options$type = transformTypeBySeries(type)?.({ data, maxValue, minValue, sumValue });
+            const values$calc = calc(data);
+            // 按类型特别处理series的值
+            const options$type = transformTypeBySeries(type)?.({ data, ...values$calc });
             return { name, type, data, center, ...options$type };
         });
         // 一维图的legend指向的是 series.**.data.name
@@ -44,9 +54,28 @@ const transformDemension = {
                 .map((name, inx) => {
                 return { name };
             });
+        const oneSeriesTip = () => {
+            return {
+                formatter: series.length === 1
+                    ? (component) => {
+                        const { marker, seriesName, data, name, value } = component;
+                        const seriesName$ = seriesName.startsWith('series') ? '' : `${seriesName} <br />`;
+                        const marker$ = marker.replace('transparent', '#f0f0f0');
+                        const value$ = run(data?.value ?? value, (value) => `: ${format(value)}`, () => '');
+                        return `${seriesName$}${marker$} ${name} ${value$}`;
+                    }
+                    : void 0,
+                trigger: isFalsy(legendData) ? `item` : void 0
+            };
+        };
+        const legendData = [...legendByDataOfSeries, ...legendOfSeries];
+        const values$ = calc(data);
+        const optionsByType = transformType(type)?.({ data, type, dataGroup, series, legendData, ...values$ });
         return {
-            'legend.data': [...legendByDataOfSeries, ...legendOfSeries],
-            series: series
+            'legend.data': legendData,
+            series: series,
+            tooltip: { ...oneSeriesTip() },
+            ...optionsByType
         };
     },
     two: ({ data, type }) => {
@@ -61,8 +90,8 @@ const transformDemension = {
          * legend 控制 series 的显示与否
          */
         // 数据分组
-        const dataGroup = groupBy(data, 'd');
-        const xAxisGroup = groupBy(data, 'x');
+        const dataGroup = groupBy(data, 'serie');
+        const xAxisGroup = groupBy(data, 'name');
         // 获取 x 轴
         const xAxisData = Object.keys(xAxisGroup).map(normalizeOptionDataItemObject);
         // 计算 series
@@ -73,7 +102,7 @@ const transformDemension = {
             return {
                 type,
                 name: name === ignoreKey ? void 0 : name,
-                data: mapping(seriesData, { value: 'y' })
+                data: seriesData
             };
         });
         // 计算 legend.data
@@ -84,29 +113,82 @@ const transformDemension = {
         })
             .filter(({ name }) => name !== ignoreKey);
         const optionsByType = transformType(type)?.({ data, type, xAxisData, xAxisGroup, dataGroup, series, legendData });
-        // 计算 tooltip.trigger
-        // 根据 legend.data 存在与否，计算tooltip.trigger的内容
-        const tooltipTrigger = isFalsy(legendData) ? `item` : void 0;
+        const oneSeriesTip = () => {
+            return {
+                'tooltip.formatter': series.length === 1 ? '{b}: {c}' : void 0,
+                // 计算 tooltip.trigger
+                // 根据 legend.data 存在与否，计算tooltip.trigger的内容
+                'tooltip.trigger': isFalsy(legendData) ? `item` : void 0
+            };
+        };
         return {
             'legend.data': legendData,
             'xAxis.0.data': xAxisData,
-            tooltip: { trigger: tooltipTrigger, a: 1 },
             series: series,
+            ...oneSeriesTip(),
             ...optionsByType
         };
     }
 };
 /**
+ * 补齐row的项目
+ * @param data
+ * @param fillData
+ */
+const fillRowItem = (data, fillData = 0) => {
+    if (isNil(data))
+        return data;
+    if (!Array.isArray(data))
+        return data;
+    const keys = map(data, Object.keys);
+    const keys$flat = keys.flat(Infinity);
+    const keys$uniq = uniq(keys$flat);
+    const temp = map(keys$uniq, (key) => ({ '::key': key, '::value': fillData }), {});
+    return data.map((item) => {
+        return { ...temp, ...item };
+    });
+};
+/**
+ * 补充缺失的行数据
+ * @param data
+ * @param groupKey
+ * @param fillKey
+ */
+const fillData = (data, groupKey, fillKey, fill = 0) => {
+    // 获取对比项的key
+    const fills = mget(data, `*.${fillKey}`);
+    // 去重并排序
+    const fills$uniq = sortBy(uniq(fills));
+    // 分组
+    const groups = groupBy(data, groupKey);
+    // 补充分组缺少项
+    const groups$fill = map(groups, (items, key) => {
+        return fills$uniq.map((value) => {
+            return items.find((item) => item[fillKey] === value) ?? { [groupKey]: key, [fillKey]: value };
+        });
+    });
+    // 数据还原
+    const reorigin = Object.values(groups$fill).flat(Infinity);
+    // 数据补0
+    return fillRowItem(reorigin, fill);
+};
+/**
  * 数据处理
  */
-export const transformData = ({ data: dataSource, type, mappers, dimension }) => {
+export const transformData = ({ data: dataSource, type, mappers, dimension, fill }) => {
     if (isNil(dataSource))
         return {};
     // 数据映射为可使用的数据格式
     const [mapper, mapperType] = upArray(mappers);
-    const data = mapping(dataSource, mapper, mapperType);
-    // todo 当数据某项缺失时，需要将数据补回，否则画出来的图表会变形
+    // 根据输入计算mapper数据
+    const data$mapper = mapping(dataSource, mapper, mapperType);
+    // 数据维护，写入 name 与 value 值
+    const data$nv = mapping(data$mapper, { name: 'x', value: 'y', serie: 'd' });
+    // 数据补0
+    const data = fillData(data$nv, 'serie', 'name', fill);
     // 图表与维度映射关系，若存在为映射关系，不存在默认为’二维数组‘
     const dimension$ = dimension ?? typeDemensionMap[type] ?? 'two';
-    return transformDemension[dimension$]({ data, type });
+    // 根据纬度计算数据
+    return transformDimension[dimension$]({ data, type });
 };
+// name, value, demension

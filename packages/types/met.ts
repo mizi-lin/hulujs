@@ -11,7 +11,11 @@ export type SubTypeScope = 'all' | EchartType;
 export type SubTypeScopes = SubTypeScope[];
 // Echarts 支持的图表类型
 export type EchartType =
+    | 'chinaMap'
+    | 'chinaVerticalMap'
     | 'line'
+    | 'liquidFill'
+    | 'wordCloud'
     | 'polar' // mocktype
     | 'bar'
     | 'pie'
