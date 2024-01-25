@@ -17,7 +17,7 @@ export declare const getSubtypeKey: (key: string) => string;
  * @param fn subtype的处理函数
  * @param warn subtype是否关闭提醒
  */
-export declare const registerSubtype: (scopes: SubTypeScopes, name: SubType, fn: (params: any) => KvParis, warn?: 'close') => void;
+export declare const registerMetEchartsSubtypes: (scopes: SubTypeScopes, name: SubType, fn: (params: any) => KvParis, warn?: 'close') => void;
 /**
  * 获取subtype的配置
  * @param scope

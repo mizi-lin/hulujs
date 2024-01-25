@@ -26,7 +26,7 @@ export const getSubtypeKey = (key) => {
  * @param fn subtype的处理函数
  * @param warn subtype是否关闭提醒
  */
-export const registerSubtype = (scopes, name, fn, warn) => {
+export const registerMetEchartsSubtypes = (scopes, name, fn, warn) => {
     Regc.register(RegKey.MET_ECHARTS_SUBTYPES, (store) => {
         const store$ = store ?? new Map();
         const name$ = getSubtypeKey(name);

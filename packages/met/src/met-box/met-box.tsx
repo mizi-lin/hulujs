@@ -9,14 +9,7 @@ export interface MetBoxProps extends Omit<MetFlexProps, 'placement'> {
 const MetBox: FC<MetBoxProps> = (props) => {
     const { className, ...extra } = props;
     return (
-        <MetFlex
-            alignItems={'stretch'}
-            placement={'normal'}
-            overflowY={'auto'}
-            className={['met-box', className]}
-            vertical
-            {...extra}
-        />
+        <MetFlex alignItems={'stretch'} placement={'normal'} overflowY={'auto'} className={['met-box', className]} vertical {...extra} />
     );
 };
 

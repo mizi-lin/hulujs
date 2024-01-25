@@ -1,5 +1,5 @@
 import { MetCenter, MetFlexProps, MetNodata } from '../index.js';
-import { FrownOutlined } from '@ant-design/icons';
+// import { FrownOutlined } from '@ant-design/icons';
 import { isDev } from '../env.js';
 
 export interface MetErrorProps extends MetFlexProps {
@@ -14,7 +14,7 @@ const MetError = (props) => {
     };
     return (
         <MetCenter minHeight={100} maxHeight={300} className={'met-error'}>
-            {isDev ? <FrownOutlined onClick={handleError} /> : <MetNodata />}
+            {/* {isDev ? <FrownOutlined onClick={handleError} /> : <MetNodata />} */}
         </MetCenter>
     );
 };

@@ -72,7 +72,7 @@ const cancelRequestSignal = function (
     search: Record<string, any> = {},
     payload: Record<string, any> = {}
 ) {
-    if (!Regc.get({ key: RegKey.RUYI_CANCEL })) {
+    if (!Regc.get(RegKey.RUYI_CANCEL)) {
         return void 0;
     }
 
@@ -100,7 +100,7 @@ export const Request = function (
     payload: Record<string, any> = {},
     options: RuyiOptions = {}
 ) {
-    const customRuyiOptions: Record<string, any> = Regc.get({ key: RegKey.RUYI_OPTIONS }) ?? {};
+    const customRuyiOptions: Record<string, any> = Regc.get(RegKey.RUYI_OPTIONS) ?? {};
     // 权重高低原则分配
     const method =
         options.method ?? options?.methodCompatible?.[ruyiMethod] ?? customRuyiOptions?.methodCompatible?.[ruyiMethod] ?? ruyiMethod;
@@ -108,7 +108,7 @@ export const Request = function (
     // console.log('url/params', url, params);
     const config: AxiosRequestConfig = {
         signal: cancelRequestSignal(ruyiMethod, ruyiUrl, search, payload),
-        ...(Regc.get({ key: RegKey.RUYI_OPTIONS }) ?? {}),
+        ...(Regc.get(RegKey.RUYI_OPTIONS) ?? {}),
         ...options,
         url,
         method,
@@ -162,7 +162,7 @@ export const Request = function (
      * 配置请求拦截器
      */
     !isRequestInterceptor &&
-        ifrun(Regc.get({ key: RegKey.RUYI_REQUEST_INTERCEPTORS }), (interceptors) => {
+        ifrun(Regc.get(RegKey.RUYI_REQUEST_INTERCEPTORS), (interceptors) => {
             interceptors = upArray(interceptors);
             axios.interceptors.request.use(...interceptors);
             isRequestInterceptor = true;
@@ -173,11 +173,11 @@ export const Request = function (
      */
     !isResponseInterceptor &&
         ifrun(
-            Regc.get({ key: RegKey.RUYI_RESPONSE_INTERCEPTORS }),
+            Regc.get(RegKey.RUYI_RESPONSE_INTERCEPTORS),
             (interceptors) => {
                 interceptors = upArray(interceptors);
                 // 如果配置了ERROR_CATCH, 则权重比较大
-                ifrun(Regc.get({ key: RegKey.RUYI_ERROR_CATCH }), (errorCatch) => {
+                ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
                     interceptors[1] = errorCatch;
                 });
                 axios.interceptors.response.use(...interceptors);
@@ -185,7 +185,7 @@ export const Request = function (
             },
             () => {
                 const interceptors = [(res) => res];
-                ifrun(Regc.get({ key: RegKey.RUYI_ERROR_CATCH }), (errorCatch) => {
+                ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
                     interceptors[1] = errorCatch;
                 });
                 axios.interceptors.response.use(...interceptors);
@@ -354,6 +354,7 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
                 throw new Error(`没有指定downloadName的下载类型`);
             }
             options.responseType = directDownload ? 'blob' : 'json';
+
             return Request(RuyiMethod.POST, url, search$1, payload, {
                 ...ruyiOptions,
                 ...options

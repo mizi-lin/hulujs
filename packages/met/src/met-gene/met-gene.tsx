@@ -1,12 +1,13 @@
-import { isNotFalsy } from '@hulujs/mu';
-import { FC, CSSProperties, Children, cloneElement, ReactNode } from 'react';
+import { isFalsy, isNotFalsy, upArray } from '@hulujs/mu';
+import { mapKeys } from 'lodash-es';
+import { FC, CSSProperties, Children, cloneElement, ReactNode, PropsWithChildren, createContext } from 'react';
 
 /**
  * 基因透传组件
  * - 组件的属性像基因片段一样可以遗传给子元素
  * - 通常用于组件开发
  */
-export interface MetGeneProps {
+export interface MetGeneProps extends PropsWithChildren {
     // 需要向下透传的显性基因片段
     dominant?: Record<string, any>;
     // 需要向下透传的隐性基因片段
@@ -20,17 +21,16 @@ export interface MetGeneProps {
      * @default false
      */
     propCover?: boolean;
-    children?:
-        | ReactNode
-        | ((
-              dominant?: Record<string, any>,
-              recessive?: Record<string, any>,
-              extra?: Record<string, any>
-          ) => ReactNode);
+    /**
+     * 桥接属性
+     */
+    bridge?: boolean;
 }
 
+export const MetGeneContext = createContext({});
+
 const MetGene: FC<MetGeneProps> = (props) => {
-    const { children, dominant = {}, recessive = {}, propCover = false, ...extra } = props;
+    const { children, dominant = {}, recessive = {}, propCover = false, bridge = false, ...extra } = props;
 
     if (typeof children === 'function') {
         // @ts-ignore
@@ -41,9 +41,12 @@ const MetGene: FC<MetGeneProps> = (props) => {
         return <></>;
     }
 
-    return Children.map(children, (col) => {
+    const children$ = Children.map(children, (col) => {
         // 空节点
         if (!col) return null;
+
+        if (['string', 'number', 'boolean'].includes(typeof col)) return col;
+
         // 文本或空行等
         // @ts-ignore
         if (!['function', 'object'].includes(typeof col.type)) return col;
@@ -61,12 +64,23 @@ const MetGene: FC<MetGeneProps> = (props) => {
             ...(propCover ? {} : geneProps),
             ...colProps,
             ...(propCover ? geneProps : {}),
-            ...(isNotFalsy(recessive) ? { __metgenerecessive: JSON.stringify(recessive) } : {})
+            ...(isNotFalsy(recessive) ? { __metgene$recessive: JSON.stringify(recessive) } : {})
         };
+
+        // @ts-ignore
+        if (!col?.type?.name) {
+            const props$ = mapKeys(props, (value, key) => {
+                return /^on[A-Z]/.test(key) ? key : key.toLowerCase();
+            });
+            // @ts-ignore
+            return cloneElement(col as any, props$);
+        }
 
         // @ts-ignore
         return cloneElement(col, props);
     });
+
+    return bridge ? <MetGeneContext.Provider value={dominant}>{children$}</MetGeneContext.Provider> : <>{children$}</>;
 };
 
 export default MetGene;

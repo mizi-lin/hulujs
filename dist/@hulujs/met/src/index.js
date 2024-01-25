@@ -1,5 +1,6 @@
 export { default as Met } from './met/index.js';
 export { default as MetGene } from './met-gene/index.js';
+export { default as MetBridge } from './met-bridge/index.js';
 export { default as MetDynamic } from './met-dynamic/index.js';
 export { default as MetNest } from './met-nest/index.js';
 export { default as MetFlex } from './met-flex/index.js';
@@ -13,6 +14,7 @@ export { default as MetLoading } from './met-loading/index.js';
 export { default as MetNodata } from './met-nodata/index.js';
 export { default as MetError } from './met-error/index.js';
 export { default as MetEcharts } from './met-echarts/index.js';
+export { default as MetPanel } from './met-panel/index.js';
 export * from './met-echarts/index.js';
 export * from './demo/index.js';
 export * from './met/elements.js';

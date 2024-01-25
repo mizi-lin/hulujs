@@ -54,7 +54,7 @@ const transformUrlSearchParams = function (url, search) {
  */
 const cancelStore = {};
 const cancelRequestSignal = function (ruyiMethod, ruyiUrl, search = {}, payload = {}) {
-    if (!Regc.get({ key: RegKey.RUYI_CANCEL })) {
+    if (!Regc.get(RegKey.RUYI_CANCEL)) {
         return void 0;
     }
     const key = `${ruyiMethod}_${ruyiUrl}_${JSON.stringify(search)}_${JSON.stringify(payload)}`;
@@ -74,14 +74,14 @@ const cancelRequestSignal = function (ruyiMethod, ruyiUrl, search = {}, payload 
  * ->客户端浏览器解析HTML内容
  */
 export const Request = function (ruyiMethod, ruyiUrl, search = {}, payload = {}, options = {}) {
-    const customRuyiOptions = Regc.get({ key: RegKey.RUYI_OPTIONS }) ?? {};
+    const customRuyiOptions = Regc.get(RegKey.RUYI_OPTIONS) ?? {};
     // 权重高低原则分配
     const method = options.method ?? options?.methodCompatible?.[ruyiMethod] ?? customRuyiOptions?.methodCompatible?.[ruyiMethod] ?? ruyiMethod;
     const { url, params } = transformUrlSearchParams(ruyiUrl, search);
     // console.log('url/params', url, params);
     const config = {
         signal: cancelRequestSignal(ruyiMethod, ruyiUrl, search, payload),
-        ...(Regc.get({ key: RegKey.RUYI_OPTIONS }) ?? {}),
+        ...(Regc.get(RegKey.RUYI_OPTIONS) ?? {}),
         ...options,
         url,
         method,
@@ -128,7 +128,7 @@ export const Request = function (ruyiMethod, ruyiUrl, search = {}, payload = {},
      * 配置请求拦截器
      */
     !isRequestInterceptor &&
-        ifrun(Regc.get({ key: RegKey.RUYI_REQUEST_INTERCEPTORS }), (interceptors) => {
+        ifrun(Regc.get(RegKey.RUYI_REQUEST_INTERCEPTORS), (interceptors) => {
             interceptors = upArray(interceptors);
             axios.interceptors.request.use(...interceptors);
             isRequestInterceptor = true;
@@ -137,17 +137,17 @@ export const Request = function (ruyiMethod, ruyiUrl, search = {}, payload = {},
      * 配置返回拦截器
      */
     !isResponseInterceptor &&
-        ifrun(Regc.get({ key: RegKey.RUYI_RESPONSE_INTERCEPTORS }), (interceptors) => {
+        ifrun(Regc.get(RegKey.RUYI_RESPONSE_INTERCEPTORS), (interceptors) => {
             interceptors = upArray(interceptors);
             // 如果配置了ERROR_CATCH, 则权重比较大
-            ifrun(Regc.get({ key: RegKey.RUYI_ERROR_CATCH }), (errorCatch) => {
+            ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
                 interceptors[1] = errorCatch;
             });
             axios.interceptors.response.use(...interceptors);
             isResponseInterceptor = true;
         }, () => {
             const interceptors = [(res) => res];
-            ifrun(Regc.get({ key: RegKey.RUYI_ERROR_CATCH }), (errorCatch) => {
+            ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
                 interceptors[1] = errorCatch;
             });
             axios.interceptors.response.use(...interceptors);
