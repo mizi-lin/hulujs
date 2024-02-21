@@ -2,6 +2,8 @@
 //  * 拍平集合体层级，呈扁平化显示
 //  */
 
+import { propPathToCash } from './mget.js';
+
 /**
  * PropPathType
  * bracket: 中挂号链式
@@ -57,13 +59,28 @@ export const cashToPropPath = (cash: (string | number)[], type: PropPathType = '
 
 /**
  * 平铺对象
+ * - 平铺对象的规则限定
+ * -- 不平铺 dom
+ * -- 不平铺  react component
+ * - 针对循环引用的规则限定
  */
-export const tile = (obj: Record<string, any>, chainType: PropPathType = 'dot') => {
+export const tile = (obj: Record<string, any>, chainType: PropPathType = 'dot', deep: number = 13) => {
     // 点式调用优先
     const isDot = chainType === 'dot';
     let result: Record<string, any> = {};
 
+    let count = 0;
+
+    // 判断循环引用 CircularReference
+    let memory = new WeakMap();
+
     function recurse(current, props = '') {
+        count++;
+
+        if (count > 300) {
+            return result;
+        }
+
         // 如果当前值不是对象，直接返回
         if (Object(current) !== current) {
             result[props] = current;
@@ -76,8 +93,24 @@ export const tile = (obj: Record<string, any>, chainType: PropPathType = 'dot') 
         } else if (typeof current === 'function') {
             result[props] = current;
         } else {
+            // 如果当前是 Element 或 FiberNode，跳过展开
+            if (current.nodeType || current.$$typeof) {
+                return (result[props] = current);
+            }
+
+            // 若层级太深，跳过展开
+            if (propPathToCash(props)?.length > deep) {
+                return (result[props] = current);
+            }
+
+            // 若循环引用，跳过展开
+            if (memory.has(current)) {
+                return (result[props] = current);
+            }
+
             // 如果是对象，遍历对象
             let isEmpty = true;
+            memory.set(current, true);
             for (let key in current) {
                 isEmpty = false;
                 if (isDot) {
@@ -94,6 +127,7 @@ export const tile = (obj: Record<string, any>, chainType: PropPathType = 'dot') 
     }
 
     recurse(obj);
+    memory = null as unknown as WeakMap<any, unknown>;
     return result;
 };
 

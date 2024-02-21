@@ -20,6 +20,10 @@ export declare const bracketKey: (key: string | number) => string | number;
 export declare const cashToPropPath: (cash: (string | number)[], type?: PropPathType) => string;
 /**
  * 平铺对象
+ * - 平铺对象的规则限定
+ * -- 不平铺 dom
+ * -- 不平铺  react component
+ * - 针对循环引用的规则限定
  */
-export declare const tile: (obj: Record<string, any>, chainType?: PropPathType) => Record<string, any>;
+export declare const tile: (obj: Record<string, any>, chainType?: PropPathType, deep?: number) => Record<string, any>;
 export default tile;

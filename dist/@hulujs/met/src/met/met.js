@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, useEffect, useRef } from 'react';
 import clx from 'classnames';
-import { groupBy } from 'lodash-es';
+import { groupBy, omit } from 'lodash-es';
 import { compact, isFalsy, map } from '@hulujs/mu';
 import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
 import { isDev } from '../env.js';
@@ -58,6 +58,7 @@ const Met = forwardRef((props, ref) => {
     const innerRef = useRef();
     const ref$ = useCombinedRefs(ref, innerRef);
     const { tag = 'div', children, style = {}, className = '', componentClassName, src, href, alt, inline, none, scroll = false, nogene = false, debug, comment, full, ...extra } = props;
+    const crossProps = omit(props, 'children', 'tag', 'componentClassName', 'propCover');
     const TagName = tag;
     const { w, width = w, h, height = h, lh, lineHeight = lh, bd, border = bd, bdt, borderTop = bdt, bdr, borderRight = bdr, bdb, borderBottom = bdb, bdl, borderLeft = bdl, br, borderRadius = br, bg, background = bg, o, overflow, ox, overflowX, oy, overflowY, p, padding = p, pl, paddingLeft = pl, pt, paddingTop = pt, pr, paddingRight = pr, pb, paddingBottom = pb, m, margin = m, ml, marginLeft = ml, mt, marginTop = mt, mr, marginRight = mr, mb, marginBottom = mb, fs, fontSize = fs, ff, fontFamily = ff, color, fw, fontWeight = fw, ta, textAlign = ta, va, verticalAlign = va, ...more } = extra;
     const toMap = (value) => {
@@ -152,14 +153,12 @@ const Met = forwardRef((props, ref) => {
     }
     // fragment 将属性透传
     if (isFragment(tag)) {
-        return (_jsx(TagName, { children: _jsx(MetDynamic, { component: MetGene, dominant: props$, children: children }) }));
+        return (_jsx(MetGene, { dominant: crossProps, propCover: props.propCover ?? true, children: children }));
     }
     // html 标签 / 自定义标签
     if (typeof tag === 'string' || !isReactElement(tag)) {
         return (_jsx(TagName, { ref: ref$, ...props$, children: children }));
     }
-    return (
-    // 当 tag = Fragment 时，为透传标签
-    _jsx(MetDynamic, { component: tag, ...props$, children: children }));
+    return (_jsx(MetDynamic, { component: tag, ...props$, children: children }));
 });
 export default Met;

@@ -162,9 +162,9 @@ const MetPanelInner = forwardRef((props, ref) => {
     const setCommonState = useSetRecoilState(metToolState('MetToolsCommon'));
     const setBorder = curry(analysisBorder)(theme, bordered);
     const footer$ = isReactElement(footer) ? { children: footer } : footer;
-    return (_jsxs(MetBox, { tag: 'article', className: 'met-panel', ref: ref, pl: theme?.padding, pr: theme?.padding, br: theme.raduis, gap: theme?.padding, ...setBorder('wrapper'), ...extra, children: [!!header && (_jsx(MetPanelHeader, { theme: theme, title: title, toolbar: toolbar, p: theme?.padding, ...setBorder('header'), ...header })), !!main && children && (_jsx(Met, { tag: 'main', flex: 1, p: theme?.padding, ...main, children: _jsx(RecoilBridge, { children: _jsx(MetRuyi, { ...ruyi, callback: (data) => {
+    return (_jsxs(MetBox, { tag: 'article', className: 'met-panel', ref: ref, pl: theme?.padding, pr: theme?.padding, br: theme.raduis, gap: theme?.padding, overflowY: 'none', ...setBorder('wrapper'), ...extra, children: [!!header && (_jsx(MetPanelHeader, { theme: theme, title: title, toolbar: toolbar, p: theme?.padding, ...setBorder('header'), ...header })), !!main && children && (_jsx(Met, { tag: 'main', flex: 1, p: theme?.padding, ...main, children: _jsx(RecoilBridge, { children: isFalsy(ruyi) ? (children) : (_jsx(MetRuyi, { ...ruyi, callback: (data) => {
                             setCommonState({ data });
-                        }, children: children }) }) })), !!footer && _jsx(MetPanelFooter, { theme: theme, p: theme?.padding, ...setBorder('footer'), ...footer$ })] }));
+                        }, children: children })) }) })), !!footer && _jsx(MetPanelFooter, { theme: theme, p: theme?.padding, ...setBorder('footer'), ...footer$ })] }));
 });
 const MetPanel = forwardRef((props, ref) => {
     const RecoilBridge = useRecoilBridgeAcrossReactRoots_UNSTABLE();

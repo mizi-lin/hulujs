@@ -40,7 +40,7 @@ export function baseCompact(...args) {
         const isBreak = func?.(value, collection);
         if (isBreak) {
             const cash = propPathToCash(key, 'unwrapper');
-            if (compactType !== 'fasly' && cash.length > 1) {
+            if (compactType !== 'falsy' && cash.length > 1) {
                 const [tail, ...prev] = cash.toReversed();
                 markup[propCashToPath(prev.toReversed())] = isLikePovitiveInt(tail) ? [] : {};
             }

@@ -52,7 +52,7 @@ export interface MetPanelTool extends Omit<MetProps, 'onClick'> {
     show: 'onlyIcon' | 'onlyTitle' | 'all';
     // 分组模式下自动分组依据
     group?: string;
-    onClick?: (params?: MetBaseToolEventParams) => void;
+    onClick?: (params: MetBaseToolEventParams) => void;
     active?: MetProps;
 }
 
@@ -345,6 +345,7 @@ const MetPanelInner = forwardRef<HTMLElement, MetPanelProps>((props, ref) => {
             pr={theme?.padding}
             br={theme.raduis}
             gap={theme?.padding}
+            overflowY={'none'}
             {...setBorder('wrapper')}
             {...extra}
         >
@@ -354,14 +355,18 @@ const MetPanelInner = forwardRef<HTMLElement, MetPanelProps>((props, ref) => {
             {!!main && children && (
                 <Met tag={'main'} flex={1} p={theme?.padding} {...main}>
                     <RecoilBridge>
-                        <MetRuyi
-                            {...ruyi}
-                            callback={(data) => {
-                                setCommonState({ data });
-                            }}
-                        >
-                            {children}
-                        </MetRuyi>
+                        {isFalsy(ruyi) ? (
+                            children
+                        ) : (
+                            <MetRuyi
+                                {...ruyi}
+                                callback={(data) => {
+                                    setCommonState({ data });
+                                }}
+                            >
+                                {children}
+                            </MetRuyi>
+                        )}
                     </RecoilBridge>
                 </Met>
             )}

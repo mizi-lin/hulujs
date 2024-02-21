@@ -53,7 +53,7 @@ const placementStyleMap = {
     }
 };
 const MetFlex = forwardRef((props, ref) => {
-    const { children, style = {}, className = '', placement = 'normal', vertical, inline, scroll, wrap = 'nowrap', justify, justifyContent = justify, align = 'stretch', alignItems = align, flexWrap = wrap, flexDirection = vertical ? 'column' : 'row', ...extra } = props;
+    const { children, style = {}, className = '', placement = 'normal', vertical, inline, scroll, wrap = 'nowrap', justify, justifyContent = justify, align = 'stretch', alignItems = align, flexWrap = wrap, flexShrink = 0, flexDirection = vertical ? 'column' : 'row', ...extra } = props;
     const innerRef = useRef(null);
     const ref$ = useCombinedRefs(ref, innerRef);
     const overflow = scroll
@@ -67,10 +67,13 @@ const MetFlex = forwardRef((props, ref) => {
     const extra$ = {
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
-        ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
+        ...compact({ flexDirection, flexWrap, flexShrink, justifyContent, alignItems }),
         ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...extra
     };
+    // const children$ = Children.map(children, (child, index) => {
+    //     return child;
+    // });
     return (_jsx(Met, { ref: ref$, tag: 'section', className: clx('met-flex', className), ...extra$, children: _jsx(MetGene, { dominant: scroll ? { flexShrink: 0 } : {}, children: children }) }));
 });
 export default MetFlex;

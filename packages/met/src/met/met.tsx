@@ -12,7 +12,7 @@ import {
 } from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
-import { groupBy, isNil } from 'lodash-es';
+import { groupBy, isNil, omit } from 'lodash-es';
 import { compact, isFalsy, map } from '@hulujs/mu';
 import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
 import { isDev } from '../env.js';
@@ -205,7 +205,7 @@ const adjustOverflowScroll = (scroll: boolean, overflowProps?: Record<string, an
 /**
  * border 系样式处理
  */
-const Met: FC<MetProps> = forwardRef((props, ref) => {
+const Met: FC<MetProps> = forwardRef<HTMLElement, MetProps>((props, ref) => {
     const innerRef = useRef();
     const ref$ = useCombinedRefs(ref, innerRef);
 
@@ -227,6 +227,7 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
         full,
         ...extra
     } = props;
+    const crossProps = omit(props, 'children', 'tag', 'componentClassName', 'propCover');
     const TagName = tag;
     const {
         w,
@@ -403,11 +404,9 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
     // fragment 将属性透传
     if (isFragment(tag)) {
         return (
-            <TagName>
-                <MetDynamic component={MetGene} dominant={props$}>
-                    {children}
-                </MetDynamic>
-            </TagName>
+            <MetGene dominant={crossProps} propCover={props.propCover ?? true}>
+                {children}
+            </MetGene>
         );
     }
 
@@ -421,7 +420,6 @@ const Met: FC<MetProps> = forwardRef((props, ref) => {
     }
 
     return (
-        // 当 tag = Fragment 时，为透传标签
         <MetDynamic component={tag} {...props$}>
             {children}
         </MetDynamic>

@@ -5,7 +5,6 @@
 import { transformSetting } from './setting.js';
 import { RegKey, Regc } from '@hulujs/msc';
 import { isFalsy, upArray } from '@hulujs/mu';
-import { isDev } from '../env.js';
 import { cloneDeep } from 'lodash-es';
 const SubTypeSep = '::';
 /**
@@ -32,9 +31,9 @@ export const registerMetEchartsSubtypes = (scopes, name, fn, warn) => {
         const name$ = getSubtypeKey(name);
         upArray(scopes).forEach((scope) => {
             const regkey = `${scope}${name$}`;
-            if (isDev && warn !== 'close' && store$.has(regkey)) {
-                console.log(`[Regc]: ${regkey} 已注册，注册中心采用覆盖策略，请确认？(若不想收到该消息，请在方法中配置 warn: 'close')`);
-            }
+            // if (isDev && warn !== 'close' && store$.has(regkey)) {
+            //     console.log(`[Regc]: ${regkey} 已注册，注册中心采用覆盖策略，请确认？(若不想收到该消息，请在方法中配置 warn: 'close')`);
+            // }
             store$.set(regkey, fn);
         });
         return store$;

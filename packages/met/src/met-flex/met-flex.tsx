@@ -1,4 +1,4 @@
-import { FC, ForwardedRef, forwardRef, useRef } from 'react';
+import { Children, FC, ForwardedRef, forwardRef, useRef } from 'react';
 import clx from 'classnames';
 import { Property } from 'csstype';
 import { compact } from '@hulujs/mu';
@@ -120,6 +120,7 @@ const MetFlex: FC<MetFlexProps> = forwardRef((props: MetFlexProps, ref: Forwarde
         align = 'stretch',
         alignItems = align,
         flexWrap = wrap,
+        flexShrink = 0,
         flexDirection = vertical ? 'column' : 'row',
         ...extra
     } = props;
@@ -140,10 +141,14 @@ const MetFlex: FC<MetFlexProps> = forwardRef((props: MetFlexProps, ref: Forwarde
     const extra$: MetProps = {
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
-        ...compact({ flexDirection, flexWrap, justifyContent, alignItems }),
+        ...compact({ flexDirection, flexWrap, flexShrink, justifyContent, alignItems }),
         ...(placementStyleMap[flexDirection]?.[placement] ?? {}),
         ...extra
     };
+
+    // const children$ = Children.map(children, (child, index) => {
+    //     return child;
+    // });
 
     return (
         <Met ref={ref$} tag={'section'} className={clx('met-flex', className)} {...extra$}>

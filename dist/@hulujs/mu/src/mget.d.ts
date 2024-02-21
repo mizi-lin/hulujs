@@ -3,7 +3,7 @@ import { PropPaths, MgetType, PropCash } from '@hulujs/types';
  * 将普通路径转为数组
  * 每个数据项为路径中的某一个节点
  */
-export declare const propPathToCash: (path: PropPaths, type?: 'unwrapper' | 'normal') => PropCash;
+export declare const propPathToCash: (path: PropPaths, type?: 'unwrapper' | 'normal') => (string | number)[];
 export declare const propCashToPath: (cash: PropCash) => string;
 /**
  * 通配符支持

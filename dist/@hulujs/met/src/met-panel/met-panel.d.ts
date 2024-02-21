@@ -29,7 +29,7 @@ export interface MetPanelTool extends Omit<MetProps, 'onClick'> {
     title: string;
     show: 'onlyIcon' | 'onlyTitle' | 'all';
     group?: string;
-    onClick?: (params?: MetBaseToolEventParams) => void;
+    onClick?: (params: MetBaseToolEventParams) => void;
     active?: MetProps;
 }
 export interface MetPanelToolbarGroup extends MetProps {
