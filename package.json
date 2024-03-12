@@ -1,6 +1,6 @@
 {
     "name": "hulu-v5",
-    "private": true,
+    "private": false,
     "license": "MIT",
     "description": "Hulu v5",
     "type": "module",
