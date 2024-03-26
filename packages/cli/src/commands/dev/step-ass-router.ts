@@ -2,7 +2,7 @@
  * 根据routes，生成 router
  */
 import { $load, $repo, $tpl } from '@hulujs/core';
-import { getPathExistByCaoKong, importAlias } from './utils.js';
+import { getImportFile, getPathExistByCaoKong, importAlias } from './utils.js';
 import { each, rowsToTree, stack, tile } from '@hulujs/mu';
 import path from 'path';
 
@@ -64,9 +64,7 @@ export const stepAssRouter = async () => {
         }
     ].filter(Boolean);
 
-    const wrapperRoutes = [
-        { path: '/', view: importAlias(layoutPath), children: [...presetRoutes, ...srcRoutes$tree] }
-    ];
+    const wrapperRoutes = [{ path: '/', view: importAlias(layoutPath), children: [...presetRoutes, ...srcRoutes$tree] }];
 
     // 解析
     const routes$tile = tile({ routes: wrapperRoutes });
@@ -80,9 +78,7 @@ export const stepAssRouter = async () => {
         if (isView) {
             const lazyPath = keyPath.replace(regex, '.lazy');
             const importPath = importAlias(transformViewPath(value));
-            lazys[
-                lazyPath
-            ] = `__FUNC_PLACEHOLDER_START__() => import('${importPath}')__FUNC_PLACEHOLDER_END__`;
+            lazys[lazyPath] = `__FUNC_PLACEHOLDER_START__() => import('${importPath}')__FUNC_PLACEHOLDER_END__`;
         }
     });
 

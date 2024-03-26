@@ -7,7 +7,7 @@ import run from './run.js';
 import { baseStack } from './stack.js';
 import tile from './tile.js';
 import { compactDegreeFuncMap } from './utils/compact-degree-func-map.js';
-import { isPlainObject } from 'lodash-es';
+import { cloneDeep, isPlainObject } from 'lodash-es';
 import { propCashToPath, propPathToCash } from './mget.js';
 import isLikePovitiveInt from './is-like-positive-int.js';
 const notInType = () => {
@@ -48,6 +48,7 @@ export function baseCompact(...args) {
         }
         return value;
     });
+    config.a && console.log('-->>', { ...markup, ...propPaths$clean }, cloneDeep(propPaths), collection);
     return baseStack({ ...markup, ...propPaths$clean }, config);
 }
 function compact(...args) {

@@ -4,6 +4,7 @@ import { transformSetting } from './setting.js';
 import { transformSubtype } from './subtype.js';
 import { baseStack } from '@hulujs/mu';
 import { defaultTransform } from './default-transform.js';
+import { cloneDeep } from 'lodash-es';
 
 /**
  * 计算echart最终的配置信息
@@ -38,7 +39,7 @@ export const getOptions = ({ data, type, subtypes, mappers, dimension, setting, 
     // 清理undefined/null属性值
     // 支持写入undefined/null的属性，表示清理已配置的值，恢复默认值
     // return compact(tileObj, 'nil');
-    const tileObj$ = baseCompact(tileObj, { runIffe: false });
+    const tileObj$ = baseCompact(tileObj, { runIffe: false, a: true });
 
     return baseStack(tileObj$, { runIffe: true, source: { obj } });
 };

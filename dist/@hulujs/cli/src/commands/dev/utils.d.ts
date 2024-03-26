@@ -11,6 +11,10 @@ export declare const isInstallCaoKong: (address: string) => any;
  */
 export declare const getPathExistByCaoKong: (address: string) => string;
 /**
+ * get import
+ */
+export declare const getImportFile: (address: string) => string;
+/**
  * 别名路径转原路径
  */
 export declare const aliasToSrcWithCaoKong: (address: string) => string;

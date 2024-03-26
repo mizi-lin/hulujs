@@ -1,4 +1,4 @@
-import { format, isFalsy, map, mapping, median, mget, run, upArray } from '@hulujs/mu';
+import { format, isFalsy, map, mapping, median, mget, rowsToTree, run, upArray } from '@hulujs/mu';
 import { groupBy, isNil, sortBy, sum, uniq } from 'lodash-es';
 import { typeDemensionMap } from './constants.js';
 import { transformType, transformTypeBySeries } from './type-transform.js';
@@ -152,6 +152,53 @@ const transformDimension = {
             ...oneSeriesTip(),
             ...optionsByType
         };
+    },
+
+    tree: ({ data, type }) => {
+        /**
+         * 关系图
+         * treemap: 矩形树图
+         * sunburst: 旭日图
+         * tree: 树图
+         * lines: 路径图
+         * graph: 关系图
+         * sankey: 桑基图
+         */
+        const data$ = rowsToTree(data);
+        const dataGroup = groupBy(data$, 'serie');
+        // 计算 series
+        const series = Object.keys(dataGroup)
+            .map((name: string) => ({ name }))
+            .map(({ name }) => {
+                const seriesData = dataGroup[name];
+                return {
+                    type,
+                    name: name === ignoreKey ? void 0 : name,
+                    data: seriesData
+                };
+            });
+
+        const optionsByType = transformType(type)?.({ data, type, dataGroup, series });
+
+        return { series, ...optionsByType };
+    },
+
+    flatten: ({ data, type }) => {
+        /**
+         * 扁平图
+         * 单图多legend
+         */
+        const dataGroup = groupBy(data, 'serie');
+        // 计算 series
+        const series = [{ type, data }];
+
+        const legendData = Object.keys(dataGroup).map((name) => {
+            return { name };
+        });
+
+        const optionsByType = transformType(type)?.({ data, type, legendData, dataGroup, series });
+
+        return { series, 'legend.data': legendData, ...optionsByType };
     }
 };
 
@@ -209,11 +256,11 @@ export const transformData = ({ data: dataSource, type, mappers, dimension, fill
     // 数据维护，写入 name 与 value 值
     const data$nv = mapping(data$mapper, { name: 'x', value: 'y', serie: 'd' });
     // 数据补0
-    const data = fillData(data$nv, 'serie', 'name', fill);
+    // 关系型数据不补0
+    const data = ['graph', 'treemap'].includes(type) ? data$nv : fillData(data$nv, 'serie', 'name', fill);
     // 图表与维度映射关系，若存在为映射关系，不存在默认为’二维数组‘
     const dimension$ = dimension ?? typeDemensionMap[type] ?? 'two';
     // 根据纬度计算数据
-
     return transformDimension[dimension$]({ data, type });
 };
 

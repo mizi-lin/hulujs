@@ -70,6 +70,8 @@ const setPathValue = (obj: Record<string, any>, path: PropCash, value: any, conf
     //     console.log('barWidth', { path, value,  source });
     // }
 
+    // console.log(':::---><>', cash);
+
     if (cash.length === 1) {
         // 直到写入值的时候才 baseValue 进行转换
         const value$ = baseSetPathValue(obj, path, value, config);

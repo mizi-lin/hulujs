@@ -1,5 +1,5 @@
 import { $repo, $tpl, globby } from '@hulujs/core';
-import { getPathExistByCaoKong } from './utils.js';
+import { getImportFile, getPathExistByCaoKong } from './utils.js';
 import { add } from 'lodash-es';
 
 /**
@@ -26,11 +26,7 @@ export async function stepGenerateCaoKongIndexFile() {
         .map(getPathExistByCaoKong)
         .map((address) => {
             // 隐藏后缀名
-            return address
-                .split('.')
-                .slice(0, -1)
-                .join('.')
-                .replace(/\/index$/, '');
+            return getImportFile(address).replace(/\/index$/, '');
         })
         .filter((address) => {
             // views 的组件不参与超控体系

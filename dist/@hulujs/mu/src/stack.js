@@ -15,6 +15,7 @@ export function baseStack(tileObj, config) {
     // return result[prefix];
     each(tileObj, (value, key) => {
         baseSet(result, key, value, config);
+        // console.log(cloneDeep(tileObj), cloneDeep(result), key, value, config);
     });
     return result;
 }

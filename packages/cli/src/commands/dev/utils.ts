@@ -31,12 +31,22 @@ export const getPathExistByCaoKong = (address: string) => {
     const address$ = srcToAliasWithCaoKong(address);
 
     const address$1 = address$.replace(/^(@|~ck)/, sourcePath);
-    if (fsa.existsSync(address$1)) {
-        return address$1;
-    }
-
     const address$2 = address$.replace(/^(@|~ck)/, caokongPath);
-    return fsa.existsSync(address$2) ? address$2 : address$1;
+
+    return (
+        [address$1, getImportFile(address$1), address$2, getImportFile(address$1)].find((address) => {
+            return fsa.existsSync(address);
+        }) ?? address$1
+    );
+};
+
+/**
+ * get import
+ */
+export const getImportFile = (address: string) => {
+    if (/\/$/.test(address)) return address.replace(/\/$/, '');
+    if (/\/[^.]+$/.test(address)) return address;
+    return address.split('.').toSpliced(-1, 1).join('.');
 };
 
 // const relative = path.isAbsolute(address) ? path.relative(caokongPath, address) : address;
@@ -86,11 +96,7 @@ export const srcToAliasWithCaoKong = (address: string) => {
             break;
     }
 
-    return path$
-        .replace(caokongPath, '~ck')
-        .replace(assistsPath, '~ass')
-        .replace(huluPath, '~hulu')
-        .replace(sourcePath, '@');
+    return path$.replace(caokongPath, '~ck').replace(assistsPath, '~ass').replace(huluPath, '~hulu').replace(sourcePath, '@');
 };
 
 /**

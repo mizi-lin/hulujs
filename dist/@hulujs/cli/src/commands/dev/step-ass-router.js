@@ -58,9 +58,7 @@ export const stepAssRouter = async () => {
             view: importAlias(getPathExistByCaoKong('./views/no-match/index.ts'))
         }
     ].filter(Boolean);
-    const wrapperRoutes = [
-        { path: '/', view: importAlias(layoutPath), children: [...presetRoutes, ...srcRoutes$tree] }
-    ];
+    const wrapperRoutes = [{ path: '/', view: importAlias(layoutPath), children: [...presetRoutes, ...srcRoutes$tree] }];
     // 解析
     const routes$tile = tile({ routes: wrapperRoutes });
     const lazys = {};

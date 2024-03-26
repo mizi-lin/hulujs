@@ -51,9 +51,9 @@ export const getSubtype = (scope, key, params, options) => {
         return [];
     const name$ = getSubtypeKey(key);
     const regkey = `${scope}${name$}`;
-    const store$ = Regc.get(RegKey.MET_ECHARTS_SUBTYPES);
+    const store$ = Regc.get(RegKey.MET_ECHARTS_SUBTYPES) ?? new Map();
     const params$ = { ...params, scope, subtype: key, options: Object.freeze(cloneDeep(options)) };
-    const func = store$.get(regkey);
+    const func = store$?.get?.(regkey);
     if (scope === 'all')
         return func?.(params$) ?? [];
     // 默认读取基于图表类型的subtype, 若没有则读取全局的scope

@@ -1,12 +1,15 @@
-import { $repo, $tpl } from '@hulujs/core';
+import { $load, $repo, $tpl } from '@hulujs/core';
 import { NodeEnvEnum } from '@hulujs/types';
 import { rmSync } from 'fs';
 
 export const stepGenerateCaoKong = async () => {
     const sourcePath = $repo.template('caokong/.caokong');
     const targetPath = $repo.cwd('hulu/.caokong');
+    const configPath = $repo.config();
+    const config = await $load.ts(configPath);
     const params = {
-        isDev: process.env.NODE_ENV === NodeEnvEnum.development
+        isDev: process.env.NODE_ENV === NodeEnvEnum.development,
+        config
     };
     const tplOptions = {
         globbyOptions: { dot: true, ignore: ['**/index.ts.ejs'] }

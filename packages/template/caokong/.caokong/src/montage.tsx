@@ -16,5 +16,5 @@ export const montage = () => {
     container.dataset['metMontageIgnore'] = 'true';
     document.body.appendChild(container);
     const root = createRoot(container);
-    root.render(<RecoilRoot>{/* <Ball /> */}</RecoilRoot>);
+    root.render(<RecoilRoot>{<Ball />}</RecoilRoot>);
 };

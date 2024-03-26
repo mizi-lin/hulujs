@@ -55,7 +55,17 @@ export const defaultOptions = {
     /**
      * 矩形树图
      */
-    treemap: { legend: {}, tooltip: {}, series: [] },
+    treemap: {
+        legend: void 0,
+        series: [],
+        'series.*.roam': false,
+        'series.*.width': '100%',
+        'series.*.height': '100%',
+        'series.*.breadcrumb.show': false,
+        'series.*.nodeClick': false,
+        'series.*.colorAlpha': [0.5, 0.9],
+        tooltip: {}
+    },
 
     /**
      * 雷达图
@@ -109,18 +119,18 @@ export const defaultOptions = {
     /**
      * 关系图
      */
-    graph: { legend: {}, tooltip: {}, series: [{}] },
+    graph: { legend: {}, tooltip: {}, series: [], 'series.*.layout': 'force' },
 
     /**
      * 桑基图
      * x -> source, name -> target
      */
-    sankey: { tooltip: {}, series: [{}] },
+    sankey: { tooltip: {}, series: [] },
 
     /**
      * 漏斗图
      */
-    funnel: { tooltip: {}, series: [{}] }
+    funnel: { tooltip: {}, series: [] }
 };
 
 /**
@@ -133,10 +143,11 @@ export const typeDemensionMap = {
     map: 'one',
     chinaVerticalMap: 'one',
     chinaMap: 'one',
-    graph: 'one',
     gauge: 'one',
     funnel: 'one',
-    liquidFill: 'one'
+    liquidFill: 'one',
+    graph: 'flatten',
+    treemap: 'tree'
 };
 
 /**

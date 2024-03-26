@@ -54,13 +54,7 @@ export interface MetPanelProps extends MetProps {
     toolbar: false | ReactNode | MetPanelToolbar;
     ruyi?: MetRuyiProps;
     bordered?: boolean | 'all' | 'wrapper' | 'inner' | 'none';
-    theme?: {
-        borderColor: '#dedede';
-        padding: 8;
-        raduis: 8;
-    };
+    theme?: Record<string, any>;
 }
-export declare const themeConfigAtom: import("recoil").RecoilState<Record<string, any>>;
-export declare const useThemeConfig: (config?: Record<string, any>) => Record<string, any>;
 declare const MetPanel: import("react").ForwardRefExoticComponent<Omit<MetPanelProps, "ref"> & import("react").RefAttributes<HTMLElement>>;
 export default MetPanel;

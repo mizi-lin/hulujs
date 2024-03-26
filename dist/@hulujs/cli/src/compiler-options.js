@@ -3,7 +3,7 @@ export const compilerOptions = [
         label: 'Vite v5',
         value: 'vite',
         hint: '推荐，默认',
-        version: '5.0.2',
+        version: '5.1.6',
         dev: 'vite',
         build: 'vite build',
         config: {

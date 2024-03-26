@@ -106,9 +106,15 @@ export declare const defaultOptions: {
      * 矩形树图
      */
     treemap: {
-        legend: {};
-        tooltip: {};
+        legend: undefined;
         series: never[];
+        'series.*.roam': boolean;
+        'series.*.width': string;
+        'series.*.height': string;
+        'series.*.breadcrumb.show': boolean;
+        'series.*.nodeClick': boolean;
+        'series.*.colorAlpha': number[];
+        tooltip: {};
     };
     /**
      * 雷达图
@@ -194,7 +200,8 @@ export declare const defaultOptions: {
     graph: {
         legend: {};
         tooltip: {};
-        series: {}[];
+        series: never[];
+        'series.*.layout': string;
     };
     /**
      * 桑基图
@@ -202,14 +209,14 @@ export declare const defaultOptions: {
      */
     sankey: {
         tooltip: {};
-        series: {}[];
+        series: never[];
     };
     /**
      * 漏斗图
      */
     funnel: {
         tooltip: {};
-        series: {}[];
+        series: never[];
     };
 };
 /**
@@ -222,10 +229,11 @@ export declare const typeDemensionMap: {
     map: string;
     chinaVerticalMap: string;
     chinaMap: string;
-    graph: string;
     gauge: string;
     funnel: string;
     liquidFill: string;
+    graph: string;
+    treemap: string;
 };
 /**
  * 默认各类型的chart

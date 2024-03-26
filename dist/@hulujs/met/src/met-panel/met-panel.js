@@ -1,26 +1,17 @@
 import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
-import { forwardRef, useEffect } from 'react';
+import { forwardRef } from 'react';
 import { Met, MetBox, MetCenter, MetDynamic, MetGene, MetLeft, MetRuyi, isReactElement } from '@hulujs/met';
 import { isFalsy, upArray } from '@hulujs/mu';
 import { Tooltip } from 'antd';
 import { curry } from 'lodash-es';
-import { RecoilRoot, atom, atomFamily, useRecoilBridgeAcrossReactRoots_UNSTABLE, useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
+import { RecoilRoot, atomFamily, useRecoilBridgeAcrossReactRoots_UNSTABLE, useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
 import { getTools, registerTools } from './register-tools.js';
-export const themeConfigAtom = atom({
-    key: 'themeConfigAtom',
-    default: {}
-});
-export const useThemeConfig = (config) => {
-    const [themeConfig, setThemeConfig] = useRecoilState(themeConfigAtom);
-    useEffect(() => {
-        if (config) {
-            setThemeConfig(config);
-        }
-    }, []);
-    return themeConfig;
+import { RegKey, Regc } from '@hulujs/msc';
+const getThemeConfig = (module, latestConfig = {}) => {
+    const config = Regc.get(RegKey.THEME_CONFIG);
+    return { padding: 8, raduis: 8, borderColor: '#dedede', ...(config ?? {}), ...(config?.[module] ?? {}), ...latestConfig };
 };
 const MetQuestionIcon = () => {
-    const theme = useThemeConfig();
     return (_jsx(MetCenter, { span: 16, w: 16, h: 16, br: '50%', color: '#666', bd: `2px solid #666`, children: "?" }));
 };
 registerTools({
@@ -60,10 +51,11 @@ const analysisTitle = (anys) => {
     return anys;
 };
 const MetPanelTitleText = (props) => {
-    const { theme, options, type, order = {}, ...extra } = props;
+    const { options, type, order = {}, ...extra } = props;
+    const theme = getThemeConfig('MetPanel');
     const config = {
-        title: { fs: 18, fw: 400, order: 10 },
-        sub: { fs: 14, fw: 200, color: '#777', order: 20 },
+        title: { fs: theme.titleFontSize ?? 18, fw: theme.titleFontWeight ?? 500, order: 10 },
+        sub: { fs: theme.subFontSize ?? 14, fw: theme.subFontWeight ?? 200, color: theme.subFontColor ?? '#777', order: 20 },
         tip: { order: 30 },
         description: { fs: 14, color: '#555' }
     };
@@ -158,7 +150,7 @@ const MetPanelFooter = (props) => {
 };
 const MetPanelInner = forwardRef((props, ref) => {
     const { RecoilBridge, children, header = {}, footer, main = {}, title, toolbar, bordered, theme: theme$ = {}, ruyi, ...extra } = props;
-    const theme = useThemeConfig({ padding: 8, raduis: 8, borderColor: '#dedede', ...theme$ });
+    const theme = getThemeConfig('MetPanel', theme$);
     const setCommonState = useSetRecoilState(metToolState('MetToolsCommon'));
     const setBorder = curry(analysisBorder)(theme, bordered);
     const footer$ = isReactElement(footer) ? { children: footer } : footer;

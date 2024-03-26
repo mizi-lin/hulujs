@@ -1,3 +1,4 @@
+/// <reference types="lodash" resolution-mode="require"/>
 /**
  * PropPathType
  * bracket: 中挂号链式
@@ -26,4 +27,5 @@ export declare const cashToPropPath: (cash: (string | number)[], type?: PropPath
  * - 针对循环引用的规则限定
  */
 export declare const tile: (obj: Record<string, any>, chainType?: PropPathType, deep?: number) => Record<string, any>;
+export declare const prefixTile: (prefix: string, obj: Record<string, any>, chainType?: PropPathType, deep?: number) => import("lodash").Dictionary<any>;
 export default tile;

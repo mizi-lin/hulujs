@@ -1,5 +1,5 @@
-import { format, map, withIIFE } from '@hulujs/mu';
-import { ceil, maxBy } from 'lodash-es';
+import { format, map, withIIFE, compact, tile, prefixTile } from '@hulujs/mu';
+import { ceil, cloneDeep, findIndex, mapKeys, maxBy } from 'lodash-es';
 import { MetEchartsDataRow } from './met-echarts.js';
 
 export const transformTypeBySeries = (type: string) => {
@@ -141,6 +141,36 @@ export const transformType = (type: string) => {
                 'series.*.center': void 0,
                 'visualMap.min': minValue,
                 'visualMap.max': maxValue
+            };
+        },
+
+        graph: (params) => {
+            /**
+             * Graph 的字段名不能直接使用category，因为是series里的关键值
+             */
+            const { data = [], legendData, series } = params;
+            const links = cloneDeep(data)
+                .filter((parent) => !!parent)
+                .map(({ key: target, parent: source }) => {
+                    return compact({ source, target }, 'falsy');
+                })
+                .filter(({ source }) => !!source);
+
+            const data$ = data.map((item) => {
+                return {
+                    ...item,
+                    category: item.category ?? findIndex(legendData, ({ name }) => name === (item?.serie ?? item?.d))
+                };
+            });
+
+            return {
+                ...prefixTile('series.0.links', links),
+                ...prefixTile('series.0.categories', legendData),
+                'series.0.data': data$,
+                'series.0.symbolSize': 32,
+                'series.0.force.repulsion': 80,
+                xAxis: void 0,
+                yAxis: void 0
             };
         }
     };

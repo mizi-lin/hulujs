@@ -25,6 +25,7 @@ import {
     useSetRecoilState
 } from 'recoil';
 import { getTools, registerTools } from './register-tools.js';
+import { RegKey, Regc } from '@hulujs/msc';
 
 export interface MetPanelTitleTextProps extends MetProps {
     text: ReactNode;
@@ -86,30 +87,15 @@ export interface MetPanelProps extends MetProps {
     // 边框配置
     bordered?: boolean | 'all' | 'wrapper' | 'inner' | 'none';
     // 主体
-    theme?: {
-        borderColor: '#dedede';
-        padding: 8;
-        raduis: 8;
-    };
+    theme?: Record<string, any>;
 }
 
-export const themeConfigAtom = atom<Record<string, any>>({
-    key: 'themeConfigAtom',
-    default: {}
-});
-
-export const useThemeConfig = (config?: Record<string, any>) => {
-    const [themeConfig, setThemeConfig] = useRecoilState(themeConfigAtom);
-    useEffect(() => {
-        if (config) {
-            setThemeConfig(config);
-        }
-    }, []);
-    return themeConfig;
+const getThemeConfig = (module: string, latestConfig: Record<string, any> = {}) => {
+    const config: Record<string, any> = Regc.get(RegKey.THEME_CONFIG);
+    return { padding: 8, raduis: 8, borderColor: '#dedede', ...(config ?? {}), ...(config?.[module] ?? {}), ...latestConfig };
 };
 
 const MetQuestionIcon = () => {
-    const theme = useThemeConfig();
     return (
         <MetCenter span={16} w={16} h={16} br={'50%'} color={'#666'} bd={`2px solid #666`}>
             ?
@@ -162,11 +148,12 @@ const analysisTitle = (anys: ReactNode | MetPanelTitleProps) => {
 };
 
 const MetPanelTitleText = (props) => {
-    const { theme, options, type, order = {}, ...extra } = props;
+    const { options, type, order = {}, ...extra } = props;
+    const theme = getThemeConfig('MetPanel');
 
     const config = {
-        title: { fs: 18, fw: 400, order: 10 },
-        sub: { fs: 14, fw: 200, color: '#777', order: 20 },
+        title: { fs: theme.titleFontSize ?? 18, fw: theme.titleFontWeight ?? 500, order: 10 },
+        sub: { fs: theme.subFontSize ?? 14, fw: theme.subFontWeight ?? 200, color: theme.subFontColor ?? '#777', order: 20 },
         tip: { order: 30 },
         description: { fs: 14, color: '#555' }
     };
@@ -331,7 +318,7 @@ const MetPanelFooter: FC<MetProps> = (props) => {
 
 const MetPanelInner = forwardRef<HTMLElement, MetPanelProps>((props, ref) => {
     const { RecoilBridge, children, header = {}, footer, main = {}, title, toolbar, bordered, theme: theme$ = {}, ruyi, ...extra } = props;
-    const theme = useThemeConfig({ padding: 8, raduis: 8, borderColor: '#dedede', ...theme$ });
+    const theme = getThemeConfig('MetPanel', theme$);
     const setCommonState = useSetRecoilState(metToolState('MetToolsCommon'));
     const setBorder = curry(analysisBorder)(theme, bordered);
     const footer$ = isReactElement(footer) ? { children: footer } : footer;

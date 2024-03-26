@@ -29,6 +29,6 @@ export const getOptions = ({ data, type, subtypes, mappers, dimension, setting, 
     // 清理undefined/null属性值
     // 支持写入undefined/null的属性，表示清理已配置的值，恢复默认值
     // return compact(tileObj, 'nil');
-    const tileObj$ = baseCompact(tileObj, { runIffe: false });
+    const tileObj$ = baseCompact(tileObj, { runIffe: false, a: true });
     return baseStack(tileObj$, { runIffe: true, source: { obj } });
 };

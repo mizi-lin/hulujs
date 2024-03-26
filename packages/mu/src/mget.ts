@@ -16,7 +16,8 @@ const replaceSign = (str: string | number, toggle = false) => {
     each(Object.values(PROPPATH_SIGN), (value) => {
         const regexp = toggle ? value[1] : `\\${value[0]}`;
         const placement = toggle ? value[0] : value[1];
-        str$ = str$.replace(new RegExp(regexp, 'g'), placement);
+        const reg = new RegExp(regexp, 'g');
+        str$ = str$.replace(reg, placement);
     });
     return str$;
 };
@@ -72,10 +73,12 @@ export const propPathToCash = (path: PropPaths, type?: 'unwrapper' | 'normal') =
         .replace(/\.\'(.*?)\'$/g, instead)
         .replace(/\'(.*?)\'/g, instead)
         // 提取[]内的信息
-        .replace(/\[([^\]]*)\]/g, instead);
+        .replace(/\[([^\[\]]*)\]/g, instead);
 
     // 按`.[]`三个字符分割处理后的字符串
-    const cashs = path$.split(/[.[\]]/g).filter(Boolean);
+    const cashs = path$.split(/[.\[\]]/g).filter(Boolean);
+
+    // console.log(path, path$, cashs);
 
     const cashs$ = cashs.map((item) => {
         // 鸭子转换数字
@@ -86,6 +89,9 @@ export const propPathToCash = (path: PropPaths, type?: 'unwrapper' | 'normal') =
 
     return cashs$;
 };
+
+const a = propPathToCash('');
+console.log(a);
 
 export const propCashToPath = (cash: PropCash) => {
     if (!Array.isArray(cash)) return cash;

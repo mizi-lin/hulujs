@@ -12,4 +12,5 @@ export var RegKey;
     RegKey["RUYI_REQUEST_INTERCEPTORS"] = "hulu/RUYI_REQUEST_INTERCEPTORS";
     RegKey["RUYI_RESPONSE_INTERCEPTORS"] = "hulu/RUYI_RESPONSE_INTERCEPTORS";
     RegKey["RUYI_ERROR_CATCH"] = "hulu/RUYI_ERROR_CATCH";
+    RegKey["THEME_CONFIG"] = "met/THEME_CONFIG";
 })(RegKey || (RegKey = {}));

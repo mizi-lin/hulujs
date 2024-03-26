@@ -14,7 +14,7 @@ export { default as dichotomy } from './dichotomy.js';
 /** collection 集合(row 数组 + 对象) */
 export { default as each } from './each.js';
 export { default as map } from './map.js';
-export { default as tile } from './tile.js';
+export { default as tile, prefixTile } from './tile.js';
 export { default as stack } from './stack.js';
 export { baseStack } from './stack.js';
 export { default as compact } from './compact.js';

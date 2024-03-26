@@ -1,6 +1,7 @@
 // /**
 //  * 拍平集合体层级，呈扁平化显示
 //  */
+import { mapKeys } from 'lodash-es';
 import { propPathToCash } from './mget.js';
 export const PROPPATH_SIGN = {
     // 匹配双引号
@@ -63,9 +64,9 @@ export const tile = (obj, chainType = 'dot', deep = 13) => {
     let memory = new WeakMap();
     function recurse(current, props = '') {
         count++;
-        if (count > 300) {
-            return result;
-        }
+        // if (count > 300) {
+        //     return result;
+        // }
         // 如果当前值不是对象，直接返回
         if (Object(current) !== current) {
             result[props] = current;
@@ -115,5 +116,10 @@ export const tile = (obj, chainType = 'dot', deep = 13) => {
     recurse(obj);
     memory = null;
     return result;
+};
+export const prefixTile = (prefix, obj, chainType, deep) => {
+    return mapKeys(tile(obj, chainType, deep), (value, key) => {
+        return `${prefix}.[${key}]`;
+    });
 };
 export default tile;

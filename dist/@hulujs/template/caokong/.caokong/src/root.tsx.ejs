@@ -2,10 +2,11 @@ import { ComponentType, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { RecoilRoot, RecoilEnv } from 'recoil';
+import { beforeInit, vconsole, reportWebVitals, montage } from '~ck'
 import RecoilNexus from 'recoil-nexus';  
 
 <% if ( isDev ) {%>
-    import { vconsole, reportWebVitals, montage } from '~ck'
+    
     /**
      * 安装Redux DevTool调试Recoil
      * https://github.com/theohagos/recoil-observer
@@ -21,6 +22,7 @@ RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 function render(App: ComponentType) {
     const container = document.getElementById('root') as HTMLElement;
     const root = createRoot(container);
+    beforeInit();
     root.render(
         <StrictMode>
             <RecoilRoot>
