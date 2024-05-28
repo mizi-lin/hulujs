@@ -12,13 +12,14 @@
         "build": "tsc"
     },
     "dependencies": {
+        "@hulujs/template": "0.0.1",
+        "@hulujs/mu": "0.0.1",
         "@babel/core": "^7.23.3",
         "@babel/helper-module-transforms": "^7.23.3",
         "@babel/helper-plugin-utils": "^7.22.5",
         "@babel/parser": "^7.23.3",
         "@babel/plugin-transform-runtime": "^7.23.3",
         "@clack/prompts": "^0.7.0",
-        "@hulujs/mu": "0.0.1",
         "@hulujs/types": "0.0.1",
         "ansi-styles": "^6.2.1",
         "chalk": "^5.2.0",

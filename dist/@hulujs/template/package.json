@@ -8,8 +8,13 @@
     "module": "./src/index.ts",
     "type": "module",
     "scripts": {
-        "rm": "rm -rf ../../dist/@hulujs/template",
-        "watch": "cp -r ../template ../../dist/@hulujs/template",
-        "build": "yarn rm && cp -r ../template ../../dist/@hulujs/template"
+        "rm": "rimraf ../../dist/@hulujs/template",
+        "cp": "cp -r ../template  ../../dist/@hulujs/template",
+        "watch": "yarn run build",
+        "build": "yarn rm && yarn cp"
+    },
+    "devDependencies": {
+        "copyfiles": "^2.4.1",
+        "rimraf": "^5.0.7"
     }
 }

@@ -23,6 +23,7 @@
         "@hulujs/core": "0.0.1",
         "@hulujs/mu": "0.0.1",
         "@hulujs/types": "0.0.1",
+        "@hulujs/template": "0.0.1",
         "omelette": "^0.4.17",
         "yargs": "^17.7.1"
     },
