@@ -10,6 +10,7 @@
     "type": "module",
     "scripts": {
         "watch": "tsc --declaration --watch",
-        "build": "tsc --declaration"
+        "pkg": "node ../../build.js",
+        "build": "tsc --declaration && yarn pkg"
     }
 }

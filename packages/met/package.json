@@ -10,7 +10,8 @@
     "scripts": {
         "config": "yarn run tsc --showConfig",
         "watch": "tsc --watch",
-        "build": "tsc"
+        "pkg": "node ../../build.js",
+        "build": "tsc && yarn pkg"
     },
     "dependencies": {
         "@hulujs/mu": "^0.1.1",

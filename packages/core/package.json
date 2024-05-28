@@ -9,7 +9,8 @@
     "type": "module",
     "scripts": {
         "watch": "tsc --watch",
-        "build": "tsc"
+        "pkg": "node ../../build.js",
+        "build": "tsc && yarn pkg"
     },
     "dependencies": {
         "@babel/core": "^7.23.3",

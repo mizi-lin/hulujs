@@ -4,7 +4,8 @@
       "dependsOn": []
     },
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": true
     },
     "rm": {
       "dependsOn": []
