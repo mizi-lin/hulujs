@@ -5,6 +5,7 @@
     "description": "Hulu v5",
     "type": "module",
     "scripts": {
+        "graph": "yarn dlx nx graph",
         "prewatch": "lerna run build",
         "watch1": "lerna watch -- lerna run build --since",
         "watch": "lerna watch -- lerna run build --scope=$LERNA_PACKAGE_NAME"

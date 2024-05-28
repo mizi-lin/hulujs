@@ -17,6 +17,9 @@
     },
     "scripts": {
         "watch": "tsc --watch",
+        "rm": "rm -rf ../../dist/@hulujs/cli",
+        "cp": "cp -r ./package.json ../../dist/@hulujs/cli/package.json",
+        "prebuild": "yarn rm & yarn cp",
         "build": "tsc"
     },
     "dependencies": {
