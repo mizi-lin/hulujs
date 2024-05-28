@@ -13,7 +13,7 @@ import {
     isReactElement
 } from '@hulujs/met';
 import { isFalsy, upArray } from '@hulujs/mu';
-import { Tooltip } from 'antd';
+// import { Tooltip } from 'antd';
 import { curry } from 'lodash-es';
 import {
     RecoilRoot,
@@ -76,6 +76,10 @@ export interface MetPanelToolbar extends MetProps {
     // 即 count = 0 的时候，直接进入分组模式
     count?: number;
 }
+
+const Tooltip = ({ children, title, placement }) => {
+    return <>{children}</>;
+};
 
 export interface MetPanelProps extends MetProps {
     header: false | MetProps;
@@ -162,7 +166,7 @@ const MetPanelTitleText = (props) => {
         if (type === 'tip') {
             return (
                 <Tooltip title={options} placement={'right'}>
-                    <Met tag={'span'} order={order[type]} {...config[type]}>
+                    <Met tag={'span'} order={order[type]} w={'100%'} {...extra} {...config[type]}>
                         <MetQuestionIcon />
                     </Met>
                 </Tooltip>
@@ -170,7 +174,7 @@ const MetPanelTitleText = (props) => {
         }
 
         return (
-            <Met tag={'span'} order={order[type]} {...config[type]}>
+            <Met tag={'span'} order={order[type]} w={'100%'} {...extra} {...config[type]}>
                 {options}
             </Met>
         );
@@ -206,11 +210,11 @@ const MetPanelTitle: FC<{ title: ReactNode | MetPanelTitleProps }> = (props) => 
     return (
         <MetBox>
             <MetLeft tag={'div'}>
-                {!isFalsy(title) && <MetPanelTitleText options={title} type={'title'} order={orders} />}
-                {!isFalsy(sub) && <MetPanelTitleText options={sub} type={'sub'} order={orders} />}
-                {!isFalsy(tip) && <MetPanelTitleText options={tip} type={'tip'} order={orders} />}
+                {!isFalsy(title) && <MetPanelTitleText className={'met-panel-title'} options={title} type={'title'} order={orders} />}
+                {!isFalsy(sub) && <MetPanelTitleText className={'met-panel-sub'} options={sub} type={'sub'} order={orders} />}
+                {!isFalsy(tip) && <MetPanelTitleText className={'met-panel-tip'} options={tip} type={'tip'} order={orders} />}
             </MetLeft>
-            {!isFalsy(description) && <MetPanelTitleText options={description} type={'description'} />}
+            {!isFalsy(description) && <MetPanelTitleText className={'met-panel-description'} options={description} type={'description'} />}
         </MetBox>
     );
 };
@@ -298,7 +302,7 @@ const MetPanelToolbar: FC<MetProps> = (props) => {
 const MetPanelHeader: FC<MetProps> = (props) => {
     const { title, toolbar, header, ...extra } = props;
     return (
-        <MetCenter placement="between" tag={'header'} gap={16} {...extra}>
+        <MetCenter w={'100%'} placement="between" tag={'header'} gap={16} {...extra}>
             {!!title && <MetPanelTitle title={title} />}
             {!!toolbar && <MetPanelToolbar flex={1} toolbar={toolbar} />}
         </MetCenter>
@@ -337,7 +341,15 @@ const MetPanelInner = forwardRef<HTMLElement, MetPanelProps>((props, ref) => {
             {...extra}
         >
             {!!header && (
-                <MetPanelHeader theme={theme} title={title} toolbar={toolbar} p={theme?.padding} {...setBorder('header')} {...header} />
+                <MetPanelHeader
+                    w={'100%'}
+                    theme={theme}
+                    title={title}
+                    toolbar={toolbar}
+                    p={theme?.padding}
+                    {...setBorder('header')}
+                    {...header}
+                />
             )}
             {!!main && children && (
                 <Met tag={'main'} flex={1} p={theme?.padding} {...main}>

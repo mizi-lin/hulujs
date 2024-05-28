@@ -2,8 +2,8 @@
  * 配置Git信息
  */
 
-import { $log, $prompts, Git, chalk, fsa, path, simpleGit } from '@hulujs/core';
-import { Regex, isNil } from '@hulujs/mu';
+import { $log, $prompts, Git, chalk } from '@hulujs/core';
+import { Regex } from '@hulujs/mu';
 
 const setGit = async (projectPWD) => {
     $log.info([
@@ -22,11 +22,7 @@ const setGit = async (projectPWD) => {
     });
 
     if (!useGit) {
-        $log.info([
-            `不使用代理管理Git`,
-            `可以在hulu/config开启服务`,
-            `或使用命令 ${chalk.white('hulu git --useGit')} 开启`
-        ]);
+        $log.info([`不使用代理管理Git`, `可以在hulu/config开启服务`, `或使用命令 ${chalk.white('hulu git --useGit')} 开启`]);
         return void 0;
     }
 

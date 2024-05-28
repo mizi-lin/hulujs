@@ -139,6 +139,7 @@ const MetFlex: FC<MetFlexProps> = forwardRef((props: MetFlexProps, ref: Forwarde
     // @mark 需要使用权重最小的属性，若使用权重大的属性，则会覆盖小属性值
 
     const extra$: MetProps = {
+        style,
         display: inline ? 'inline-flex' : 'flex',
         ...overflow,
         ...compact({ flexDirection, flexWrap, flexShrink, justifyContent, alignItems }),
@@ -151,7 +152,7 @@ const MetFlex: FC<MetFlexProps> = forwardRef((props: MetFlexProps, ref: Forwarde
     // });
 
     return (
-        <Met ref={ref$} tag={'section'} className={clx('met-flex', className)} {...extra$}>
+        <Met ref={ref$} tag={'section'} w={'100%'} className={clx('met-flex', className)} {...extra$}>
             <MetGene dominant={scroll ? { flexShrink: 0 } : {}}>{children}</MetGene>
         </Met>
     );

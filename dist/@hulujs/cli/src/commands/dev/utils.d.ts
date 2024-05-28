@@ -5,7 +5,7 @@ export declare const getOvrdSrcPath: (address: string) => string;
 /**
  * 计算是否已安装CK
  */
-export declare const isInstallCaoKong: (address: string) => any;
+export declare const isInstallCaoKong: (address: string) => boolean;
 /**
  * 计算操控体系的实际地址
  */

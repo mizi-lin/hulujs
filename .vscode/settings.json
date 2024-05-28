@@ -7,6 +7,8 @@
     "prettier.useEditorConfig": false,
     "prettier.useTabs": false,
     "prettier.configPath": ".prettierrc.json",
+    // typescript 中文提示
+    "typescript.locale": "zh-CN",
 
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"

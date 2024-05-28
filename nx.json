@@ -1,11 +1,13 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": []
-      }
+  "targetDefaults": {
+    "watch": {
+      "dependsOn": []
+    },
+    "build": {
+      "dependsOn": []
+    },
+    "rm": {
+      "dependsOn": []
     }
-  },
-  "targetDefaults": {}
+  }
 }

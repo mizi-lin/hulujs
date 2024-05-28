@@ -80,8 +80,6 @@ export const propPathToCash = (path, type) => {
     });
     return cashs$;
 };
-const a = propPathToCash('');
-console.log(a);
 export const propCashToPath = (cash) => {
     if (!Array.isArray(cash))
         return cash;

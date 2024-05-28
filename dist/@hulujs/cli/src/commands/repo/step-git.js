@@ -18,11 +18,7 @@ const setGit = async (projectPWD) => {
         message: `? 是否委托hulu代理管理Git`
     });
     if (!useGit) {
-        $log.info([
-            `不使用代理管理Git`,
-            `可以在hulu/config开启服务`,
-            `或使用命令 ${chalk.white('hulu git --useGit')} 开启`
-        ]);
+        $log.info([`不使用代理管理Git`, `可以在hulu/config开启服务`, `或使用命令 ${chalk.white('hulu git --useGit')} 开启`]);
         return void 0;
     }
     // const isGitInit = fsa.existsSync(path.join(projectPWD, '.git'));

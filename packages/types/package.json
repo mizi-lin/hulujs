@@ -11,7 +11,5 @@
     "scripts": {
         "watch": "tsc --declaration --watch",
         "build": "tsc --declaration"
-    },
-    "dependencies": {},
-    "devDependencies": {}
+    }
 }

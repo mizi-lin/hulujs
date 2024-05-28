@@ -1,7 +1,8 @@
 import { Met, MetProps } from '@hulujs/met';
 import { DataRow, EchartType, Mapper, MapperValue, SubTypes } from '@hulujs/types';
-import * as echarts from 'echarts';
+import echarts from 'echarts';
 import { EChartsOption } from 'echarts';
+
 import { FC, useEffect, useRef, useState } from 'react';
 import { bind } from 'size-sensor';
 import { getOptions } from './options.js';

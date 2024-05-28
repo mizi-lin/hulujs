@@ -19,14 +19,14 @@ export declare class Tpl {
     /**
      * 文本输出到文件
      */
-    out(content: string, targetPath: string, params?: Record<string, any>, options?: TplOutOptions): any;
+    out(content: string, targetPath: string, params?: Record<string, any>, options?: TplOutOptions): string;
     /**
      * 模板文件解析到文件输出
      */
-    fileout(srcPath: string, targetPath: string, params?: Record<string, any>, options?: TplOutOptions): any;
+    fileout(srcPath: string, targetPath: string, params?: Record<string, any>, options?: TplOutOptions): string;
     /**
      * 文件夹下的文件夹输出到文件夹输出
      */
-    dirout(srcPath: string, targetPath: string, params?: Params, options?: TplOutOptions): Promise<any>;
+    dirout(srcPath: string, targetPath: string, params?: Params, options?: TplOutOptions): Promise<string>;
 }
 export declare const $tpl: Tpl;

@@ -1,7 +1,7 @@
 export declare class Log {
     static Sign: string;
-    t(message: string | string[]): any;
-    text(message: string | string[], isStep?: boolean, sign?: string): any;
+    t(message: string | string[]): any[];
+    text(message: string | string[], isStep?: boolean, sign?: string): string;
     start(message: string | string[]): void;
     step(message: string | string[]): void;
     end(message: string | string[], exit?: boolean): false;

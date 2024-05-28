@@ -12,9 +12,8 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@hulujs/types": "0.0.1",
         "@hulujs/mu": "0.0.1",
+        "@hulujs/types": "0.0.1",
         "axios": "^1.6.0"
-    },
-    "devDependencies": {}
+    }
 }

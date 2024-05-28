@@ -102,3 +102,7 @@ export declare const Ruyi: (url: string, ruyiOptions?: RuyiOptions) => {
      */
     upload: (form: any, search?: Record<string, any>, options?: RuyiOptions) => Promise<any>;
 };
+export declare const Yiru: (options: RuyiOptions) => Promise<any>;
+/**
+ * Todo
+ */

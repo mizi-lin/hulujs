@@ -5,5 +5,5 @@ interface StepRepoArgs {
     compiler: 'vite' | string;
     dirname: string;
 }
-declare const stepRepo: ({ compiler, dirname }: StepRepoArgs) => Promise<any>;
+declare const stepRepo: ({ compiler, dirname }: StepRepoArgs) => Promise<string>;
 export default stepRepo;

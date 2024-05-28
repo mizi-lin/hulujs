@@ -90,9 +90,6 @@ export const propPathToCash = (path: PropPaths, type?: 'unwrapper' | 'normal') =
     return cashs$;
 };
 
-const a = propPathToCash('');
-console.log(a);
-
 export const propCashToPath = (cash: PropCash) => {
     if (!Array.isArray(cash)) return cash;
     const signs = Object.values(PROPPATH_SIGN).map(([sign]) => sign);

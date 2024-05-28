@@ -53,9 +53,8 @@ export const fuzzypath = async (question = {}) => {
     ]);
     return answer;
 };
-import * as fse from 'fs-extra';
-import fs from 'node:fs';
-export const fsa = { ...fse, ...fs };
+export { default as fs } from 'node:fs';
+// export * as fse from 'fs-extra';
 export { globby } from 'globby';
 export { default as shell } from 'shelljs';
 export { default as chalk } from 'chalk';

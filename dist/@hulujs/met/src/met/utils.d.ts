@@ -1,4 +1,4 @@
-/// <reference types="react" resolution-mode="require"/>
+/// <reference types="react" />
 /**
  * 使用 useCombinedRefs 高阶函数可以将多个 ref 合并为一个 ref对象，并返回该 ref 对象
  */

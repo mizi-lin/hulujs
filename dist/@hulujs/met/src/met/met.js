@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef, useEffect, useRef } from 'react';
 import clx from 'classnames';
-import { groupBy, omit } from 'lodash-es';
+import { groupBy, isPlainObject, omit } from 'lodash-es';
 import { compact, isFalsy, map } from '@hulujs/mu';
 import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
 import { isDev } from '../env.js';
@@ -51,6 +51,18 @@ const adjustOverflowScroll = (scroll, overflowProps) => {
         return {};
     return isFalsy(overflowProps) ? overflowProps : { overflow: 'auto' };
 };
+const conditionStyle = (styles) => {
+    return map(styles, (style) => {
+        if (isPlainObject(style)) {
+            const [value, active] = Object.entries(style)[0];
+            return active ? value : undefined;
+        }
+        return style;
+    });
+};
+const adjustPadding = (ptb, plr) => {
+    return { ...(ptb ? { paddingTop: ptb, paddingBottom: ptb } : {}), ...(plr ? { paddingLeft: plr, paddingRight: plr } : {}) };
+};
 /**
  * border 系样式处理
  */
@@ -60,7 +72,7 @@ const Met = forwardRef((props, ref) => {
     const { tag = 'div', children, style = {}, className = '', componentClassName, src, href, alt, inline, none, scroll = false, nogene = false, debug, comment, full, ...extra } = props;
     const crossProps = omit(props, 'children', 'tag', 'componentClassName', 'propCover');
     const TagName = tag;
-    const { w, width = w, h, height = h, lh, lineHeight = lh, bd, border = bd, bdt, borderTop = bdt, bdr, borderRight = bdr, bdb, borderBottom = bdb, bdl, borderLeft = bdl, br, borderRadius = br, bg, background = bg, o, overflow, ox, overflowX, oy, overflowY, p, padding = p, pl, paddingLeft = pl, pt, paddingTop = pt, pr, paddingRight = pr, pb, paddingBottom = pb, m, margin = m, ml, marginLeft = ml, mt, marginTop = mt, mr, marginRight = mr, mb, marginBottom = mb, fs, fontSize = fs, ff, fontFamily = ff, color, fw, fontWeight = fw, ta, textAlign = ta, va, verticalAlign = va, ...more } = extra;
+    const { w, width = w, h, height = h, lh, lineHeight = lh, bd, border = bd, bdt, borderTop = bdt, bdr, borderRight = bdr, bdb, borderBottom = bdb, bdl, borderLeft = bdl, br, borderRadius = br, bg, background = bg, o, overflow, ox, overflowX, oy, overflowY, p, padding = p, pl, paddingLeft = pl, plr, pt, paddingTop = pt, ptb, pr, paddingRight = pr, pb, paddingBottom = pb, m, margin = m, ml, marginLeft = ml, mt, marginTop = mt, mr, marginRight = mr, mb, marginBottom = mb, fs, fontSize = fs, ff, fontFamily = ff, color, fw, fontWeight = fw, ta, textAlign = ta, va, verticalAlign = va, ...more } = conditionStyle(extra);
     const toMap = (value) => {
         return map(value, ([key, value]) => {
             return { '::key': key, '::value': value };
@@ -98,6 +110,7 @@ const Met = forwardRef((props, ref) => {
         color,
         textAlign,
         ...properties$,
+        ...adjustPadding(ptb, plr),
         ...adjustOverflowScroll(scroll, { overflow, overflowY }),
         ...adjustBorder({ border, borderTop, borderRight, borderBottom, borderLeft }),
         ...inlineDisplay(inline, extra.display),

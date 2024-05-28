@@ -67,7 +67,8 @@ const MetGene: FC<MetGeneProps> = (props) => {
         // html tag
         if (!['function', 'object'].includes(typeof col.type)) {
             const props$ = mapKeys(props, (value, key) => {
-                return /^on[A-Z]/.test(key) ? key : key.toLowerCase();
+                const isOrigin = /^on[A-Z]/.test(key) || ['className', 'dangerouslySetInnerHTML'].includes(key);
+                return isOrigin ? key : key.toLowerCase();
             });
             return cloneElement(col, props$);
         }

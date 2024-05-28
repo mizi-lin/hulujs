@@ -17,7 +17,7 @@ export { default as MetEcharts } from './met-echarts/index.js';
 export { default as MetPanel } from './met-panel/index.js';
 export * from './met-echarts/index.js';
 
-export * from './demo/index.js';
+// export * from './demo/index.js';
 
 export * from './met/elements.js';
 export * from './utils/merge-refs.js';

@@ -60,8 +60,6 @@ export function baseCompact(...args) {
         return value;
     });
 
-    config.a && console.log('-->>', { ...markup, ...propPaths$clean }, cloneDeep(propPaths), collection);
-
     return baseStack({ ...markup, ...propPaths$clean }, config);
 }
 

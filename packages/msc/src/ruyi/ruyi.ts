@@ -374,3 +374,22 @@ export const Ruyi = function (url: string, ruyiOptions: RuyiOptions = {}) {
         }
     };
 };
+
+export const Yiru = function Yiru(options: RuyiOptions) {
+    const { url, method, search, payload, ...rest } = options;
+
+    return Request(method as RuyiMethod, url, search, payload, rest);
+};
+
+/**
+ * Todo
+ */
+// Ruyi()
+// interface RuyiOptions2 extends AxiosRequestConfig {
+//     // 动态 / data
+//     params: {};
+//     // search
+//     query: {};
+//     // body
+//     payload: {};
+// }

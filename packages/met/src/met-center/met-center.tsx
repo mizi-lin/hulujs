@@ -6,7 +6,7 @@ export interface MetCenterProps extends MetFlexProps {
 }
 
 const MetCenter: FC<MetCenterProps> = (props) => {
-    return <MetFlex placement={'center'} gap={8} {...props} />;
+    return <MetFlex placement={'center'} gap={8} w={'100%'} {...props} />;
 };
 
 export default MetCenter;

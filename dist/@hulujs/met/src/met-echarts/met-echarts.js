@@ -1,6 +1,6 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { Met } from '@hulujs/met';
-import * as echarts from 'echarts';
+import echarts from 'echarts';
 import { useEffect, useRef, useState } from 'react';
 import { bind } from 'size-sensor';
 import { getOptions } from './options.js';

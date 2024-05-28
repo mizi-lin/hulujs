@@ -1,4 +1,5 @@
-import { $repo, fsa, path } from '@hulujs/core';
+import { $repo, path } from '@hulujs/core';
+import fse from 'fs-extra';
 const TsPath = {
     '@/*': ['src/*'],
     '~ck': ['hulu/.caokong/src']
@@ -16,7 +17,7 @@ export const getOvrdSrcPath = (address) => {
  */
 export const isInstallCaoKong = (address) => {
     const address$1 = getOvrdSrcPath(address);
-    return fsa.existsSync(address$1);
+    return fse.existsSync(address$1);
 };
 /**
  * 计算操控体系的实际地址
@@ -28,7 +29,7 @@ export const getPathExistByCaoKong = (address) => {
     const address$1 = address$.replace(/^(@|~ck)/, sourcePath);
     const address$2 = address$.replace(/^(@|~ck)/, caokongPath);
     return ([address$1, getImportFile(address$1), address$2, getImportFile(address$1)].find((address) => {
-        return fsa.existsSync(address);
+        return fse.existsSync(address);
     }) ?? address$1);
 };
 /**

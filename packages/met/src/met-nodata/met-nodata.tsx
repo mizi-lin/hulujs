@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { MetCenter, MetDynamic, MetFlexProps } from '../index.js';
-import { Empty } from 'antd';
+// import { Empty } from 'antd';
 
 export interface MetNodataProps extends MetFlexProps {
     component?: ReactNode;
@@ -14,10 +14,13 @@ export interface MetNodataProps extends MetFlexProps {
  * @todo nodata, loading component 可以全局配置
  */
 const MetNodata: FC<MetNodataProps> = (props) => {
+    // @todo Empty
     const {
         description = <></>,
-        image = Empty.PRESENTED_IMAGE_SIMPLE,
-        component = <Empty image={image} description={description} />,
+        // image = Empty.PRESENTED_IMAGE_SIMPLE,
+        // component = <Empty image={image} description={description} />,
+        image = <></>,
+        component = <></>,
         ...extra
     } = props;
     return (

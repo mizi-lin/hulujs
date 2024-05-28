@@ -159,7 +159,8 @@ export const transformType = (type) => {
                 ...prefixTile('series.0.categories', legendData),
                 'series.0.data': data$,
                 'series.0.symbolSize': 32,
-                'series.0.force.repulsion': 80,
+                'series.0.force.repulsion': 40,
+                'series.0.force.edgeLength': 45,
                 xAxis: void 0,
                 yAxis: void 0
             };

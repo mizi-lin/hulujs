@@ -72,6 +72,11 @@ export const stepAssRouter = async () => {
             const importPath = importAlias(transformViewPath(value));
             lazys[lazyPath] = `__FUNC_PLACEHOLDER_START__() => import('${importPath}')__FUNC_PLACEHOLDER_END__`;
         }
+        const redirectRegx = /\.redirect$/;
+        if (redirectRegx.test(keyPath)) {
+            const redirectPath = keyPath.replace(redirectRegx, '.element');
+            lazys[redirectPath] = `__FUNC_PLACEHOLDER_START__<Navigate replace to={'${value}'} />__FUNC_PLACEHOLDER_END__`;
+        }
     });
     const routes$tile1 = { ...routes$tile, ...lazys };
     const routesSetting = stack(routes$tile1);

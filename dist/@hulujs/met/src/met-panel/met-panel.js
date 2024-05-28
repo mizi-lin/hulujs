@@ -1,12 +1,15 @@
-import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import { Fragment as _Fragment, jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { forwardRef } from 'react';
 import { Met, MetBox, MetCenter, MetDynamic, MetGene, MetLeft, MetRuyi, isReactElement } from '@hulujs/met';
 import { isFalsy, upArray } from '@hulujs/mu';
-import { Tooltip } from 'antd';
+// import { Tooltip } from 'antd';
 import { curry } from 'lodash-es';
 import { RecoilRoot, atomFamily, useRecoilBridgeAcrossReactRoots_UNSTABLE, useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
 import { getTools, registerTools } from './register-tools.js';
 import { RegKey, Regc } from '@hulujs/msc';
+const Tooltip = ({ children, title, placement }) => {
+    return _jsx(_Fragment, { children: children });
+};
 const getThemeConfig = (module, latestConfig = {}) => {
     const config = Regc.get(RegKey.THEME_CONFIG);
     return { padding: 8, raduis: 8, borderColor: '#dedede', ...(config ?? {}), ...(config?.[module] ?? {}), ...latestConfig };
@@ -61,9 +64,9 @@ const MetPanelTitleText = (props) => {
     };
     if (typeof options === 'string') {
         if (type === 'tip') {
-            return (_jsx(Tooltip, { title: options, placement: 'right', children: _jsx(Met, { tag: 'span', order: order[type], ...config[type], children: _jsx(MetQuestionIcon, {}) }) }));
+            return (_jsx(Tooltip, { title: options, placement: 'right', children: _jsx(Met, { tag: 'span', order: order[type], w: '100%', ...extra, ...config[type], children: _jsx(MetQuestionIcon, {}) }) }));
         }
-        return (_jsx(Met, { tag: 'span', order: order[type], ...config[type], children: options }));
+        return (_jsx(Met, { tag: 'span', order: order[type], w: '100%', ...extra, ...config[type], children: options }));
     }
     if (isReactElement(options)) {
         // @todo 传递样式
@@ -78,7 +81,7 @@ const MetPanelTitleText = (props) => {
 const MetPanelTitle = (props) => {
     const analysis = analysisTitle(props.title);
     const { title, sub, tip, orders = {}, description } = analysis;
-    return (_jsxs(MetBox, { children: [_jsxs(MetLeft, { tag: 'div', children: [!isFalsy(title) && _jsx(MetPanelTitleText, { options: title, type: 'title', order: orders }), !isFalsy(sub) && _jsx(MetPanelTitleText, { options: sub, type: 'sub', order: orders }), !isFalsy(tip) && _jsx(MetPanelTitleText, { options: tip, type: 'tip', order: orders })] }), !isFalsy(description) && _jsx(MetPanelTitleText, { options: description, type: 'description' })] }));
+    return (_jsxs(MetBox, { children: [_jsxs(MetLeft, { tag: 'div', children: [!isFalsy(title) && _jsx(MetPanelTitleText, { className: 'met-panel-title', options: title, type: 'title', order: orders }), !isFalsy(sub) && _jsx(MetPanelTitleText, { className: 'met-panel-sub', options: sub, type: 'sub', order: orders }), !isFalsy(tip) && _jsx(MetPanelTitleText, { className: 'met-panel-tip', options: tip, type: 'tip', order: orders })] }), !isFalsy(description) && _jsx(MetPanelTitleText, { className: 'met-panel-description', options: description, type: 'description' })] }));
 };
 const metToolState = atomFamily({
     key: 'met-panel/tool',
@@ -142,7 +145,7 @@ const MetPanelToolbar = (props) => {
 };
 const MetPanelHeader = (props) => {
     const { title, toolbar, header, ...extra } = props;
-    return (_jsxs(MetCenter, { placement: "between", tag: 'header', gap: 16, ...extra, children: [!!title && _jsx(MetPanelTitle, { title: title }), !!toolbar && _jsx(MetPanelToolbar, { flex: 1, toolbar: toolbar })] }));
+    return (_jsxs(MetCenter, { w: '100%', placement: "between", tag: 'header', gap: 16, ...extra, children: [!!title && _jsx(MetPanelTitle, { title: title }), !!toolbar && _jsx(MetPanelToolbar, { flex: 1, toolbar: toolbar })] }));
 };
 const MetPanelFooter = (props) => {
     const { children, ...extra } = props;
@@ -154,7 +157,7 @@ const MetPanelInner = forwardRef((props, ref) => {
     const setCommonState = useSetRecoilState(metToolState('MetToolsCommon'));
     const setBorder = curry(analysisBorder)(theme, bordered);
     const footer$ = isReactElement(footer) ? { children: footer } : footer;
-    return (_jsxs(MetBox, { tag: 'article', className: 'met-panel', ref: ref, pl: theme?.padding, pr: theme?.padding, br: theme.raduis, gap: theme?.padding, overflowY: 'none', ...setBorder('wrapper'), ...extra, children: [!!header && (_jsx(MetPanelHeader, { theme: theme, title: title, toolbar: toolbar, p: theme?.padding, ...setBorder('header'), ...header })), !!main && children && (_jsx(Met, { tag: 'main', flex: 1, p: theme?.padding, ...main, children: _jsx(RecoilBridge, { children: isFalsy(ruyi) ? (children) : (_jsx(MetRuyi, { ...ruyi, callback: (data) => {
+    return (_jsxs(MetBox, { tag: 'article', className: 'met-panel', ref: ref, pl: theme?.padding, pr: theme?.padding, br: theme.raduis, gap: theme?.padding, overflowY: 'none', ...setBorder('wrapper'), ...extra, children: [!!header && (_jsx(MetPanelHeader, { w: '100%', theme: theme, title: title, toolbar: toolbar, p: theme?.padding, ...setBorder('header'), ...header })), !!main && children && (_jsx(Met, { tag: 'main', flex: 1, p: theme?.padding, ...main, children: _jsx(RecoilBridge, { children: isFalsy(ruyi) ? (children) : (_jsx(MetRuyi, { ...ruyi, callback: (data) => {
                             setCommonState({ data });
                         }, children: children })) }) })), !!footer && _jsx(MetPanelFooter, { theme: theme, p: theme?.padding, ...setBorder('footer'), ...footer$ })] }));
 });

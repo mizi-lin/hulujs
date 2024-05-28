@@ -42,6 +42,7 @@ export const handler = async function (argv) {
         $bash.live(`yarn install`, { silent: false });
         const configPath = $repo.config();
         $log.step([`正在读取配置文件`, configPath]);
+        // await $load.ts($repo.hulu('auto-imports.ts'));
         const config = await $load.ts(configPath);
         const { compiler } = config ?? {};
         const compilerOption = getCompiler(compiler);

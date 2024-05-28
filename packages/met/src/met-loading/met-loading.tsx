@@ -1,10 +1,15 @@
 import { FC, ReactNode } from 'react';
 import { MetCenter, MetCenterProps, MetDynamic } from '../index.js';
-import { Spin } from 'antd';
+// import { Spin } from 'antd';
 
 export interface MetLoadingProps extends MetCenterProps {
     component?: ReactNode;
 }
+
+// @todo loading
+const Spin = () => {
+    return <></>;
+};
 
 /**
  * @todo 父元素过高的时候，显示区域设置

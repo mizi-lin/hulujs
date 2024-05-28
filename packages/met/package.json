@@ -8,26 +8,22 @@
     "module": "./src/index.js",
     "type": "module",
     "scripts": {
+        "config": "yarn run tsc --showConfig",
         "watch": "tsc --watch",
         "build": "tsc"
     },
     "dependencies": {
-        "@hulujs/types": "0.0.1",
         "@hulujs/mu": "0.0.1",
-        "@hulujs/met": "link: ../../hulujs/met",
-        "csstype": "3.1.3",
-        "classnames": "2.3.2",
-        "echarts": "5.4.3",
-        "react-error-boundary": "4.0.11",
-        "recoil": "0.7.7",
-        "size-sensor": "1.0.2",
-        "echarts-wordcloud": "2.1.0",
-        "echarts-liquidfill": "3.1.0"
+        "@hulujs/types": "0.0.1",
+        "classnames": "^2.5.1",
+        "csstype": "^3.1.3",
+        "echarts": "^5.5.0",
+        "echarts-liquidfill": "^3.1.0",
+        "echarts-wordcloud": "^2.1.0",
+        "recoil": "^0.7.7",
+        "size-sensor": "^1.0.2"
     },
-    "devDependencies": {},
     "peerDependencies": {
-        "@ant-design/icons": ">5",
-        "antd": ">5",
         "react": ">=17.0.0",
         "react-dom": ">=17.0.0"
     }

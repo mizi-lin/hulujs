@@ -1,5 +1,5 @@
 import { $bash, $load, $log, $repo } from '@hulujs/core';
-import yargs, { Arguments } from 'yargs';
+import { Arguments } from 'yargs';
 import createDebug from 'debug';
 import { stepGenerateCaoKong } from './step-generate-caokong.js';
 import { stepGenerateCaoKongIndexFile } from './step-generate-caokong-index-file.js';
@@ -7,7 +7,6 @@ import { stepAssRouter } from './step-ass-router.js';
 import { getCommandParamsString } from '../../utils.js';
 import { getCompiler } from '../repo/utils.js';
 import { stepGenerateCompilerConfig } from './step-generate-compiler-config.js';
-import { hideBin } from 'yargs/helpers';
 import { aliasToSrcWithCaoKong } from './utils.js';
 
 const debug = createDebug('dev');
@@ -51,6 +50,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         const configPath = $repo.config();
         $log.step([`正在读取配置文件`, configPath]);
 
+        // await $load.ts($repo.hulu('auto-imports.ts'));
         const config = await $load.ts(configPath);
 
         const { compiler } = config ?? {};
@@ -69,9 +69,7 @@ export const handler = async function (argv: Arguments<Record<string, any>>) {
         const paramString = getCommandParamsString(['offMontage', 'offGit']);
 
         const bin = $repo.cwd('node_modules', '.bin', compilerOption.dev);
-        const config$ = aliasToSrcWithCaoKong(
-            compilerOption.config.target ?? compilerOption.config.path
-        );
+        const config$ = aliasToSrcWithCaoKong(compilerOption.config.target ?? compilerOption.config.path);
         const command = `${bin} --config ${config$} ${paramString}`;
 
         $log.step([`正在启动服务`, command.replace(bin, compilerOption.dev)]);

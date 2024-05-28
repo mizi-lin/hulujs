@@ -8,7 +8,7 @@ import path from 'path';
 export const getTplInfo = (way: string) => {
     const emoj = { single: '✳︎', dir: '✣' };
     const typeName = { single: '单文件', dir: '文件夹' };
-    const { name, description, address, type, target } = JSON.parse($tpl.read(way));
+    const { name, description, address, type, target } = JSON.parse($tpl.read(way)!);
     const label = `${emoj[type]} ${name}: ${description} (${typeName[type]})`;
     const address$absoulte = path.join(path.dirname(way), address);
     return {

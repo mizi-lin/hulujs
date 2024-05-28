@@ -2,7 +2,8 @@ import { map } from '@hulujs/mu';
 import parser from '@babel/parser';
 import { traverse } from '@babel/core';
 import path from 'path';
-import { $root, fsa } from '@hulujs/core';
+import { $root } from '@hulujs/core';
+import fse from 'fs-extra';
 
 export const getImports = (content: string, currentPath: string) => {
     const ast = parser.parse(content, {
@@ -30,17 +31,15 @@ export const getImports = (content: string, currentPath: string) => {
             return '::break';
         }
 
-        const filePath$ = /^@\//.test(filepath)
-            ? filepath.replace(/^@\//, `${root}/src/`)
-            : path.join(dirname, filepath);
+        const filePath$ = /^@\//.test(filepath) ? filepath.replace(/^@\//, `${root}/src/`) : path.join(dirname, filepath);
 
-        if (fsa.existsSync(filePath$)) {
+        if (fse.existsSync(filePath$)) {
             return filePath$;
         }
 
         for (const ext of ['.ts', '.tsx', './index.ts', './index.tsx']) {
             const filePath$1 = [filePath$.replace(/\/$/, ''), ext].join('');
-            if (fsa.existsSync(filePath$1)) {
+            if (fse.existsSync(filePath$1)) {
                 return filePath$1;
             }
         }

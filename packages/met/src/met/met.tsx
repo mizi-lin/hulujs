@@ -12,7 +12,7 @@ import {
 } from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
-import { groupBy, isNil, omit } from 'lodash-es';
+import { groupBy, isNil, isPlainObject, omit } from 'lodash-es';
 import { compact, isFalsy, map } from '@hulujs/mu';
 import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
 import { isDev } from '../env.js';
@@ -202,6 +202,20 @@ const adjustOverflowScroll = (scroll: boolean, overflowProps?: Record<string, an
     return isFalsy(overflowProps) ? overflowProps : { overflow: 'auto' };
 };
 
+const conditionStyle = (styles) => {
+    return map(styles, (style) => {
+        if (isPlainObject(style)) {
+            const [value, active] = Object.entries(style)[0];
+            return active ? value : undefined;
+        }
+        return style;
+    });
+};
+
+const adjustPadding = (ptb, plr) => {
+    return { ...(ptb ? { paddingTop: ptb, paddingBottom: ptb } : {}), ...(plr ? { paddingLeft: plr, paddingRight: plr } : {}) };
+};
+
 /**
  * border 系样式处理
  */
@@ -260,8 +274,10 @@ const Met: FC<MetProps> = forwardRef<HTMLElement, MetProps>((props, ref) => {
         padding = p,
         pl,
         paddingLeft = pl,
+        plr,
         pt,
         paddingTop = pt,
+        ptb,
         pr,
         paddingRight = pr,
         pb,
@@ -288,7 +304,7 @@ const Met: FC<MetProps> = forwardRef<HTMLElement, MetProps>((props, ref) => {
         va,
         verticalAlign = va,
         ...more
-    } = extra;
+    } = conditionStyle(extra);
 
     const toMap = (value) => {
         return map(
@@ -340,6 +356,7 @@ const Met: FC<MetProps> = forwardRef<HTMLElement, MetProps>((props, ref) => {
             color,
             textAlign,
             ...properties$,
+            ...adjustPadding(ptb, plr),
             ...adjustOverflowScroll(scroll, { overflow, overflowY }),
             ...adjustBorder({ border, borderTop, borderRight, borderBottom, borderLeft }),
             ...inlineDisplay(inline, extra.display),

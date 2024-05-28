@@ -6,7 +6,6 @@
         "lib": ["ESNext", "DOM", "WebWorker"],
         "composite": true,
         "baseUrl": ".",
-        "outDir": "./dist",
         "moduleResolution": "NodeNext",
         "declaration": true,
         "strict": true,
@@ -21,12 +20,6 @@
         "noImplicitAny": false,
         "esModuleInterop": true,
         "importHelpers": true,
-        "paths": {
-            "@hulujs/core": ["../core/*"],
-            "@hulujs/mu": ["../mu/*"],
-            "@hulujs/types": ["../types/*"],
-            "@hulujs/met": ["../met/*"]
-        }
     },
     "include": ["./packages/**/*"],
     "exclude": ["./dist"]

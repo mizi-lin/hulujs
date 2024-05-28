@@ -320,3 +320,19 @@ export const Ruyi = function (url, ruyiOptions = {}) {
         }
     };
 };
+export const Yiru = function Yiru(options) {
+    const { url, method, search, payload, ...rest } = options;
+    return Request(method, url, search, payload, rest);
+};
+/**
+ * Todo
+ */
+// Ruyi()
+// interface RuyiOptions2 extends AxiosRequestConfig {
+//     // 动态 / data
+//     params: {};
+//     // search
+//     query: {};
+//     // body
+//     payload: {};
+// }

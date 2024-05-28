@@ -2,8 +2,8 @@ import { PromptsCancel, PromptsCancelOptions, PromptsConfirmOptions, PromptsMult
 export declare class Prompts {
     isCancelPrompt(prompt: any, options: PromptsCancelOptions): void;
     confirm(options: PromptsConfirmOptions, cancel?: PromptsCancel): Promise<boolean | symbol>;
-    select<T extends PromptsSelectOption<U>[], U>(options: PromptsSelectOptions<T, U>, cancel?: PromptsCancel): Promise<unknown>;
-    multiselect<T extends PromptsSelectOption<U>[], U>(options: PromptsMultiSelectOptions<T, U>, cancel?: PromptsCancel): Promise<symbol | unknown[]>;
+    select<T extends PromptsSelectOption<U>[], U>(options: PromptsSelectOptions<T, U>, cancel?: PromptsCancel): Promise<symbol | U>;
+    multiselect<T extends PromptsSelectOption<U>[], U>(options: PromptsMultiSelectOptions<T, U>, cancel?: PromptsCancel): Promise<symbol | U[]>;
     text<T>(options: PromptsTextOptions, cancel?: PromptsCancel): Promise<T>;
 }
 export declare const $prompts: Prompts;

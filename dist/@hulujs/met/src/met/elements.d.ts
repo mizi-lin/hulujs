@@ -1,4 +1,4 @@
-/// <reference types="react" resolution-mode="require"/>
+/// <reference types="react" />
 import { MetProps } from './met.js';
 export type ElementProps = Omit<MetProps, 'tag'>;
 export declare const Div: import("react").ForwardRefExoticComponent<Omit<ElementProps, "ref"> & import("react").RefAttributes<HTMLDivElement>>;
