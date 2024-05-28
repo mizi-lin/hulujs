@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/mu",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": true,
     "license": "MIT",
     "description": "javascript tools",
@@ -13,6 +13,6 @@
         "build": "tsc && yarn pkg"
     },
     "dependencies": {
-        "@hulujs/types": "^0.1.1"
+        "@hulujs/types": "^0.1.2"
     }
 }
