@@ -2,5 +2,19 @@
     "$schema": "node_modules/lerna/schemas/lerna-schema.json",
     "version": "0.1.2",
     "packages": ["packages/*"],
-    "npmClient": "yarn"
+    "npmClient": "yarn",
+    "command": {
+        "publish": {
+            "ignoreChanges": ["*.md"],
+            "verifyAccess": false,
+            "verifyRegistry": false,
+            "message": "chore: publish",
+            "contents": "./dist"
+        },
+        "version": {
+            "conventionalCommits": true,
+            "exact": true,
+            "message": "chore(release): prepublish version"
+        }
+    }
 }
