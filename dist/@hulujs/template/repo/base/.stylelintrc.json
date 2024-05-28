@@ -1,0 +1,19 @@
+{
+    "processors": [],
+    "plugins": [],
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-css-modules",
+        "stylelint-config-prettier"
+    ],
+    "rules": {
+        "at-rule-name-case": "lower",
+        "selector-list-comma-newline-before": "never-multi-line",
+        "block-no-empty": null,
+        "no-descending-specificity": null,
+        "function-url-quotes": "always",
+        "indentation": 4,
+        "no-empty-source": null,
+        "no-missing-end-of-source-newline": null
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Wiget",
+    "description": "React Function 标准组件",
+    "author": "mizi <mizi.lin@miaozhen.com>",
+    "address": "{kebab}",
+    "type": "dir",
+    "target": "repo",
+    "extra": {}
+}
