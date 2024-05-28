@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/msc",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "private": true,
     "license": "MIT",
     "description": "service center",
@@ -12,8 +12,8 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@hulujs/mu": "0.0.1",
-        "@hulujs/types": "0.0.1",
+        "@hulujs/mu": "^0.1.1",
+        "@hulujs/types": "^0.1.1",
         "axios": "^1.6.0"
     }
 }
