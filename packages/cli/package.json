@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/cli",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "private": true,
     "license": "MIT",
     "description": "CLI",
@@ -22,10 +22,10 @@
         "build": "tsc && yarn pkg"
     },
     "dependencies": {
-        "@hulujs/core": "0.1.3",
-        "@hulujs/mu": "0.1.3",
-        "@hulujs/template": "0.1.3",
-        "@hulujs/types": "0.1.3",
+        "@hulujs/core": "0.1.4",
+        "@hulujs/mu": "0.1.4",
+        "@hulujs/template": "0.1.4",
+        "@hulujs/types": "0.1.4",
         "omelette": "^0.4.17",
         "yargs": "^17.7.1"
     },
