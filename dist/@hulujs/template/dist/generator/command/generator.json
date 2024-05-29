@@ -1,9 +1,0 @@
-{
-    "name": "command",
-    "description": "命令行工具",
-    "author": "mizi <mizi.lin@miaozhen.com>",
-    "address": "{kebab}.ts.ejs",
-    "type": "single",
-    "target": "@hulu",
-    "extra": {}
-}

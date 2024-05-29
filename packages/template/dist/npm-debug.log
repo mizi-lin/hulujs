@@ -1,0 +1,121 @@
+0 info it worked if it ends with ok
+1 verbose cli [
+1 verbose cli   '/usr/local/bin/node',
+1 verbose cli   '/Users/Mizi/.yarn/bin/npm',
+1 verbose cli   'publish',
+1 verbose cli   'dist'
+1 verbose cli ]
+2 info using npm@3.10.10
+3 info using node@v22.1.0
+4 verbose publish [ 'dist' ]
+5 silly cache add args [ 'dist', null ]
+6 verbose cache add spec dist
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: 'dist',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: 'dist',
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: 'dist',
+7 silly cache add   spec: '/Users/Mizi/works/hulu/hulujs/packages/template/dist',
+7 silly cache add   type: 'directory'
+7 silly cache add }
+8 verbose addLocalDirectory /Users/Mizi/.npm/@hulujs/template/0.2.2/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/Mizi/.npm correctMkdir not in flight; initializing
+10 info lifecycle @hulujs/template@0.2.2~prepublish: @hulujs/template@0.2.2
+11 silly lifecycle @hulujs/template@0.2.2~prepublish: no script for prepublish, continuing
+12 verbose tar pack [
+12 verbose tar pack   '/Users/Mizi/.npm/@hulujs/template/0.2.2/package.tgz',
+12 verbose tar pack   '/Users/Mizi/works/hulu/hulujs/packages/template/dist'
+12 verbose tar pack ]
+13 verbose tarball /Users/Mizi/.npm/@hulujs/template/0.2.2/package.tgz
+14 verbose folder /Users/Mizi/works/hulu/hulujs/packages/template/dist
+15 verbose addLocalTarball adding from inside cache /Users/Mizi/.npm/@hulujs/template/0.2.2/package.tgz
+16 verbose correctMkdir /Users/Mizi/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd @hulujs/template@0.2.2
+18 verbose afterAdd /Users/Mizi/.npm/@hulujs/template/0.2.2/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/Mizi/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/Mizi/.npm/@hulujs/template/0.2.2/package/package.json written
+21 silly publish {
+21 silly publish   name: '@hulujs/template',
+21 silly publish   version: '0.2.2',
+21 silly publish   license: 'MIT',
+21 silly publish   description: 'hulu template',
+21 silly publish   main: './src/index.js',
+21 silly publish   module: './src/index.js',
+21 silly publish   type: 'module',
+21 silly publish   scripts: {
+21 silly publish     rm: 'rimraf ./dist',
+21 silly publish     cp: 'cp -r ../template  ./dist',
+21 silly publish     watch: 'yarn run build',
+21 silly publish     build: 'yarn rm && yarn cp && yarn pkg',
+21 silly publish     pkg: 'node ../../build.js',
+21 silly publish     publish: 'npm publish dist'
+21 silly publish   },
+21 silly publish   devDependencies: { copyfiles: '^2.4.1', rimraf: '^5.0.7' },
+21 silly publish   readme: 'ERROR: No README data found!',
+21 silly publish   _id: '@hulujs/template@0.2.2',
+21 silly publish   _shasum: '05b1280cb8cdf5fef625229a030a86781492e321',
+21 silly publish   _from: 'dist',
+21 silly publish   _resolved: 'file:dist'
+21 silly publish }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name @hulujs/template
+24 silly mapToRegistry scope (from package name) @hulujs
+25 verbose mapToRegistry no registry URL found in name for scope @hulujs
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry data Result {
+28 silly mapToRegistry   raw: '@hulujs/template',
+28 silly mapToRegistry   scope: '@hulujs',
+28 silly mapToRegistry   escapedName: '@hulujs%2ftemplate',
+28 silly mapToRegistry   name: '@hulujs/template',
+28 silly mapToRegistry   rawSpec: '',
+28 silly mapToRegistry   spec: 'latest',
+28 silly mapToRegistry   type: 'tag'
+28 silly mapToRegistry }
+29 silly mapToRegistry uri https://registry.npmjs.org/@hulujs%2ftemplate
+30 verbose publish registryBase https://registry.npmjs.org/
+31 silly publish uploading /Users/Mizi/.npm/@hulujs/template/0.2.2/package.tgz
+32 verbose request uri https://registry.npmjs.org/@hulujs%2ftemplate
+33 verbose request sending authorization for write operation
+34 info attempt registry request try #1 at 1:02:56 PM
+35 verbose request using bearer token for auth
+36 verbose request id b1b2c720ed0af3fa
+37 http request PUT https://registry.npmjs.org/@hulujs%2ftemplate
+38 http 401 https://registry.npmjs.org/@hulujs%2ftemplate
+39 verbose headers {
+39 verbose headers   date: 'Wed, 29 May 2024 05:02:59 GMT',
+39 verbose headers   'content-type': 'application/json',
+39 verbose headers   'content-length': '100',
+39 verbose headers   connection: 'close',
+39 verbose headers   'cf-ray': '88b3ef6a2df5964b-SJC',
+39 verbose headers   'cf-cache-status': 'DYNAMIC',
+39 verbose headers   'www-authenticate': 'OTP',
+39 verbose headers   vary: 'Accept-Encoding',
+39 verbose headers   server: 'cloudflare'
+39 verbose headers }
+40 verbose request invalidating /Users/Mizi/.npm/registry.npmjs.org/_40hulujs_252ftemplate on PUT
+41 error publish Failed PUT 401
+42 verbose stack Error: You must provide a one-time pass. Upgrade your client to npm@latest in order to use 2FA. : @hulujs/template
+42 verbose stack     at makeError (/Users/Mizi/.config/yarn/global/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+42 verbose stack     at CachingRegistryClient.<anonymous> (/Users/Mizi/.config/yarn/global/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+42 verbose stack     at Request._callback (/Users/Mizi/.config/yarn/global/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+42 verbose stack     at self.callback (/Users/Mizi/.config/yarn/global/node_modules/npm/node_modules/request/request.js:187:22)
+42 verbose stack     at Request.emit (node:events:520:28)
+42 verbose stack     at Request.<anonymous> (/Users/Mizi/.config/yarn/global/node_modules/npm/node_modules/request/request.js:1048:10)
+42 verbose stack     at Request.emit (node:events:520:28)
+42 verbose stack     at IncomingMessage.<anonymous> (/Users/Mizi/.config/yarn/global/node_modules/npm/node_modules/request/request.js:969:12)
+42 verbose stack     at IncomingMessage.emit (node:events:532:35)
+42 verbose stack     at endReadableNT (node:internal/streams/readable:1696:12)
+43 verbose statusCode 401
+44 verbose pkgid @hulujs/template
+45 verbose cwd /Users/Mizi/works/hulu/hulujs/packages/template
+46 error Darwin 22.1.0
+47 error argv "/usr/local/bin/node" "/Users/Mizi/.yarn/bin/npm" "publish" "dist"
+48 error node v22.1.0
+49 error npm  v3.10.10
+50 error code E401
+51 error You must provide a one-time pass. Upgrade your client to npm@latest in order to use 2FA. : @hulujs/template
+52 error If you need help, you may report this error at:
+52 error     <https://github.com/npm/npm/issues>
+53 verbose exit [ 1, true ]

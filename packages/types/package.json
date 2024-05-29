@@ -12,6 +12,6 @@
         "watch": "tsc --declaration --watch",
         "pkg": "node ../../build.js",
         "build": "tsc --declaration && yarn pkg",
-        "publish": "npm publish dist"
+        "publish": "cd ./dist && npm publish"
     }
 }

@@ -12,7 +12,7 @@
         "watch": "tsc --watch",
         "pkg": "node ../../build.js",
         "build": "tsc && yarn pkg",
-        "publish": "npm publish dist"
+        "publish": "cd ./dist && npm publish"
     },
     "dependencies": {
         "@hulujs/mu": "0.2.2",

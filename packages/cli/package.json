@@ -6,21 +6,17 @@
     "description": "CLI",
     "type": "module",
     "bin": {
-        "Oo-": "./bin/hulu.mjs",
-        "o": "./bin/hulu.mjs",
-        "oa": "./bin/hulu.mjs",
-        "oao": "./bin/hulu.mjs",
-        "oc": "./bin/hulu.mjs",
         "oo": "./bin/hulu.mjs",
         "oo-": "./bin/hulu.mjs",
+        "Oo-": "./bin/hulu.mjs",
         "ooo": "./bin/hulu.mjs"
     },
     "scripts": {
+        "rm": "rm -rf ./dist",
         "watch": "tsc --watch",
-        "rm": "rm -rf ../../dist/@hulujs/cli",
         "pkg": "node ../../build.js",
-        "build": "tsc && yarn pkg",
-        "publish": "npm publish dist"
+        "build": "yarn rm && tsc && yarn pkg",
+        "publish": "cd ./dist && npm publish"
     },
     "dependencies": {
         "@hulujs/core": "0.2.2",

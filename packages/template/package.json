@@ -13,7 +13,7 @@
         "watch": "yarn run build",
         "build": "yarn rm && yarn cp && yarn pkg",
         "pkg": "node ../../build.js",
-        "publish": "npm publish dist"
+        "publish": "cd ./dist && npm publish"
     },
     "devDependencies": {
         "copyfiles": "^2.4.1",

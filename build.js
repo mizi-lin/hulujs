@@ -14,6 +14,8 @@ const targetPkgPath = path.join(outDirs, 'package.json');
 const pkg = await readJSON(pkgPath);
 const { main, module } = pkg;
 
+delete pkg.private;
+
 if(main) {
     pkg.main = main.replace(/\.ts$/, '.js');
 }
