@@ -6,7 +6,7 @@
         "publish": {
             "ignoreChanges": ["*.md"],
             "message": "chore: publish",
-            "contents": "./dist/lib",
+            "contents": "./dist",
             "registry": "https://registry.npmjs.org/"
         },
         "version": {
