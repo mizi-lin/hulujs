@@ -2,7 +2,7 @@
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "../../dist/@hulujs/mu"
+        "outDir": "./dist"
     },
     "module": "NodeNext",
     "include": ["./src"],

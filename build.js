@@ -6,7 +6,8 @@ import { copy, readJSON, writeJSON } from 'fs-extra/esm';
 const pwd = process.cwd();
 const filename = pwd.split(path.sep).at(-1);
 const project = `@hulujs/${filename}`;
-const outDirs = path.resolve(pwd, `../../dist/${project}`);
+// const outDirs = path.resolve(pwd, `../../dist/${project}`);
+const outDirs = path.resolve(pwd, `./dist`);
 const pkgPath = path.join(pwd, 'package.json');
 const targetPkgPath = path.join(outDirs, 'package.json');
 

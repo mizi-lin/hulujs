@@ -8,8 +8,8 @@
     "module": "./src/index.ts",
     "type": "module",
     "scripts": {
-        "rm": "rimraf ../../dist/@hulujs/template",
-        "cp": "cp -r ../template  ../../dist/@hulujs/template",
+        "rm": "rimraf ./dist",
+        "cp": "cp -r ../template  ./dist",
         "watch": "yarn run build",
         "build": "yarn rm && yarn cp && yarn pkg",
         "pkg": "node ../../build.js"

@@ -1,0 +1,23 @@
+import { parisToEntries } from '@hulujs/mu';
+import { getSubtype, isSubType } from './subtype.js';
+/**
+ * 梳理setting 数据
+ */
+export const transformSetting = (type, setting, options) => {
+    const entires$ = [];
+    const baseGetSetting = (setting) => {
+        const entires = parisToEntries(setting);
+        entires.forEach((item) => {
+            const [key, value] = item;
+            if (isSubType(key)) {
+                const setting = getSubtype(type, key, value, options);
+                baseGetSetting(setting);
+            }
+            else {
+                entires$.push(item);
+            }
+        });
+    };
+    baseGetSetting(setting);
+    return entires$;
+};

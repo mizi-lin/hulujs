@@ -1,0 +1,18 @@
+/* eslint-disable */
+/* prettier-ignore */
+
+<% for ( const path of exports ) { _%> 
+export * from '<%= path %>';  
+<% } -%>
+
+<% for ( const path of imports ) { _%> 
+import '<%= path %>';
+<% } -%>
+
+/**
+ * 去除Chrome控制台的以下的警告
+ * [Violation] Added non-passive event listener to a scroll-blocking <some> event. 
+ * Consider marking event handler as 'passive' to make the page more responsive.
+ */ 
+// todo 是否使用，待定 会引发 antd event 事件
+// import "default-passive-events";

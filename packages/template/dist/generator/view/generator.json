@@ -1,0 +1,9 @@
+{
+    "name": "View",
+    "description": "React 页面级组件",
+    "author": "mizi <mizi.lin@miaozhen.com>",
+    "address": "{kebab}",
+    "type": "dir",
+    "target": "repo",
+    "extra": {}
+}

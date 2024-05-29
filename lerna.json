@@ -6,8 +6,6 @@
     "command": {
         "publish": {
             "ignoreChanges": ["*.md"],
-            "verifyAccess": false,
-            "verifyRegistry": false,
             "message": "chore: publish",
             "contents": "./dist",
             "registry": "https://registry.npmjs.org/"
