@@ -1,0 +1,183 @@
+0 silly argv {
+0 silly argv   _: [ 'publish' ],
+0 silly argv   'temp-tag': true,
+0 silly argv   tempTag: true,
+0 silly argv   composed: 'publish',
+0 silly argv   lernaVersion: '8.1.3',
+0 silly argv   '$0': 'node_modules/lerna/dist/cli.js',
+0 silly argv   bump: '0.2.12'
+0 silly argv }
+1 notice cli v8.1.3
+2 verbose packageConfigs Resolving packages based on package.json "workspaces" configuration.
+3 verbose rootPath /Users/Mizi/works/hulu/hulujs
+4 verbose session 3fb76192189f01d0
+5 verbose user-agent lerna/8.1.3/node@v20.14.0+arm64 (darwin)
+6 verbose silly Interpolated string "{workspaceRoot}/{projectRoot}/dist" for node "@hulujs/msc" to produce "/Users/Mizi/works/hulu/hulujs/packages/msc/dist"
+7 verbose silly Interpolated string "package.json" for node "@hulujs/msc" to produce "package.json"
+8 verbose silly Interpolated string "{workspaceRoot}/{projectRoot}/dist" for node "@hulujs/mu" to produce "/Users/Mizi/works/hulu/hulujs/packages/mu/dist"
+9 verbose silly Interpolated string "package.json" for node "@hulujs/mu" to produce "package.json"
+10 verbose silly Interpolated string "{workspaceRoot}/{projectRoot}/dist" for node "@hulujs/types" to produce "/Users/Mizi/works/hulu/hulujs/packages/types/dist"
+11 verbose silly Interpolated string "package.json" for node "@hulujs/types" to produce "package.json"
+12 silly argv {
+12 silly argv   _: [ 'publish' ],
+12 silly argv   'temp-tag': true,
+12 silly argv   tempTag: true,
+12 silly argv   composed: 'publish',
+12 silly argv   lernaVersion: '8.1.3',
+12 silly argv   bump: '0.2.12'
+12 silly argv }
+13 verbose packageConfigs Resolving packages based on package.json "workspaces" configuration.
+14 verbose rootPath /Users/Mizi/works/hulu/hulujs
+15 info current version 0.2.11
+16 silly isAnythingCommitted
+17 verbose isAnythingCommitted 1
+18 silly getCurrentBranch
+19 verbose currentBranch master
+20 silly remoteBranchExists
+21 silly isBehindUpstream
+22 silly isBehindUpstream master is behind origin/master by 0 commit(s) and ahead by 0
+23 silly hasTags
+24 verbose hasTags true
+25 silly git-describe.sync "v0.3.0-2-g6d3a3b7" => {"lastTagName":"v0.3.0","lastVersion":"v0.3.0","refCount":"2","sha":"6d3a3b7","isDirty":false}
+26 info Looking for changed packages since v0.3.0
+27 info ignoring diff in paths matching [ '*.md' ]
+28 silly checking diff packages/msc
+29 silly found diff in packages/msc/CHANGELOG.md
+29 silly found diff in packages/msc/package.json
+30 verbose filtered diff [ 'packages/msc/package.json' ]
+31 silly checking diff packages/mu
+32 silly found diff in packages/mu/CHANGELOG.md
+32 silly found diff in packages/mu/package.json
+33 verbose filtered diff [ 'packages/mu/package.json' ]
+34 silly checking diff packages/types
+35 silly found diff in packages/types/CHANGELOG.md
+35 silly found diff in packages/types/package.json
+36 verbose filtered diff [ 'packages/types/package.json' ]
+37 verbose updated @hulujs/msc
+38 verbose updated @hulujs/mu
+39 verbose updated @hulujs/types
+40 verbose git-describe undefined => "v0.3.0-2-g6d3a3b7"
+41 silly git-describe parsed => {"lastTagName":"v0.3.0","lastVersion":"v0.3.0","refCount":"2","sha":"6d3a3b7","isDirty":false}
+42 info execute Skipping releases
+43 silly lifecycle No script for "preversion" in "hulu-v5", continuing
+44 silly lifecycle No script for "preversion" in "@hulujs/types", continuing
+45 verbose version @hulujs/types has no lockfile. Skipping lockfile update.
+46 silly lifecycle No script for "version" in "@hulujs/types", continuing
+47 silly fixed for @hulujs/types at /Users/Mizi/works/hulu/hulujs/packages/types
+48 verbose getChangelogConfig using preset "conventional-changelog-angular"
+49 silly npa Result {
+49 silly npa   type: 'tag',
+49 silly npa   registry: true,
+49 silly npa   where: undefined,
+49 silly npa   raw: 'conventional-changelog-angular',
+49 silly npa   name: 'conventional-changelog-angular',
+49 silly npa   escapedName: 'conventional-changelog-angular',
+49 silly npa   scope: undefined,
+49 silly npa   rawSpec: '',
+49 silly npa   saveSpec: null,
+49 silly npa   fetchSpec: 'latest',
+49 silly npa   gitRange: undefined,
+49 silly npa   gitCommittish: undefined,
+49 silly npa   hosted: undefined
+49 silly npa }
+50 verbose getChangelogConfig Attempting to resolve preset "conventional-changelog-angular"
+51 info getChangelogConfig Successfully resolved preset "conventional-changelog-angular"
+52 silly fixed writing new entry: "## [0.2.12](https://github.com/mizi-lin/hulujs/compare/v0.3.0...v0.2.12) (2024-05-29)\n\n\n### Features\n\n* test lerna 11 ([6d3a3b7](https://github.com/mizi-lin/hulujs/commit/6d3a3b766cfe0a5d65e64eaf628f450e650e8446))\n\n\n\n"
+53 verbose fixed wrote /Users/Mizi/works/hulu/hulujs/packages/types/CHANGELOG.md
+54 silly lifecycle No script for "preversion" in "@hulujs/msc", continuing
+55 verbose version @hulujs/msc has no lockfile. Skipping lockfile update.
+56 silly lifecycle No script for "version" in "@hulujs/msc", continuing
+57 silly fixed for @hulujs/msc at /Users/Mizi/works/hulu/hulujs/packages/msc
+58 silly fixed writing new entry: "## [0.2.12](https://github.com/mizi-lin/hulujs/compare/v0.3.0...v0.2.12) (2024-05-29)\n\n\n### Features\n\n* test lerna 11 ([6d3a3b7](https://github.com/mizi-lin/hulujs/commit/6d3a3b766cfe0a5d65e64eaf628f450e650e8446))\n\n\n\n"
+59 verbose fixed wrote /Users/Mizi/works/hulu/hulujs/packages/msc/CHANGELOG.md
+60 silly lifecycle No script for "preversion" in "@hulujs/mu", continuing
+61 verbose version @hulujs/mu has no lockfile. Skipping lockfile update.
+62 silly lifecycle No script for "version" in "@hulujs/mu", continuing
+63 silly fixed for @hulujs/mu at /Users/Mizi/works/hulu/hulujs/packages/mu
+64 silly fixed writing new entry: "## [0.2.12](https://github.com/mizi-lin/hulujs/compare/v0.3.0...v0.2.12) (2024-05-29)\n\n\n### Features\n\n* test lerna 11 ([6d3a3b7](https://github.com/mizi-lin/hulujs/commit/6d3a3b766cfe0a5d65e64eaf628f450e650e8446))\n\n\n\n"
+65 verbose fixed wrote /Users/Mizi/works/hulu/hulujs/packages/mu/CHANGELOG.md
+66 silly root for hulu-v5 at /Users/Mizi/works/hulu/hulujs
+67 silly root writing new entry: "## [0.2.12](https://github.com/mizi-lin/hulujs/compare/v0.3.0...v0.2.12) (2024-05-29)\n\n\n### Features\n\n* test lerna 10 ([821df3b](https://github.com/mizi-lin/hulujs/commit/821df3bf57ec1fef3f5abd6dd0c884af762c23af))\n* test lerna 11 ([6d3a3b7](https://github.com/mizi-lin/hulujs/commit/6d3a3b766cfe0a5d65e64eaf628f450e650e8446))\n\n\n\n"
+68 verbose root wrote /Users/Mizi/works/hulu/hulujs/CHANGELOG.md
+69 silly lifecycle No script for "version" in "hulu-v5", continuing
+70 verbose version Detected yarn version 4.2.2
+71 verbose version Updating root yarn.lock
+72 silly version Successfully applied prettier to updated file: packages/types/package.json
+73 silly version Failed to apply prettier to updated file: packages/types/CHANGELOG.md
+74 silly version Successfully applied prettier to updated file: packages/msc/package.json
+75 silly version Failed to apply prettier to updated file: packages/msc/CHANGELOG.md
+76 silly version Successfully applied prettier to updated file: packages/mu/package.json
+77 silly version Failed to apply prettier to updated file: packages/mu/CHANGELOG.md
+78 silly version Failed to apply prettier to updated file: CHANGELOG.md
+79 silly version Successfully applied prettier to updated file: lerna.json
+80 silly version Failed to apply prettier to updated file: yarn.lock
+81 silly gitAdd [
+81 silly gitAdd   'packages/types/package.json',
+81 silly gitAdd   'packages/types/CHANGELOG.md',
+81 silly gitAdd   'packages/msc/package.json',
+81 silly gitAdd   'packages/msc/CHANGELOG.md',
+81 silly gitAdd   'packages/mu/package.json',
+81 silly gitAdd   'packages/mu/CHANGELOG.md',
+81 silly gitAdd   'CHANGELOG.md',
+81 silly gitAdd   'lerna.json',
+81 silly gitAdd   'yarn.lock'
+81 silly gitAdd ]
+82 silly gitCommit chore(release): prepublish version
+83 verbose git [ 'commit', '-m', 'chore(release): prepublish version' ]
+84 silly gitTag v0.2.12 git tag %s -m %s
+85 verbose git [ 'tag', 'v0.2.12', '-m', 'v0.2.12' ]
+86 silly lifecycle No script for "postversion" in "@hulujs/msc", continuing
+87 silly lifecycle No script for "postversion" in "@hulujs/mu", continuing
+88 silly lifecycle No script for "postversion" in "@hulujs/types", continuing
+89 silly lifecycle No script for "postversion" in "hulu-v5", continuing
+90 info git Pushing tags...
+91 silly gitPush origin master
+92 info publish Publishing packages to npm...
+93 silly getCurrentSHA
+94 verbose getCurrentSHA 8bdef50aa22018fb530d321d2b6a93731008fae5
+95 silly lifecycle No script for "prepublish" in "hulu-v5", continuing
+96 silly lifecycle No script for "prepare" in "hulu-v5", continuing
+97 silly lifecycle No script for "prepublishOnly" in "hulu-v5", continuing
+98 silly lifecycle No script for "prepack" in "hulu-v5", continuing
+99 verbose pack-directory packages/types/dist
+100 silly lifecycle No script for "prepublish" in "@hulujs/types", continuing
+101 silly lifecycle No script for "prepare" in "@hulujs/types", continuing
+102 silly lifecycle No script for "prepublishOnly" in "@hulujs/types", continuing
+103 silly lifecycle No script for "prepack" in "@hulujs/types", continuing
+104 silly lifecycle No script for "postpack" in "@hulujs/types", continuing
+105 verbose packed packages/types/dist
+106 verbose pack-directory packages/msc/dist
+107 silly lifecycle No script for "prepublish" in "@hulujs/msc", continuing
+108 silly lifecycle No script for "prepare" in "@hulujs/msc", continuing
+109 silly lifecycle No script for "prepublishOnly" in "@hulujs/msc", continuing
+110 silly lifecycle No script for "prepack" in "@hulujs/msc", continuing
+111 silly lifecycle No script for "postpack" in "@hulujs/msc", continuing
+112 verbose packed packages/msc/dist
+113 verbose pack-directory packages/mu/dist
+114 silly lifecycle No script for "prepublish" in "@hulujs/mu", continuing
+115 silly lifecycle No script for "prepare" in "@hulujs/mu", continuing
+116 silly lifecycle No script for "prepublishOnly" in "@hulujs/mu", continuing
+117 silly lifecycle No script for "prepack" in "@hulujs/mu", continuing
+118 silly lifecycle No script for "postpack" in "@hulujs/mu", continuing
+119 verbose packed packages/mu/dist
+120 silly lifecycle No script for "postpack" in "hulu-v5", continuing
+121 verbose publish @hulujs/types
+122 warn publish Package is already published: @hulujs/types@0.2.12
+123 verbose publish @hulujs/msc
+124 warn publish Package is already published: @hulujs/msc@0.2.12
+125 verbose publish @hulujs/mu
+126 warn publish Package is already published: @hulujs/mu@0.2.12
+127 silly lifecycle No script for "publish" in "hulu-v5", continuing
+128 silly lifecycle No script for "postpublish" in "hulu-v5", continuing
+129 silly gitCheckout [
+129 silly gitCheckout   'package.json',
+129 silly gitCheckout   'packages/msc/package.json',
+129 silly gitCheckout   'packages/mu/package.json',
+129 silly gitCheckout   'packages/types/package.json'
+129 silly gitCheckout ]
+130 verbose dist-tag removing "lerna-temp" from @hulujs/types
+131 info dist-tag "lerna-temp" is not a dist-tag on @hulujs/types
+132 verbose dist-tag adding "latest" to @hulujs/types@0.2.12
+133 error HttpErrorGeneral: 400 Bad Request - PUT https://registry.npmjs.org/-/package/@hulujs%2ftypes/dist-tags/latest
+133 error     at /Users/Mizi/works/hulu/hulujs/node_modules/npm-registry-fetch/lib/check-response.js:95:15
+133 error     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
