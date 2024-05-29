@@ -6,8 +6,9 @@
         "publish": {
             "ignoreChanges": ["*.md"],
             "message": "chore: publish",
-            "contents": "./dist",
-            "registry": "https://registry.npmjs.org/"
+            "directory": "{workspaceRoot}/{projectRoot}/dist",
+            "registry": "https://registry.npmjs.org/",
+            "assets": ["package.json"]
         },
         "version": {
             "conventionalCommits": true,
