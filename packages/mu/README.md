@@ -1,11 +1,13 @@
-# `mu`
+# @hulujs/mu
 
-> TODO: description
+hulujs 的工具库
 
-## Usage
+## 安装
 
+```bash
+yarn add @hulujs/mu@latest --save
 ```
-const mu = require('mu');
 
-// TODO: DEMONSTRATE API
-```
+## 文档 
+
+[文档地址](https://hulujs.github.io/mu/)
