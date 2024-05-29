@@ -8,9 +8,7 @@
     "directories": {
         "lib": "lib"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"
@@ -23,7 +21,7 @@
         "watch": "tsc --declaration --watch",
         "pkg": "node ../../build.js",
         "build": "tsc --declaration && yarn pkg",
-        "publish": "cd ./dist && npm publish"
+        "publish2": "cd ./dist && npm publish"
     },
     "bugs": {
         "url": "https://github.com/mizi-lin/hulujs/issues"
