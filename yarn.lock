@@ -567,26 +567,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hulujs/msc@npm:*, @hulujs/msc@workspace:packages/msc":
+"@hulujs/msc@npm:^0.2.6, @hulujs/msc@workspace:packages/msc":
   version: 0.0.0-use.local
   resolution: "@hulujs/msc@workspace:packages/msc"
   dependencies:
-    "@hulujs/mu": "npm:*"
-    "@hulujs/types": "npm:*"
+    "@hulujs/types": "npm:^0.2.6"
     axios: "npm:^1.6.0"
   languageName: unknown
   linkType: soft
 
-"@hulujs/mu@npm:*, @hulujs/mu@workspace:packages/mu":
+"@hulujs/mu@workspace:packages/mu":
   version: 0.0.0-use.local
   resolution: "@hulujs/mu@workspace:packages/mu"
   dependencies:
-    "@hulujs/msc": "npm:*"
-    "@hulujs/types": "npm:*"
+    "@hulujs/msc": "npm:^0.2.6"
+    "@hulujs/types": "npm:^0.2.6"
   languageName: unknown
   linkType: soft
 
-"@hulujs/types@npm:*, @hulujs/types@workspace:packages/types":
+"@hulujs/types@npm:^0.2.6, @hulujs/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@hulujs/types@workspace:packages/types"
   languageName: unknown

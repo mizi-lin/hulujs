@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/types",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "description": "hulujs types",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
@@ -8,9 +8,7 @@
     "directories": {
         "lib": "lib"
     },
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"
