@@ -1,0 +1,9 @@
+{
+    "name": "hooks",
+    "description": "React hooks + less",
+    "author": "mizi <mizi.lin@miaozhen.com>",
+    "address": "{kebab}",
+    "type": "dir",
+    "target": "repo",
+    "extra": {}
+}

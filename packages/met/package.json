@@ -11,7 +11,8 @@
         "config": "yarn run tsc --showConfig",
         "watch": "tsc --watch",
         "pkg": "node ../../build.js",
-        "build": "tsc && yarn pkg"
+        "build": "tsc && yarn pkg",
+        "publish": "npm publish dist"
     },
     "dependencies": {
         "@hulujs/mu": "0.2.1",

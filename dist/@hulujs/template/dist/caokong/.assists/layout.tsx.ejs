@@ -1,0 +1,10 @@
+import { RecoilURLSync } from '~ck';
+import Layout from '<%=layoutPath%>';
+
+const Component = function WrapperLayout() {
+    return (<RecoilURLSync>
+        <Layout />
+    </RecoilURLSync>);
+}
+
+export { Component };

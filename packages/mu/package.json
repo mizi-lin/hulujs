@@ -10,7 +10,8 @@
     "scripts": {
         "watch": "tsc --watch",
         "pkg": "node ../../build.js",
-        "build": "tsc && yarn pkg"
+        "build": "tsc && yarn pkg",
+        "publish": "npm publish dist"
     },
     "dependencies": {
         "@hulujs/types": "0.2.1"

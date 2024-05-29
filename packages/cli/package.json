@@ -19,7 +19,8 @@
         "watch": "tsc --watch",
         "rm": "rm -rf ../../dist/@hulujs/cli",
         "pkg": "node ../../build.js",
-        "build": "tsc && yarn pkg"
+        "build": "tsc && yarn pkg",
+        "publish": "npm publish dist"
     },
     "dependencies": {
         "@hulujs/core": "0.2.1",

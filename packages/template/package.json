@@ -12,7 +12,8 @@
         "cp": "cp -r ../template  ./dist",
         "watch": "yarn run build",
         "build": "yarn rm && yarn cp && yarn pkg",
-        "pkg": "node ../../build.js"
+        "pkg": "node ../../build.js",
+        "publish": "npm publish dist"
     },
     "devDependencies": {
         "copyfiles": "^2.4.1",

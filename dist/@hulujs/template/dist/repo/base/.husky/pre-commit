@@ -1,0 +1,7 @@
+#!/bin/sh
+PATH=$PATH:/usr/local/bin:/usr/local/sbin
+
+# 无需检测
+# . "$(dirname "$0")/_/husky.sh"
+
+npx --no-install lint-staged --allow-empty --quiet
