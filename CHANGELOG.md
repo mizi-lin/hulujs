@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.11](https://github.com/mizi-lin/hulujs/compare/v0.2.10...v0.2.11) (2024-05-29)
+
+
+### Features
+
+* test lerna 9 ([871e59e](https://github.com/mizi-lin/hulujs/commit/871e59e964f157c8b201a926076b8d62dde90f09))
+
+
+
+
+
 ## [0.2.10](https://github.com/mizi-lin/hulujs/compare/v0.2.9...v0.2.10) (2024-05-29)
 
 

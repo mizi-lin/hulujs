@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/msc",
-    "version": "0.2.10",
+    "version": "0.2.11",
     "description": "hulujs 调度中心",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
@@ -23,7 +23,7 @@
         "publish2": "cd ./dist && npm publish"
     },
     "dependencies": {
-        "@hulujs/types": "0.2.10",
+        "@hulujs/types": "0.2.11",
         "axios": "^1.6.0"
     },
     "bugs": {
