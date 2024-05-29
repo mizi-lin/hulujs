@@ -1,0 +1,22 @@
+{
+    "name": "@hulujs/mu",
+    "version": "0.2.5",
+    "description": "hulujs utils",
+    "keywords": ["hulujs", "utils"],
+    "author": "mizi.lin <mizi.lin@mizohen.com>",
+    "homepage": "https://github.com/mizi-lin/hulujs#readme",
+    "license": "ISC",
+    "main": "lib/mu.js",
+    "directories": { "lib": "lib" },
+    "files": ["lib"],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mizi-lin/hulujs.git"
+    },
+    "scripts": {
+        "test": "node ./__tests__/mu.test.js"
+    },
+    "bugs": {
+        "url": "https://github.com/mizi-lin/hulujs/issues"
+    }
+}
