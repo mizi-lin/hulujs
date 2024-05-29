@@ -4,8 +4,7 @@
         "baseUrl": ".",
         "outDir": "./dist"
     },
-    "module": "NodeNext",
     "include": ["./lib"],
     "exclude": ["node_modules", "dist"],
-    "references": [{ "path": "../types" }]
+    "references": [{ "path": "../types" }, { "path": "../mu" }]
 }

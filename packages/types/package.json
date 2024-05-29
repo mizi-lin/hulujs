@@ -1,33 +1,31 @@
 {
-    "name": "@hulujs/mu",
+    "name": "@hulujs/types",
     "version": "0.2.5",
-    "description": "hulujs utils",
-    "keywords": ["hulujs", "utils"],
+    "description": "hulujs types",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
-    "main": "lib/index.js",
-    "module": "lib/index.js",
-    "type": "module",
     "directories": {
         "lib": "lib"
     },
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"
     },
+    "main": "./lib/index.js",
+    "module": "./lib/index.js",
+    "types": "./lib/index.js",
+    "type": "module",
     "scripts": {
-        "watch": "tsc --watch",
+        "watch": "tsc --declaration --watch",
         "pkg": "node ../../build.js",
-        "build": "tsc && yarn pkg",
+        "build": "tsc --declaration && yarn pkg",
         "publish": "cd ./dist && npm publish"
     },
     "bugs": {
         "url": "https://github.com/mizi-lin/hulujs/issues"
-    },
-    "dependencies": {
-        "@hulujs/msc": "*",
-        "@hulujs/types": "*"
     }
 }
