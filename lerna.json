@@ -9,7 +9,8 @@
             "verifyAccess": false,
             "verifyRegistry": false,
             "message": "chore: publish",
-            "contents": "./dist"
+            "contents": "./dist",
+            "registry": "https://registry.npmjs.org/"
         },
         "version": {
             "conventionalCommits": true,
