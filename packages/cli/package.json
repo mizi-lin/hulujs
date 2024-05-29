@@ -1,14 +1,14 @@
 {
     "name": "@hulujs/cli",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "private": true,
     "license": "MIT",
     "description": "CLI",
     "type": "module",
     "bin": {
+        "Oo-": "./bin/hulu.mjs",
         "oo": "./bin/hulu.mjs",
         "oo-": "./bin/hulu.mjs",
-        "Oo-": "./bin/hulu.mjs",
         "ooo": "./bin/hulu.mjs"
     },
     "scripts": {
@@ -19,10 +19,10 @@
         "publish": "cd ./dist && npm publish"
     },
     "dependencies": {
-        "@hulujs/core": "0.2.2",
-        "@hulujs/mu": "0.2.2",
-        "@hulujs/template": "0.2.2",
-        "@hulujs/types": "0.2.2",
+        "@hulujs/core": "0.2.3",
+        "@hulujs/mu": "0.2.3",
+        "@hulujs/template": "0.2.3",
+        "@hulujs/types": "0.2.3",
         "omelette": "^0.4.17",
         "yargs": "^17.7.1"
     },

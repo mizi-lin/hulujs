@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/met",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "private": true,
     "license": "MIT",
     "description": "javascript tools",
@@ -15,8 +15,8 @@
         "publish": "cd ./dist && npm publish"
     },
     "dependencies": {
-        "@hulujs/mu": "0.2.2",
-        "@hulujs/types": "0.2.2",
+        "@hulujs/mu": "0.2.3",
+        "@hulujs/types": "0.2.3",
         "classnames": "^2.5.1",
         "csstype": "^3.1.3",
         "echarts": "^5.5.0",

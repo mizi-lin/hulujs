@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/mizi-lin/hulujs/compare/@hulujs/template@0.2.2...@hulujs/template@0.2.3) (2024-05-29)
+
+
+### Features
+
+* add publish ([df57f94](https://github.com/mizi-lin/hulujs/commit/df57f9414e0345da3cc2d8866a7d5f264a15cf28))
+* add publish ([e172826](https://github.com/mizi-lin/hulujs/commit/e1728266a87a3c998c78b570da870ec232e4a4a9))
+
+
+
+
+
 ## 0.2.2 (2024-05-29)
 
 
