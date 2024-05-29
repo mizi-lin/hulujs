@@ -1,5 +1,18 @@
 {
     "$schema": "node_modules/lerna/schemas/lerna-schema.json",
     "version": "0.2.8",
-    "npmClient": "yarn"
+    "npmClient": "yarn",
+    "command": {
+        "publish": {
+            "ignoreChanges": ["*.md"],
+            "message": "chore: publish",
+            "contents": "./dist/lib",
+            "registry": "https://registry.npmjs.org/"
+        },
+        "version": {
+            "conventionalCommits": true,
+            "exact": true,
+            "message": "chore(release): prepublish version"
+        }
+    }
 }
