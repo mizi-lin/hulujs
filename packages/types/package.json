@@ -8,7 +8,9 @@
     "directories": {
         "lib": "lib"
     },
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"
@@ -25,5 +27,6 @@
     },
     "bugs": {
         "url": "https://github.com/mizi-lin/hulujs/issues"
-    }
+    },
+    "gitHead": "36c1932e784d871803f1043bee7120865c7941b2"
 }

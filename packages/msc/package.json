@@ -20,7 +20,7 @@
         "watch": "tsc --watch",
         "pkg": "node ../../build.js",
         "build": "tsc && yarn pkg",
-        "publish": "cd ./dist && npm publish"
+        "publish2": "cd ./dist && npm publish"
     },
     "dependencies": {
         "@hulujs/types": "^0.2.6",
@@ -28,5 +28,6 @@
     },
     "bugs": {
         "url": "https://github.com/mizi-lin/hulujs/issues"
-    }
+    },
+    "gitHead": "36c1932e784d871803f1043bee7120865c7941b2"
 }
