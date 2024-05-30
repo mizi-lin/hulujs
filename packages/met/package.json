@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/met",
-    "version": "0.2.20",
+    "version": "0.2.21",
     "description": "hulujs met UI 组件库",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
@@ -19,7 +19,7 @@
         "publish": "cd ./dist && npm publish"
     },
     "dependencies": {
-        "@hulujs/mu": "*",
+        "@hulujs/mu": "0.2.21",
         "@hulujs/types": "*",
         "classnames": "^2.5.1",
         "csstype": "^3.1.3",

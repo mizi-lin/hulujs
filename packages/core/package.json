@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/core",
-    "version": "0.2.20",
+    "version": "0.2.21",
     "description": "hulujs core",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
@@ -23,8 +23,8 @@
         "@babel/parser": "^7.23.3",
         "@babel/plugin-transform-runtime": "^7.23.3",
         "@clack/prompts": "^0.7.0",
-        "@hulujs/mu": "*",
-        "@hulujs/template": "*",
+        "@hulujs/mu": "0.2.21",
+        "@hulujs/template": "0.2.21",
         "@hulujs/types": "*",
         "ansi-styles": "^6.2.1",
         "chalk": "^5.2.0",

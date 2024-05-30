@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/cli",
-    "version": "0.2.20",
+    "version": "0.2.21",
     "description": "hulujs cli ",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
@@ -23,9 +23,9 @@
         "build": "tsc && yarn pkg"
     },
     "dependencies": {
-        "@hulujs/core": "*",
-        "@hulujs/mu": "*",
-        "@hulujs/template": "*",
+        "@hulujs/core": "0.2.21",
+        "@hulujs/mu": "0.2.21",
+        "@hulujs/template": "0.2.21",
         "@hulujs/types": "*",
         "omelette": "^0.4.17",
         "shelljs": "^0.8.5",
