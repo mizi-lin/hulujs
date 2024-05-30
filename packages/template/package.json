@@ -12,7 +12,7 @@
     },
     "scripts": {
         "rm": "rimraf ./dist",
-        "cp": "cp -r ../template  ./dist",
+        "cp": "cp -r ../template  ../../dist/@hulujs/template",
         "watch": "yarn run build",
         "build": "yarn rm && yarn cp && yarn pkg",
         "pkg": "node ../../build.js"

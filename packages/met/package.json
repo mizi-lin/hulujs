@@ -6,6 +6,7 @@
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
     "main": "lib/index.js",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"
