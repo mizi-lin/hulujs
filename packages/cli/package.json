@@ -20,7 +20,7 @@
         "rm": "rm -rf ./dist",
         "watch": "tsc --watch",
         "pkg": "node ../../build.js",
-        "build": "yarn rm && tsc && yarn pkg"
+        "build": "tsc && yarn pkg"
     },
     "dependencies": {
         "@hulujs/core": "*",
@@ -28,6 +28,8 @@
         "@hulujs/template": "*",
         "@hulujs/types": "*",
         "omelette": "^0.4.17",
+        "shelljs": "^0.8.5",
+        "shelljs-live": "^0.0.5",
         "yargs": "^17.7.2"
     },
     "devDependencies": {
