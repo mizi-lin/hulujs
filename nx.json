@@ -1,0 +1,16 @@
+{
+    "targetDefaults": {
+        "watch": {
+            "dependsOn": []
+        },
+        "pkg": {
+            "dependsOn": []
+        },
+        "build": {
+            "dependsOn": ["^build"]
+        },
+        "publish2": {
+            "dependsOn": []
+        }
+    }
+}

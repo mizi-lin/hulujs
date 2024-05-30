@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { RegKey, Regc } from '../index.js';
+import { RegKey, Regc } from '@hulujs/msc';
 import { compact, each, format, ifrun, map, run, storage, tile, upArray } from '@hulujs/mu';
 import { toFormatMarker } from './uri.js';
 import { cloneDeep } from 'lodash-es';
