@@ -5,14 +5,7 @@
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
-    "main": "lib/met.js",
-    "directories": {
-        "lib": "lib",
-        "test": "__tests__"
-    },
-    "files": [
-        "lib"
-    ],
+    "main": "lib/index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"

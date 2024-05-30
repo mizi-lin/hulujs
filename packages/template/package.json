@@ -1,0 +1,27 @@
+{
+    "name": "@hulujs/template",
+    "version": "0.2.20",
+    "description": "hulujs cli use template ",
+    "author": "mizi.lin <mizi.lin@mizohen.com>",
+    "homepage": "https://github.com/mizi-lin/hulujs#readme",
+    "license": "ISC",
+    "main": "lib/template.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mizi-lin/hulujs.git"
+    },
+    "scripts": {
+        "rm": "rimraf ./dist",
+        "cp": "cp -r ../template  ./dist",
+        "watch": "yarn run build",
+        "build": "yarn rm && yarn cp && yarn pkg",
+        "pkg": "node ../../build.js"
+    },
+    "devDependencies": {
+        "copyfiles": "^2.4.1",
+        "rimraf": "^5.0.7"
+    },
+    "bugs": {
+        "url": "https://github.com/mizi-lin/hulujs/issues"
+    }
+}

@@ -617,6 +617,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@hulujs/template@workspace:packages/template":
+  version: 0.0.0-use.local
+  resolution: "@hulujs/template@workspace:packages/template"
+  languageName: unknown
+  linkType: soft
+
 "@hulujs/types@npm:*, @hulujs/types@npm:0.2.20, @hulujs/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@hulujs/types@workspace:packages/types"

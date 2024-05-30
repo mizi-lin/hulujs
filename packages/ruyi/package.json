@@ -2,10 +2,6 @@
     "name": "@hulujs/ruyi",
     "version": "0.2.20",
     "description": "hulujs ruyi",
-    "keywords": [
-        "hulujs",
-        "ruyi"
-    ],
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
