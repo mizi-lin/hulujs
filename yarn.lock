@@ -567,6 +567,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hulujs/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@hulujs/core@workspace:packages/core"
+  languageName: unknown
+  linkType: soft
+
 "@hulujs/msc@npm:0.2.20, @hulujs/msc@workspace:packages/msc":
   version: 0.0.0-use.local
   resolution: "@hulujs/msc@workspace:packages/msc"

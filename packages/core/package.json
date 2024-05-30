@@ -1,0 +1,26 @@
+{
+    "name": "@hulujs/core",
+    "version": "0.2.20",
+    "description": "hulujs core",
+    "author": "mizi.lin <mizi.lin@mizohen.com>",
+    "homepage": "https://github.com/mizi-lin/hulujs#readme",
+    "license": "ISC",
+    "main": "lib/core.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "lib"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mizi-lin/hulujs.git"
+    },
+    "scripts": {
+        "pkg": "node ../../build.js",
+        "build": "tsc && yarn pkg"
+    },
+    "bugs": {
+        "url": "https://github.com/mizi-lin/hulujs/issues"
+    }
+}

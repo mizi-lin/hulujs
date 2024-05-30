@@ -3,14 +3,8 @@
         "watch": {
             "dependsOn": []
         },
-        "pkg": {
-            "dependsOn": []
-        },
         "build": {
             "dependsOn": ["^build"]
-        },
-        "publish": {
-            "dependsOn": ["build"]
         }
     }
 }
