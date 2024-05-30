@@ -8,6 +8,9 @@
         },
         "build": {
             "dependsOn": ["^build"]
+        },
+        "publish": {
+            "dependsOn": ["build"]
         }
     }
 }

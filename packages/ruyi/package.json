@@ -2,7 +2,10 @@
     "name": "@hulujs/ruyi",
     "version": "0.2.18",
     "description": "hulujs ruyi",
-    "keywords": ["hulujs", "ruyi"],
+    "keywords": [
+        "hulujs",
+        "ruyi"
+    ],
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
@@ -33,5 +36,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "65511da540e535293a466cac9b967b51ab4abc02"
+    "gitHead": "cb43d6f3a20c31e05e660cff4af8cb8a44f6a9c4"
 }
