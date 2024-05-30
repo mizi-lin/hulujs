@@ -24,7 +24,7 @@ if (module) {
     pkg.module = module.replace(/\.ts$/, '.js');
 }
 
-// await writeJSON(targetPkgPath, pkg);
+await writeJSON(targetPkgPath, pkg);
 
 // copy package
 // await copy(pkgPath, targetPkgPath);
