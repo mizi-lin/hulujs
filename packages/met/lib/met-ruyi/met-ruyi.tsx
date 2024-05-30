@@ -3,7 +3,7 @@ import { FC, ReactNode, Suspense, useEffect } from 'react';
 import { RecoilValue, selectorFamily, useRecoilValueLoadable } from 'recoil';
 import { MetError, MetDynamic, MetGene, MetGeneProps, MetLoading, MetNodata, MetProps } from '../index.js';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Request, RuyiOptions } from '@hulujs/msc';
+import { Request, RuyiOptions } from '@hulujs/ruyi';
 
 export type Transmit = '@' | string | Record<string, string>;
 
