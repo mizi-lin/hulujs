@@ -2,10 +2,7 @@
     "name": "@hulujs/mu",
     "version": "0.2.17",
     "description": "hulujs utils",
-    "keywords": [
-        "hulujs",
-        "utils"
-    ],
+    "keywords": ["hulujs", "utils"],
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
@@ -15,9 +12,6 @@
     "directories": {
         "lib": "lib"
     },
-    "files": [
-        "dist"
-    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/mizi-lin/hulujs.git"
