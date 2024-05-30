@@ -1,0 +1,41 @@
+{
+    "name": "@hulujs/met",
+    "version": "0.2.20",
+    "description": "hulujs met UI 组件库",
+    "author": "mizi.lin <mizi.lin@mizohen.com>",
+    "homepage": "https://github.com/mizi-lin/hulujs#readme",
+    "license": "ISC",
+    "main": "lib/met.js",
+    "directories": {
+        "lib": "lib",
+        "test": "__tests__"
+    },
+    "files": [
+        "lib"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mizi-lin/hulujs.git"
+    },
+    "scripts": {
+        "config": "yarn run tsc --showConfig",
+        "watch": "tsc --watch",
+        "pkg": "node ../../build.js",
+        "build": "tsc && yarn pkg",
+        "publish": "cd ./dist && npm publish"
+    },
+    "dependencies": {
+        "@hulujs/mu": "*",
+        "@hulujs/types": "*",
+        "classnames": "^2.5.1",
+        "csstype": "^3.1.3",
+        "echarts": "^5.5.0",
+        "echarts-liquidfill": "^3.1.0",
+        "echarts-wordcloud": "^2.1.0",
+        "recoil": "^0.7.7",
+        "size-sensor": "^1.0.2"
+    },
+    "bugs": {
+        "url": "https://github.com/mizi-lin/hulujs/issues"
+    }
+}
