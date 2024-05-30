@@ -8,7 +8,7 @@
             "message": "chore: publish",
             "directory": "{workspaceRoot}/dist/{projectName}",
             "registry": "https://registry.npmjs.org/",
-            "assets": ["package.json"]
+            "assets": [{ "from": "./package.json", "to": "{workspaceRoot}/dist/{projectName}/package.json" }]
         },
         "version": {
             "conventionalCommits": true,
