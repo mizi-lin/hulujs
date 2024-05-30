@@ -2,7 +2,7 @@
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "../../dist/@hulu/msc"
+        "outDir": "../../dist/@hulujs/msc"
     },
     "include": ["./lib"],
     "exclude": ["node_modules", "dist"],
