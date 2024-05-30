@@ -8,8 +8,8 @@
 2 verbose packageConfigs Resolving packages based on package.json "workspaces" configuration.
 3 verbose rootPath /Users/Mizi/works/hulu/hulujs
 4 error Failed to process project graph. Run "nx reset" to fix this. Please report the issue if you keep seeing it.
-4 error   The "nx/core/package-json-workspaces" plugin threw an error while creating nodes from packages/core copy/package.json:
-4 error     Error: ENOENT: no such file or directory, open '/Users/Mizi/works/hulu/hulujs/packages/core copy/package.json'
+4 error   The "nx/core/package-json-workspaces" plugin threw an error while creating nodes from packages/template copy/package.json:
+4 error     Error: ENOENT: no such file or directory, open '/Users/Mizi/works/hulu/hulujs/packages/template copy/package.json'
 4 error         at Object.openSync (node:fs:605:3)
 4 error         at Object.func [as openSync] (node:electron/js2c/node_init:2:2214)
 4 error         at readFileSync (node:fs:473:35)
@@ -21,7 +21,7 @@
 4 error         at Array.map (<anonymous>)
 4 error         at runCreateNodesInParallel (/Users/Mizi/works/hulu/hulujs/node_modules/nx/src/project-graph/plugins/utils.js:47:34)
 4 error ProjectsWithNoNameError: The projects in the following directories have no name provided:
-4 error     - packages/core copy
+4 error     - packages/template copy
 4 error       at validateAndNormalizeProjectRootMap (/Users/Mizi/works/hulu/hulujs/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:426:15)
 4 error       at /Users/Mizi/works/hulu/hulujs/node_modules/nx/src/project-graph/utils/project-configuration-utils.js:302:13
 4 error       at async processFilesAndCreateAndSerializeProjectGraph (/Users/Mizi/works/hulu/hulujs/node_modules/nx/src/daemon/server/project-graph-incremental-recomputation.js:148:43)

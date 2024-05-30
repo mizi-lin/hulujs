@@ -1,0 +1,10 @@
+{
+    "extends": "../../tsconfig-base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": ".../../dist/@hulujs/cli"
+    },
+    "include": ["./src", "./bin", "../cli/lib/handlers"],
+    "exclude": ["node_modules", "dist"],
+    "references": [{ "path": "../core" }, { "path": "../mu" }]
+}
