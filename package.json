@@ -1,6 +1,7 @@
 {
     "name": "hulu-v5",
     "private": true,
+    "version": "1.0.0",
     "license": "MIT",
     "description": "Hulu v5",
     "type": "module",
@@ -61,8 +62,6 @@
         "@babel/helper-module-transforms": "^7.23.3",
         "typescript": "^5"
     },
-    "workspaces": [
-        "packages/*"
-    ],
+    "workspaces": ["packages/*"],
     "packageManager": "yarn@4.2.2"
 }

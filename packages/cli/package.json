@@ -26,7 +26,7 @@
         "@hulujs/core": "0.2.21",
         "@hulujs/mu": "0.2.21",
         "@hulujs/template": "0.2.21",
-        "@hulujs/types": "*",
+        "@hulujs/types": "0.2.21",
         "omelette": "^0.4.17",
         "shelljs": "^0.8.5",
         "shelljs-live": "^0.0.5",
@@ -38,5 +38,6 @@
     },
     "bugs": {
         "url": "https://github.com/mizi-lin/hulujs/issues"
-    }
+    },
+    "gitHead": "e9b0048011eefdfe0f9a93d6f005e9c49e61d2ba"
 }
