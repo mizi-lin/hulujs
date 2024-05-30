@@ -2,8 +2,8 @@ import fse from 'fs-extra';
 import { Arguments } from 'yargs';
 import createDebug from 'debug';
 import { $log, $repo, globby } from '@hulujs/core';
-import { getOvrdSrcPath, isInstallCaoKong, srcToAliasWithCaoKong } from '../dev/utils.js';
 import { select, confirm } from '@clack/prompts';
+import { isInstallCaoKong, srcToAliasWithCaoKong, getOvrdSrcPath } from '../dev/utils.js';
 
 /**
  * 将操控体系的文件安装到前台(ovrd层)

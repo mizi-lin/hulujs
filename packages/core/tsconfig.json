@@ -4,7 +4,7 @@
         "baseUrl": ".",
         "outDir": "../../dist/@hulujs/core"
     },
-    "include": ["./src"],
+    "include": ["./lib"],
     "exclude": ["node_modules", "dist"],
     "references": [{ "path": "../types" }, { "path": "../mu" }]
 }

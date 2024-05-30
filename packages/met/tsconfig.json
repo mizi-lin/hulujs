@@ -6,7 +6,7 @@
         "baseUrl": ".",
         "outDir": "../../dist/@hulujs/met"
     },
-    "include": ["./src"],
+    "include": ["./lib"],
     "exclude": ["node_modules", "dist"],
     "references": [{ "path": "../types" }, { "path": "../mu" }]
 }

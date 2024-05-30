@@ -4,7 +4,7 @@
         "baseUrl": ".",
         "outDir": ".../../dist/@hulujs/cli"
     },
-    "include": ["./src", "./bin", "../cli/lib/handlers"],
+    "include": ["./lib", "./bin", "../cli/lib/handlers"],
     "exclude": ["node_modules", "dist"],
     "references": [{ "path": "../core" }, { "path": "../mu" }]
 }
