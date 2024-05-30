@@ -1,6 +1,7 @@
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
 import cmds from './commands/index.js';
+import { $log, $repo } from '@hulujs/core';
 
 export const run = () => {
     const arg = hideBin(process.argv);
