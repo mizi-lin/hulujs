@@ -1,6 +1,6 @@
 {
     "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-    "version": "0.2.17",
+    "version": "0.2.18",
     "npmClient": "yarn",
     "command": {
         "publish": {
@@ -8,7 +8,12 @@
             "message": "chore: publish",
             "directory": "{workspaceRoot}/dist/{projectName}",
             "registry": "https://registry.npmjs.org/",
-            "assets": [{ "from": "./package.json", "to": "{workspaceRoot}/dist/{projectName}/package.json" }]
+            "assets": [
+                {
+                    "from": "./package.json",
+                    "to": "{workspaceRoot}/dist/{projectName}/package.json"
+                }
+            ]
         },
         "version": {
             "conventionalCommits": true,

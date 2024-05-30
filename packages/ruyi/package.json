@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/ruyi",
-    "version": "0.2.17",
+    "version": "0.2.18",
     "description": "hulujs ruyi",
     "keywords": ["hulujs", "ruyi"],
     "author": "mizi.lin <mizi.lin@mizohen.com>",
@@ -26,9 +26,9 @@
         "url": "https://github.com/mizi-lin/hulujs/issues"
     },
     "dependencies": {
-        "@hulujs/msc": "0.2.17",
-        "@hulujs/mu": "0.2.17",
-        "@hulujs/types": "0.2.17"
+        "@hulujs/msc": "0.2.18",
+        "@hulujs/mu": "0.2.18",
+        "@hulujs/types": "0.2.18"
     },
     "publishConfig": {
         "access": "public"
