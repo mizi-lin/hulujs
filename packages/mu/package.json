@@ -1,11 +1,8 @@
 {
     "name": "@hulujs/mu",
-    "version": "0.2.21",
+    "version": "0.2.22",
     "description": "hulujs utils",
-    "keywords": [
-        "hulujs",
-        "utils"
-    ],
+    "keywords": ["hulujs", "utils"],
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",
@@ -29,8 +26,8 @@
         "url": "https://github.com/mizi-lin/hulujs/issues"
     },
     "dependencies": {
-        "@hulujs/msc": "0.2.20",
-        "@hulujs/types": "0.2.20"
+        "@hulujs/msc": "0.2.22",
+        "@hulujs/types": "0.2.22"
     },
     "gitHead": "e9b0048011eefdfe0f9a93d6f005e9c49e61d2ba"
 }

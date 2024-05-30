@@ -1,24 +1,26 @@
 {
-    "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-    "version": "0.2.21",
-    "npmClient": "yarn",
-    "command": {
-        "publish": {
-            "ignoreChanges": ["*.md"],
-            "message": "chore: publish",
-            "directory": "{workspaceRoot}/dist/{projectName}",
-            "registry": "https://registry.npmjs.org/",
-            "assets": [
-                {
-                    "from": "./package.json",
-                    "to": "{workspaceRoot}/dist/{projectName}/package.json"
-                }
-            ]
-        },
-        "version": {
-            "conventionalCommits": true,
-            "exact": true,
-            "message": "chore(release): prepublish version"
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "0.2.22",
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "message": "chore: publish",
+      "directory": "{workspaceRoot}/dist/{projectName}",
+      "registry": "https://registry.npmjs.org/",
+      "assets": [
+        {
+          "from": "./package.json",
+          "to": "{workspaceRoot}/dist/{projectName}/package.json"
         }
+      ]
+    },
+    "version": {
+      "conventionalCommits": true,
+      "exact": true,
+      "message": "chore(release): prepublish version"
     }
+  }
 }

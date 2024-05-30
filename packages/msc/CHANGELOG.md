@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.20](https://github.com/mizi-lin/hulujs/compare/v0.2.19...v0.2.20) (2024-05-30)
+## [0.2.22](https://github.com/mizi-lin/hulujs/compare/v0.2.19...v0.2.22) (2024-05-30)
 
 
 ### Features

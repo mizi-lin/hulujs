@@ -1,6 +1,6 @@
 {
     "name": "@hulujs/types",
-    "version": "0.2.20",
+    "version": "0.2.22",
     "description": "hulujs types",
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
@@ -19,8 +19,7 @@
     "scripts": {
         "watch": "tsc --declaration --watch",
         "pkg": "node ../../build.js",
-        "build": "tsc --declaration && yarn pkg",
-        "publish2": "cd ./dist && npm publish"
+        "build": "tsc --declaration && yarn pkg"
     },
     "bugs": {
         "url": "https://github.com/mizi-lin/hulujs/issues"
