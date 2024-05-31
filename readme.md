@@ -48,3 +48,7 @@ $ yarn link /Users/Mizi/works/hulu/hulujs/dist/@hulujs/ruyi
 
 就可以正常调试了
 
+
+## Global 
+
+`npm link` + `node postpublish.js`
