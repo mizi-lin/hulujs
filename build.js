@@ -2,6 +2,7 @@
 
 import path from 'path';
 import { copy, readJSON, writeJSON } from 'fs-extra/esm';
+import { writeFile } from 'fs/promises';
 
 const pwd = process.cwd();
 const filename = pwd.split(path.sep).at(-1);
@@ -25,6 +26,11 @@ if (module) {
 }
 
 await writeJSON(targetPkgPath, pkg);
+
+/**
+ * 写入空白的yarn.lock 用于link
+ **/
+await writeFile(path.join(outDirs, 'yarn.lock'), '');
 
 // copy package
 // await copy(pkgPath, targetPkgPath);

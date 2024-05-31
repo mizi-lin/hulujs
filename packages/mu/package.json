@@ -2,7 +2,10 @@
     "name": "@hulujs/mu",
     "version": "0.2.23",
     "description": "hulujs utils",
-    "keywords": ["hulujs", "utils"],
+    "keywords": [
+        "hulujs",
+        "utils"
+    ],
     "author": "mizi.lin <mizi.lin@mizohen.com>",
     "homepage": "https://github.com/mizi-lin/hulujs#readme",
     "license": "ISC",

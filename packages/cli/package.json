@@ -30,6 +30,7 @@
         "omelette": "^0.4.17",
         "shelljs": "^0.8.5",
         "shelljs-live": "^0.0.5",
+        "v8-compile-cache": "^2.4.0",
         "yargs": "^17.7.2"
     },
     "devDependencies": {

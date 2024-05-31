@@ -3,7 +3,7 @@ import parser from '@babel/parser';
 import { traverse } from '@babel/core';
 import path from 'path';
 import fse from 'fs-extra';
-import { $root } from 'lib/root.js';
+import { $root } from '@hulujs/core';
 
 export const getImports = (content: string, currentPath: string) => {
     const ast = parser.parse(content, {

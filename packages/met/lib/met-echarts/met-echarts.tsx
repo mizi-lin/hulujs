@@ -1,6 +1,6 @@
 import { Met, MetProps } from '@hulujs/met';
 import { DataRow, EchartType, Mapper, MapperValue, SubTypes } from '@hulujs/types';
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 import { EChartsOption } from 'echarts';
 
 import { FC, useEffect, useRef, useState } from 'react';

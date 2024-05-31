@@ -10,7 +10,8 @@
         "prewatch": "lerna run build",
         "watch": "lerna watch -- lerna run build",
         "build": "rm -rf ./dist && lerna run build",
-        "prepublish": "yarn lerna run build"
+        "prepublish": "yarn lerna run build",
+        "postpublish": "node ./postpublish.js"
     },
     "dependencies": {
         "@clack/prompts": "^0.7.0",
