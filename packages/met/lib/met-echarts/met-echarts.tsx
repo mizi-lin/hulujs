@@ -7,7 +7,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { bind } from 'size-sensor';
 import { getOptions } from './options.js';
 import { camelCase, cloneDeep } from 'lodash-es';
-import { run } from '@hulujs/mu';
+import { run, upArray } from '@hulujs/mu';
 import 'echarts-liquidfill';
 import 'echarts-wordcloud';
 import { chinaGeoJSON } from './assets/china-map.js';
@@ -119,9 +119,28 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
         onMouseOver,
         onMouseOut,
         onGlobalOut,
+        onSelectchanged,
         ...extra
     } = props;
-    const funcMap = { onClick, onDblClick, onMouseDown, onMouseUp, onMouseOver, onMouseOut, onGlobalOut };
+
+    const onfunc = Object.keys(props)
+        .filter((key) => {
+            return /^on[A-Z]/.test(key);
+        })
+        .map((key) => {
+            return [key, props[key]];
+        });
+
+    // 全局点击支持空白区域
+    const zrfunc = Object.keys(props)
+        .filter((key) => {
+            return /^zr[A-Z]/.test(key);
+        })
+        .map((key) => {
+            return [key, props[key]];
+        });
+
+    // const funcMap = { onClick, onDblClick, onMouseDown, onMouseUp, onMouseOver, onMouseOut, onGlobalOut, onSelectchanged };
     const echartRef = useRef<HTMLDivElement>(null);
     const [myChart, setMyChart] = useState<echarts.ECharts>();
     const [opts, setOpts] = useState<EChartsOption>();
@@ -183,16 +202,33 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
 
     // bind event
     useEffect(() => {
-        if (myChart) {
-            Object.entries(funcMap).forEach(([key, func]) => {
+        if (myChart && onfunc?.length) {
+            onfunc.forEach(([key, func]) => {
                 const name = camelCase(key.replace(/^on/, ''));
+                const [handler, query] = upArray(func);
                 myChart.off(name);
-                myChart.on(name, (e: any) => {
-                    func?.(e, props, options);
-                });
+                query
+                    ? myChart.on(name, query, (...args) => handler?.(...args, props, options))
+                    : myChart.on(name, (...args) => handler?.(...args, { props, options: opts, myChart }));
             });
         }
-    }, [myChart, ...Object.values(funcMap)]);
+    }, [myChart, onfunc]);
+
+    // bind zr event
+    useEffect(() => {
+        if (myChart && zrfunc?.length) {
+            zrfunc.forEach(([key, func]) => {
+                const name = camelCase(key.replace(/^zr/, ''));
+                const [handler, query] = upArray(func);
+                myChart.getZr().off(name);
+                query
+                    ? myChart.getZr().on(name, query, (...args) => handler?.(...args, props, options))
+                    : myChart.getZr().on(name, (...args) => {
+                          handler?.(...args, { props, options: opts, myChart });
+                      });
+            });
+        }
+    }, [myChart, zrfunc]);
 
     return <Met tag={'div'} ref={echartRef} componentClassName={'met-echarts'} full {...extra} />;
 };
