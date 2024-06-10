@@ -40,738 +40,226 @@
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": ".eslintrc.js",
+        "hash": "17722466862600720202"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "10590391214477380632"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "15467444912243948409"
+      },
+      {
+        "file": ".prettierrc.json",
+        "hash": "14552959737187325388"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "770931651488763705"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "16012936201801507456"
+      },
+      {
+        "file": ".yarn/releases/yarn-4.2.2.cjs",
+        "hash": "13505783443694816522"
+      },
+      {
+        "file": ".yarnrc.yml",
+        "hash": "15227809006120608542"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "2954656521228080339"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "17773469106480806024"
+      },
+      {
+        "file": "README.md",
+        "hash": "3677674456833629053"
+      },
+      {
+        "file": "build.js",
+        "hash": "6560495714328146236"
+      },
+      {
+        "file": "lerna-debug.log",
+        "hash": "6251331053439619582"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "17572278355500788704"
+      },
+      {
+        "file": "nx.json",
+        "hash": "4624782173776638580"
+      },
+      {
+        "file": "package.json",
+        "hash": "12162499938023561086"
+      },
+      {
+        "file": "postpublish.js",
+        "hash": "9322319673423756765"
+      },
+      {
+        "file": "tsconfig-base.json",
+        "hash": "4042216052546350221"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "17706403372345245393"
+      },
+      {
+        "file": "yarn.lock",
+        "hash": "6096327206440053998"
+      }
+    ],
     "projectFileMap": {
-      "@hulujs/ruyi": [
+      "@hulujs/core": [
         {
-          "file": "packages/ruyi/CHANGELOG.md",
-          "hash": "316470970305696847"
+          "file": "packages/core/CHANGELOG.md",
+          "hash": "1706646577575941042"
         },
         {
-          "file": "packages/ruyi/README.md",
-          "hash": "13491546544649698009"
+          "file": "packages/core/README.md",
+          "hash": "17192224797273749202"
         },
         {
-          "file": "packages/ruyi/lib/index.ts",
-          "hash": "15049936737617350128"
+          "file": "packages/core/lib/bash.ts",
+          "hash": "16245094683479216203"
         },
         {
-          "file": "packages/ruyi/lib/ruyi-resources.ts",
-          "hash": "18073190996315407632"
+          "file": "packages/core/lib/ck.ts",
+          "hash": "9193748229003050530"
         },
         {
-          "file": "packages/ruyi/lib/ruyi.ts",
-          "hash": "14434369950257748105"
+          "file": "packages/core/lib/extra/inquirer-fuzzy-path.ts",
+          "hash": "15809816172092798719"
         },
         {
-          "file": "packages/ruyi/lib/uri.ts",
-          "hash": "14058167691344858359"
+          "file": "packages/core/lib/generator.ts",
+          "hash": "1273250444497110775"
         },
         {
-          "file": "packages/ruyi/lib/utils.ts",
-          "hash": "5288309547967037376"
+          "file": "packages/core/lib/git.ts",
+          "hash": "12718935108680594413"
         },
         {
-          "file": "packages/ruyi/package.json",
-          "hash": "10816034862572460969",
+          "file": "packages/core/lib/index.ts",
+          "hash": "12108084051468676574"
+        },
+        {
+          "file": "packages/core/lib/load.ts",
+          "hash": "11627241239181922008"
+        },
+        {
+          "file": "packages/core/lib/log.ts",
+          "hash": "1679550696209077500"
+        },
+        {
+          "file": "packages/core/lib/montage-server.ts",
+          "hash": "6012045239025169849"
+        },
+        {
+          "file": "packages/core/lib/montage/editor-api.ts",
+          "hash": "7687099598482027546"
+        },
+        {
+          "file": "packages/core/lib/montage/editor/content-by-file.ts",
+          "hash": "7769399157456691551"
+        },
+        {
+          "file": "packages/core/lib/montage/editor/utils.ts",
+          "hash": "7761394082474062026"
+        },
+        {
+          "file": "packages/core/lib/montage/materials-api.ts",
+          "hash": "3327714114556242025"
+        },
+        {
+          "file": "packages/core/lib/montage/materials/get-materials.ts",
+          "hash": "17096040005535023686"
+        },
+        {
+          "file": "packages/core/lib/msc.ts",
+          "hash": "7902626658995732567"
+        },
+        {
+          "file": "packages/core/lib/path-extra.ts",
+          "hash": "2776422485500330867"
+        },
+        {
+          "file": "packages/core/lib/plugin/plugin-core.ts",
+          "hash": "9993082610141465893"
+        },
+        {
+          "file": "packages/core/lib/prompt.ts",
+          "hash": "954655834554650007"
+        },
+        {
+          "file": "packages/core/lib/root.ts",
+          "hash": "13688591066181455431"
+        },
+        {
+          "file": "packages/core/lib/tpl.ts",
+          "hash": "7227807287129806874"
+        },
+        {
+          "file": "packages/core/lib/utils.ts",
+          "hash": "1398846146972401779"
+        },
+        {
+          "file": "packages/core/lib/version.ts",
+          "hash": "668078604766115311"
+        },
+        {
+          "file": "packages/core/package.json",
+          "hash": "3333576789655602236",
           "deps": [
-            "@hulujs/msc",
-            "@hulujs/mu",
-            "@hulujs/types"
-          ]
-        },
-        {
-          "file": "packages/ruyi/tsconfig.json",
-          "hash": "7108211546483191863"
-        }
-      ],
-      "@hulujs/met": [
-        {
-          "file": "packages/met/CHANGELOG.md",
-          "hash": "17484740894955343319"
-        },
-        {
-          "file": "packages/met/README.md",
-          "hash": "9463260225815580652"
-        },
-        {
-          "file": "packages/met/lib/demo/demo.tsx",
-          "hash": "8151028748349197270"
-        },
-        {
-          "file": "packages/met/lib/demo/index.ts",
-          "hash": "11217726908026543244"
-        },
-        {
-          "file": "packages/met/lib/env.ts",
-          "hash": "10360308180754561629"
-        },
-        {
-          "file": "packages/met/lib/index.ts",
-          "hash": "14775866966629692563"
-        },
-        {
-          "file": "packages/met/lib/met-box/index.ts",
-          "hash": "1167646519804184482"
-        },
-        {
-          "file": "packages/met/lib/met-box/met-box.tsx",
-          "hash": "11002422809109460362"
-        },
-        {
-          "file": "packages/met/lib/met-bridge/index.ts",
-          "hash": "16202229299227288820"
-        },
-        {
-          "file": "packages/met/lib/met-bridge/met-bridge.tsx",
-          "hash": "15514264172964631267"
-        },
-        {
-          "file": "packages/met/lib/met-center/index.ts",
-          "hash": "13785807902532067636"
-        },
-        {
-          "file": "packages/met/lib/met-center/met-center.tsx",
-          "hash": "7742443207703677914"
-        },
-        {
-          "file": "packages/met/lib/met-dynamic/index.ts",
-          "hash": "2004078995432671684"
-        },
-        {
-          "file": "packages/met/lib/met-dynamic/met-dynamic.tsx",
-          "hash": "7060857240149751850"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/.DS_Store",
-          "hash": "14132945978128109913"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/assets/china-map.ts",
-          "hash": "13322084896749561422"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/assets/china-vertical.ts",
-          "hash": "5836788195627143884"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/constants.ts",
-          "hash": "3604892354196040828"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/data-transform.ts",
-          "hash": "702188261079077526"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/default-transform.ts",
-          "hash": "17108079745413629986"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/index.ts",
-          "hash": "6908127763030388007"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/met-echarts.tsx",
-          "hash": "16352927704249840789"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/options.ts",
-          "hash": "3707687873159833058"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/setting.ts",
-          "hash": "6577478619035791939"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/subtype.ts",
-          "hash": "5018911330340530949"
-        },
-        {
-          "file": "packages/met/lib/met-echarts/type-transform.ts",
-          "hash": "16827377909582539202"
-        },
-        {
-          "file": "packages/met/lib/met-error/index.ts",
-          "hash": "3936705204283902849"
-        },
-        {
-          "file": "packages/met/lib/met-error/met-error.less",
-          "hash": "11310658953403392306"
-        },
-        {
-          "file": "packages/met/lib/met-error/met-error.tsx",
-          "hash": "17547815245849339840"
-        },
-        {
-          "file": "packages/met/lib/met-flex/index.ts",
-          "hash": "56163159582761384"
-        },
-        {
-          "file": "packages/met/lib/met-flex/met-flex.tsx",
-          "hash": "4789201349642950188"
-        },
-        {
-          "file": "packages/met/lib/met-gene/index.ts",
-          "hash": "1430442830512150602"
-        },
-        {
-          "file": "packages/met/lib/met-gene/met-gene.tsx",
-          "hash": "13681794867919611749"
-        },
-        {
-          "file": "packages/met/lib/met-grid/index.ts",
-          "hash": "528009532622266311"
-        },
-        {
-          "file": "packages/met/lib/met-grid/met-grid.tsx",
-          "hash": "2432093112902700678"
-        },
-        {
-          "file": "packages/met/lib/met-left/index.ts",
-          "hash": "2961480444738453816"
-        },
-        {
-          "file": "packages/met/lib/met-left/met-left.tsx",
-          "hash": "8813582926405540861"
-        },
-        {
-          "file": "packages/met/lib/met-loading/index.ts",
-          "hash": "18404211561999142850"
-        },
-        {
-          "file": "packages/met/lib/met-loading/met-loading.tsx",
-          "hash": "688049333548619546"
-        },
-        {
-          "file": "packages/met/lib/met-nest/index.ts",
-          "hash": "4626411066348072199"
-        },
-        {
-          "file": "packages/met/lib/met-nest/met-nest.tsx",
-          "hash": "9507405052571116693"
-        },
-        {
-          "file": "packages/met/lib/met-nodata/index.ts",
-          "hash": "1934034590871035076"
-        },
-        {
-          "file": "packages/met/lib/met-nodata/met-nodata.tsx",
-          "hash": "11553391779600347436"
-        },
-        {
-          "file": "packages/met/lib/met-panel/index.ts",
-          "hash": "5520533114667261042"
-        },
-        {
-          "file": "packages/met/lib/met-panel/met-panel.tsx",
-          "hash": "10249973154132145106"
-        },
-        {
-          "file": "packages/met/lib/met-panel/register-tools.tsx",
-          "hash": "3050400928475236557"
-        },
-        {
-          "file": "packages/met/lib/met-row/index.ts",
-          "hash": "11329644300472533173"
-        },
-        {
-          "file": "packages/met/lib/met-row/met-row.tsx",
-          "hash": "4399861907374427243"
-        },
-        {
-          "file": "packages/met/lib/met-ruyi/index.ts",
-          "hash": "13763057064017181501"
-        },
-        {
-          "file": "packages/met/lib/met-ruyi/met-ruyi.tsx",
-          "hash": "681284044177698378"
-        },
-        {
-          "file": "packages/met/lib/met.js",
-          "hash": "4257443872537500580"
-        },
-        {
-          "file": "packages/met/lib/met/elements.tsx",
-          "hash": "17999436386287956923"
-        },
-        {
-          "file": "packages/met/lib/met/index.ts",
-          "hash": "1445819029687431998"
-        },
-        {
-          "file": "packages/met/lib/met/met.tsx",
-          "hash": "16327649929366830464"
-        },
-        {
-          "file": "packages/met/lib/met/utils.ts",
-          "hash": "17934342149686008343"
-        },
-        {
-          "file": "packages/met/lib/utils/is-react-element.ts",
-          "hash": "9734806478883662285"
-        },
-        {
-          "file": "packages/met/lib/utils/merge-refs.ts",
-          "hash": "16766429901803991104"
-        },
-        {
-          "file": "packages/met/lib/utils/open.ts",
-          "hash": "14332785231683898726"
-        },
-        {
-          "file": "packages/met/package.json",
-          "hash": "2313995360530498873",
-          "deps": [
-            "npm:recoil",
-            "@hulujs/mu",
-            "@hulujs/types",
-            "npm:classnames",
-            "npm:csstype",
-            "npm:echarts",
-            "npm:echarts-liquidfill",
-            "npm:echarts-wordcloud",
-            "npm:size-sensor"
-          ]
-        },
-        {
-          "file": "packages/met/tsconfig.json",
-          "hash": "14521965528684617197"
-        }
-      ],
-      "@hulujs/msc": [
-        {
-          "file": "packages/msc/CHANGELOG.md",
-          "hash": "7536043299537885226"
-        },
-        {
-          "file": "packages/msc/README.md",
-          "hash": "933627393642083757"
-        },
-        {
-          "file": "packages/msc/lib/index.ts",
-          "hash": "10448167034311212942"
-        },
-        {
-          "file": "packages/msc/lib/regc/index.ts",
-          "hash": "1977690559982584025"
-        },
-        {
-          "file": "packages/msc/lib/regc/reg-key.ts",
-          "hash": "7338004182393427424"
-        },
-        {
-          "file": "packages/msc/lib/regc/regc.ts",
-          "hash": "11483585627715189398"
-        },
-        {
-          "file": "packages/msc/package.json",
-          "hash": "13660532029837429491",
-          "deps": [
-            "@hulujs/types",
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "packages/msc/tsconfig.json",
-          "hash": "10460945448577624821"
-        }
-      ],
-      "@hulujs/types": [
-        {
-          "file": "packages/types/CHANGELOG.md",
-          "hash": "7942912486356840392"
-        },
-        {
-          "file": "packages/types/README.md",
-          "hash": "12644295522153958020"
-        },
-        {
-          "file": "packages/types/lib/ck.d.ts",
-          "hash": "17084674875152455566"
-        },
-        {
-          "file": "packages/types/lib/command.ts",
-          "hash": "13505322528295262999"
-        },
-        {
-          "file": "packages/types/lib/core.ts",
-          "hash": "15080520559818608126"
-        },
-        {
-          "file": "packages/types/lib/enums.ts",
-          "hash": "16643812385079114116"
-        },
-        {
-          "file": "packages/types/lib/index.ts",
-          "hash": "14714101158166586745"
-        },
-        {
-          "file": "packages/types/lib/met.ts",
-          "hash": "3886655150140070032"
-        },
-        {
-          "file": "packages/types/lib/mu.ts",
-          "hash": "227246451465770573"
-        },
-        {
-          "file": "packages/types/package.json",
-          "hash": "15153848567297735702"
-        },
-        {
-          "file": "packages/types/tsconfig.json",
-          "hash": "5563986092042989538"
-        }
-      ],
-      "@hulujs/cli": [
-        {
-          "file": "packages/cli/CHANGELOG.md",
-          "hash": "15388088883376852906"
-        },
-        {
-          "file": "packages/cli/README.md",
-          "hash": "17164804415944190867"
-        },
-        {
-          "file": "packages/cli/bin/hulu.mts",
-          "hash": "10399394615120439788"
-        },
-        {
-          "file": "packages/cli/lib/cli.js",
-          "hash": "17489875463686863405"
-        },
-        {
-          "file": "packages/cli/lib/cli.ts",
-          "hash": "10323496356217530919"
-        },
-        {
-          "file": "packages/cli/lib/commands/caokong/caokong.ts",
-          "hash": "3660293772964165527"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/dev.ts",
-          "hash": "13981638087796149509"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/prod.ts",
-          "hash": "7463654333397713790"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/step-ass-router.ts",
-          "hash": "3488996930090446189"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/step-generate-caokong-index-file.ts",
-          "hash": "15255296968128094595"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/step-generate-caokong.ts",
-          "hash": "10637670249410864440"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/step-generate-compiler-config.ts",
-          "hash": "4105808758802882194"
-        },
-        {
-          "file": "packages/cli/lib/commands/dev/utils.ts",
-          "hash": "15503903702995402122"
-        },
-        {
-          "file": "packages/cli/lib/commands/generate.ts",
-          "hash": "14718751570371819464"
-        },
-        {
-          "file": "packages/cli/lib/commands/git/add-files.ts",
-          "hash": "10705529085595020088"
-        },
-        {
-          "file": "packages/cli/lib/commands/git/commit-msg.ts",
-          "hash": "10165569063769656533"
-        },
-        {
-          "file": "packages/cli/lib/commands/git/git.ts",
-          "hash": "14500032811029113283"
-        },
-        {
-          "file": "packages/cli/lib/commands/index.ts",
-          "hash": "12260432848992011868"
-        },
-        {
-          "file": "packages/cli/lib/commands/init.ts",
-          "hash": "12851928200383439352"
-        },
-        {
-          "file": "packages/cli/lib/commands/montage.ts",
-          "hash": "6997701171000870442"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/match-compiler.ts",
-          "hash": "13336568284068848943"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/repo.ts",
-          "hash": "17990938657181227611"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-compiler.ts",
-          "hash": "1047648983908676677"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-env.ts",
-          "hash": "15019816433748195413"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-git.ts",
-          "hash": "10854470772760714429"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-info.ts",
-          "hash": "17542447099021122348"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-package-install.ts",
-          "hash": "16399662478435571582"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-repo.ts",
-          "hash": "10430524017827652617"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/utils.ts",
-          "hash": "2111261180268267342"
-        },
-        {
-          "file": "packages/cli/lib/commands/tools/rm.ts",
-          "hash": "13359849210608202617"
-        },
-        {
-          "file": "packages/cli/lib/commands/tools/tools.ts",
-          "hash": "5634097282036948798"
-        },
-        {
-          "file": "packages/cli/lib/compiler-options.ts",
-          "hash": "9493533855605092791"
-        },
-        {
-          "file": "packages/cli/lib/handlers/generate/get-tpl-info.js",
-          "hash": "4052708492034175854"
-        },
-        {
-          "file": "packages/cli/lib/handlers/generate/get-tpl-info.ts",
-          "hash": "14898345365348683298"
-        },
-        {
-          "file": "packages/cli/lib/index.ts",
-          "hash": "10294667417554963218"
-        },
-        {
-          "file": "packages/cli/lib/utils.ts",
-          "hash": "2159744604288050752"
-        },
-        {
-          "file": "packages/cli/package.json",
-          "hash": "13483098900213497655",
-          "deps": [
-            "npm:@types/yargs",
-            "npm:typescript",
-            "@hulujs/core",
+            "npm:@types/express",
+            "npm:@types/semver",
+            "npm:@types/shelljs",
+            "npm:@babel/core",
+            "npm:@babel/helper-module-transforms",
+            "npm:@babel/helper-plugin-utils",
+            "npm:@babel/parser",
+            "npm:@babel/plugin-transform-runtime",
+            "npm:@clack/prompts",
             "@hulujs/mu",
             "@hulujs/template",
             "@hulujs/types",
-            "npm:omelette",
+            "npm:ansi-styles",
+            "npm:chalk",
+            "npm:cross-import",
+            "npm:ejs",
+            "npm:express",
+            "npm:fs-extra",
+            "npm:inquirer",
+            "npm:inquirer-autocomplete-prompt",
+            "npm:inquirer-fuzzy-path",
+            "npm:is-unicode-supported",
+            "npm:lodash-es",
+            "npm:path",
+            "npm:semver",
             "npm:shelljs",
             "npm:shelljs-live",
-            "npm:v8-compile-cache",
-            "npm:yargs"
+            "npm:simple-git",
+            "npm:strip-ansi",
+            "npm:ts-import",
+            "npm:url"
           ]
         },
         {
-          "file": "packages/cli/tsconfig.json",
-          "hash": "8741914820579154998"
-        }
-      ],
-      "@hulujs/mu": [
-        {
-          "file": "packages/mu/CHANGELOG.md",
-          "hash": "1764945227427662217"
-        },
-        {
-          "file": "packages/mu/README.md",
-          "hash": "5793276689067628741"
-        },
-        {
-          "file": "packages/mu/lib/compact.ts",
-          "hash": "8919311809428050570"
-        },
-        {
-          "file": "packages/mu/lib/dichotomy.ts",
-          "hash": "6645965226254832990"
-        },
-        {
-          "file": "packages/mu/lib/each.ts",
-          "hash": "11327526111484871248"
-        },
-        {
-          "file": "packages/mu/lib/filter.ts",
-          "hash": "2685857831316334410"
-        },
-        {
-          "file": "packages/mu/lib/format.ts",
-          "hash": "10785988482311091880"
-        },
-        {
-          "file": "packages/mu/lib/if-falsy.ts",
-          "hash": "9083298366958848280"
-        },
-        {
-          "file": "packages/mu/lib/if-nvl.ts",
-          "hash": "13504616414347787867"
-        },
-        {
-          "file": "packages/mu/lib/if-run.ts",
-          "hash": "12326400203490518096"
-        },
-        {
-          "file": "packages/mu/lib/includes.ts",
-          "hash": "6949405875663602577"
-        },
-        {
-          "file": "packages/mu/lib/index.ts",
-          "hash": "2141056031278835571"
-        },
-        {
-          "file": "packages/mu/lib/is-base-type.ts",
-          "hash": "7211593775180338889"
-        },
-        {
-          "file": "packages/mu/lib/is-falsy.ts",
-          "hash": "17035200311234135047"
-        },
-        {
-          "file": "packages/mu/lib/is-like-num.ts",
-          "hash": "3460321082691410201"
-        },
-        {
-          "file": "packages/mu/lib/is-like-positive-int.ts",
-          "hash": "12759963653614157953"
-        },
-        {
-          "file": "packages/mu/lib/is-nil.ts",
-          "hash": "3994799868615610994"
-        },
-        {
-          "file": "packages/mu/lib/is-not-empty.ts",
-          "hash": "718403191410840182"
-        },
-        {
-          "file": "packages/mu/lib/is-not-falsy.ts",
-          "hash": "11228449155490276768"
-        },
-        {
-          "file": "packages/mu/lib/map.ts",
-          "hash": "18084236847223052989"
-        },
-        {
-          "file": "packages/mu/lib/mapping.ts",
-          "hash": "3298327104442609570"
-        },
-        {
-          "file": "packages/mu/lib/median.ts",
-          "hash": "8770785796666231929"
-        },
-        {
-          "file": "packages/mu/lib/mget.ts",
-          "hash": "10447779165262857710"
-        },
-        {
-          "file": "packages/mu/lib/mgetx.ts",
-          "hash": "11248145937726471648"
-        },
-        {
-          "file": "packages/mu/lib/mset.ts",
-          "hash": "1856275905556950361"
-        },
-        {
-          "file": "packages/mu/lib/msetx.ts",
-          "hash": "1522291023630428320"
-        },
-        {
-          "file": "packages/mu/lib/paris-to-entries.ts",
-          "hash": "1357814009512128375"
-        },
-        {
-          "file": "packages/mu/lib/regex.ts",
-          "hash": "859894949426381058"
-        },
-        {
-          "file": "packages/mu/lib/rid.ts",
-          "hash": "4322933431806168221"
-        },
-        {
-          "file": "packages/mu/lib/rows-to-tree.ts",
-          "hash": "10312184895351974158"
-        },
-        {
-          "file": "packages/mu/lib/run.ts",
-          "hash": "6947244899114957420"
-        },
-        {
-          "file": "packages/mu/lib/sleep.ts",
-          "hash": "15785305243023470404"
-        },
-        {
-          "file": "packages/mu/lib/sofunc.ts",
-          "hash": "9650516796385358984"
-        },
-        {
-          "file": "packages/mu/lib/stack.ts",
-          "hash": "9107215470865566002"
-        },
-        {
-          "file": "packages/mu/lib/storage.ts",
-          "hash": "12162340220385016848"
-        },
-        {
-          "file": "packages/mu/lib/tile.ts",
-          "hash": "14594353605402281406"
-        },
-        {
-          "file": "packages/mu/lib/try-number.ts",
-          "hash": "15748179134625218516"
-        },
-        {
-          "file": "packages/mu/lib/types.ts",
-          "hash": "13667730452393243009"
-        },
-        {
-          "file": "packages/mu/lib/up-array.ts",
-          "hash": "3954917457262468029"
-        },
-        {
-          "file": "packages/mu/lib/utils/compact-degree-func-map.ts",
-          "hash": "9806649007930104519"
-        },
-        {
-          "file": "packages/mu/lib/utils/number-format.ts",
-          "hash": "9900533717476002437"
-        },
-        {
-          "file": "packages/mu/lib/utils/string-format.ts",
-          "hash": "2722918136670780424"
-        },
-        {
-          "file": "packages/mu/lib/with-iife.ts",
-          "hash": "17284157359797266096"
-        },
-        {
-          "file": "packages/mu/package.json",
-          "hash": "2526552281701873880",
-          "deps": [
-            "@hulujs/msc",
-            "@hulujs/types"
-          ]
-        },
-        {
-          "file": "packages/mu/tsconfig.json",
-          "hash": "3756876640700086396"
+          "file": "packages/core/tsconfig.json",
+          "hash": "6676493062817585219"
         }
       ],
       "@hulujs/template": [
@@ -1148,227 +636,739 @@
           "hash": "12946363841406869089"
         }
       ],
-      "@hulujs/core": [
+      "@hulujs/types": [
         {
-          "file": "packages/core/CHANGELOG.md",
-          "hash": "1706646577575941042"
+          "file": "packages/types/CHANGELOG.md",
+          "hash": "7942912486356840392"
         },
         {
-          "file": "packages/core/README.md",
-          "hash": "17192224797273749202"
+          "file": "packages/types/README.md",
+          "hash": "12644295522153958020"
         },
         {
-          "file": "packages/core/lib/bash.ts",
-          "hash": "16245094683479216203"
+          "file": "packages/types/lib/ck.d.ts",
+          "hash": "17084674875152455566"
         },
         {
-          "file": "packages/core/lib/ck.ts",
-          "hash": "9193748229003050530"
+          "file": "packages/types/lib/command.ts",
+          "hash": "13505322528295262999"
         },
         {
-          "file": "packages/core/lib/extra/inquirer-fuzzy-path.ts",
-          "hash": "15809816172092798719"
+          "file": "packages/types/lib/core.ts",
+          "hash": "15080520559818608126"
         },
         {
-          "file": "packages/core/lib/generator.ts",
-          "hash": "1273250444497110775"
+          "file": "packages/types/lib/enums.ts",
+          "hash": "16643812385079114116"
         },
         {
-          "file": "packages/core/lib/git.ts",
-          "hash": "12718935108680594413"
+          "file": "packages/types/lib/index.ts",
+          "hash": "14714101158166586745"
         },
         {
-          "file": "packages/core/lib/index.ts",
-          "hash": "12108084051468676574"
+          "file": "packages/types/lib/met.ts",
+          "hash": "3886655150140070032"
         },
         {
-          "file": "packages/core/lib/load.ts",
-          "hash": "11627241239181922008"
+          "file": "packages/types/lib/mu.ts",
+          "hash": "227246451465770573"
         },
         {
-          "file": "packages/core/lib/log.ts",
-          "hash": "1679550696209077500"
+          "file": "packages/types/package.json",
+          "hash": "15153848567297735702"
         },
         {
-          "file": "packages/core/lib/montage-server.ts",
-          "hash": "6012045239025169849"
+          "file": "packages/types/tsconfig.json",
+          "hash": "5563986092042989538"
+        }
+      ],
+      "@hulujs/cli": [
+        {
+          "file": "packages/cli/CHANGELOG.md",
+          "hash": "15388088883376852906"
         },
         {
-          "file": "packages/core/lib/montage/editor-api.ts",
-          "hash": "7687099598482027546"
+          "file": "packages/cli/README.md",
+          "hash": "17164804415944190867"
         },
         {
-          "file": "packages/core/lib/montage/editor/content-by-file.ts",
-          "hash": "7769399157456691551"
+          "file": "packages/cli/bin/hulu.mts",
+          "hash": "10399394615120439788"
         },
         {
-          "file": "packages/core/lib/montage/editor/utils.ts",
-          "hash": "7761394082474062026"
+          "file": "packages/cli/lib/cli.js",
+          "hash": "17489875463686863405"
         },
         {
-          "file": "packages/core/lib/montage/materials-api.ts",
-          "hash": "3327714114556242025"
+          "file": "packages/cli/lib/cli.ts",
+          "hash": "10323496356217530919"
         },
         {
-          "file": "packages/core/lib/montage/materials/get-materials.ts",
-          "hash": "17096040005535023686"
+          "file": "packages/cli/lib/commands/caokong/caokong.ts",
+          "hash": "3660293772964165527"
         },
         {
-          "file": "packages/core/lib/msc.ts",
-          "hash": "7902626658995732567"
+          "file": "packages/cli/lib/commands/dev/dev.ts",
+          "hash": "13981638087796149509"
         },
         {
-          "file": "packages/core/lib/path-extra.ts",
-          "hash": "2776422485500330867"
+          "file": "packages/cli/lib/commands/dev/prod.ts",
+          "hash": "7463654333397713790"
         },
         {
-          "file": "packages/core/lib/plugin/plugin-core.ts",
-          "hash": "9993082610141465893"
+          "file": "packages/cli/lib/commands/dev/step-ass-router.ts",
+          "hash": "3488996930090446189"
         },
         {
-          "file": "packages/core/lib/prompt.ts",
-          "hash": "954655834554650007"
+          "file": "packages/cli/lib/commands/dev/step-generate-caokong-index-file.ts",
+          "hash": "15255296968128094595"
         },
         {
-          "file": "packages/core/lib/root.ts",
-          "hash": "13688591066181455431"
+          "file": "packages/cli/lib/commands/dev/step-generate-caokong.ts",
+          "hash": "10637670249410864440"
         },
         {
-          "file": "packages/core/lib/tpl.ts",
-          "hash": "7227807287129806874"
+          "file": "packages/cli/lib/commands/dev/step-generate-compiler-config.ts",
+          "hash": "4105808758802882194"
         },
         {
-          "file": "packages/core/lib/utils.ts",
-          "hash": "1398846146972401779"
+          "file": "packages/cli/lib/commands/dev/utils.ts",
+          "hash": "15503903702995402122"
         },
         {
-          "file": "packages/core/lib/version.ts",
-          "hash": "668078604766115311"
+          "file": "packages/cli/lib/commands/generate.ts",
+          "hash": "14718751570371819464"
         },
         {
-          "file": "packages/core/package.json",
-          "hash": "3333576789655602236",
+          "file": "packages/cli/lib/commands/git/add-files.ts",
+          "hash": "10705529085595020088"
+        },
+        {
+          "file": "packages/cli/lib/commands/git/commit-msg.ts",
+          "hash": "10165569063769656533"
+        },
+        {
+          "file": "packages/cli/lib/commands/git/git.ts",
+          "hash": "14500032811029113283"
+        },
+        {
+          "file": "packages/cli/lib/commands/index.ts",
+          "hash": "12260432848992011868"
+        },
+        {
+          "file": "packages/cli/lib/commands/init.ts",
+          "hash": "12851928200383439352"
+        },
+        {
+          "file": "packages/cli/lib/commands/montage.ts",
+          "hash": "6997701171000870442"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/match-compiler.ts",
+          "hash": "13336568284068848943"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/repo.ts",
+          "hash": "17990938657181227611"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-compiler.ts",
+          "hash": "1047648983908676677"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-env.ts",
+          "hash": "15019816433748195413"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-git.ts",
+          "hash": "10854470772760714429"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-info.ts",
+          "hash": "17542447099021122348"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-package-install.ts",
+          "hash": "16399662478435571582"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-repo.ts",
+          "hash": "10430524017827652617"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/utils.ts",
+          "hash": "2111261180268267342"
+        },
+        {
+          "file": "packages/cli/lib/commands/tools/rm.ts",
+          "hash": "13359849210608202617"
+        },
+        {
+          "file": "packages/cli/lib/commands/tools/tools.ts",
+          "hash": "5634097282036948798"
+        },
+        {
+          "file": "packages/cli/lib/compiler-options.ts",
+          "hash": "9493533855605092791"
+        },
+        {
+          "file": "packages/cli/lib/handlers/generate/get-tpl-info.js",
+          "hash": "4052708492034175854"
+        },
+        {
+          "file": "packages/cli/lib/handlers/generate/get-tpl-info.ts",
+          "hash": "14898345365348683298"
+        },
+        {
+          "file": "packages/cli/lib/index.ts",
+          "hash": "10294667417554963218"
+        },
+        {
+          "file": "packages/cli/lib/utils.ts",
+          "hash": "2159744604288050752"
+        },
+        {
+          "file": "packages/cli/package.json",
+          "hash": "13483098900213497655",
           "deps": [
-            "npm:@types/express",
-            "npm:@types/semver",
-            "npm:@types/shelljs",
-            "npm:@babel/core",
-            "npm:@babel/helper-module-transforms",
-            "npm:@babel/helper-plugin-utils",
-            "npm:@babel/parser",
-            "npm:@babel/plugin-transform-runtime",
-            "npm:@clack/prompts",
+            "npm:@types/yargs",
+            "npm:typescript",
+            "@hulujs/core",
             "@hulujs/mu",
             "@hulujs/template",
             "@hulujs/types",
-            "npm:ansi-styles",
-            "npm:chalk",
-            "npm:cross-import",
-            "npm:ejs",
-            "npm:express",
-            "npm:fs-extra",
-            "npm:inquirer",
-            "npm:inquirer-autocomplete-prompt",
-            "npm:inquirer-fuzzy-path",
-            "npm:is-unicode-supported",
-            "npm:lodash-es",
-            "npm:path",
-            "npm:semver",
+            "npm:omelette",
             "npm:shelljs",
             "npm:shelljs-live",
-            "npm:simple-git",
-            "npm:strip-ansi",
-            "npm:ts-import",
-            "npm:url"
+            "npm:v8-compile-cache",
+            "npm:yargs"
           ]
         },
         {
-          "file": "packages/core/tsconfig.json",
-          "hash": "6676493062817585219"
+          "file": "packages/cli/tsconfig.json",
+          "hash": "8741914820579154998"
+        }
+      ],
+      "@hulujs/msc": [
+        {
+          "file": "packages/msc/CHANGELOG.md",
+          "hash": "7536043299537885226"
+        },
+        {
+          "file": "packages/msc/README.md",
+          "hash": "933627393642083757"
+        },
+        {
+          "file": "packages/msc/lib/index.ts",
+          "hash": "10448167034311212942"
+        },
+        {
+          "file": "packages/msc/lib/regc/index.ts",
+          "hash": "1977690559982584025"
+        },
+        {
+          "file": "packages/msc/lib/regc/reg-key.ts",
+          "hash": "7338004182393427424"
+        },
+        {
+          "file": "packages/msc/lib/regc/regc.ts",
+          "hash": "11483585627715189398"
+        },
+        {
+          "file": "packages/msc/package.json",
+          "hash": "13660532029837429491",
+          "deps": [
+            "@hulujs/types",
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "packages/msc/tsconfig.json",
+          "hash": "10460945448577624821"
+        }
+      ],
+      "@hulujs/met": [
+        {
+          "file": "packages/met/CHANGELOG.md",
+          "hash": "17484740894955343319"
+        },
+        {
+          "file": "packages/met/README.md",
+          "hash": "9463260225815580652"
+        },
+        {
+          "file": "packages/met/lib/demo/demo.tsx",
+          "hash": "8151028748349197270"
+        },
+        {
+          "file": "packages/met/lib/demo/index.ts",
+          "hash": "11217726908026543244"
+        },
+        {
+          "file": "packages/met/lib/env.ts",
+          "hash": "10360308180754561629"
+        },
+        {
+          "file": "packages/met/lib/index.ts",
+          "hash": "14775866966629692563"
+        },
+        {
+          "file": "packages/met/lib/met-box/index.ts",
+          "hash": "1167646519804184482"
+        },
+        {
+          "file": "packages/met/lib/met-box/met-box.tsx",
+          "hash": "11002422809109460362"
+        },
+        {
+          "file": "packages/met/lib/met-bridge/index.ts",
+          "hash": "16202229299227288820"
+        },
+        {
+          "file": "packages/met/lib/met-bridge/met-bridge.tsx",
+          "hash": "15514264172964631267"
+        },
+        {
+          "file": "packages/met/lib/met-center/index.ts",
+          "hash": "13785807902532067636"
+        },
+        {
+          "file": "packages/met/lib/met-center/met-center.tsx",
+          "hash": "7742443207703677914"
+        },
+        {
+          "file": "packages/met/lib/met-dynamic/index.ts",
+          "hash": "2004078995432671684"
+        },
+        {
+          "file": "packages/met/lib/met-dynamic/met-dynamic.tsx",
+          "hash": "7060857240149751850"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/.DS_Store",
+          "hash": "14132945978128109913"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/assets/china-map.ts",
+          "hash": "13322084896749561422"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/assets/china-vertical.ts",
+          "hash": "5836788195627143884"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/constants.ts",
+          "hash": "3604892354196040828"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/data-transform.ts",
+          "hash": "702188261079077526"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/default-transform.ts",
+          "hash": "17108079745413629986"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/index.ts",
+          "hash": "6908127763030388007"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/met-echarts.tsx",
+          "hash": "16352927704249840789"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/options.ts",
+          "hash": "3707687873159833058"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/setting.ts",
+          "hash": "6577478619035791939"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/subtype.ts",
+          "hash": "5018911330340530949"
+        },
+        {
+          "file": "packages/met/lib/met-echarts/type-transform.ts",
+          "hash": "16827377909582539202"
+        },
+        {
+          "file": "packages/met/lib/met-error/index.ts",
+          "hash": "3936705204283902849"
+        },
+        {
+          "file": "packages/met/lib/met-error/met-error.less",
+          "hash": "11310658953403392306"
+        },
+        {
+          "file": "packages/met/lib/met-error/met-error.tsx",
+          "hash": "17547815245849339840"
+        },
+        {
+          "file": "packages/met/lib/met-flex/index.ts",
+          "hash": "56163159582761384"
+        },
+        {
+          "file": "packages/met/lib/met-flex/met-flex.tsx",
+          "hash": "4789201349642950188"
+        },
+        {
+          "file": "packages/met/lib/met-gene/index.ts",
+          "hash": "1430442830512150602"
+        },
+        {
+          "file": "packages/met/lib/met-gene/met-gene.tsx",
+          "hash": "13681794867919611749"
+        },
+        {
+          "file": "packages/met/lib/met-grid/index.ts",
+          "hash": "528009532622266311"
+        },
+        {
+          "file": "packages/met/lib/met-grid/met-grid.tsx",
+          "hash": "2432093112902700678"
+        },
+        {
+          "file": "packages/met/lib/met-left/index.ts",
+          "hash": "2961480444738453816"
+        },
+        {
+          "file": "packages/met/lib/met-left/met-left.tsx",
+          "hash": "8813582926405540861"
+        },
+        {
+          "file": "packages/met/lib/met-loading/index.ts",
+          "hash": "18404211561999142850"
+        },
+        {
+          "file": "packages/met/lib/met-loading/met-loading.tsx",
+          "hash": "688049333548619546"
+        },
+        {
+          "file": "packages/met/lib/met-nest/index.ts",
+          "hash": "4626411066348072199"
+        },
+        {
+          "file": "packages/met/lib/met-nest/met-nest.tsx",
+          "hash": "9507405052571116693"
+        },
+        {
+          "file": "packages/met/lib/met-nodata/index.ts",
+          "hash": "1934034590871035076"
+        },
+        {
+          "file": "packages/met/lib/met-nodata/met-nodata.tsx",
+          "hash": "11553391779600347436"
+        },
+        {
+          "file": "packages/met/lib/met-panel/index.ts",
+          "hash": "5520533114667261042"
+        },
+        {
+          "file": "packages/met/lib/met-panel/met-panel.tsx",
+          "hash": "10249973154132145106"
+        },
+        {
+          "file": "packages/met/lib/met-panel/register-tools.tsx",
+          "hash": "3050400928475236557"
+        },
+        {
+          "file": "packages/met/lib/met-row/index.ts",
+          "hash": "11329644300472533173"
+        },
+        {
+          "file": "packages/met/lib/met-row/met-row.tsx",
+          "hash": "4399861907374427243"
+        },
+        {
+          "file": "packages/met/lib/met-ruyi/index.ts",
+          "hash": "13763057064017181501"
+        },
+        {
+          "file": "packages/met/lib/met-ruyi/met-ruyi.tsx",
+          "hash": "681284044177698378"
+        },
+        {
+          "file": "packages/met/lib/met.js",
+          "hash": "4257443872537500580"
+        },
+        {
+          "file": "packages/met/lib/met/elements.tsx",
+          "hash": "17999436386287956923"
+        },
+        {
+          "file": "packages/met/lib/met/index.ts",
+          "hash": "1445819029687431998"
+        },
+        {
+          "file": "packages/met/lib/met/met.tsx",
+          "hash": "16327649929366830464"
+        },
+        {
+          "file": "packages/met/lib/met/utils.ts",
+          "hash": "17934342149686008343"
+        },
+        {
+          "file": "packages/met/lib/utils/is-react-element.ts",
+          "hash": "9734806478883662285"
+        },
+        {
+          "file": "packages/met/lib/utils/merge-refs.ts",
+          "hash": "16766429901803991104"
+        },
+        {
+          "file": "packages/met/lib/utils/open.ts",
+          "hash": "14332785231683898726"
+        },
+        {
+          "file": "packages/met/package.json",
+          "hash": "2313995360530498873",
+          "deps": [
+            "npm:recoil",
+            "@hulujs/mu",
+            "@hulujs/types",
+            "npm:classnames",
+            "npm:csstype",
+            "npm:echarts",
+            "npm:echarts-liquidfill",
+            "npm:echarts-wordcloud",
+            "npm:size-sensor"
+          ]
+        },
+        {
+          "file": "packages/met/tsconfig.json",
+          "hash": "14521965528684617197"
+        }
+      ],
+      "@hulujs/ruyi": [
+        {
+          "file": "packages/ruyi/CHANGELOG.md",
+          "hash": "316470970305696847"
+        },
+        {
+          "file": "packages/ruyi/README.md",
+          "hash": "13491546544649698009"
+        },
+        {
+          "file": "packages/ruyi/lib/index.ts",
+          "hash": "15049936737617350128"
+        },
+        {
+          "file": "packages/ruyi/lib/ruyi-resources.ts",
+          "hash": "18073190996315407632"
+        },
+        {
+          "file": "packages/ruyi/lib/ruyi.ts",
+          "hash": "14434369950257748105"
+        },
+        {
+          "file": "packages/ruyi/lib/uri.ts",
+          "hash": "14058167691344858359"
+        },
+        {
+          "file": "packages/ruyi/lib/utils.ts",
+          "hash": "5288309547967037376"
+        },
+        {
+          "file": "packages/ruyi/package.json",
+          "hash": "10816034862572460969",
+          "deps": [
+            "@hulujs/msc",
+            "@hulujs/mu",
+            "@hulujs/types"
+          ]
+        },
+        {
+          "file": "packages/ruyi/tsconfig.json",
+          "hash": "7108211546483191863"
+        }
+      ],
+      "@hulujs/mu": [
+        {
+          "file": "packages/mu/CHANGELOG.md",
+          "hash": "1764945227427662217"
+        },
+        {
+          "file": "packages/mu/README.md",
+          "hash": "5793276689067628741"
+        },
+        {
+          "file": "packages/mu/lib/compact.ts",
+          "hash": "8919311809428050570"
+        },
+        {
+          "file": "packages/mu/lib/dichotomy.ts",
+          "hash": "6645965226254832990"
+        },
+        {
+          "file": "packages/mu/lib/each.ts",
+          "hash": "11327526111484871248"
+        },
+        {
+          "file": "packages/mu/lib/filter.ts",
+          "hash": "2685857831316334410"
+        },
+        {
+          "file": "packages/mu/lib/format.ts",
+          "hash": "10785988482311091880"
+        },
+        {
+          "file": "packages/mu/lib/if-falsy.ts",
+          "hash": "9083298366958848280"
+        },
+        {
+          "file": "packages/mu/lib/if-nvl.ts",
+          "hash": "13504616414347787867"
+        },
+        {
+          "file": "packages/mu/lib/if-run.ts",
+          "hash": "12326400203490518096"
+        },
+        {
+          "file": "packages/mu/lib/includes.ts",
+          "hash": "6949405875663602577"
+        },
+        {
+          "file": "packages/mu/lib/index.ts",
+          "hash": "2141056031278835571"
+        },
+        {
+          "file": "packages/mu/lib/is-base-type.ts",
+          "hash": "7211593775180338889"
+        },
+        {
+          "file": "packages/mu/lib/is-falsy.ts",
+          "hash": "17035200311234135047"
+        },
+        {
+          "file": "packages/mu/lib/is-like-num.ts",
+          "hash": "3460321082691410201"
+        },
+        {
+          "file": "packages/mu/lib/is-like-positive-int.ts",
+          "hash": "12759963653614157953"
+        },
+        {
+          "file": "packages/mu/lib/is-nil.ts",
+          "hash": "3994799868615610994"
+        },
+        {
+          "file": "packages/mu/lib/is-not-empty.ts",
+          "hash": "718403191410840182"
+        },
+        {
+          "file": "packages/mu/lib/is-not-falsy.ts",
+          "hash": "11228449155490276768"
+        },
+        {
+          "file": "packages/mu/lib/map.ts",
+          "hash": "18084236847223052989"
+        },
+        {
+          "file": "packages/mu/lib/mapping.ts",
+          "hash": "3298327104442609570"
+        },
+        {
+          "file": "packages/mu/lib/median.ts",
+          "hash": "8770785796666231929"
+        },
+        {
+          "file": "packages/mu/lib/mget.ts",
+          "hash": "10447779165262857710"
+        },
+        {
+          "file": "packages/mu/lib/mgetx.ts",
+          "hash": "11248145937726471648"
+        },
+        {
+          "file": "packages/mu/lib/mset.ts",
+          "hash": "1856275905556950361"
+        },
+        {
+          "file": "packages/mu/lib/msetx.ts",
+          "hash": "1522291023630428320"
+        },
+        {
+          "file": "packages/mu/lib/paris-to-entries.ts",
+          "hash": "1357814009512128375"
+        },
+        {
+          "file": "packages/mu/lib/regex.ts",
+          "hash": "859894949426381058"
+        },
+        {
+          "file": "packages/mu/lib/rid.ts",
+          "hash": "4322933431806168221"
+        },
+        {
+          "file": "packages/mu/lib/rows-to-tree.ts",
+          "hash": "10312184895351974158"
+        },
+        {
+          "file": "packages/mu/lib/run.ts",
+          "hash": "6947244899114957420"
+        },
+        {
+          "file": "packages/mu/lib/sleep.ts",
+          "hash": "15785305243023470404"
+        },
+        {
+          "file": "packages/mu/lib/sofunc.ts",
+          "hash": "9650516796385358984"
+        },
+        {
+          "file": "packages/mu/lib/stack.ts",
+          "hash": "9107215470865566002"
+        },
+        {
+          "file": "packages/mu/lib/storage.ts",
+          "hash": "12162340220385016848"
+        },
+        {
+          "file": "packages/mu/lib/tile.ts",
+          "hash": "14594353605402281406"
+        },
+        {
+          "file": "packages/mu/lib/try-number.ts",
+          "hash": "15748179134625218516"
+        },
+        {
+          "file": "packages/mu/lib/types.ts",
+          "hash": "13667730452393243009"
+        },
+        {
+          "file": "packages/mu/lib/up-array.ts",
+          "hash": "3954917457262468029"
+        },
+        {
+          "file": "packages/mu/lib/utils/compact-degree-func-map.ts",
+          "hash": "9806649007930104519"
+        },
+        {
+          "file": "packages/mu/lib/utils/number-format.ts",
+          "hash": "9900533717476002437"
+        },
+        {
+          "file": "packages/mu/lib/utils/string-format.ts",
+          "hash": "2722918136670780424"
+        },
+        {
+          "file": "packages/mu/lib/with-iife.ts",
+          "hash": "17284157359797266096"
+        },
+        {
+          "file": "packages/mu/package.json",
+          "hash": "2526552281701873880",
+          "deps": [
+            "@hulujs/msc",
+            "@hulujs/types"
+          ]
+        },
+        {
+          "file": "packages/mu/tsconfig.json",
+          "hash": "3756876640700086396"
         }
       ]
-    },
-    "nonProjectFiles": [
-      {
-        "file": ".eslintrc.js",
-        "hash": "17722466862600720202"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "10590391214477380632"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "15467444912243948409"
-      },
-      {
-        "file": ".prettierrc.json",
-        "hash": "14552959737187325388"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "770931651488763705"
-      },
-      {
-        "file": ".vscode/settings.json",
-        "hash": "16012936201801507456"
-      },
-      {
-        "file": ".yarn/releases/yarn-4.2.2.cjs",
-        "hash": "13505783443694816522"
-      },
-      {
-        "file": ".yarnrc.yml",
-        "hash": "15227809006120608542"
-      },
-      {
-        "file": "CHANGELOG.md",
-        "hash": "2954656521228080339"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "17773469106480806024"
-      },
-      {
-        "file": "README.md",
-        "hash": "3677674456833629053"
-      },
-      {
-        "file": "build.js",
-        "hash": "6560495714328146236"
-      },
-      {
-        "file": "lerna-debug.log",
-        "hash": "6251331053439619582"
-      },
-      {
-        "file": "lerna.json",
-        "hash": "17572278355500788704"
-      },
-      {
-        "file": "nx.json",
-        "hash": "4624782173776638580"
-      },
-      {
-        "file": "package.json",
-        "hash": "12162499938023561086"
-      },
-      {
-        "file": "postpublish.js",
-        "hash": "9322319673423756765"
-      },
-      {
-        "file": "tsconfig-base.json",
-        "hash": "4042216052546350221"
-      },
-      {
-        "file": "tsconfig.json",
-        "hash": "17706403372345245393"
-      },
-      {
-        "file": "yarn.lock",
-        "hash": "6096327206440053998"
-      }
-    ]
+    }
   }
 }

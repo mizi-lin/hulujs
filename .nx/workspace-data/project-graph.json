@@ -10,7 +10,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "yarn run build",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -22,7 +22,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "yarn rm && yarn cp && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -39,7 +39,7 @@
             },
             "metadata": {
               "scriptContent": "rimraf ./dist",
-              "runCommand": "npm run rm"
+              "runCommand": "yarn rm"
             },
             "configurations": {}
           },
@@ -50,7 +50,7 @@
             },
             "metadata": {
               "scriptContent": "cp -r ../template  ../../dist/@hulujs/template",
-              "runCommand": "npm run cp"
+              "runCommand": "yarn cp"
             },
             "configurations": {}
           },
@@ -61,7 +61,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -102,7 +102,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --declaration --watch",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -114,7 +114,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --declaration && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -131,7 +131,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -170,7 +170,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -187,7 +187,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -225,7 +225,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -237,7 +237,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -254,7 +254,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -265,7 +265,7 @@
             },
             "metadata": {
               "scriptContent": "cd ./dist && npm publish",
-              "runCommand": "npm run publish2"
+              "runCommand": "yarn publish2"
             },
             "configurations": {}
           },
@@ -305,7 +305,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -317,7 +317,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -334,7 +334,7 @@
             },
             "metadata": {
               "scriptContent": "rm -rf ./dist",
-              "runCommand": "npm run rm"
+              "runCommand": "yarn rm"
             },
             "configurations": {}
           },
@@ -345,7 +345,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -385,7 +385,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -397,7 +397,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -414,7 +414,7 @@
             },
             "metadata": {
               "scriptContent": "yarn run tsc --showConfig",
-              "runCommand": "npm run config"
+              "runCommand": "yarn config"
             },
             "configurations": {}
           },
@@ -425,7 +425,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -465,7 +465,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -477,7 +477,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -494,7 +494,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -505,7 +505,7 @@
             },
             "metadata": {
               "scriptContent": "cd ./dist && npm publish",
-              "runCommand": "npm run publish2"
+              "runCommand": "yarn publish2"
             },
             "configurations": {}
           },
@@ -545,7 +545,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc --watch",
-              "runCommand": "npm run watch"
+              "runCommand": "yarn watch"
             },
             "dependsOn": [],
             "options": {
@@ -557,7 +557,7 @@
             "executor": "nx:run-script",
             "metadata": {
               "scriptContent": "tsc && yarn pkg",
-              "runCommand": "npm run build"
+              "runCommand": "yarn build"
             },
             "dependsOn": [
               "^build"
@@ -574,7 +574,7 @@
             },
             "metadata": {
               "scriptContent": "node ../../build.js",
-              "runCommand": "npm run pkg"
+              "runCommand": "yarn pkg"
             },
             "configurations": {}
           },
@@ -585,7 +585,7 @@
             },
             "metadata": {
               "scriptContent": "cd ./dist && npm publish",
-              "runCommand": "npm run publish2"
+              "runCommand": "yarn publish2"
             },
             "configurations": {}
           },
