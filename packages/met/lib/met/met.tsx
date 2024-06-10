@@ -1,18 +1,7 @@
-import {
-    CSSProperties,
-    ElementType,
-    ReactNode,
-    forwardRef,
-    DOMAttributes,
-    useEffect,
-    ForwardedRef,
-    useRef,
-    PropsWithChildren,
-    FC
-} from 'react';
+import { CSSProperties, ElementType, forwardRef, DOMAttributes, useEffect, useRef, PropsWithChildren, FC } from 'react';
 import clx, { ArgumentArray } from 'classnames';
 import { Property, Properties } from 'csstype';
-import { groupBy, isNil, isPlainObject, omit } from 'lodash-es';
+import { groupBy, isPlainObject, omit } from 'lodash-es';
 import { compact, isFalsy, map } from '@hulujs/mu';
 import { insertComment, removeTwiceComment, useCombinedRefs } from './utils.js';
 import { isDev } from '../env.js';
@@ -65,31 +54,19 @@ export interface MetProps extends PropsWithChildren<any>, Properties<string | nu
     // border-radius
     br?: Property.BorderRadius | number;
     borderRadius?: Property.BorderRadius | number;
-    // cursor?: Property.Cursor;
-    // display?: Property.Display;
-    // flex?: Property.Flex;
-    // flexDirection?: Property.FlexDirection;
-    // flexWrap?: Property.FlexWrap;
-    // flexFlow?: Property.FlexFlow;
-    // flexBasis?: Property.FlexBasis;
-    // flexGlow?: Property.FlexGrow;
-    // flexShrink?: Property.FlexShrink;
-    // justifyContent?: Property.JustifyContent;
-    // justifyItems?: Property.JustifyItems;
-    // alignContent?: Property.AlignContent;
-    // alignItems?: Property.AlignItems;
 
-    // font
-    fontSize?: Property.FontSize | number;
     color?: Property.Color;
     // font-size
     fs?: Property.FontSize | number;
+    // font
+    fontSize?: Property.FontSize | number;
     // font-family
     ff?: Property.FontFamily;
     fontFamily?: Property.FontFamily;
     // font-weight
     fw?: number;
     fontWeight?: Property.FontWeight;
+
     gap?: Property.Gap | number;
     // height
     h?: number | string;

@@ -6,30 +6,37 @@ import { EChartsOption } from 'echarts';
 import { FC, useEffect, useRef, useState } from 'react';
 import { bind } from 'size-sensor';
 import { getOptions } from './options.js';
-import { camelCase, cloneDeep } from 'lodash-es';
+import { camelCase, cloneDeep, omitBy } from 'lodash-es';
 import { run, upArray } from '@hulujs/mu';
-import 'echarts-liquidfill';
-import 'echarts-wordcloud';
-import { chinaGeoJSON } from './assets/china-map.js';
+// import 'echarts-liquidfill';
+// import 'echarts-wordcloud';
+// import { chinaGeoJSON } from './assets/china-map.js';
+import { RegKey, Regc } from '@hulujs/msc';
 // @ts-ignore
-echarts.registerMap('chinaVertical', chinaGeoJSON('vertical'));
+// echarts.registerMap('chinaVertical', chinaGeoJSON('vertical'));
 // @ts-ignore
-echarts.registerMap('china', chinaGeoJSON('horizontal'));
+// echarts.registerMap('china', chinaGeoJSON('horizontal'));
+
+/**
+ * xVal -> xDisVal
+ * yVal -> yDisVal
+ * dimVal -> dimDisVal
+ */
 
 export interface MetEchartsDataRow extends DataRow {
     // 对应x轴上的值
-    x?: string | number | number[];
+    xVal?: string | number | number[];
     // 对应y轴上的值
-    y?: string | number | number[];
+    yVal?: string | number | number[];
     // 对应dimension上的值
-    d?: string | number | number[];
+    dimVal?: string | number | number[];
     name?: string;
     // 对应x轴上的显示的值
-    x$?: string | number | number[];
+    xDisVal?: string | number | number[];
     // 对应y轴上的显示的值
-    y$?: string | number | number[];
+    yDimVal?: string | number | number[];
     // 对应dimension上的显示的值
-    d$?: string | number | number[];
+    dimDisVal?: string | number | number[];
 }
 
 export type MetEchartsEventFunction = (event: any, props: Partial<MetEchartsProps>, options?: EChartsOption) => void;
@@ -92,6 +99,8 @@ export interface MetEchartsProps extends Omit<MetProps, 'onClick'> {
      */
     fill?: any;
 
+    chart?: (myChart: echarts.ECharts, props: MetEchartsProps) => void;
+
     onClick?: MetEchartsEventFunction;
     onDblClick?: MetEchartsEventFunction;
     onMouseDown?: MetEchartsEventFunction;
@@ -102,26 +111,10 @@ export interface MetEchartsProps extends Omit<MetProps, 'onClick'> {
 }
 
 const MetEcharts: FC<MetEchartsProps> = (props) => {
-    const {
-        data,
-        dimension,
-        options,
-        type,
-        subtypes,
-        mappers,
-        setting,
-        notMerge,
-        fill = 0,
-        onClick,
-        onDblClick,
-        onMouseDown,
-        onMouseUp,
-        onMouseOver,
-        onMouseOut,
-        onGlobalOut,
-        onSelectchanged,
-        ...extra
-    } = props;
+    const { data, dimension, options, type, subtypes, mappers, setting, notMerge, fill = 0, chart, ...extra } = props;
+    const extra$ = omitBy(extra, (value, key) => {
+        return /^(on|zr)[A-Z]/.test(key);
+    });
 
     const onfunc = Object.keys(props)
         .filter((key) => {
@@ -162,7 +155,9 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
         if (target) {
             unbind = bindResize(target);
             if (!myChart && !echarts.getInstanceByDom(target)) {
-                const myChart = echarts.init(target, {});
+                const ecahrtOptions = Regc.get(RegKey.MET_ECHARTS_OPTIONS) ?? {};
+                const theme = Regc.get(RegKey.MET_ECHARTS_THEME) ?? null;
+                const myChart = echarts.init(target, theme, ecahrtOptions);
                 setMyChart(myChart);
                 run(opts, (options) => {
                     myChart.setOption(options, false);
@@ -230,7 +225,13 @@ const MetEcharts: FC<MetEchartsProps> = (props) => {
         }
     }, [myChart, zrfunc]);
 
-    return <Met tag={'div'} ref={echartRef} componentClassName={'met-echarts'} full {...extra} />;
+    useEffect(() => {
+        if (myChart && chart) {
+            chart(myChart, props);
+        }
+    }, [myChart, chart]);
+
+    return <Met tag={'div'} ref={echartRef} componentClassName={'met-echarts'} full {...extra$} />;
 };
 
 export default MetEcharts;

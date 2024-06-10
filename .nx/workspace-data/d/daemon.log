@@ -1,0 +1,14 @@
+[NX Daemon Server] - 2024-06-10T12:32:19.928Z - Started listening on: /var/folders/jn/q4y0c6gn69l8_ykzv1p7pmtr0000gn/T/913f53d4e258974e080b/d.sock
+[NX Daemon Server] - 2024-06-10T12:32:19.930Z - [WATCHER]: Subscribed to changes within: /Users/Mizi/works/hulu/hulujs (native)
+[NX Daemon Server] - 2024-06-10T12:32:19.933Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-10T12:32:19.934Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-10T12:32:19.935Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-10T12:32:19.936Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-10T12:32:19.936Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-10T12:32:19.936Z - Handled GLOB. Handling time: 1. Response time: 0.
+[NX Daemon Server] - 2024-06-10T12:32:20.066Z - [REQUEST]: Responding to the client. handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-10T12:32:20.067Z - Done responding to the client handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-10T12:32:20.067Z - Handled GET_NX_WORKSPACE_FILES. Handling time: 1. Response time: 1.
+[NX Daemon Server] - 2024-06-10T12:32:20.098Z - Closed a connection. Number of open connections: 0
+[NX Daemon Server] - 2024-06-10T12:32:20.211Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-06-10T12:37:48.185Z - [WATCHER]: Processing file changes in outputs

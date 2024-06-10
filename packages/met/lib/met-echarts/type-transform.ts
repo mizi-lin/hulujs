@@ -43,8 +43,8 @@ export const transformTypeBySeries = (type: string) => {
                 label: {
                     formatter: function () {
                         // const maxValue = format(maxItem.value, 'percent');
-                        const maxValue = format(+(maxItem.y$ ?? 0));
-                        return `${format(maxValue)}\n\n${maxItem.x}`;
+                        const maxValue = format(+(maxItem.yDimVal ?? 0));
+                        return `${format(maxValue)}\n\n${maxItem.xVal}`;
                     },
                     fontSize: 20
                 }

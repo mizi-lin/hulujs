@@ -4,7 +4,6 @@ import { transformSetting } from './setting.js';
 import { transformSubtype } from './subtype.js';
 import { baseStack } from '@hulujs/mu';
 import { defaultTransform } from './default-transform.js';
-import { cloneDeep } from 'lodash-es';
 
 /**
  * 计算echart最终的配置信息

@@ -3,6 +3,10 @@ export enum RegKey {
     RUYI_OPTIONS = 'hulu/ruyi-options',
     // MetEcharts 全局注册 subtypes
     MET_ECHARTS_SUBTYPES = 'hulu/met-echarts-subtypes',
+    // MetEcharts Options
+    MET_ECHARTS_OPTIONS = 'hulu/met-echarts-options',
+    // MetEcharts Theme
+    MET_ECHARTS_THEME = 'hulu/met-echarts-theme',
     // mu.numberFormat 全局配置
     MU_NUMBER_FORMAT_OPTIONS = 'hulu/mu-number-format-options',
     // mu.panel tools 全局注册

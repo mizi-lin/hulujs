@@ -254,7 +254,7 @@ export const transformData = ({ data: dataSource, type, mappers, dimension, fill
     // 根据输入计算mapper数据
     const data$mapper = mapping(dataSource, mapper, mapperType);
     // 数据维护，写入 name 与 value 值
-    const data$nv = mapping(data$mapper, { name: 'x', value: 'y', serie: 'd' });
+    const data$nv = mapping(data$mapper, { name: 'xVal', value: 'yVal', serie: 'dimVal' });
     // 数据补0
     // 关系型数据不补0
     const data = ['graph', 'treemap'].includes(type) ? data$nv : fillData(data$nv, 'serie', 'name', fill);
