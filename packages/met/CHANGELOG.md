@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.24](https://github.com/mizi-lin/hulujs/compare/v0.2.23...v0.2.24) (2024-06-10)
+
+
+### Features
+
+* echart 点击事件 ([b88fb06](https://github.com/mizi-lin/hulujs/commit/b88fb06d3b852b02f51227f53b3ce57967e3cb68))
+* hulujs ([f0149de](https://github.com/mizi-lin/hulujs/commit/f0149dec13c492f90ede5fae83e499258ec786e4))
+* hulujs restore ([08dcff3](https://github.com/mizi-lin/hulujs/commit/08dcff3439b3cf16ac8ce647ee8a56b39ccc8d85))
+
+
+
+
+
 ## [0.2.23](https://github.com/mizi-lin/hulujs/compare/v0.2.21...v0.2.23) (2024-05-30)
 
 

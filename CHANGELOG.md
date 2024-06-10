@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.24](https://github.com/mizi-lin/hulujs/compare/v0.2.23...v0.2.24) (2024-06-10)
+
+
+### Features
+
+* echart 点击事件 ([b88fb06](https://github.com/mizi-lin/hulujs/commit/b88fb06d3b852b02f51227f53b3ce57967e3cb68))
+* hulujs ([a7195ee](https://github.com/mizi-lin/hulujs/commit/a7195ee652c544dafbb2829e6a9b61a71fdf809c))
+* hulujs ([fd08b1b](https://github.com/mizi-lin/hulujs/commit/fd08b1b1d7ffff0bec664f097ac53aaabc7ee77f))
+* hulujs ([cff6eae](https://github.com/mizi-lin/hulujs/commit/cff6eae0d18fd9565e327d626665ec246a932e54))
+* hulujs ([d912923](https://github.com/mizi-lin/hulujs/commit/d9129238d64ffd533ea9d860f891bb222c3958ec))
+* hulujs ([f0149de](https://github.com/mizi-lin/hulujs/commit/f0149dec13c492f90ede5fae83e499258ec786e4))
+* hulujs restore ([b7bc2d1](https://github.com/mizi-lin/hulujs/commit/b7bc2d18d1e5bf8c2b0fe3e35f7005cd9a3e1c2d))
+* hulujs restore ([08dcff3](https://github.com/mizi-lin/hulujs/commit/08dcff3439b3cf16ac8ce647ee8a56b39ccc8d85))
+
+
+
+
+
 ## [0.2.23](https://github.com/mizi-lin/hulujs/compare/v0.2.21...v0.2.23) (2024-05-30)
 
 
