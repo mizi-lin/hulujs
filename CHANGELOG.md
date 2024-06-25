@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.25](https://github.com/mizi-lin/hulujs/compare/v0.2.24...v0.2.25) (2024-06-25)
+
+
+### Features
+
+* ignore .nx ([3db30f4](https://github.com/mizi-lin/hulujs/commit/3db30f4e44b32b35a38d2d7b7f3ca5c47cc30478))
+* storage support node ([e0ef93e](https://github.com/mizi-lin/hulujs/commit/e0ef93eeb9433e1d4548248192feac629e767332))
+
+
+
+
+
 ## [0.2.24](https://github.com/mizi-lin/hulujs/compare/v0.2.23...v0.2.24) (2024-06-10)
 
 
