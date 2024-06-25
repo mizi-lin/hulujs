@@ -20,7 +20,7 @@
     "recoil-sync": "^0.2.0",
     "@sensenet/search-react": "^2.1.5",
     "@types/fs-extra": "^11.0.4",
-    "@types/lodash-es": "^4.17.9",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^18.16.0",
     "@types/react": "^18.2.13",
     "@types/react-dom": "^18.2.6",
@@ -42,224 +42,128 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".eslintrc.js",
-        "hash": "17722466862600720202"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "10590391214477380632"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "15467444912243948409"
-      },
-      {
-        "file": ".prettierrc.json",
-        "hash": "14552959737187325388"
-      },
-      {
-        "file": ".vscode/extensions.json",
-        "hash": "770931651488763705"
+        "file": "build.js",
+        "hash": "6560495714328146236"
       },
       {
         "file": ".vscode/settings.json",
         "hash": "16012936201801507456"
       },
       {
+        "file": "postpublish.js",
+        "hash": "9322319673423756765"
+      },
+      {
         "file": ".yarn/releases/yarn-4.2.2.cjs",
         "hash": "13505783443694816522"
-      },
-      {
-        "file": ".yarnrc.yml",
-        "hash": "15227809006120608542"
-      },
-      {
-        "file": "CHANGELOG.md",
-        "hash": "2954656521228080339"
-      },
-      {
-        "file": "LICENSE",
-        "hash": "17773469106480806024"
       },
       {
         "file": "README.md",
         "hash": "3677674456833629053"
       },
       {
-        "file": "build.js",
-        "hash": "6560495714328146236"
-      },
-      {
-        "file": "lerna-debug.log",
-        "hash": "6251331053439619582"
-      },
-      {
-        "file": "lerna.json",
-        "hash": "17572278355500788704"
-      },
-      {
         "file": "nx.json",
         "hash": "4624782173776638580"
-      },
-      {
-        "file": "package.json",
-        "hash": "12162499938023561086"
-      },
-      {
-        "file": "postpublish.js",
-        "hash": "9322319673423756765"
       },
       {
         "file": "tsconfig-base.json",
         "hash": "4042216052546350221"
       },
       {
+        "file": "yarn.lock",
+        "hash": "14589184697168978147"
+      },
+      {
+        "file": ".prettierignore",
+        "hash": "15467444912243948409"
+      },
+      {
+        "file": "lerna-debug.log",
+        "hash": "6251331053439619582"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "10590391214477380632"
+      },
+      {
+        "file": "package.json",
+        "hash": "17749012786657552984"
+      },
+      {
+        "file": ".prettierrc.json",
+        "hash": "14552959737187325388"
+      },
+      {
         "file": "tsconfig.json",
         "hash": "17706403372345245393"
       },
       {
-        "file": "yarn.lock",
-        "hash": "6096327206440053998"
+        "file": ".yarnrc.yml",
+        "hash": "15227809006120608542"
+      },
+      {
+        "file": "LICENSE",
+        "hash": "17773469106480806024"
+      },
+      {
+        "file": "lerna.json",
+        "hash": "1562368662986592383"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "770931651488763705"
+      },
+      {
+        "file": ".eslintrc.js",
+        "hash": "17722466862600720202"
+      },
+      {
+        "file": "CHANGELOG.md",
+        "hash": "16131417484709532717"
       }
     ],
     "projectFileMap": {
-      "@hulujs/core": [
+      "@hulujs/ruyi": [
         {
-          "file": "packages/core/CHANGELOG.md",
-          "hash": "1706646577575941042"
+          "file": "packages/ruyi/CHANGELOG.md",
+          "hash": "4503543182374311800"
         },
         {
-          "file": "packages/core/README.md",
-          "hash": "17192224797273749202"
+          "file": "packages/ruyi/README.md",
+          "hash": "13491546544649698009"
         },
         {
-          "file": "packages/core/lib/bash.ts",
-          "hash": "16245094683479216203"
+          "file": "packages/ruyi/lib/index.ts",
+          "hash": "15049936737617350128"
         },
         {
-          "file": "packages/core/lib/ck.ts",
-          "hash": "9193748229003050530"
+          "file": "packages/ruyi/lib/ruyi-resources.ts",
+          "hash": "18073190996315407632"
         },
         {
-          "file": "packages/core/lib/extra/inquirer-fuzzy-path.ts",
-          "hash": "15809816172092798719"
+          "file": "packages/ruyi/lib/ruyi.ts",
+          "hash": "14434369950257748105"
         },
         {
-          "file": "packages/core/lib/generator.ts",
-          "hash": "1273250444497110775"
+          "file": "packages/ruyi/lib/uri.ts",
+          "hash": "14058167691344858359"
         },
         {
-          "file": "packages/core/lib/git.ts",
-          "hash": "12718935108680594413"
+          "file": "packages/ruyi/lib/utils.ts",
+          "hash": "5288309547967037376"
         },
         {
-          "file": "packages/core/lib/index.ts",
-          "hash": "12108084051468676574"
-        },
-        {
-          "file": "packages/core/lib/load.ts",
-          "hash": "11627241239181922008"
-        },
-        {
-          "file": "packages/core/lib/log.ts",
-          "hash": "1679550696209077500"
-        },
-        {
-          "file": "packages/core/lib/montage-server.ts",
-          "hash": "6012045239025169849"
-        },
-        {
-          "file": "packages/core/lib/montage/editor-api.ts",
-          "hash": "7687099598482027546"
-        },
-        {
-          "file": "packages/core/lib/montage/editor/content-by-file.ts",
-          "hash": "7769399157456691551"
-        },
-        {
-          "file": "packages/core/lib/montage/editor/utils.ts",
-          "hash": "7761394082474062026"
-        },
-        {
-          "file": "packages/core/lib/montage/materials-api.ts",
-          "hash": "3327714114556242025"
-        },
-        {
-          "file": "packages/core/lib/montage/materials/get-materials.ts",
-          "hash": "17096040005535023686"
-        },
-        {
-          "file": "packages/core/lib/msc.ts",
-          "hash": "7902626658995732567"
-        },
-        {
-          "file": "packages/core/lib/path-extra.ts",
-          "hash": "2776422485500330867"
-        },
-        {
-          "file": "packages/core/lib/plugin/plugin-core.ts",
-          "hash": "9993082610141465893"
-        },
-        {
-          "file": "packages/core/lib/prompt.ts",
-          "hash": "954655834554650007"
-        },
-        {
-          "file": "packages/core/lib/root.ts",
-          "hash": "13688591066181455431"
-        },
-        {
-          "file": "packages/core/lib/tpl.ts",
-          "hash": "7227807287129806874"
-        },
-        {
-          "file": "packages/core/lib/utils.ts",
-          "hash": "1398846146972401779"
-        },
-        {
-          "file": "packages/core/lib/version.ts",
-          "hash": "668078604766115311"
-        },
-        {
-          "file": "packages/core/package.json",
-          "hash": "3333576789655602236",
+          "file": "packages/ruyi/package.json",
+          "hash": "320888061872003780",
           "deps": [
-            "npm:@types/express",
-            "npm:@types/semver",
-            "npm:@types/shelljs",
-            "npm:@babel/core",
-            "npm:@babel/helper-module-transforms",
-            "npm:@babel/helper-plugin-utils",
-            "npm:@babel/parser",
-            "npm:@babel/plugin-transform-runtime",
-            "npm:@clack/prompts",
+            "@hulujs/msc",
             "@hulujs/mu",
-            "@hulujs/template",
-            "@hulujs/types",
-            "npm:ansi-styles",
-            "npm:chalk",
-            "npm:cross-import",
-            "npm:ejs",
-            "npm:express",
-            "npm:fs-extra",
-            "npm:inquirer",
-            "npm:inquirer-autocomplete-prompt",
-            "npm:inquirer-fuzzy-path",
-            "npm:is-unicode-supported",
-            "npm:lodash-es",
-            "npm:path",
-            "npm:semver",
-            "npm:shelljs",
-            "npm:shelljs-live",
-            "npm:simple-git",
-            "npm:strip-ansi",
-            "npm:ts-import",
-            "npm:url"
+            "@hulujs/types"
           ]
         },
         {
-          "file": "packages/core/tsconfig.json",
-          "hash": "6676493062817585219"
+          "file": "packages/ruyi/tsconfig.json",
+          "hash": "7108211546483191863"
         }
       ],
       "@hulujs/template": [
@@ -345,7 +249,7 @@
         },
         {
           "file": "packages/template/caokong/.caokong/src/root.tsx.ejs",
-          "hash": "15842434944823449312"
+          "hash": "4170531869733198238"
         },
         {
           "file": "packages/template/caokong/.caokong/src/routes.ts",
@@ -682,215 +586,149 @@
           "hash": "5563986092042989538"
         }
       ],
-      "@hulujs/cli": [
+      "@hulujs/core": [
         {
-          "file": "packages/cli/CHANGELOG.md",
-          "hash": "15388088883376852906"
+          "file": "packages/core/CHANGELOG.md",
+          "hash": "1514180136817591505"
         },
         {
-          "file": "packages/cli/README.md",
-          "hash": "17164804415944190867"
+          "file": "packages/core/README.md",
+          "hash": "17192224797273749202"
         },
         {
-          "file": "packages/cli/bin/hulu.mts",
-          "hash": "10399394615120439788"
+          "file": "packages/core/lib/bash.ts",
+          "hash": "16245094683479216203"
         },
         {
-          "file": "packages/cli/lib/cli.js",
-          "hash": "17489875463686863405"
+          "file": "packages/core/lib/ck.ts",
+          "hash": "9193748229003050530"
         },
         {
-          "file": "packages/cli/lib/cli.ts",
-          "hash": "10323496356217530919"
+          "file": "packages/core/lib/extra/inquirer-fuzzy-path.ts",
+          "hash": "15809816172092798719"
         },
         {
-          "file": "packages/cli/lib/commands/caokong/caokong.ts",
-          "hash": "3660293772964165527"
+          "file": "packages/core/lib/generator.ts",
+          "hash": "1273250444497110775"
         },
         {
-          "file": "packages/cli/lib/commands/dev/dev.ts",
-          "hash": "13981638087796149509"
+          "file": "packages/core/lib/git.ts",
+          "hash": "12718935108680594413"
         },
         {
-          "file": "packages/cli/lib/commands/dev/prod.ts",
-          "hash": "7463654333397713790"
+          "file": "packages/core/lib/index.ts",
+          "hash": "12108084051468676574"
         },
         {
-          "file": "packages/cli/lib/commands/dev/step-ass-router.ts",
-          "hash": "3488996930090446189"
+          "file": "packages/core/lib/load.ts",
+          "hash": "11627241239181922008"
         },
         {
-          "file": "packages/cli/lib/commands/dev/step-generate-caokong-index-file.ts",
-          "hash": "15255296968128094595"
+          "file": "packages/core/lib/log.ts",
+          "hash": "1679550696209077500"
         },
         {
-          "file": "packages/cli/lib/commands/dev/step-generate-caokong.ts",
-          "hash": "10637670249410864440"
+          "file": "packages/core/lib/montage-server.ts",
+          "hash": "6012045239025169849"
         },
         {
-          "file": "packages/cli/lib/commands/dev/step-generate-compiler-config.ts",
-          "hash": "4105808758802882194"
+          "file": "packages/core/lib/montage/editor-api.ts",
+          "hash": "7687099598482027546"
         },
         {
-          "file": "packages/cli/lib/commands/dev/utils.ts",
-          "hash": "15503903702995402122"
+          "file": "packages/core/lib/montage/editor/content-by-file.ts",
+          "hash": "7769399157456691551"
         },
         {
-          "file": "packages/cli/lib/commands/generate.ts",
-          "hash": "14718751570371819464"
+          "file": "packages/core/lib/montage/editor/utils.ts",
+          "hash": "7761394082474062026"
         },
         {
-          "file": "packages/cli/lib/commands/git/add-files.ts",
-          "hash": "10705529085595020088"
+          "file": "packages/core/lib/montage/materials-api.ts",
+          "hash": "3327714114556242025"
         },
         {
-          "file": "packages/cli/lib/commands/git/commit-msg.ts",
-          "hash": "10165569063769656533"
+          "file": "packages/core/lib/montage/materials/get-materials.ts",
+          "hash": "17096040005535023686"
         },
         {
-          "file": "packages/cli/lib/commands/git/git.ts",
-          "hash": "14500032811029113283"
+          "file": "packages/core/lib/msc.ts",
+          "hash": "7902626658995732567"
         },
         {
-          "file": "packages/cli/lib/commands/index.ts",
-          "hash": "12260432848992011868"
+          "file": "packages/core/lib/path-extra.ts",
+          "hash": "2776422485500330867"
         },
         {
-          "file": "packages/cli/lib/commands/init.ts",
-          "hash": "12851928200383439352"
+          "file": "packages/core/lib/plugin/plugin-core.ts",
+          "hash": "9993082610141465893"
         },
         {
-          "file": "packages/cli/lib/commands/montage.ts",
-          "hash": "6997701171000870442"
+          "file": "packages/core/lib/prompt.ts",
+          "hash": "954655834554650007"
         },
         {
-          "file": "packages/cli/lib/commands/repo/match-compiler.ts",
-          "hash": "13336568284068848943"
+          "file": "packages/core/lib/root.ts",
+          "hash": "13688591066181455431"
         },
         {
-          "file": "packages/cli/lib/commands/repo/repo.ts",
-          "hash": "17990938657181227611"
+          "file": "packages/core/lib/tpl.ts",
+          "hash": "7227807287129806874"
         },
         {
-          "file": "packages/cli/lib/commands/repo/step-compiler.ts",
-          "hash": "1047648983908676677"
+          "file": "packages/core/lib/utils.ts",
+          "hash": "1398846146972401779"
         },
         {
-          "file": "packages/cli/lib/commands/repo/step-env.ts",
-          "hash": "15019816433748195413"
+          "file": "packages/core/lib/version.ts",
+          "hash": "668078604766115311"
         },
         {
-          "file": "packages/cli/lib/commands/repo/step-git.ts",
-          "hash": "10854470772760714429"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-info.ts",
-          "hash": "17542447099021122348"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-package-install.ts",
-          "hash": "16399662478435571582"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/step-repo.ts",
-          "hash": "10430524017827652617"
-        },
-        {
-          "file": "packages/cli/lib/commands/repo/utils.ts",
-          "hash": "2111261180268267342"
-        },
-        {
-          "file": "packages/cli/lib/commands/tools/rm.ts",
-          "hash": "13359849210608202617"
-        },
-        {
-          "file": "packages/cli/lib/commands/tools/tools.ts",
-          "hash": "5634097282036948798"
-        },
-        {
-          "file": "packages/cli/lib/compiler-options.ts",
-          "hash": "9493533855605092791"
-        },
-        {
-          "file": "packages/cli/lib/handlers/generate/get-tpl-info.js",
-          "hash": "4052708492034175854"
-        },
-        {
-          "file": "packages/cli/lib/handlers/generate/get-tpl-info.ts",
-          "hash": "14898345365348683298"
-        },
-        {
-          "file": "packages/cli/lib/index.ts",
-          "hash": "10294667417554963218"
-        },
-        {
-          "file": "packages/cli/lib/utils.ts",
-          "hash": "2159744604288050752"
-        },
-        {
-          "file": "packages/cli/package.json",
-          "hash": "13483098900213497655",
+          "file": "packages/core/package.json",
+          "hash": "7533770448859442390",
           "deps": [
-            "npm:@types/yargs",
-            "npm:typescript",
-            "@hulujs/core",
+            "npm:@types/express",
+            "npm:@types/semver",
+            "npm:@types/shelljs",
+            "npm:@babel/core",
+            "npm:@babel/helper-module-transforms",
+            "npm:@babel/helper-plugin-utils",
+            "npm:@babel/parser",
+            "npm:@babel/plugin-transform-runtime",
+            "npm:@clack/prompts",
             "@hulujs/mu",
             "@hulujs/template",
             "@hulujs/types",
-            "npm:omelette",
+            "npm:ansi-styles",
+            "npm:chalk",
+            "npm:cross-import",
+            "npm:ejs",
+            "npm:express",
+            "npm:fs-extra",
+            "npm:inquirer",
+            "npm:inquirer-autocomplete-prompt",
+            "npm:inquirer-fuzzy-path",
+            "npm:is-unicode-supported",
+            "npm:lodash-es",
+            "npm:path",
+            "npm:semver",
             "npm:shelljs",
             "npm:shelljs-live",
-            "npm:v8-compile-cache",
-            "npm:yargs"
+            "npm:simple-git",
+            "npm:strip-ansi",
+            "npm:ts-import",
+            "npm:url"
           ]
         },
         {
-          "file": "packages/cli/tsconfig.json",
-          "hash": "8741914820579154998"
-        }
-      ],
-      "@hulujs/msc": [
-        {
-          "file": "packages/msc/CHANGELOG.md",
-          "hash": "7536043299537885226"
-        },
-        {
-          "file": "packages/msc/README.md",
-          "hash": "933627393642083757"
-        },
-        {
-          "file": "packages/msc/lib/index.ts",
-          "hash": "10448167034311212942"
-        },
-        {
-          "file": "packages/msc/lib/regc/index.ts",
-          "hash": "1977690559982584025"
-        },
-        {
-          "file": "packages/msc/lib/regc/reg-key.ts",
-          "hash": "7338004182393427424"
-        },
-        {
-          "file": "packages/msc/lib/regc/regc.ts",
-          "hash": "11483585627715189398"
-        },
-        {
-          "file": "packages/msc/package.json",
-          "hash": "13660532029837429491",
-          "deps": [
-            "@hulujs/types",
-            "npm:axios"
-          ]
-        },
-        {
-          "file": "packages/msc/tsconfig.json",
-          "hash": "10460945448577624821"
+          "file": "packages/core/tsconfig.json",
+          "hash": "6676493062817585219"
         }
       ],
       "@hulujs/met": [
         {
           "file": "packages/met/CHANGELOG.md",
-          "hash": "17484740894955343319"
+          "hash": "6547993038759883791"
         },
         {
           "file": "packages/met/README.md",
@@ -1122,7 +960,7 @@
         },
         {
           "file": "packages/met/package.json",
-          "hash": "2313995360530498873",
+          "hash": "11690444191455455452",
           "deps": [
             "npm:recoil",
             "@hulujs/mu",
@@ -1132,6 +970,8 @@
             "npm:echarts",
             "npm:echarts-liquidfill",
             "npm:echarts-wordcloud",
+            "npm:lodash-es",
+            "npm:react-error-boundary",
             "npm:size-sensor"
           ]
         },
@@ -1140,53 +980,10 @@
           "hash": "14521965528684617197"
         }
       ],
-      "@hulujs/ruyi": [
-        {
-          "file": "packages/ruyi/CHANGELOG.md",
-          "hash": "316470970305696847"
-        },
-        {
-          "file": "packages/ruyi/README.md",
-          "hash": "13491546544649698009"
-        },
-        {
-          "file": "packages/ruyi/lib/index.ts",
-          "hash": "15049936737617350128"
-        },
-        {
-          "file": "packages/ruyi/lib/ruyi-resources.ts",
-          "hash": "18073190996315407632"
-        },
-        {
-          "file": "packages/ruyi/lib/ruyi.ts",
-          "hash": "14434369950257748105"
-        },
-        {
-          "file": "packages/ruyi/lib/uri.ts",
-          "hash": "14058167691344858359"
-        },
-        {
-          "file": "packages/ruyi/lib/utils.ts",
-          "hash": "5288309547967037376"
-        },
-        {
-          "file": "packages/ruyi/package.json",
-          "hash": "10816034862572460969",
-          "deps": [
-            "@hulujs/msc",
-            "@hulujs/mu",
-            "@hulujs/types"
-          ]
-        },
-        {
-          "file": "packages/ruyi/tsconfig.json",
-          "hash": "7108211546483191863"
-        }
-      ],
       "@hulujs/mu": [
         {
           "file": "packages/mu/CHANGELOG.md",
-          "hash": "1764945227427662217"
+          "hash": "2583758010659945413"
         },
         {
           "file": "packages/mu/README.md",
@@ -1230,7 +1027,7 @@
         },
         {
           "file": "packages/mu/lib/index.ts",
-          "hash": "2141056031278835571"
+          "hash": "5008971918154594938"
         },
         {
           "file": "packages/mu/lib/is-base-type.ts",
@@ -1298,7 +1095,7 @@
         },
         {
           "file": "packages/mu/lib/rid.ts",
-          "hash": "4322933431806168221"
+          "hash": "12988870826840469236"
         },
         {
           "file": "packages/mu/lib/rows-to-tree.ts",
@@ -1322,7 +1119,7 @@
         },
         {
           "file": "packages/mu/lib/storage.ts",
-          "hash": "12162340220385016848"
+          "hash": "12148669014475357418"
         },
         {
           "file": "packages/mu/lib/tile.ts",
@@ -1358,15 +1155,221 @@
         },
         {
           "file": "packages/mu/package.json",
-          "hash": "2526552281701873880",
+          "hash": "14782504673300991436",
           "deps": [
             "@hulujs/msc",
-            "@hulujs/types"
+            "@hulujs/types",
+            "npm:node-localstorage"
           ]
         },
         {
           "file": "packages/mu/tsconfig.json",
           "hash": "3756876640700086396"
+        }
+      ],
+      "@hulujs/cli": [
+        {
+          "file": "packages/cli/CHANGELOG.md",
+          "hash": "4416197462245371342"
+        },
+        {
+          "file": "packages/cli/README.md",
+          "hash": "17164804415944190867"
+        },
+        {
+          "file": "packages/cli/bin/hulu.mts",
+          "hash": "10399394615120439788"
+        },
+        {
+          "file": "packages/cli/lib/cli.js",
+          "hash": "17489875463686863405"
+        },
+        {
+          "file": "packages/cli/lib/cli.ts",
+          "hash": "10323496356217530919"
+        },
+        {
+          "file": "packages/cli/lib/commands/caokong/caokong.ts",
+          "hash": "3660293772964165527"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/dev.ts",
+          "hash": "17618682449187679561"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/prod.ts",
+          "hash": "7463654333397713790"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/step-ass-router.ts",
+          "hash": "3488996930090446189"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/step-generate-caokong-index-file.ts",
+          "hash": "15255296968128094595"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/step-generate-caokong.ts",
+          "hash": "10637670249410864440"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/step-generate-compiler-config.ts",
+          "hash": "4105808758802882194"
+        },
+        {
+          "file": "packages/cli/lib/commands/dev/utils.ts",
+          "hash": "15503903702995402122"
+        },
+        {
+          "file": "packages/cli/lib/commands/generate.ts",
+          "hash": "14718751570371819464"
+        },
+        {
+          "file": "packages/cli/lib/commands/git/add-files.ts",
+          "hash": "10705529085595020088"
+        },
+        {
+          "file": "packages/cli/lib/commands/git/commit-msg.ts",
+          "hash": "10165569063769656533"
+        },
+        {
+          "file": "packages/cli/lib/commands/git/git.ts",
+          "hash": "14500032811029113283"
+        },
+        {
+          "file": "packages/cli/lib/commands/index.ts",
+          "hash": "12260432848992011868"
+        },
+        {
+          "file": "packages/cli/lib/commands/init.ts",
+          "hash": "12851928200383439352"
+        },
+        {
+          "file": "packages/cli/lib/commands/montage.ts",
+          "hash": "6997701171000870442"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/match-compiler.ts",
+          "hash": "13336568284068848943"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/repo.ts",
+          "hash": "17990938657181227611"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-compiler.ts",
+          "hash": "1047648983908676677"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-env.ts",
+          "hash": "15019816433748195413"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-git.ts",
+          "hash": "10854470772760714429"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-info.ts",
+          "hash": "17542447099021122348"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-package-install.ts",
+          "hash": "16399662478435571582"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/step-repo.ts",
+          "hash": "10430524017827652617"
+        },
+        {
+          "file": "packages/cli/lib/commands/repo/utils.ts",
+          "hash": "2111261180268267342"
+        },
+        {
+          "file": "packages/cli/lib/commands/tools/rm.ts",
+          "hash": "13359849210608202617"
+        },
+        {
+          "file": "packages/cli/lib/commands/tools/tools.ts",
+          "hash": "5634097282036948798"
+        },
+        {
+          "file": "packages/cli/lib/compiler-options.ts",
+          "hash": "9493533855605092791"
+        },
+        {
+          "file": "packages/cli/lib/handlers/generate/get-tpl-info.js",
+          "hash": "4052708492034175854"
+        },
+        {
+          "file": "packages/cli/lib/handlers/generate/get-tpl-info.ts",
+          "hash": "14898345365348683298"
+        },
+        {
+          "file": "packages/cli/lib/index.ts",
+          "hash": "10294667417554963218"
+        },
+        {
+          "file": "packages/cli/lib/utils.ts",
+          "hash": "2159744604288050752"
+        },
+        {
+          "file": "packages/cli/package.json",
+          "hash": "10576118562755061751",
+          "deps": [
+            "npm:@types/yargs",
+            "npm:typescript",
+            "@hulujs/core",
+            "@hulujs/mu",
+            "@hulujs/template",
+            "@hulujs/types",
+            "npm:omelette",
+            "npm:shelljs",
+            "npm:shelljs-live",
+            "npm:v8-compile-cache",
+            "npm:yargs"
+          ]
+        },
+        {
+          "file": "packages/cli/tsconfig.json",
+          "hash": "8741914820579154998"
+        }
+      ],
+      "@hulujs/msc": [
+        {
+          "file": "packages/msc/CHANGELOG.md",
+          "hash": "10986174731058190857"
+        },
+        {
+          "file": "packages/msc/README.md",
+          "hash": "933627393642083757"
+        },
+        {
+          "file": "packages/msc/lib/index.ts",
+          "hash": "10448167034311212942"
+        },
+        {
+          "file": "packages/msc/lib/regc/index.ts",
+          "hash": "1977690559982584025"
+        },
+        {
+          "file": "packages/msc/lib/regc/reg-key.ts",
+          "hash": "7338004182393427424"
+        },
+        {
+          "file": "packages/msc/lib/regc/regc.ts",
+          "hash": "11483585627715189398"
+        },
+        {
+          "file": "packages/msc/package.json",
+          "hash": "1118165564682485438",
+          "deps": [
+            "@hulujs/types",
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "packages/msc/tsconfig.json",
+          "hash": "10460945448577624821"
         }
       ]
     }

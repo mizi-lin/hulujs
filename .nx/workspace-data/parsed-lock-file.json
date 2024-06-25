@@ -6228,6 +6228,15 @@
         "hash": "10c0/a6a4d8369e2f2720e9c645255ffde909c0fbd41c92ea92a5607fc17055955daac99c1ff589d421eee12a0d24e99f7bfc2aabfeb1a4c14742f6c099a51863f31a"
       }
     },
+    "npm:node-localstorage": {
+      "type": "npm",
+      "name": "npm:node-localstorage",
+      "data": {
+        "version": "3.0.5",
+        "packageName": "node-localstorage",
+        "hash": "10c0/ab042511e44bbeb0c18df4418bd0ec65fe574fa4bf492d8b7f2d96a0eccad722f9a26147cdf5c42c1c9d64da7b64b343f39a2d9862b7d7f4543fcb4ebec6f7da"
+      }
+    },
     "npm:node-machine-id": {
       "type": "npm",
       "name": "npm:node-machine-id",
@@ -18468,6 +18477,11 @@
       "type": "static"
     },
     {
+      "source": "npm:node-localstorage",
+      "target": "npm:write-file-atomic",
+      "type": "static"
+    },
+    {
       "source": "npm:noms",
       "target": "npm:inherits",
       "type": "static"
@@ -21443,6 +21457,11 @@
       "type": "static"
     },
     {
+      "source": "npm:react-error-boundary",
+      "target": "npm:@babel/runtime",
+      "type": "static"
+    },
+    {
       "source": "npm:react-helmet-async",
       "target": "npm:@babel/runtime",
       "type": "static"
@@ -21780,6 +21799,11 @@
     {
       "source": "npm:recoil-sync",
       "target": "npm:transit-js",
+      "type": "static"
+    },
+    {
+      "source": "npm:recoil",
+      "target": "npm:hamt_plus",
       "type": "static"
     },
     {
@@ -23070,6 +23094,16 @@
     {
       "source": "npm:wrap-ansi@8.1.0",
       "target": "npm:strip-ansi",
+      "type": "static"
+    },
+    {
+      "source": "npm:write-file-atomic",
+      "target": "npm:imurmurhash",
+      "type": "static"
+    },
+    {
+      "source": "npm:write-file-atomic",
+      "target": "npm:signal-exit@4.1.0",
       "type": "static"
     },
     {

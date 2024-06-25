@@ -16,7 +16,7 @@ export function rid(len = 8, twostage = false) {
     for (let i = 0; i < len; i++) {
         key += chars[rn(charsLen)];
     }
-    return twostage ? `${window.Date.now().toString(36)}-${key}` : key;
+    return twostage ? `${Date.now().toString(36)}-${key}` : key;
 }
 
 export default rid;
