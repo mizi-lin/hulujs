@@ -4,3 +4,4 @@ node_modules/
 .nx/cache
 dist
 .yarn/install-state.gz
+.nx
