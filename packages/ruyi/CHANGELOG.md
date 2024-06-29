@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.26](https://github.com/mizi-lin/hulujs/compare/v0.2.25...v0.2.26) (2024-06-29)
+
+
+### Features
+
+* ruyi server default ([fe5df6e](https://github.com/mizi-lin/hulujs/commit/fe5df6e7879099b92b3fb1630aca3d97d47a32b1))
+
+
+
+
+
 ## [0.2.25](https://github.com/mizi-lin/hulujs/compare/v0.2.24...v0.2.25) (2024-06-25)
 
 **Note:** Version bump only for package @hulujs/ruyi
