@@ -64,8 +64,6 @@
         "@babel/helper-module-transforms": "^7.23.3",
         "typescript": "^5"
     },
-    "workspaces": [
-        "packages/*"
-    ],
+    "workspaces": ["packages/*"],
     "packageManager": "yarn@4.2.2"
 }

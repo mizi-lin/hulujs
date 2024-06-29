@@ -100,6 +100,15 @@ export const Request = function (
     payload: Record<string, any> = {},
     options: RuyiOptions = {}
 ) {
+    const baseURL = Regc.get<string>(RegKey.RUYI_SERVER_BASEURL);
+
+    console.log('Ruyi baseURL -->', baseURL);
+
+    if (typeof window === 'undefined' && baseURL) {
+        axios.defaults.baseURL = baseURL;
+        console.log('Ruyi set default -->', baseURL);
+    }
+
     const customRuyiOptions: Record<string, any> = Regc.get(RegKey.RUYI_OPTIONS) ?? {};
     // 权重高低原则分配
     const method =

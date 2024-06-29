@@ -25,6 +25,7 @@
         "url": "https://github.com/mizi-lin/hulujs/issues"
     },
     "dependencies": {
+        "axios": "*",
         "@hulujs/msc": "0.2.24",
         "@hulujs/mu": "0.2.25",
         "@hulujs/types": "0.2.23"

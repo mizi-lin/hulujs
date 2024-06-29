@@ -2,8 +2,8 @@ import isNil from './is-nil.js';
 
 import { LocalStorage } from 'node-localstorage';
 
-const ls = typeof localStorage === 'undefined' ? new LocalStorage('./hulujs.local') : localStorage;
-const ss = typeof sessionStorage === 'undefined' ? new LocalStorage('./hulujs.session') : sessionStorage;
+const ls = typeof localStorage === 'undefined' ? new LocalStorage('./node_modules/.cache/hulu.storage') : localStorage;
+const ss = typeof sessionStorage === 'undefined' ? new LocalStorage('./node_modules/.cache/hulu.session') : sessionStorage;
 
 interface BaseStorageMethods {
     remove: (key: string) => void;
@@ -62,4 +62,13 @@ export function session(key: string, value: any);
 export function session(...args) {
     const [key, value] = args;
     return baseStorage(ss, key, value);
+}
+
+export function nstorage(): BaseStorageMethods;
+export function nstorage(key: string): any;
+export function nstorage(key: string, value: any);
+export function nstorage(...args) {
+    const [key, value] = args;
+    const storage = new LocalStorage('./node_modules/.cache/hulu.storage');
+    return baseStorage(storage, key, value);
 }
