@@ -2,7 +2,8 @@
     "extends": "../../tsconfig-base.json",
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "../../dist/@hulujs/ruyi"
+        "outDir": "../../dist/@hulujs/ruyi",
+        "esModuleInterop": false
     },
     "module": "NodeNext",
     "include": ["./lib"],

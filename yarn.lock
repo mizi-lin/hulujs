@@ -710,6 +710,7 @@ __metadata:
     "@hulujs/mu": "npm:0.2.26"
     "@hulujs/types": "npm:0.2.23"
     axios: "npm:*"
+    xior: "npm:*"
   languageName: unknown
   linkType: soft
 
@@ -10123,6 +10124,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-lru@npm:^11.2.5":
+  version: 11.2.6
+  resolution: "tiny-lru@npm:11.2.6"
+  checksum: 10c0/d59b2047edae1b4b79708070463ed27ddb1daa64563b74eedaa571e555c47f8de3a7cc19171f47dc46c01f1b7283d9afd2c682dddb4832552ed747d52cd297a6
+  languageName: node
+  linkType: hard
+
 "tmp@npm:^0.0.33":
   version: 0.0.33
   resolution: "tmp@npm:0.0.33"
@@ -10194,6 +10202,13 @@ __metadata:
   version: 3.0.1
   resolution: "trim-newlines@npm:3.0.1"
   checksum: 10c0/03cfefde6c59ff57138412b8c6be922ecc5aec30694d784f2a65ef8dcbd47faef580b7de0c949345abdc56ec4b4abf64dd1e5aea619b200316e471a3dd5bf1f6
+  languageName: node
+  linkType: hard
+
+"ts-deepmerge@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "ts-deepmerge@npm:7.0.0"
+  checksum: 10c0/60a7a068b98d3de57e76897e2a8ea2dec0a74b10a9a3869e1bb512f2ff9f9769cb6b37713f3320a386bbca6140268ab77bae26d65b3e48231227e7643700bc82
   languageName: node
   linkType: hard
 
@@ -10749,6 +10764,16 @@ __metadata:
     type-fest: "npm:^0.4.1"
     write-json-file: "npm:^3.2.0"
   checksum: 10c0/8e20db5fa444dad04e3703c18d8e0f89679caa60accbee5da9ea3aa076430b3f32d99f50d8860d29044245775795455c62d12d16a7856d407e30df7b79f39505
+  languageName: node
+  linkType: hard
+
+"xior@npm:*":
+  version: 0.5.1
+  resolution: "xior@npm:0.5.1"
+  dependencies:
+    tiny-lru: "npm:^11.2.5"
+    ts-deepmerge: "npm:^7.0.0"
+  checksum: 10c0/1bd3af22dca5a37dd6f414cb455fb2c62d5b0daeb9719f57a544220d30bcda56ef3cfda0f4a8221739838428a2a6306591e55a032b38ebfc54b29ab9a305ce7e
   languageName: node
   linkType: hard
 
