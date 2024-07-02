@@ -1,9 +1,5 @@
 import isNil from './is-nil.js';
-
-import { LocalStorage } from 'node-localstorage';
-
-const ls = typeof localStorage === 'undefined' ? new LocalStorage('./node_modules/.cache/hulu.storage') : localStorage;
-const ss = typeof sessionStorage === 'undefined' ? new LocalStorage('./node_modules/.cache/hulu.session') : sessionStorage;
+import { LocalStorage } from './utils/node-storage.js';
 
 interface BaseStorageMethods {
     remove: (key: string) => void;
@@ -49,7 +45,8 @@ export function storage(key: string): any;
 export function storage(key: string, value: any);
 export function storage(...args) {
     const [key, value] = args;
-    return baseStorage(ls, key, value);
+    const storge = typeof window !== 'undefined' ? window.localStorage : new LocalStorage('./node_modules/.cache/hulu.local');
+    return baseStorage(storge, key, value);
 }
 /**
  * 将传入的数据按照指定的key存入sessionStorage
@@ -61,14 +58,6 @@ export function session(key: string): any;
 export function session(key: string, value: any);
 export function session(...args) {
     const [key, value] = args;
-    return baseStorage(ss, key, value);
-}
-
-export function nstorage(): BaseStorageMethods;
-export function nstorage(key: string): any;
-export function nstorage(key: string, value: any);
-export function nstorage(...args) {
-    const [key, value] = args;
-    const storage = new LocalStorage('./node_modules/.cache/hulu.storage');
-    return baseStorage(storage, key, value);
+    const storge = typeof window !== 'undefined' ? window.sessionStorage : new LocalStorage('./node_modules/.cache/hulu.session');
+    return baseStorage(storge, key, value);
 }

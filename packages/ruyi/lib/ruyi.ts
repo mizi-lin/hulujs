@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import xior, { Xior, XiorRequestConfig, XiorResponse } from 'xior';
 import { RegKey, Regc } from '@hulujs/msc';
 import { compact, each, format, ifrun, map, run, storage, tile, upArray } from '@hulujs/mu';
 import { toFormatMarker } from './uri.js';
@@ -8,10 +7,7 @@ import { stringify } from './utils.js';
 // import download from './download';
 // import { toFormatMarker } from './uri';
 
-const http = xior;
-
-// export interface RuyiOptions extends AxiosRequestConfig {
-export interface RuyiOptions extends XiorRequestConfig {
+export interface RuyiOptions extends AxiosRequestConfig {
     methodCompatible?: Record<'put' | 'patch' | 'down' | 'upload' | 'delete', 'get' | 'post'>;
     responseDataType?: 'normal' | 'simple' | 'all';
     [x: string]: any;
@@ -32,7 +28,7 @@ export enum RuyiMethod {
 let isRequestInterceptor = false;
 let isResponseInterceptor = false;
 
-const responseHandler = function (response: XiorResponse, options: RuyiOptions) {
+const responseHandler = function (response: AxiosResponse, options: RuyiOptions) {
     const { responseDataType } = options;
     /**
      * 返回值支持精简模式
@@ -109,8 +105,7 @@ export const Request = function (
     console.log('Ruyi baseURL -->', baseURL);
 
     if (typeof window === 'undefined' && baseURL) {
-        // @ts-ignore
-        http.defaults.baseURL = baseURL;
+        axios.defaults.baseURL = baseURL;
         console.log('Ruyi set default -->', baseURL);
     }
 
@@ -120,8 +115,7 @@ export const Request = function (
         options.method ?? options?.methodCompatible?.[ruyiMethod] ?? customRuyiOptions?.methodCompatible?.[ruyiMethod] ?? ruyiMethod;
     const { url, params } = transformUrlSearchParams(ruyiUrl, search);
     // console.log('url/params', url, params);
-    const config: XiorRequestConfig = {
-        // @ts-ignore
+    const config: AxiosRequestConfig = {
         signal: cancelRequestSignal(ruyiMethod, ruyiUrl, search, payload),
         ...(Regc.get(RegKey.RUYI_OPTIONS) ?? {}),
         ...options,
@@ -179,8 +173,7 @@ export const Request = function (
     !isRequestInterceptor &&
         ifrun(Regc.get(RegKey.RUYI_REQUEST_INTERCEPTORS), (interceptors) => {
             interceptors = upArray(interceptors);
-            // @ts-ignore
-            http.interceptors.request.use(...interceptors);
+            axios.interceptors.request.use(...interceptors);
             isRequestInterceptor = true;
         });
 
@@ -196,8 +189,7 @@ export const Request = function (
                 ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
                     interceptors[1] = errorCatch;
                 });
-                // @ts-ignore
-                http.interceptors.response.use(...interceptors);
+                axios.interceptors.response.use(...interceptors);
                 isResponseInterceptor = true;
             },
             () => {
@@ -205,14 +197,12 @@ export const Request = function (
                 ifrun(Regc.get(RegKey.RUYI_ERROR_CATCH), (errorCatch) => {
                     interceptors[1] = errorCatch;
                 });
-                // @ts-ignore
-                http.interceptors.response.use(...interceptors);
+                axios.interceptors.response.use(...interceptors);
                 isResponseInterceptor = true;
             }
         );
 
-    // @ts-ignore
-    return http(config)
+    return axios(config)
         .then((response) => {
             return responseHandler(response, { responseDataType: 'normal', ...options });
         })

@@ -54,7 +54,7 @@ export { default as types } from './types.js';
 export { default as rid } from './rid.js';
 
 /** utils */
-export { storage, session as sessionStorage, nstorage } from './storage.js';
+export { storage, session as sessionStorage } from './storage.js';
 export { sleep } from './sleep.js';
 
 /** math */

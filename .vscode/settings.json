@@ -74,6 +74,12 @@
             "event": "onFileChange"
         },
         {
+            "match": "packages/ruyi/.*\\.ts*",
+            "isAsync": true,
+            "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/ruyi",
+            "event": "onFileChange"
+        },
+        {
             "match": "packages/types/.*\\.ts*",
             "isAsync": true,
             "cmd": "${workspaceRoot}/node_modules/.bin/tsc -p ${workspaceRoot}/packages/types",
