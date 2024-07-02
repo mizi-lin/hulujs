@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.27](https://github.com/mizi-lin/hulujs/compare/v0.2.26...v0.2.27) (2024-07-02)
+
+
+### Features
+
+* add ixor ([0058598](https://github.com/mizi-lin/hulujs/commit/0058598332a916aaf758e3eacff2014bc3e9ce3c))
+
+
+
+
+
 ## [0.2.26](https://github.com/mizi-lin/hulujs/compare/v0.2.25...v0.2.26) (2024-06-29)
 
 
