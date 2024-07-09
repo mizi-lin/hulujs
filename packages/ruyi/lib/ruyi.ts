@@ -102,11 +102,8 @@ export const Request = function (
 ) {
     const baseURL = Regc.get<string>(RegKey.RUYI_SERVER_BASEURL);
 
-    console.log('Ruyi baseURL -->', baseURL);
-
     if (typeof window === 'undefined' && baseURL) {
         axios.defaults.baseURL = baseURL;
-        console.log('Ruyi set default -->', baseURL);
     }
 
     const customRuyiOptions: Record<string, any> = Regc.get(RegKey.RUYI_OPTIONS) ?? {};
