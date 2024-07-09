@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.28](https://github.com/mizi-lin/hulujs/compare/v0.2.27...v0.2.28) (2024-07-09)
+
+
+### Features
+
+* full symbol build ([00e922e](https://github.com/mizi-lin/hulujs/commit/00e922e2c46964ebef01e0d59d800d9a85e76ccd))
+* modify storage ([09a68c3](https://github.com/mizi-lin/hulujs/commit/09a68c300b03a4915b9ffeb8c562cd8a321b5db8))
+
+
+
+
+
 ## [0.2.27](https://github.com/mizi-lin/hulujs/compare/v0.2.26...v0.2.27) (2024-07-02)
 
 
